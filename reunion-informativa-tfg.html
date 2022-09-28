@@ -1,0 +1,442 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2022-09-28 mié 15:31 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Pablo C. Alcalde" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { width: 90%; }
+</style>
+</head>
+<body>
+<div id="content" class="content">
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org66e3ed4">Resumen</a>
+<ul>
+<li><a href="#orgb2d6036">Info de las titulaciones</a></li>
+<li><a href="#org5b5b029">Normativa TFG</a></li>
+</ul>
+</li>
+<li><a href="#org67ab0f0">Readme</a>
+<ul>
+<li><a href="#org79a5344">Aspecto Academico</a></li>
+<li><a href="#orgef2a9cb">Condiciones para defender</a></li>
+<li><a href="#orgc5b0b12">Casos de Cagada (al año que viene compi, encima te toca pagar)</a></li>
+<li><a href="#org1228921">Requisitos</a></li>
+</ul>
+</li>
+<li><a href="#org770433e">Tipos de TFG</a>
+<ul>
+<li><a href="#org52fcdda">Común</a></li>
+<li><a href="#org39b5243">Excepciones para la extraordinaria</a></li>
+<li><a href="#org13f0228">Continuación</a></li>
+<li><a href="#org1cf933e">Particular</a></li>
+<li><a href="#org029b91a">Específicos</a></li>
+<li><a href="#org56622f8">Genericos</a></li>
+<li><a href="#org378f64d">Externos</a></li>
+</ul>
+</li>
+<li><a href="#org9d4d53d">Temas</a></li>
+<li><a href="#orge877133">Fechas clave</a></li>
+<li><a href="#orgaa2b135">Dudas y Observaciones</a></li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org66e3ed4" class="outline-2">
+<h2 id="org66e3ed4">Resumen</h2>
+<div class="outline-text-2" id="text-org66e3ed4">
+<p>
+Estos son mis anotaciones personales sobre el TFG que eres libre de leer pero me lavo las manos si luego algo está mal.
+</p>
+
+<p>
+Casos particulares, sube a los despachos en decanato y tal a molestar/preguntar.
+</p>
+
+<ul class="org-ul">
+<li>Toda la información "está" en la web e la facultad.</li>
+</ul>
+</div>
+
+<div id="outline-container-orgb2d6036" class="outline-3">
+<h3 id="orgb2d6036">Info de las titulaciones</h3>
+<div class="outline-text-3" id="text-orgb2d6036">
+<p>
+MAt -&gt; Estudiantes -&gt; Docencia -&gt; Planes estudio e itinerarios.
+</p>
+</div>
+</div>
+<div id="outline-container-org5b5b029" class="outline-3">
+<h3 id="org5b5b029">Normativa TFG</h3>
+<div class="outline-text-3" id="text-org5b5b029">
+<p>
+MAt -&gt; Estudiantes -&gt; Docencia -&gt; Trabajos de fin de grafo
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org67ab0f0" class="outline-2">
+<h2 id="org67ab0f0">Readme</h2>
+<div class="outline-text-2" id="text-org67ab0f0">
+<p>
+Incumplir un plazo es retraso o perdida de posibilidad, algunos son de verdad, otros de mentira, intenta respetarlos por que luego es un lio para todos.
+</p>
+</div>
+<div id="outline-container-org79a5344" class="outline-3">
+<h3 id="org79a5344">Aspecto Academico</h3>
+<div class="outline-text-3" id="text-org79a5344">
+<p>
+Practicamente todo está escrito ahí.
+</p>
+<ul class="org-ul">
+<li>Hay que matricularse (obvio), hay dos plazos (recuperar dinero dificil) próximo a la defensa hay que presentar cosas, con los titulos y las comas puestas.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgef2a9cb" class="outline-3">
+<h3 id="orgef2a9cb">Condiciones para defender</h3>
+<div class="outline-text-3" id="text-orgef2a9cb">
+<ul class="org-ul">
+<li>Itinerario terminado</li>
+<li>Estar matriculado</li>
+<li>Optativas en 3o y 40 deben estar bien cogidas si o si, tal y como o dice la guia docente, el número de créditos es irrelevante.</li>
+<li>No puedes defender en la primera convocatoria si te queda algo para la segunda convocatoría.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgc5b0b12" class="outline-3">
+<h3 id="orgc5b0b12">Casos de Cagada (al año que viene compi, encima te toca pagar)</h3>
+<div class="outline-text-3" id="text-orgc5b0b12">
+<ul class="org-ul">
+<li>Si no tienes las 2 opt de 3ero estas jodido, por muchas de 4o que tengas.</li>
+<li>Los bloques de 4o son 3 y 3, no 4 y 2 ojo!</li>
+<li>Las practicas cuentan dentro de las optativas de 4o (6 creditos) y de las de reconocimiento (6 creditos) pero no dos veces (no sé por que escribo esto, es obvio, pero bueno, yo que se, lo ha dicho como 5 veces asi que lo pongo).</li>
+<li>Los 6 creditos reconocidos no se convalidan por asignaturas, si no por créditos.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org1228921" class="outline-3">
+<h3 id="org1228921">Requisitos</h3>
+<div class="outline-text-3" id="text-org1228921">
+<ul class="org-ul">
+<li>Al menos el 60% de los créditos y entre ellos TODOS los básicos.</li>
+<li>Sin física y estadística no puedes hacer el TFG este curso. (yuhu! ese soy yo :/ a ver si dice algo de esto T<sub>T</sub>)
+Resumen: te jodes, llora el año que viene para hacerlo en la extraordinaria de febrero y ya.</li>
+<li>A veces se puede ampliar matrícula en el segundo cuatrimestre si te falta algo, no te matricules de mas.</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org770433e" class="outline-2">
+<h2 id="org770433e">Tipos de TFG</h2>
+<div class="outline-text-2" id="text-org770433e">
+</div>
+<div id="outline-container-org52fcdda" class="outline-3">
+<h3 id="org52fcdda">Común</h3>
+<div class="outline-text-3" id="text-org52fcdda">
+<ul class="org-ul">
+<li>12 créditos -&gt; 300h trabajo</li>
+<li>En agosto tu tutor está de vacaciones tambien, por mucho que tu quieras dedicar el verano a hacerlo.</li>
+<li>No te vengas arriba en la matricula, que lo tienes que hacer luego y son 12 créditos, le quitas el tutor/tema a otro, y eso jode.</li>
+<li>Guardate todo e nuna carpetita</li>
+<li>Si te apuntas no se anula la matrícula excepto si suspendes algo y no puedes usar la matricula, puedes cursarla al año siguiente sin tener que pagar segunda matrícula, en lugar de eso cursas asignatura sin docencia. <i>Tiene pinta que mejor hacer el tfg y suspender alguna, que tener que pagar doble por el tfg, pero bueno, no soy 100tifico</i>.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org39b5243" class="outline-3">
+<h3 id="org39b5243">Excepciones para la extraordinaria</h3>
+<div class="outline-text-3" id="text-org39b5243">
+<ul class="org-ul">
+<li>Pendientes de prácticas extracurriculares.</li>
+<li>El doble grado mat-Fisica tiene otros plazos.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org13f0228" class="outline-3">
+<h3 id="org13f0228">Continuación</h3>
+<div class="outline-text-3" id="text-org13f0228">
+<p>
+Si lo empezaste otro año y el profdesor bien pues lo firmamos y sigues
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1cf933e" class="outline-3">
+<h3 id="org1cf933e">Particular</h3>
+<div class="outline-text-3" id="text-org1cf933e">
+<p>
+Buscas al tutor, el te admite, eso va por el departamento y todo fácil.
+</p>
+<ul class="org-ul">
+<li>Buscas al tutor con el tema escogido, no se lo pides a el.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org029b91a" class="outline-3">
+<h3 id="org029b91a">Específicos</h3>
+<div class="outline-text-3" id="text-org029b91a">
+<p>
+Los departamentos sacan una lista y tu coges el que quieres por baremo (mejor nota pilla)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org56622f8" class="outline-3">
+<h3 id="org56622f8">Genericos</h3>
+<div class="outline-text-3" id="text-org56622f8">
+<p>
+Se asignan por petición sin garantizar que cojas el departamento que quieres, caso típico, en compu estas jodido.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org378f64d" class="outline-3">
+<h3 id="org378f64d">Externos</h3>
+<div class="outline-text-3" id="text-org378f64d">
+<p>
+Se puede hacer en empresas o instituciones que cumplan una serie de carácteristicas, necesitas dos directores, tutor académico aquí y alguien que te dirija en la empresa. Se te puede dar uno tutor academico "de oficio" pero igual te dice el departamento que te peines, así que mejor lo haces de antemano con un profe.
+Idealmente sigue los plazos del particular, si no puedes quedarte vendido.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org9d4d53d" class="outline-2">
+<h2 id="org9d4d53d">Temas</h2>
+<div class="outline-text-2" id="text-org9d4d53d">
+<p>
+BAJATE EL ULTIMO, CAMBIAN FECHAS A VECES, NO TE FIES DE UNO DESCARGADO EN VERANO!!!!
+Puedes hacer el TFG de lo que quieras, como si es de primero, no tiene que ser una continuación de 4o ni proyecto de investigación.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orge877133" class="outline-2">
+<h2 id="orge877133">Fechas clave</h2>
+<div class="outline-text-2" id="text-orge877133">
+<ul class="org-ul">
+<li>Matricula -&gt; junto con automatricula, solo hay que ampliar, aún que a mi no me sale, asi que ya dirá</li>
+<li>Matricula Extraordinaria en febrero</li>
+<li>Primera convocatoría -&gt; Junio</li>
+<li>4 noviembre fecha límite para pedir tfg especifico, particular o generico.</li>
+</ul>
+</div>
+</div>
+
+
+<div id="outline-container-orgaa2b135" class="outline-2">
+<h2 id="orgaa2b135">Dudas y Observaciones</h2>
+<div class="outline-text-2" id="text-orgaa2b135">
+<ul class="org-ul">
+<li>Si me matriculo y no me interesa el tema me jodo, no puedes cancelar matricula por esto.</li>
+<li>Hay profesores que parecen un poco gilipollas pero trabajan muy bien uno a uno para el TFG.</li>
+<li>La convocatoría extraordinaria fin de carrera en febrero adelanta una de tus dos convocatorias y es lo más pronto que lo puedes hacer.</li>
+<li>Si el tutor dice que no presentas no presentas.</li>
+<li>Puede aprobarte el tutor y suspenderte el tribunal (exposición).</li>
+<li>Básicamente es dar un temario de una asignatura.</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Pablo C. Alcalde</p>
+<p class="date">Created: 2022-09-28 mié 15:31</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
