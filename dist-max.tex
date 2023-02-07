@@ -1,0 +1,68 @@
+% Created 2023-02-07 mar 09:48
+% Intended LaTeX compiler: xelatex
+\documentclass[11pt]{article}
+\usepackage{graphicx}
+\usepackage{longtable}
+\usepackage{wrapfig}
+\usepackage{rotating}
+\usepackage[normalem]{ulem}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{capt-of}
+\usepackage{hyperref}
+\usepackage{minted}
+\author{Pablo C. Alcalde}
+\date{\today}
+\title{}
+\hypersetup{
+ pdfauthor={Pablo C. Alcalde},
+ pdftitle={},
+ pdfkeywords={},
+ pdfsubject={},
+ pdfcreator={Emacs 28.1 (Org mode 9.5.2)}, 
+ pdflang={English}}
+\begin{document}
+
+\tableofcontents
+
+\section{X\textsubscript{1}, \dots{}, X\textsubscript{n} m.a.s. "n"}
+\label{sec:org38f3e5c}
+Sea (X\textsubscript{1}, \dots{}, X\textsubscript{n}) \(\leftarrow\) muestra ordenada (otra notación (U\textsubscript{1}, \dots{}, U\textsubscript{n}))
+\subsection{\(X_{(n)} = \max\{X_{1}, \dots, X_{n}\}\)}
+\label{sec:org9115d00}
+Sea \(F\) la función de distribución teórica (de la v.a. de la que seleccionamos la muestra)
+\(F_{X_{(n)}}(x) = P(X_{(n)} \le x) = P (X_{1} \le x , \dots, X_{n} \le x) = \Pi_{i=1}^n P(X_i \le x) \stackrel{id}{=} (F(x))^n\)
+Si \(F\) tiene densidad asociada \(f(\dots)\) pla función de densidad del máximo será
+\(f_{X_{(x)}}(x) = n(F(x))^{n-1}f(x)\)
+\subsection{\(X_{(1)} = \min\{X_{1}, \dots, X_{n}\}\)}
+\label{sec:orgf665a70}
+En este caso
+\(F_{X_{(1)}} (x) = P(X_{(1)} \le x) = 1 - P(X_{(1)} > x) = 1 - P(X_{1} > x, \dots, X_{n} > x ) = 1 - \Pi_{i=1}^n P(X_1 > x) = 1 - \left[ 1 - F(x) \right]^n\)
+Si \(F(\dots)\) tiene densidad asociada \(f(\dots)\) es \(f_{X_{(1)}(x) = n \left[ 1 - F(x) \right]^{n-1} f(x)\)
+\section{Tenemos una carrera de 100 metros lisos que se distribuye uniforme en el siguiente intervalo \((9.8, 10.2)\) y tenemos 8 competidores, calcula la probabilidad de que el ganador supere el record mundial de 9.86}
+\label{sec:org9ffb988}
+En términos matemáticos nos piden que de una \(X \sim U(9.8,10.2)\) con n = 8 calculemos \(P(X_{(1)} < 9.86)\) sea \(F(x) = 2.5 x - 24.5\) con \(x \in (9.8, 10.2)\) entonces \(f(x) = \frac{1}{10.2 - 9.8} = 2.5\) con \(x\in(9.8, 10.2)\)
+\(P(X_{(1)} < 9.86) = 1 - \left[ 1 + 24.5 - 2.5 9.86 \right]^8 = 0.7275\).
+\section{Supongamos que aqhora estamos interesados en la distribución de \((X_{(1)},X_{(n)})\).}
+\label{sec:orged28e51}
+Por definición esto es \(F_{(X_{(1)},X_{(n)}}} (x, y) = P (X_{(1)} \le x, X_{(n)} \le y ) = (1)\) este caso generalmente tocan integrales dobles feas \ldots{} peeero
+\((X_{(1)} > x, X_{n)} \le y) \cup (X_{(1)} \le x , X_{(n)} \le y ) = (X_{(n)} \le y) = P(X_{(n)} \le y)\)
+
+Que es una aplicación de \(P(A\cup B) = P(A) + P(B)\)
+
+Seguimos con nuestro cálculo objetivo ya que lo que buscamos es lo mismo que decir que todos los valorcillos de nuestra muestra esten entre x e y
+\((P(X_{(1)} > x, X_{(n)} \le y) =
+P(x < X_1 \le y , \dots, x < X_n \le y) = \Pi_{i=1}^n P(x< X_1 \le y) = \left( F(y) - F(x) \right)^{n}\)
+
+\(F_{(X_{(1)},X_{(n)}}} (x, y) = P (X_{(1)} \le x, X_{(n)} \le y ) = \begin{cases} F(y)^{n} - (F(y) - F(x))^n &\text{ si } x < y \\ (F(y))^n - 0 &\text{ si } x \ge y \end{cases}\)
+\section{Supón que estamos con nuestra m.a.s. de orden n y hemos sacado información sobre el mínimo y el máximo, supongamos ahora que queremos sacar información sobre \(R_n = X_{(1)} - X_{(n)}\).}
+\label{sec:org46e2594}
+Hacemos el siguiente cambio de variable \(\begin{cases} U &= X_{(1)} \\ R &= X_{(n)} - X_{(1)} \end{cases} \implies \begin{cases} X_{(1)} &= U \\ X_{(n)} &= U + R \end{cases}\)
+por ser \(J = \begin{matrix} 1 & 0 \\ 1 & 1 \end{matrix}\) = 1 i.e. \(|J| = |1| = 1\)
+Sabemos que \(f_{(X_{(1)},X_{(n)})}(x,y) = \begin{cases} n (n-1) \left( F(y) - F(x) \right) ^{n-2} f(x) f(y) &\text{si } x < y \\ 0 &\text{si } x \ge y \end{cases}\) entonces
+\(f_{U,R}(u,r) = n(n-1) \left[ F(u + r) - F(u)  \right]^{n-1} f(u) f(u+r) - |J|\)
+
+\(f_R(r) = n(n-1) \int_{- \infty}^{\infty} \left[ F(u + r) - F(u) \right]^{n - 2} f(u) f(u+r) du\)
+que en este caso es \(f_R(r) = n(n-1) \int_0^{1-r}r^{n-2} du = n(n-1) r^{n-2}(1-r)\) y esto es la densidad de una v.a. \(Beta(n-1, 2)\) con \(r > 0\)
+\(\frac{\Gamma (n + 1)}{ \Gamma(2) \Gamma(n-1)\) 
+\end{document}
