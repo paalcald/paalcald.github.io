@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-02-07 mar 09:52 -->
+<!-- 2023-02-07 mar 10:02 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>&lrm;</title>
@@ -221,27 +221,27 @@
 <h2>Table of Contents</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#orgfd13ef8">1. X<sub>1</sub>, &hellip;, X<sub>n</sub> m.a.s. "n"</a>
+<li><a href="#orge0c5f49">1. X<sub>1</sub>, &hellip;, X<sub>n</sub> m.a.s. "n"</a>
 <ul>
-<li><a href="#orgbfc3738">1.1. \(X_{(n)} = \max\{X_{1}, \dots, X_{n}\}\)</a></li>
-<li><a href="#org4e02b26">1.2. \(X_{(1)} = \min\{X_{1}, \dots, X_{n}\}\)</a></li>
+<li><a href="#org26fb3f1">1.1. \(X_{(n)} = \max\{X_{1}, \dots, X_{n}\}\)</a></li>
+<li><a href="#org5485e0d">1.2. \(X_{(1)} = \min\{X_{1}, \dots, X_{n}\}\)</a></li>
 </ul>
 </li>
-<li><a href="#org3034a26">2. Tenemos una carrera de 100 metros lisos que se distribuye uniforme en el siguiente intervalo \((9.8, 10.2)\) y tenemos 8 competidores, calcula la probabilidad de que el ganador supere el record mundial de 9.86</a></li>
-<li><a href="#orge45c709">3. Supongamos que aqhora estamos interesados en la distribución de \((X_{(1)},X_{(n)})\).</a></li>
-<li><a href="#org02863cd">4. Supón que estamos con nuestra m.a.s. de orden n y hemos sacado información sobre el mínimo y el máximo, supongamos ahora que queremos sacar información sobre \(R_n = X_{(1)} - X_{(n)}\).</a></li>
+<li><a href="#org1c7e3c0">2. Tenemos una carrera de 100 metros lisos que se distribuye uniforme en el siguiente intervalo \((9.8, 10.2)\) y tenemos 8 competidores, calcula la probabilidad de que el ganador supere el record mundial de 9.86</a></li>
+<li><a href="#org7c82a8f">3. Supongamos que aqhora estamos interesados en la distribución de \((X_{(1)},X_{(n)})\).</a></li>
+<li><a href="#org9845efb">4. Supón que estamos con nuestra m.a.s. de orden n y hemos sacado información sobre el mínimo y el máximo, supongamos ahora que queremos sacar información sobre \(R_n = X_{(1)} - X_{(n)}\).</a></li>
 </ul>
 </div>
 </div>
-<div id="outline-container-orgfd13ef8" class="outline-2">
-<h2 id="orgfd13ef8"><span class="section-number-2">1.</span> X<sub>1</sub>, &hellip;, X<sub>n</sub> m.a.s. "n"</h2>
+<div id="outline-container-orge0c5f49" class="outline-2">
+<h2 id="orge0c5f49"><span class="section-number-2">1.</span> X<sub>1</sub>, &hellip;, X<sub>n</sub> m.a.s. "n"</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Sea (X<sub>1</sub>, &hellip;, X<sub>n</sub>) &larr; muestra ordenada (otra notación (U<sub>1</sub>, &hellip;, U<sub>n</sub>))
 </p>
 </div>
-<div id="outline-container-orgbfc3738" class="outline-3">
-<h3 id="orgbfc3738"><span class="section-number-3">1.1.</span> \(X_{(n)} = \max\{X_{1}, \dots, X_{n}\}\)</h3>
+<div id="outline-container-org26fb3f1" class="outline-3">
+<h3 id="org26fb3f1"><span class="section-number-3">1.1.</span> \(X_{(n)} = \max\{X_{1}, \dots, X_{n}\}\)</h3>
 <div class="outline-text-3" id="text-1-1">
 <p>
 Sea \(F\) la función de distribución teórica (de la v.a. de la que seleccionamos la muestra)
@@ -251,19 +251,19 @@ Si \(F\) tiene densidad asociada \(f(\dots)\) pla función de densidad del máxi
 </p>
 </div>
 </div>
-<div id="outline-container-org4e02b26" class="outline-3">
-<h3 id="org4e02b26"><span class="section-number-3">1.2.</span> \(X_{(1)} = \min\{X_{1}, \dots, X_{n}\}\)</h3>
+<div id="outline-container-org5485e0d" class="outline-3">
+<h3 id="org5485e0d"><span class="section-number-3">1.2.</span> \(X_{(1)} = \min\{X_{1}, \dots, X_{n}\}\)</h3>
 <div class="outline-text-3" id="text-1-2">
 <p>
 En este caso
 \(F_{X_{(1)}} (x) = P(X_{(1)} \le x) = 1 - P(X_{(1)} > x) = 1 - P(X_{1} > x, \dots, X_{n} > x ) = 1 - \Pi_{i=1}^n P(X_1 > x) = 1 - \left[ 1 - F(x) \right]^n\)
-Si \(F(\dots)\) tiene densidad asociada \(f(\dots)\) es \(f_{X_{(1)}(x) = n \left[ 1 - F(x) \right]^{n-1} f(x)\)
+Si \(F(\dots)\) tiene densidad asociada \(f(\dots)\) es \(f_{X_{(1)}}(x) = n \left[ 1 - F(x) \right]^{n-1} f(x)\)
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-org3034a26" class="outline-2">
-<h2 id="org3034a26"><span class="section-number-2">2.</span> Tenemos una carrera de 100 metros lisos que se distribuye uniforme en el siguiente intervalo \((9.8, 10.2)\) y tenemos 8 competidores, calcula la probabilidad de que el ganador supere el record mundial de 9.86</h2>
+<div id="outline-container-org1c7e3c0" class="outline-2">
+<h2 id="org1c7e3c0"><span class="section-number-2">2.</span> Tenemos una carrera de 100 metros lisos que se distribuye uniforme en el siguiente intervalo \((9.8, 10.2)\) y tenemos 8 competidores, calcula la probabilidad de que el ganador supere el record mundial de 9.86</h2>
 <div class="outline-text-2" id="text-2">
 <p>
 En términos matemáticos nos piden que de una \(X \sim U(9.8,10.2)\) con n = 8 calculemos \(P(X_{(1)} < 9.86)\) sea \(F(x) = 2.5 x - 24.5\) con \(x \in (9.8, 10.2)\) entonces \(f(x) = \frac{1}{10.2 - 9.8} = 2.5\) con \(x\in(9.8, 10.2)\)
@@ -271,11 +271,11 @@ En términos matemáticos nos piden que de una \(X \sim U(9.8,10.2)\) con n = 8 
 </p>
 </div>
 </div>
-<div id="outline-container-orge45c709" class="outline-2">
-<h2 id="orge45c709"><span class="section-number-2">3.</span> Supongamos que aqhora estamos interesados en la distribución de \((X_{(1)},X_{(n)})\).</h2>
+<div id="outline-container-org7c82a8f" class="outline-2">
+<h2 id="org7c82a8f"><span class="section-number-2">3.</span> Supongamos que aqhora estamos interesados en la distribución de \((X_{(1)},X_{(n)})\).</h2>
 <div class="outline-text-2" id="text-3">
 <p>
-Por definición esto es \(F_{(X_{(1)},X_{(n)}}} (x, y) = P (X_{(1)} \le x, X_{(n)} \le y ) = (1)\) este caso generalmente tocan integrales dobles feas &#x2026; peeero
+Por definición esto es \(F_{(X_{(1)},X_{(n)})} (x, y) = P (X_{(1)} \le x, X_{(n)} \le y ) = (1)\) este caso generalmente tocan integrales dobles feas &#x2026; peeero
 \((X_{(1)} > x, X_{n)} \le y) \cup (X_{(1)} \le x , X_{(n)} \le y ) = (X_{(n)} \le y) = P(X_{(n)} \le y)\)
 </p>
 
@@ -290,12 +290,14 @@ P(x < X_1 \le y , \dots, x < X_n \le y) = \Pi_{i=1}^n P(x< X_1 \le y) = \left( F
 </p>
 
 <p>
-\[F_{(X_{(1)},X_{(n)}}} (x, y) = P (X_{(1)} \le x, X_{(n)} \le y ) = \begin{cases} F(y)^{n} - (F(y) - F(x))^n &\text{ si } x < y \\ (F(y))^n - 0 &\text{ si } x \ge y \end{cases}\]
+\[F_{(X_{(1)},X_{(n)})} (x, y) = P (X_{(1)} \le x, X_{(n)} \le y ) = \begin{cases} F(y)^{n} - (F(y) - F(x))^n &\text{ si } x < y \\ (F(y))^n - 0 &\text{ si } x \ge y \end{cases}\]
 </p>
 </div>
 </div>
-<div id="outline-container-org02863cd" class="outline-2">
-<h2 id="org02863cd"><span class="section-number-2">4.</span> Supón que estamos con nuestra m.a.s. de orden n y hemos sacado información sobre el mínimo y el máximo, supongamos ahora que queremos sacar información sobre \(R_n = X_{(1)} - X_{(n)}\).</h2>
+
+
+<div id="outline-container-org9845efb" class="outline-2">
+<h2 id="org9845efb"><span class="section-number-2">4.</span> Supón que estamos con nuestra m.a.s. de orden n y hemos sacado información sobre el mínimo y el máximo, supongamos ahora que queremos sacar información sobre \(R_n = X_{(1)} - X_{(n)}\).</h2>
 <div class="outline-text-2" id="text-4">
 <p>
 Hacemos el siguiente cambio de variable \(\begin{cases} U &= X_{(1)} \\ R &= X_{(n)} - X_{(1)} \end{cases} \implies \begin{cases} X_{(1)} &= U \\ X_{(n)} &= U + R \end{cases}\)
@@ -306,15 +308,14 @@ Sabemos que \(f_{(X_{(1)},X_{(n)})}(x,y) = \begin{cases} n (n-1) \left( F(y) - F
 
 <p>
 \(f_R(r) = n(n-1) \int_{- \infty}^{\infty} \left[ F(u + r) - F(u) \right]^{n - 2} f(u) f(u+r) du\)
-que en este caso es \(f_R(r) = n(n-1) \int_0^{1-r}r^{n-2} du = n(n-1) r^{n-2}(1-r)\) y esto es la densidad de una v.a. \(Beta(n-1, 2)\) con \(r > 0\)
-\(\frac{\Gamma (n + 1)}{ \Gamma(2) \Gamma(n-1)\) 
+que en este caso es \(f_R(r) = n(n-1) \int_0^{1-r}r^{n-2} du = n(n-1) r^{n-2}(1-r)  = \frac{ \Gamma (n + 1)}{\Gamma (2) \Gamma(n-1)}\) y esto es la densidad de una v.a. \(Beta(n-1, 2)\) con \(r > 0\)
 </p>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-02-07 mar 09:52</p>
+<p class="date">Created: 2023-02-07 mar 10:02</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
