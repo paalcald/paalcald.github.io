@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+<!-- 2023-02-10 vie 14:15 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Práctica 1: Códigos de Huffman</title>
+<meta name="author" content="Pablo C. Alcalde" />
+<meta name="description" content="Memoria de la Practica 2 de Geometría Computacional." />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Práctica 1: Códigos de Huffman</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>&Iacute;ndice</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org0367e4c">1. Introduccion</a></li>
+<li><a href="#org31fc457">2. Implementación en Python</a>
+<ul>
+<li><a href="#org76e6921">2.1. Librerias Usadas</a></li>
+<li><a href="#org113d589">2.2. Clases Auxiliares</a>
+<ul>
+<li><a href="#orgbb86de6">2.2.1. Árbol de Huffman</a></li>
+<li><a href="#org34056dc">2.2.2. Teorema de Shannon</a></li>
+<li><a href="#orga9fe9d9">2.2.3. Codificacion</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#orga32aca3">3. Método y Dátos</a>
+<ul>
+<li><a href="#org030d1bf">3.1. Hayar el código de Huffman binario de S<sub>Eng</sub> y S<sub>Esp</sub>, sus longitudes medias L(S<sub>Eng</sub>) y L(S<sub>Esp</sub>), y comprueba que se satisface el Primer Teorema de Shannon.</a></li>
+<li><a href="#org5d584d7">3.2. Codificar con dicho código la palabra cognada X = <i>"dimension"</i> para ambas lenguas, y comprobar la eficiencia de longitud comparada con el código binario usual.</a></li>
+<li><a href="#org1680f97">3.3. Decodifica la siguiente palabra del inglés \newline <i>"0101010001100111001101111000101111110101010001110"</i>.</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0367e4c" class="outline-2">
+<h2 id="org0367e4c"><span class="section-number-2">1.</span> Introduccion</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Un código de Huffman es un tipo particular de codigo usado comunmente para compresión sin pérdida de datos. Es un código en el que los símbolos más utilizados de les asocia un código más corto, de manera que los prefijos sean únicos.
+De tal modo, aún siendo códigos de longitud variable, se mantiene la posibilidad de marcar unequivocamente la terminación del código asociado a cada uno de los caracteres.
+De entre los códigos que codifican símbolos independientemente, este se considera óptimo.
+Seguir el siguiente <a href="https://es.wikipedia.org/wiki/Codificaci%C3%B3n_Huffman">link</a> para más información o el siguiente <a href="https://www.youtube.com/watch?v=0kNXhFIEd_w">vídeo(en inglés)</a> para ver una explicación e implementación del mismo.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org31fc457" class="outline-2">
+<h2 id="org31fc457"><span class="section-number-2">2.</span> Implementación en Python</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org76e6921" class="outline-3">
+<h3 id="org76e6921"><span class="section-number-3">2.1.</span> Librerias Usadas</h3>
+<div class="outline-text-3" id="text-2-1">
+<ul class="org-ul">
+<li>Para obtener la tabla de frecuencias del archivo utilizaremos <i>Counter</i> de la librería <i>collections</i>.</li>
+<li>Usamos la librería <i>functools</i> para facilitarnos la implementación de relaciones de orden en nuestras clases.</li>
+<li>Para conseguir una construcción eficiente de nuestro <a href="#orgbb86de6">árbol de Huffman</a> usaremos la <i>PriorityQueue</i> de la librería <i>queue</i> de python.</li>
+<li>Finalmente importaremos las funciones matemáticas necesarias de <i>math</i>.</li>
+</ul>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #79740e;">"""</span>
+<span style="color: #79740e;">``Practica 1: Codigos de Huffman`` module</span>
+<span style="color: #79740e;">"""</span>
+<span style="color: #9d0006;">from</span> collections <span style="color: #9d0006;">import</span> Counter <span style="color: #a89984;">#</span><span style="color: #a89984;">Counter</span>
+<span style="color: #9d0006;">from</span> functools <span style="color: #9d0006;">import</span> total_ordering, <span style="color: #af3a03;">reduce</span>
+<span style="color: #9d0006;">from</span> queue <span style="color: #9d0006;">import</span> PriorityQueue
+<span style="color: #9d0006;">from</span> math <span style="color: #9d0006;">import</span> log2
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org113d589" class="outline-3">
+<h3 id="org113d589"><span class="section-number-3">2.2.</span> Clases Auxiliares</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+<div id="outline-container-orgbb86de6" class="outline-4">
+<h4 id="orgbb86de6"><span class="section-number-4">2.2.1.</span> Árbol de Huffman</h4>
+<div class="outline-text-4" id="text-2-2-1">
+<p>
+Usaremos esta implementación de los árboles de huffman, que usa la herencia de clases de python para diferenciar entre nodos y hojas a partir de una base común e implementa un orden total para el uso de una cola de prioridad predefinida en el algoritmo de creación de códigos.
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #8f3f71;">@total_ordering</span>
+<span style="color: #9d0006;">class</span> <span style="color: #8f3f71;">HTbase</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Class used to represent common properties of Huffman nodes</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   and leaves.</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ...</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Attributes</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ----------</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - frequency: frequency of the associated node</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__init__</span>(<span style="color: #9d0006;">self</span>, frequency):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   base init</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">self</span>.frequency = frequency
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">get_freq</span>(<span style="color: #9d0006;">self</span>):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Getter method for the frequency attribute.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #9d0006;">self</span>.frequency
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">is_leaf</span>(<span style="color: #9d0006;">self</span>):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Returns wether or not the Huffman node is a leaf.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">raise</span> <span style="color: #8f3f71;">NotImplementedError</span>(<span style="color: #79740e;">"is_leaf() is not defined for base"</span>)
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">todict</span>(<span style="color: #9d0006;">self</span>):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Returns a dictionary whose keys are the Huffman Tree</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   leaves characters and whose values are the associated</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Huffman code for said character.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">recursive_helper</span>(node, code):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> node.is_leaf():
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">yield</span> (node.get_char(), code)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">else</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">yield</span> <span style="color: #9d0006;">from</span> recursive_helper(node.leftchild, code + <span style="color: #79740e;">'0'</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">yield</span> <span style="color: #9d0006;">from</span> recursive_helper(node.rightchild, code + <span style="color: #79740e;">'1'</span>)
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #af3a03;">dict</span>(recursive_helper(<span style="color: #9d0006;">self</span>, <span style="color: #79740e;">''</span>))
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__eq__</span>(<span style="color: #9d0006;">self</span>, other):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Overloaded comparison to refer to the frequency attribute.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #9d0006;">self</span>.frequency == other.frequency
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__lt__</span>(<span style="color: #9d0006;">self</span>, other):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Overloaded comparison to refer to the frequency attribute.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #9d0006;">self</span>.frequency &lt; other.frequency
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #9d0006;">class</span> <span style="color: #8f3f71;">HTleaf</span>(HTbase):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Class used to represent a Huffman Tree Leaf</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ...</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Attributes</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ----------</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - character: Leaf's associated character.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - frequency: Frequency of the leaf's associated character.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__init__</span>(<span style="color: #9d0006;">self</span>, char, freq):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Parameters</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ----------</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - character: Leaf's associated character.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - frequency: Frequency of the leaf's associated character.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">super</span>().__init__(freq)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">self</span>.character = char
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">get_char</span>(<span style="color: #9d0006;">self</span>):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Getter method for the character attribute.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #9d0006;">self</span>.character
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">is_leaf</span>(<span style="color: #9d0006;">self</span>):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #8f3f71;">True</span>
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__add__</span>(<span style="color: #9d0006;">self</span>, other):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Overloaded addition to return Huffman's parent node of addends.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> HuffmanTree(<span style="color: #9d0006;">self</span>, other)
+</pre>
+</div>
+
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #9d0006;">class</span> <span style="color: #8f3f71;">HuffmanTree</span>(HTbase):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Class used to represent a Huffman Tree</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ...</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Attributes</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ----------</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - frequency = returns the value of a given leaf or the sum of</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   the values for its children for a node.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - children= returns the node's childrens in a list.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__init__</span>(<span style="color: #9d0006;">self</span>, lnode, rnode):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Initializes a node whose frequency is the one of it's children</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   added up.</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ...</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Parameters</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ----------</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   lnode: Node's left children.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   rnode: NOde's right children.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">super</span>().__init__(lnode.get_freq() + rnode.get_freq())
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">self</span>.<span style="color: #076678;">leftchild</span> = lnode
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">self</span>.<span style="color: #076678;">rightchild</span> = rnode
+
+<span style="background-color: #ebdbb2;"> </span>   @<span style="color: #af3a03;">classmethod</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">fromdict</span>(cls, dictionary):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Uses a priority queue to transform a dictionary of</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   {character: frequency} elements to a Huffman Tree.</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   example input: d = {'c': 12, 'd': 56}</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   example output: HT(HT('c', 12), HT('d', 56))</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   pq = PriorityQueue()
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> character, frequency <span style="color: #9d0006;">in</span> dictionary.items():
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   pq.put(HTleaf(character, frequency))
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">while</span> pq.qsize() &gt;= 2:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">elem1</span> = pq.get()
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">elem2</span> = pq.get()
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   pq.put(cls(elem1, elem2))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> pq.get()
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__add__</span>(<span style="color: #9d0006;">self</span>, other):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Overloaded addition for creating tree whose children</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   are the two addends.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #9d0006;">self</span>.__init__(<span style="color: #9d0006;">self</span>, other)
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__iter__</span>(<span style="color: #9d0006;">self</span>):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Preorder leaf iterator.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">yield</span> <span style="color: #9d0006;">from</span> <span style="color: #9d0006;">self</span>.leftchild
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">yield</span> <span style="color: #9d0006;">from</span> <span style="color: #9d0006;">self</span>.rightchild
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">is_leaf</span>(<span style="color: #9d0006;">self</span>):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> <span style="color: #9d0006;">return</span> <span style="color: #8f3f71;">False</span>
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">decode</span>(<span style="color: #9d0006;">self</span>, bitstring):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Decode a binary string.</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ...</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Decodes a string compounded by 1's and 0's using a traversal</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   algoritm on the Huffman Tree, while its not on a leaf it</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   recursively traverses down the tree going left if given a '0'</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   or right if given a '1'. Once a leaf is reached it appends the</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   associated character to the output string and continues the</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   algoritm on the tree's root.</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Input</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   -----</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   bitstring : string</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   A string compounded by 1's and 0's</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Output</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ------</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   decoded_string : string</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   A string containing the characters associated to the</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   decodification of ``bitstring``.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   decoded_string = <span style="color: #79740e;">''</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">current_node</span> = <span style="color: #9d0006;">self</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> bit <span style="color: #9d0006;">in</span> bitstring:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> bit == <span style="color: #79740e;">'0'</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   current_node = current_node.leftchild
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">else</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   current_node = current_node.rightchild
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> current_node.is_leaf():
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   decoded_string += current_node.character
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   current_node = <span style="color: #9d0006;">self</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> decoded_string
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org34056dc" class="outline-4">
+<h4 id="org34056dc"><span class="section-number-4">2.2.2.</span> Teorema de Shannon</h4>
+<div class="outline-text-4" id="text-2-2-2">
+<p>
+Comprobamos si los valores satisfacen el primer teorema de Shannon.
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #9d0006;">def</span> <span style="color: #b57614;">satisfies_shannons_first_theorem</span>(h, l, output=<span style="color: #8f3f71;">True</span>, sig_figs=4):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> h - 1 &lt;= l <span style="color: #9d0006;">and</span> l &lt;= h + 1:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> output:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">print</span>((f<span style="color: #79740e;">"\\(</span>{<span style="color: #af3a03;">round</span>(h - 1, sig_figs)}<span style="color: #79740e;"> \\le"</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  f<span style="color: #79740e;">"</span>{<span style="color: #af3a03;">round</span>(l, sig_figs)}<span style="color: #79740e;"> \\le "</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  f<span style="color: #79740e;">"</span>{<span style="color: #af3a03;">round</span>(h + 1, sig_figs)}<span style="color: #79740e;">\\)\n"</span>))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">print</span>(<span style="color: #79740e;">"Se cumple el primer teorema de Shannon\n"</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #8f3f71;">True</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">else</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #8f3f71;">False</span>
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga9fe9d9" class="outline-4">
+<h4 id="orga9fe9d9"><span class="section-number-4">2.2.3.</span> Codificacion</h4>
+<div class="outline-text-4" id="text-2-2-3">
+<p>
+Codificamos letra a letra buscandola en nuestra tabla de códigos.
+</p>
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #9d0006;">def</span> <span style="color: #b57614;">encode</span>(string, code):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Encode the given string using code as the dictionary.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #af3a03;">reduce</span>(<span style="color: #9d0006;">lambda</span> x, y: x + code[y], string, <span style="color: #79740e;">''</span>)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga32aca3" class="outline-2">
+<h2 id="orga32aca3"><span class="section-number-2">3.</span> Método y Dátos</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org030d1bf" class="outline-3">
+<h3 id="org030d1bf"><span class="section-number-3">3.1.</span> Hayar el código de Huffman binario de S<sub>Eng</sub> y S<sub>Esp</sub>, sus longitudes medias L(S<sub>Eng</sub>) y L(S<sub>Esp</sub>), y comprueba que se satisface el Primer Teorema de Shannon.</h3>
+<div class="outline-text-3" id="text-3-1">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #076678;">FILENAME_ES</span> = <span style="color: #79740e;">'GCOM2023_pract1_auxiliar_esp.txt'</span>
+<span style="color: #076678;">SIG_FIGS</span> = 3
+
+<span style="color: #9d0006;">with</span> <span style="color: #af3a03;">open</span>(FILENAME_ES, <span style="color: #79740e;">'r'</span>, encoding = <span style="color: #79740e;">"utf8"</span>) <span style="color: #9d0006;">as</span> ifile:
+<span style="background-color: #ebdbb2;"> </span>   es = ifile.read()
+
+tab_es = Counter(es)
+ht_es = HuffmanTree.fromdict(tab_es)
+d_es = ht_es.todict()
+l_es_i = [<span style="color: #af3a03;">len</span>(code) * tab_es[letter] <span style="color: #9d0006;">for</span> letter, code <span style="color: #9d0006;">in</span> d_es.items()]
+l_es = (<span style="color: #af3a03;">sum</span>(l_es_i), <span style="color: #af3a03;">len</span>(es))
+h_es_i = [freq / <span style="color: #af3a03;">len</span>(es) * log2(freq / <span style="color: #af3a03;">len</span>(es)) <span style="color: #9d0006;">for</span> freq <span style="color: #9d0006;">in</span> tab_es.values()]
+h_es = -1 * <span style="color: #af3a03;">sum</span>(h_es_i)
+
+FILENAME_EN = <span style="color: #79740e;">'GCOM2023_pract1_auxiliar_eng.txt'</span>
+<span style="color: #9d0006;">with</span> <span style="color: #af3a03;">open</span>(FILENAME_EN, <span style="color: #79740e;">'r'</span>, encoding = <span style="color: #79740e;">"utf8"</span>) <span style="color: #9d0006;">as</span> ifile:
+<span style="background-color: #ebdbb2;"> </span>   en = ifile.read()
+
+tab_en = Counter(en)
+ht_en = HuffmanTree.fromdict(tab_en)
+d_en = ht_en.todict()
+l_en_i = [<span style="color: #af3a03;">len</span>(code) * tab_en[letter] <span style="color: #9d0006;">for</span> letter, code <span style="color: #9d0006;">in</span> d_en.items()]
+l_en = (<span style="color: #af3a03;">sum</span>(Len_i), <span style="color: #af3a03;">len</span>(en))
+h_en_i = [freq / <span style="color: #af3a03;">len</span>(en) * log2(freq / <span style="color: #af3a03;">len</span>(en)) <span style="color: #9d0006;">for</span> freq <span style="color: #9d0006;">in</span> tab_en.values()]
+h_en = -1 * <span style="color: #af3a03;">sum</span>(h_en_i)
+</pre>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5d584d7" class="outline-3">
+<h3 id="org5d584d7"><span class="section-number-3">3.2.</span> Codificar con dicho código la palabra cognada X = <i>"dimension"</i> para ambas lenguas, y comprobar la eficiencia de longitud comparada con el código binario usual.</h3>
+<div class="outline-text-3" id="text-3-2">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #076678;">x_es</span> = <span style="color: #79740e;">''</span>
+<span style="color: #076678;">x_en</span> = <span style="color: #79740e;">''</span>
+<span style="color: #076678;">PALABRA</span> = <span style="color: #79740e;">'dimension'</span>
+<span style="color: #9d0006;">for</span> letter <span style="color: #9d0006;">in</span> <span style="color: #076678;">PALABRA</span>:
+<span style="background-color: #ebdbb2;"> </span>   x_es += d_en[letter]
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">x_en</span> += d_es[letter]
+</pre>
+</div>
+
+<pre class="example">
+Traceback (most recent call last):
+  File "&lt;string&gt;", line 17, in __PYTHON_EL_eval
+  File "&lt;string&gt;", line 3, in &lt;module&gt;
+  File "/tmp/babel-FOcM4q/python-0IEyyO", line 7
+    print(f"- La entropia H_eng es {round(h_en, SIG_FIGS}\n")
+          ^
+SyntaxError: f-string: closing parenthesis '}' does not match opening parenthesis '('
+&gt;&gt;&gt;
+</pre>
+
+
+
+<p>
+'dimension' compreso con S<sub>Esp</sub> es '1111001100011000010011010011010001001'
+</p>
+
+<p>
+sin comprimir es 194% mas largo
+'dimension' compreso con S<sub>Eng</sub> es '1111001100011000010011010011010001001'
+</p>
+
+<p>
+sin comprimir es 194% mas largo
+</p>
+</div>
+</div>
+
+<div id="outline-container-org1680f97" class="outline-3">
+<h3 id="org1680f97"><span class="section-number-3">3.3.</span> Decodifica la siguiente palabra del inglés \newline <i>"0101010001100111001101111000101111110101010001110"</i>.</h3>
+<div class="outline-text-3" id="text-3-3">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #076678;">ENCODED</span> = <span style="color: #79740e;">"0101010001100111001101111000101111110101010001110"</span>
+<span style="color: #076678;">decoded</span> = HT_en.decode(encoded)
+</pre>
+</div>
+
+<p>
+0101010001100111001101111000101111110101010001110 es 
+mn ourphmn
+Los arboles de Huffman NO son únicos y este apartado está mal planteado.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Fecha: 2023-02-10 vie 00:00</p>
+<p class="author">Autor: Pablo C. Alcalde</p>
+<p class="date">Created: 2023-02-10 vie 14:15</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

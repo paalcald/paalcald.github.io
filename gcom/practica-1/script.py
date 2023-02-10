@@ -251,11 +251,11 @@ h_en = -1 * sum(h_en_i)
 
 print((f"- La longitud media L_esp es \\(\\frac{{{l_es[0]}}}{{{l_es[1]}}}"
        f"\\approx {round(l_es[0] / l_es[1], SIG_FIGS)} \\)\n"))
-print(f"- La entropia H_esp es {h_es}]\n")
+print(f"- La entropia H_esp es {round(h_es, SIG_FIGS)}]\n")
 assert satisfies_shannons_first_theorem(h_es, l_es[0]/l_en[1], SIG_FIGS)
 print((f"- La longitud media L_en es \\(\\frac{{{l_en[0]}}}{{{l_en[1]}}}"
        f"\\approx {round(l_en[0] / l_en[1], SIG_FIGS)} \\)\n"))
-print(f"- La entropia H_eng es {h_en}\n")
+print(f"- La entropia H_eng es {round(h_en, SIG_FIGS}\n")
 assert satisfies_shannons_first_theorem(h_en, l_en[0]/l_en[1], SIG_FIGS)
 
 x_es = ''
