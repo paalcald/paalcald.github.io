@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-02-10 vie 14:15 -->
+<!-- 2023-02-10 vie 14:34 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Práctica 1: Códigos de Huffman</title>
@@ -234,32 +234,32 @@
 <h2>&Iacute;ndice</h2>
 <div id="text-table-of-contents" role="doc-toc">
 <ul>
-<li><a href="#org0367e4c">1. Introduccion</a></li>
-<li><a href="#org31fc457">2. Implementación en Python</a>
+<li><a href="#orgdfd12ea">1. Introduccion</a></li>
+<li><a href="#org11a3473">2. Implementación en Python</a>
 <ul>
-<li><a href="#org76e6921">2.1. Librerias Usadas</a></li>
-<li><a href="#org113d589">2.2. Clases Auxiliares</a>
+<li><a href="#org8119557">2.1. Librerias Usadas</a></li>
+<li><a href="#org805ac4d">2.2. Clases Auxiliares</a>
 <ul>
-<li><a href="#orgbb86de6">2.2.1. Árbol de Huffman</a></li>
-<li><a href="#org34056dc">2.2.2. Teorema de Shannon</a></li>
-<li><a href="#orga9fe9d9">2.2.3. Codificacion</a></li>
+<li><a href="#org081ba99">2.2.1. Árbol de Huffman</a></li>
+<li><a href="#orgc7991e3">2.2.2. Teorema de Shannon</a></li>
+<li><a href="#org2eab9b9">2.2.3. Codificacion</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#orga32aca3">3. Método y Dátos</a>
+<li><a href="#org5f96b95">3. Método y Dátos</a>
 <ul>
-<li><a href="#org030d1bf">3.1. Hayar el código de Huffman binario de S<sub>Eng</sub> y S<sub>Esp</sub>, sus longitudes medias L(S<sub>Eng</sub>) y L(S<sub>Esp</sub>), y comprueba que se satisface el Primer Teorema de Shannon.</a></li>
-<li><a href="#org5d584d7">3.2. Codificar con dicho código la palabra cognada X = <i>"dimension"</i> para ambas lenguas, y comprobar la eficiencia de longitud comparada con el código binario usual.</a></li>
-<li><a href="#org1680f97">3.3. Decodifica la siguiente palabra del inglés \newline <i>"0101010001100111001101111000101111110101010001110"</i>.</a></li>
+<li><a href="#orgc84028a">3.1. Hayar el código de Huffman binario de S<sub>Eng</sub> y S<sub>Esp</sub>, sus longitudes medias L(S<sub>Eng</sub>) y L(S<sub>Esp</sub>), y comprueba que se satisface el Primer Teorema de Shannon.</a></li>
+<li><a href="#orge5494bd">3.2. Codificar con dicho código la palabra cognada X = <i>"dimension"</i> para ambas lenguas, y comprobar la eficiencia de longitud comparada con el código binario usual.</a></li>
+<li><a href="#orga91b5bd">3.3. Decodifica la siguiente palabra del inglés \newline <i>"0101010001100111001101111000101111110101010001110"</i>.</a></li>
 </ul>
 </li>
 </ul>
 </div>
 </div>
 
-<div id="outline-container-org0367e4c" class="outline-2">
-<h2 id="org0367e4c"><span class="section-number-2">1.</span> Introduccion</h2>
+<div id="outline-container-orgdfd12ea" class="outline-2">
+<h2 id="orgdfd12ea"><span class="section-number-2">1.</span> Introduccion</h2>
 <div class="outline-text-2" id="text-1">
 <p>
 Un código de Huffman es un tipo particular de codigo usado comunmente para compresión sin pérdida de datos. Es un código en el que los símbolos más utilizados de les asocia un código más corto, de manera que los prefijos sean únicos.
@@ -270,17 +270,17 @@ Seguir el siguiente <a href="https://es.wikipedia.org/wiki/Codificaci%C3%B3n_Huf
 </div>
 </div>
 
-<div id="outline-container-org31fc457" class="outline-2">
-<h2 id="org31fc457"><span class="section-number-2">2.</span> Implementación en Python</h2>
+<div id="outline-container-org11a3473" class="outline-2">
+<h2 id="org11a3473"><span class="section-number-2">2.</span> Implementación en Python</h2>
 <div class="outline-text-2" id="text-2">
 </div>
-<div id="outline-container-org76e6921" class="outline-3">
-<h3 id="org76e6921"><span class="section-number-3">2.1.</span> Librerias Usadas</h3>
+<div id="outline-container-org8119557" class="outline-3">
+<h3 id="org8119557"><span class="section-number-3">2.1.</span> Librerias Usadas</h3>
 <div class="outline-text-3" id="text-2-1">
 <ul class="org-ul">
 <li>Para obtener la tabla de frecuencias del archivo utilizaremos <i>Counter</i> de la librería <i>collections</i>.</li>
 <li>Usamos la librería <i>functools</i> para facilitarnos la implementación de relaciones de orden en nuestras clases.</li>
-<li>Para conseguir una construcción eficiente de nuestro <a href="#orgbb86de6">árbol de Huffman</a> usaremos la <i>PriorityQueue</i> de la librería <i>queue</i> de python.</li>
+<li>Para conseguir una construcción eficiente de nuestro <a href="#org081ba99">árbol de Huffman</a> usaremos la <i>PriorityQueue</i> de la librería <i>queue</i> de python.</li>
 <li>Finalmente importaremos las funciones matemáticas necesarias de <i>math</i>.</li>
 </ul>
 
@@ -297,12 +297,12 @@ Seguir el siguiente <a href="https://es.wikipedia.org/wiki/Codificaci%C3%B3n_Huf
 </div>
 </div>
 
-<div id="outline-container-org113d589" class="outline-3">
-<h3 id="org113d589"><span class="section-number-3">2.2.</span> Clases Auxiliares</h3>
+<div id="outline-container-org805ac4d" class="outline-3">
+<h3 id="org805ac4d"><span class="section-number-3">2.2.</span> Clases Auxiliares</h3>
 <div class="outline-text-3" id="text-2-2">
 </div>
-<div id="outline-container-orgbb86de6" class="outline-4">
-<h4 id="orgbb86de6"><span class="section-number-4">2.2.1.</span> Árbol de Huffman</h4>
+<div id="outline-container-org081ba99" class="outline-4">
+<h4 id="org081ba99"><span class="section-number-4">2.2.1.</span> Árbol de Huffman</h4>
 <div class="outline-text-4" id="text-2-2-1">
 <p>
 Usaremos esta implementación de los árboles de huffman, que usa la herencia de clases de python para diferenciar entre nodos y hojas a partir de una base común e implementa un orden total para el uso de una cola de prioridad predefinida en el algoritmo de creación de códigos.
@@ -518,8 +518,8 @@ Usaremos esta implementación de los árboles de huffman, que usa la herencia de
 </div>
 </div>
 
-<div id="outline-container-org34056dc" class="outline-4">
-<h4 id="org34056dc"><span class="section-number-4">2.2.2.</span> Teorema de Shannon</h4>
+<div id="outline-container-orgc7991e3" class="outline-4">
+<h4 id="orgc7991e3"><span class="section-number-4">2.2.2.</span> Teorema de Shannon</h4>
 <div class="outline-text-4" id="text-2-2-2">
 <p>
 Comprobamos si los valores satisfacen el primer teorema de Shannon.
@@ -528,10 +528,10 @@ Comprobamos si los valores satisfacen el primer teorema de Shannon.
 <pre class="src src-python"><span style="color: #9d0006;">def</span> <span style="color: #b57614;">satisfies_shannons_first_theorem</span>(h, l, output=<span style="color: #8f3f71;">True</span>, sig_figs=4):
 <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> h - 1 &lt;= l <span style="color: #9d0006;">and</span> l &lt;= h + 1:
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> output:
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">print</span>((f<span style="color: #79740e;">"\\(</span>{<span style="color: #af3a03;">round</span>(h - 1, sig_figs)}<span style="color: #79740e;"> \\le"</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">print</span>(<span style="color: #79740e;">"- Se cumple el primer teorema de Shannon ("</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">print</span>((f<span style="color: #79740e;">" \\(</span>{<span style="color: #af3a03;">round</span>(h - 1, sig_figs)}<span style="color: #79740e;"> \\le"</span>
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  f<span style="color: #79740e;">"</span>{<span style="color: #af3a03;">round</span>(l, sig_figs)}<span style="color: #79740e;"> \\le "</span>
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  f<span style="color: #79740e;">"</span>{<span style="color: #af3a03;">round</span>(h + 1, sig_figs)}<span style="color: #79740e;">\\)\n"</span>))
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">print</span>(<span style="color: #79740e;">"Se cumple el primer teorema de Shannon\n"</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  f<span style="color: #79740e;">"</span>{<span style="color: #af3a03;">round</span>(h + 1, sig_figs)}<span style="color: #79740e;">\\))\n"</span>))
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #8f3f71;">True</span>
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">else</span>:
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #8f3f71;">False</span>
@@ -540,8 +540,8 @@ Comprobamos si los valores satisfacen el primer teorema de Shannon.
 </div>
 </div>
 
-<div id="outline-container-orga9fe9d9" class="outline-4">
-<h4 id="orga9fe9d9"><span class="section-number-4">2.2.3.</span> Codificacion</h4>
+<div id="outline-container-org2eab9b9" class="outline-4">
+<h4 id="org2eab9b9"><span class="section-number-4">2.2.3.</span> Codificacion</h4>
 <div class="outline-text-4" id="text-2-2-3">
 <p>
 Codificamos letra a letra buscandola en nuestra tabla de códigos.
@@ -559,12 +559,12 @@ Codificamos letra a letra buscandola en nuestra tabla de códigos.
 </div>
 </div>
 
-<div id="outline-container-orga32aca3" class="outline-2">
-<h2 id="orga32aca3"><span class="section-number-2">3.</span> Método y Dátos</h2>
+<div id="outline-container-org5f96b95" class="outline-2">
+<h2 id="org5f96b95"><span class="section-number-2">3.</span> Método y Dátos</h2>
 <div class="outline-text-2" id="text-3">
 </div>
-<div id="outline-container-org030d1bf" class="outline-3">
-<h3 id="org030d1bf"><span class="section-number-3">3.1.</span> Hayar el código de Huffman binario de S<sub>Eng</sub> y S<sub>Esp</sub>, sus longitudes medias L(S<sub>Eng</sub>) y L(S<sub>Esp</sub>), y comprueba que se satisface el Primer Teorema de Shannon.</h3>
+<div id="outline-container-orgc84028a" class="outline-3">
+<h3 id="orgc84028a"><span class="section-number-3">3.1.</span> Hayar el código de Huffman binario de S<sub>Eng</sub> y S<sub>Esp</sub>, sus longitudes medias L(S<sub>Eng</sub>) y L(S<sub>Esp</sub>), y comprueba que se satisface el Primer Teorema de Shannon.</h3>
 <div class="outline-text-3" id="text-3-1">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #076678;">FILENAME_ES</span> = <span style="color: #79740e;">'GCOM2023_pract1_auxiliar_esp.txt'</span>
@@ -594,11 +594,35 @@ h_en_i = [freq / <span style="color: #af3a03;">len</span>(en) * log2(freq / <spa
 h_en = -1 * <span style="color: #af3a03;">sum</span>(h_en_i)
 </pre>
 </div>
+
+<p>
+Español
+</p>
+<ul class="org-ul">
+<li>La longitud media L<sub>esp</sub> es \(\frac{3991}{913}\approx 4.371 \)</li>
+
+<li>La entropia H<sub>esp</sub> es 4.338</li>
+
+<li>Se cumple el primer teorema de Shannon (
+\(3.3383 \le4.7911 \le 5.3383\))</li>
+</ul>
+
+<p>
+Inglés
+</p>
+<ul class="org-ul">
+<li>La longitud media L<sub>en</sub> es \(\frac{3696}{833}\approx 4.437 \)</li>
+
+<li>La entropia H<sub>eng</sub> es 4.412</li>
+
+<li>Se cumple el primer teorema de Shannon (
+\(3.4122 \le4.437 \le 5.4122\))</li>
+</ul>
 </div>
 </div>
 
-<div id="outline-container-org5d584d7" class="outline-3">
-<h3 id="org5d584d7"><span class="section-number-3">3.2.</span> Codificar con dicho código la palabra cognada X = <i>"dimension"</i> para ambas lenguas, y comprobar la eficiencia de longitud comparada con el código binario usual.</h3>
+<div id="outline-container-orge5494bd" class="outline-3">
+<h3 id="orge5494bd"><span class="section-number-3">3.2.</span> Codificar con dicho código la palabra cognada X = <i>"dimension"</i> para ambas lenguas, y comprobar la eficiencia de longitud comparada con el código binario usual.</h3>
 <div class="outline-text-3" id="text-3-2">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #076678;">x_es</span> = <span style="color: #79740e;">''</span>
@@ -610,36 +634,20 @@ h_en = -1 * <span style="color: #af3a03;">sum</span>(h_en_i)
 </pre>
 </div>
 
-<pre class="example">
-Traceback (most recent call last):
-  File "&lt;string&gt;", line 17, in __PYTHON_EL_eval
-  File "&lt;string&gt;", line 3, in &lt;module&gt;
-  File "/tmp/babel-FOcM4q/python-0IEyyO", line 7
-    print(f"- La entropia H_eng es {round(h_en, SIG_FIGS}\n")
-          ^
-SyntaxError: f-string: closing parenthesis '}' does not match opening parenthesis '('
-&gt;&gt;&gt;
-</pre>
-
-
-
 <p>
 'dimension' compreso con S<sub>Esp</sub> es '1111001100011000010011010011010001001'
+i.e. sin comprimir es 194% mas largo.
 </p>
 
 <p>
-sin comprimir es 194% mas largo
 'dimension' compreso con S<sub>Eng</sub> es '1111001100011000010011010011010001001'
-</p>
-
-<p>
-sin comprimir es 194% mas largo
+i.e. sin comprimir es 194% mas largo.
 </p>
 </div>
 </div>
 
-<div id="outline-container-org1680f97" class="outline-3">
-<h3 id="org1680f97"><span class="section-number-3">3.3.</span> Decodifica la siguiente palabra del inglés \newline <i>"0101010001100111001101111000101111110101010001110"</i>.</h3>
+<div id="outline-container-orga91b5bd" class="outline-3">
+<h3 id="orga91b5bd"><span class="section-number-3">3.3.</span> Decodifica la siguiente palabra del inglés \newline <i>"0101010001100111001101111000101111110101010001110"</i>.</h3>
 <div class="outline-text-3" id="text-3-3">
 <div class="org-src-container">
 <pre class="src src-python"><span style="color: #076678;">ENCODED</span> = <span style="color: #79740e;">"0101010001100111001101111000101111110101010001110"</span>
@@ -649,7 +657,10 @@ sin comprimir es 194% mas largo
 
 <p>
 0101010001100111001101111000101111110101010001110 es 
-mn ourphmn
+``mn ourphmn``
+</p>
+
+<p>
 Los arboles de Huffman NO son únicos y este apartado está mal planteado.
 </p>
 </div>
@@ -659,7 +670,7 @@ Los arboles de Huffman NO son únicos y este apartado está mal planteado.
 <div id="postamble" class="status">
 <p class="date">Fecha: 2023-02-10 vie 00:00</p>
 <p class="author">Autor: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-02-10 vie 14:15</p>
+<p class="date">Created: 2023-02-10 vie 14:34</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

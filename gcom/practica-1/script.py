@@ -255,7 +255,7 @@ print(f"- La entropia H_esp es {round(h_es, SIG_FIGS)}]\n")
 assert satisfies_shannons_first_theorem(h_es, l_es[0]/l_en[1], SIG_FIGS)
 print((f"- La longitud media L_en es \\(\\frac{{{l_en[0]}}}{{{l_en[1]}}}"
        f"\\approx {round(l_en[0] / l_en[1], SIG_FIGS)} \\)\n"))
-print(f"- La entropia H_eng es {round(h_en, SIG_FIGS}\n")
+print(f"- La entropia H_eng es {round(h_en, SIG_FIGS)}\n")
 assert satisfies_shannons_first_theorem(h_en, l_en[0]/l_en[1], SIG_FIGS)
 
 x_es = ''
@@ -266,12 +266,12 @@ for letter in PALABRA:
     x_en += d_es[letter]
 
 percent_es = int(len(PALABRA*8)/len(x_es)*100)
-print(f"\'{palabra}\' compreso con S_Esp es \'{X_es}\'\n")
-print(f"sin comprimir es {percent_es}% mas largo")
+print(f"\'{palabra}\' compreso con S_Esp es \'{X_es}\'")
+print(f"sin comprimir es {percent_es}% mas largo.\n")
 
 percent_en = int(len(PALABRA*8)/len(x_en)*100)
 print(f"\'{PALABRA}\' compreso con S_Eng es \'{x_en}\'\n")
-print(f"sin comprimir es {percent_en}% mas largo")
+print(f"sin comprimir es {percent_en}% mas largo.\n")
 
 ENCODED = "0101010001100111001101111000101111110101010001110"
 decoded = HT_en.decode(encoded)
