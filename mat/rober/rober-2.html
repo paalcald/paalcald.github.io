@@ -1,0 +1,608 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-02-21 mar 17:59 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Pablo C. Alcalde" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<div id="outline-container-org589d1df" class="outline-2">
+<h2 id="org589d1df">Estadísticos</h2>
+<div class="outline-text-2" id="text-org589d1df">
+</div>
+<div id="outline-container-orgb4154cf" class="outline-3">
+<h3 id="orgb4154cf">Media Muestral</h3>
+<div class="outline-text-3" id="text-orgb4154cf">
+<p>
+\(\overline{X} = \frac{\sum x_i}{n}\)
+</p>
+</div>
+</div>
+<div id="outline-container-org08011f4" class="outline-3">
+<h3 id="org08011f4">Varianza Muestral</h3>
+<div class="outline-text-3" id="text-org08011f4">
+<p>
+\(S_n^2 = \frac{\sum (X_i - \overline{X})^2}{n}\)
+</p>
+</div>
+</div>
+<div id="outline-container-org4612a2c" class="outline-3">
+<h3 id="org4612a2c">Desviación Típica</h3>
+<div class="outline-text-3" id="text-org4612a2c">
+<p>
+\(S_n = \sqrt{\frac{\sum (X_i - \overline{X})^2}{n}}\)
+</p>
+</div>
+</div>
+<div id="outline-container-org0b3c995" class="outline-3">
+<h3 id="org0b3c995">Quasivarianza Muestral</h3>
+<div class="outline-text-3" id="text-org0b3c995">
+<p>
+\(S_{n-1}^2 = \frac{\sum (X_i - \overline{X})^2}{n-1}\)
+</p>
+</div>
+</div>
+<div id="outline-container-org770ec42" class="outline-3">
+<h3 id="org770ec42">Cuasidesviación Típica</h3>
+<div class="outline-text-3" id="text-org770ec42">
+<p>
+\(S_{n-1}^2 = \sqrt{\frac{\sum (X_i - \overline{X})^2}{n-1}}\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgc474d51" class="outline-3">
+<h3 id="orgc474d51">Relación entre Varianza y Quasivarianza</h3>
+<div class="outline-text-3" id="text-orgc474d51">
+<p>
+\(n S^2_n = (n - 1) S^{2}_{n-1}\)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org84e280a" class="outline-2">
+<h2 id="org84e280a">Tabla de Frecuencias</h2>
+<div class="outline-text-2" id="text-org84e280a">
+<p>
+\((X_{1}, \dots, X_{10})\)  el máximo es \(X_{(n)} = 1.80\) mientras que el mínimo es \(X_{(1)} = 1.63\)
+y el rango \(R_n = X_{(n)} - X_{(1)}\), que hago con los datos? los agrupo!
+</p>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Intervalo</th>
+<th scope="col" class="org-right">Marca</th>
+<th scope="col" class="org-right">f<sub>i</sub></th>
+<th scope="col" class="org-right">F<sub>i</sub></th>
+<th scope="col" class="org-left">f<sub>i</sub> / N</th>
+<th scope="col" class="org-left">F<sub>i</sub> / N</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">[1.60, 1.65)</td>
+<td class="org-right">1.625</td>
+<td class="org-right">3</td>
+<td class="org-right">3</td>
+<td class="org-left">3/11</td>
+<td class="org-left">3/11</td>
+</tr>
+
+<tr>
+<td class="org-left">[1.65, 1.70)</td>
+<td class="org-right">1.675</td>
+<td class="org-right">1</td>
+<td class="org-right">4</td>
+<td class="org-left">1/11</td>
+<td class="org-left">4/11</td>
+</tr>
+
+<tr>
+<td class="org-left">[1.70, 1.75)</td>
+<td class="org-right">1.725</td>
+<td class="org-right">3</td>
+<td class="org-right">7</td>
+<td class="org-left">3/11</td>
+<td class="org-left">7/11</td>
+</tr>
+
+<tr>
+<td class="org-left">[1.75, 1.80]</td>
+<td class="org-right">1.775</td>
+<td class="org-right">4</td>
+<td class="org-right">11</td>
+<td class="org-left">4/11</td>
+<td class="org-left">1</td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="outline-container-org190405b" class="outline-3">
+<h3 id="org190405b">Mediana</h3>
+<div class="outline-text-3" id="text-org190405b">
+<p>
+Primer dato tal que \(F_i / N > 0.50\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgdcdaf68" class="outline-3">
+<h3 id="orgdcdaf68">Moda</h3>
+<div class="outline-text-3" id="text-orgdcdaf68">
+<p>
+Dato con mayor \(f_i\)
+</p>
+</div>
+</div>
+<div id="outline-container-org06e5777" class="outline-3">
+<h3 id="org06e5777">Cuartiles</h3>
+<div class="outline-text-3" id="text-org06e5777">
+<p>
+\(\begin{cases} q_1 &\to 0.25 \\ q_3 &\to 0.75 \end{cases} \implies \text{rango intercuartilico } = q_3 - q_1\)
+</p>
+
+<p>
+Generalmente sudas de los valores fuera del rango intercuartílico.
+</p>
+</div>
+
+<div id="outline-container-org45d4409" class="outline-4">
+<h4 id="org45d4409"><span class="todo TODO">TODO</span> añadir boceto de caja y bigotes</h4>
+</div>
+</div>
+
+<div id="outline-container-org5bc26a9" class="outline-3">
+<h3 id="org5bc26a9">Percentiles</h3>
+</div>
+
+<div id="outline-container-org00d0e2e" class="outline-3">
+<h3 id="org00d0e2e">Coeficiente de Variación</h3>
+<div class="outline-text-3" id="text-org00d0e2e">
+<p>
+\(C_V = \frac{S_N}{|\overline{x}|}\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org6416c73" class="outline-3">
+<h3 id="org6416c73">Coeficiente de Asimetría de Fisher</h3>
+<div class="outline-text-3" id="text-org6416c73">
+<p>
+\(C_{AF} = \frac{b_3}{S_N^3} = \begin{cases} = 0 &\text{centrado }\\ > 0 &\text{a la derecha }\\ < 0 &\text{a la izquierda}\end{cases}\) 
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2161636" class="outline-3">
+<h3 id="org2161636">Coeficiente de Apuntamiento o Curtósis</h3>
+<div class="outline-text-3" id="text-org2161636">
+<p>
+\(C_{AP} = \frac{b_4}{S_n^4} = \begin{cases} = 3 &\text{como la normal o } \textit{mesocúrtica} \\ > 3 &\text{picuda o } \textit{leptocúrtica} \\ < 0 &\text{plana o } \textit{platicúrtico } \end{cases}\)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org10a2916" class="outline-2">
+<h2 id="org10a2916">Muestreos Asociados a Poblaciones Normales</h2>
+<div class="outline-text-2" id="text-org10a2916">
+<p>
+Notación, nótese que a veces \(N(\mu, \sigma^2)\) pero otras veces \(N(\mu, \sigma)\), en el exámen pregunta
+</p>
+</div>
+
+<div id="outline-container-orgc760ef5" class="outline-3">
+<h3 id="orgc760ef5">Teorema Central de Límite</h3>
+<div class="outline-text-3" id="text-orgc760ef5">
+<p>
+Si \(E[X] < \infty,\quad V[X] < \infty\) entonces \(n \gg 0 \quad \frac{X-E[X]}{\sqrt{V[X]}} \stackrel{\mathcal{L}}{\longrightarrow} N(0,1)\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org051bd66" class="outline-3">
+<h3 id="org051bd66">Normal es Reproductiva</h3>
+<div class="outline-text-3" id="text-org051bd66">
+<p>
+\(\begin{gathered}X \sim N(\mu_X, \sigma^2_X) \\ Y \sim N(\mu_Y, \sigma^2_Y)\end{gathered} \quad X + Y \sim N(\mu_X + \mu_Y, \sigma^2_X + \sigma^2_Y)\)
+</p>
+
+<p>
+\(\overline{X} = \frac{\sum x_i}{n}\) es la manera más <i>natural</i> de agrupar datos.
+</p>
+
+<p>
+\(E[\overline{X}] = \text{¿?}\)
+</p>
+
+<p>
+\(V[\overline{X}] = \text{¿?}\)
+</p>
+
+<p>
+\(\{X_n| n \ge 1 \}\) v.a.i.i.d.
+</p>
+
+<p>
+\(E[\overline{X}] = E \left[ \frac{\sum x_i}{n} \right] = \frac{1}{n} E[\sum x_i] = \frac{1}{n} \sum E[x_i] \stackrel{\text{i.d.}}{=} \frac{1}{n} n E[X] = E[X]\)
+</p>
+
+<p>
+\(V[\overline{X}] = V \left[ \frac{\sum x_i}{n} \right] = \frac{1}{n^2}V \left[ \sum x_i \right] \stackrel{\text{v.a.i.}}{= } \frac{\sum V[x_i]}{n^2} \stackrel{\text{i.d.}}{= } \frac{nV[X]}{n^2} = \frac{V[X]}{n}\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7838869" class="outline-3">
+<h3 id="org7838869">Prop</h3>
+<div class="outline-text-3" id="text-org7838869">
+<p>
+\(\{X_n | n \ge 1 \}\) v.a.i.i.d.
+</p>
+
+<p>
+\(X \sim N(\mu, \sigma^2) \implies \overline{X} \sim N(\mu,\frac{\sigma^2}{n})\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7541fdf" class="outline-3">
+<h3 id="org7541fdf">Corolario</h3>
+<div class="outline-text-3" id="text-org7541fdf">
+<p>
+\(\frac{\overline{X} -\mu}{\frac{\sigma}{\sqrt{n}}} \sim N(0,1)\)
+</p>
+
+<p>
+\(S^2_n = \sum_{i = 1}^n \left( \frac{X_i - \overline{X}}{\sigma \sqrt{\frac{n+1}{n}}} \right)^2 \sigma^2 \left( \frac{n+1}{n} \right)\)
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgda5c62f" class="outline-3">
+<h3 id="orgda5c62f">Chi-Cuadrado</h3>
+<div class="outline-text-3" id="text-orgda5c62f">
+<p>
+\(N(0,1)^2 = \chi^2_1\) es decir, la <i>chi cuadrado</i> de 1 grado de libertad.
+</p>
+
+<p>
+\(X \sim N(0,1)\)
+</p>
+
+<p>
+\(Y = X^2\)
+</p>
+
+<p>
+\(F_Y(y) = P(Y \le y) = P (X^2 \le y) = P ( -\sqrt{y} \le X \le \sqrt{y}) = 2 P (X \le \sqrt{y}) = 2 F_X(\sqrt{y})\)
+</p>
+
+<p>
+\(f_Y(y) = 2 \frac{1}{2 \sqrt{y}} f_X(\sqrt{y}) = \frac{1}{\sqrt{2\pi}}y^{1/2} e^{1/2\,y} = \frac{1}{\sqrt{2}\sqrt{\pi}} y^{1/2 - 1} e^{-1/2 \, y}\)
+</p>
+
+<p>
+\(\gamma\) es reproductiva en p
+</p>
+
+<p>
+\(\gamma ( a = 1/2, p = 1/2)\)
+</p>
+
+<p>
+\(\sum \gamma (a, p) = \gamma(a, np) \implies \chi^2\) es reproductiva
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org65ad558" class="outline-2">
+<h2 id="org65ad558">Teorema de Fischer</h2>
+<div class="outline-text-2" id="text-org65ad558">
+<p>
+Sea \(\{ X_n \ N \ge 1 \}\) v.a.i.i.d. \(X \sim N(\mu, \sigma^2)\)
+</p>
+<ol class="org-ol">
+<li>\(\overline{X}\) y \(S^2_n\) son independientes</li>
+<li>\(\frac{n S^2_n}{\sigma^2} \sim \chi^2_n\)</li>
+</ol>
+
+<p>
+Observación \(\chi^2\) es reproductiva entonces \(\chi^2_n + \chi^2_m = \chi^2_{n+m}\) , \(E[\chi^2_n] = n\) , \(V[\chi^2_n] = 2n\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb74969c" class="outline-2">
+<h2 id="orgb74969c">Distribución T-student de n grados de libertad</h2>
+<div class="outline-text-2" id="text-orgb74969c">
+<p>
+\(T_n = \frac{N(0,1)}{\sqrt{\frac{\chi^{2_n}}{n}}}\)
+</p>
+
+<p>
+\(F_{n,m} = \frac{\frac{\chi^2_n}{n}}{\frac{\chi^2_m}{m}}\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfa219fa" class="outline-2">
+<h2 id="orgfa219fa">Sean \((X_{1}, \dots, X_{13})\) m.a.s. n=13 con \(X_i \sim N(0,1)\) v.a.i.i.d.</h2>
+<div class="outline-text-2" id="text-orgfa219fa">
+<p>
+\(X = \frac{X_1 + X_2 + X_3}{\sqrt{(X_4 + X_5)^2 + (X_6 + X_7)^2 + (X_8 + X_9)^2 + (X_{10} + X_{11})^2 + (X_{12} + X_{13})^2}}\) calcular el valor de k para el que \(P(X < k) = 0.99\)
+</p>
+
+<p>
+\(X_1 + X_2 + X_3 \sim N(0, \sigma^2 = 3)\) por lo tanto tipifico esta parte
+</p>
+
+<p>
+\(X = \sqrt{3}\frac{\frac{X_1 + X_2 + X_3}{\sqrt{3}}}{\sqrt{(X_4 + X_5)^2 + (X_6 + X_7)^2 + (X_8 + X_9)^2 + (X_{10} + X_{11})^2 + (X_{12} + X_{13})^2}}\)
+</p>
+
+<p>
+\(X_i + X_j \sim N(0, \sigma^{2} = 2)\) por lo tanto también puedo tipificar esto!
+</p>
+
+
+<p>
+\(\frac{\sqrt{2}}{\sqrt{3}}X = \frac{\frac{X_1 + X_2 + X_3}{\sqrt{3}}}{\sqrt{\left(\frac{X_4 + X_5}{\sqrt{2}}\right)^2 + \left(\frac{X_6 + X_7}{\sqrt{2}}\right)^2 + \left(\frac{X_8 + X_9}{\sqrt{2}}\right)^2 + \left(\frac{X_{10} + X_{11}}{\sqrt{2}}\right)^2 + \left(\frac{X_{12} + X_{13}}{\sqrt{2}}\right)^2}}\)
+</p>
+
+<p>
+Y ahora identificamos el denominador como \(\chi^2_5\) así que
+</p>
+
+<p>
+\(\sqrt{5}\frac{\sqrt{2}}{\sqrt{3}}X = \frac{N(0,1)}{\sqrt{\frac{\chi^{2}_5}{5}}}\) de donde concluimos que \(\frac{\sqrt{5}\sqrt{2}}{\sqrt{3}}X = \text{T}_5\) y podemos calcular el valor de k según las tablas como \(P\left(\sqrt{\frac{10}{3}} X \le \sqrt{\frac{10}{3}}k \right) =  0.99\) es decir \(P \left( \text{T}_5 < \sqrt{\frac{10}{3}}k \right) = 0.99\) busco en la tabla <b>añadir diagrama</b> \(P(T_n < a) = \alpha\) y encuentro el valor \(k = \sqrt{\frac{3}{10}} 3.6245 = \dots\) 
+</p>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Pablo C. Alcalde</p>
+<p class="date">Created: 2023-02-21 mar 17:59</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>

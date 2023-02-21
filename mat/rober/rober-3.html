@@ -1,0 +1,540 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-02-21 mar 17:59 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>&lrm;</title>
+<meta name="author" content="Pablo C. Alcalde" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<div id="outline-container-orge67de19" class="outline-2">
+<h2 id="orge67de19">Definiciones Previas</h2>
+<div class="outline-text-2" id="text-orge67de19">
+<p>
+\(\mathcal{X}^{n} = \{ \left(  x_{1}, \dots, x_{n} \right) | \left( x_{1}, \dots, x_{n} \right) \text{m.a.s.(n) de X}\}\) espacio muesrral
+\(\Theta = \left\{\text{valores que puede tomar el parámetro }\theta \right\}\) expacio paramétrico
+\(\mathcal{F} = \left\{ F_{\theta} | \text{F es función de distribución} \right\}\)
+</p>
+</div>
+<div id="outline-container-org61fe576" class="outline-3">
+<h3 id="org61fe576">Ejemplo</h3>
+<div class="outline-text-3" id="text-org61fe576">
+<p>
+Sea \( X \sim \text{Be}(\theta) \)
+</p>
+
+<p>
+\( x = 3 \)
+</p>
+
+<p>
+\( \mathcal{X}^{3} = \left\{ \left( x_{1}, x_2, x_{3} \right) | x_i \in \left\{ 0, 1 \right\} \right\} = \left\{ (0,0,0), \dots, (1,1,1) \right\} \)
+</p>
+
+<p>
+\( \Theta = \left( 0,1 \right) \)
+</p>
+
+<p>
+\( P_{\theta} \left( X = x \right) = \theta^x \left( 1 - \theta \right)^{1-x} \)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbf0bb67" class="outline-2">
+<h2 id="orgbf0bb67">Estadístico</h2>
+<div class="outline-text-2" id="text-orgbf0bb67">
+</div>
+<div id="outline-container-org2bdf34b" class="outline-3">
+<h3 id="org2bdf34b">Definición</h3>
+<div class="outline-text-3" id="text-org2bdf34b">
+<p>
+Un estadístico \( T : \mathcal{X}^{n} \to \mathbb{R}^k (k = 1 \text{ ó } n = 2 )\) <span class="underline">medible</span>
+</p>
+</div>
+</div>
+<div id="outline-container-org80b82f8" class="outline-3">
+<h3 id="org80b82f8">Notación</h3>
+<div class="outline-text-3" id="text-org80b82f8">
+<p>
+\( \min x_{i} = X_{(1)} = X_{1:n} \)
+</p>
+
+<p>
+\( \max x_{i} = X_{(n)} = X_{n:n} \)
+</p>
+
+<p>
+\( X_{(i)} = \text{ordenados los datos, el de la posición i-ésima} \)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb18196e" class="outline-3">
+<h3 id="orgb18196e">Ejemplos de estadísticos</h3>
+<div class="outline-text-3" id="text-orgb18196e">
+<ul class="org-ul">
+<li>\( \sum x_{i} \)</li>
+<li>\( \Pi x_{i} \)</li>
+<li>\( \text{x} = \frac{\sum x_i}{n} \)</li>
+<li>\( S_{n}^2 = \frac{\sum \left( x_i -\overline{x} \right)^2}{n} \)</li>
+<li>\( S_{n-1}^2 = \frac{\sum \left( x_i -\overline{x} \right)^2}{n-1} \)</li>
+</ul>
+</div>
+
+<div id="outline-container-org9ab2d2b" class="outline-4">
+<h4 id="org9ab2d2b">Ejemplo</h4>
+<div class="outline-text-4" id="text-org9ab2d2b">
+<p>
+Sea \( X \sim \text{Be}(p) \) y sea \(X_1 \to\) %(N<sub>1</sub>) y \(X_2 \to\) %(N<sub>2</sub>)
+</p>
+
+<p>
+tomo \(T_{1} \left( x_1, x_2 \right) \)
+</p>
+
+<p>
+\( P_{p} \left( \frac{X_1 = x_1, X_2 = x_2}{T_1(x_1, x_2) = t} \right) \) no depende de p.
+</p>
+
+<p>
+\( P_{p} \left( X_1=1, X_2= 0 /_{X_1+X_2 = 1} \right) = \frac{P_p \left( X_1+X_2 /_{X_1=1, X_2= 0} \right) P_p \left( X_1=1, X_2=0 \right)}{P_p(X_1 + X_2 = 1} = \frac{p(1-p)}{p(1-p) + (1-p)p} = \frac{1}{2}\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7ee5cfb" class="outline-4">
+<h4 id="org7ee5cfb">Ejemplo</h4>
+<div class="outline-text-4" id="text-org7ee5cfb">
+<p>
+Sea \( X \sim \text{Be}(p) \) y sea \(X_1 \to\) %(N<sub>1</sub>) y \(X_2 \to\) %(N<sub>2</sub>) tomo 
+\(T_{2}(X_1,X_2) = 2X_1 + X_2\)
+\(T_{2} : \mathcal{X}^2 \to \mathbb{R}\)  donde \( \operatorname{Im}(T_{2)}= \left\{ 0, 1, 2, 3 \right\} \)
+</p>
+
+<p>
+En este caso como \( T_{2} \) es inyectivo, sabemos que \( T_{2} \) es suficiente.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3a85db9" class="outline-4">
+<h4 id="org3a85db9">Ejemplo</h4>
+<div class="outline-text-4" id="text-org3a85db9">
+<p>
+Sea \( X \sim \text{Be}(p) \) y sea \(X_1 \to\) %(N<sub>1</sub>) y \(X_2 \to\) %(N<sub>2</sub>) tomo en cuenta un alumno más \( X_{3} \to \) %(N<sub>3</sub>)
+</p>
+
+<p>
+\( T_3\left( X_1, X_2, X_3 \right) = X_1 + X_2 + 2X_3\) con \( T_{3} : \mathcal{X}^{3} \to \mathbb{R} \) por lo que \( \operatorname{Im} (T_3) = \left\{ 0, 1, 2, 3, 4 \right\}\) donde ahora el 2 puede venir de diferentes escenarios, (1,1,0) y (0,0,1), de donde concluimos que no es inyectiva, i.e. no tenemos un criterío de antemano para garantizar suficiencia.
+</p>
+
+<p>
+No solo eso, intuitivamente al tener algo más peso, la medida pierde especificidad.
+</p>
+
+\begin{equation*}
+ P_{p} \left( X_1 = 0, X_{2} = 0, X_3 = 1 /_{X_1 + X_2 + 2X_3 = 2} \right) =
+ \frac{P_p \left( X_1 + X_2 + 2X_3 = 2 /_{X_1= 0, X_2=0, X_3=1} \right) P_p \left( X_1 = 0, X_2 = 0, X_3 = 1 \right)}{P_p \left( X_1 + X_2 + 2X_3 = 2 \right)} =
+ \frac{(1-p)(1-p)p}{(1-p)(1-p)p + pp(1-p)} =
+ 1 - p
+\end{equation*}
+
+<p>
+\( \left( P(A/_B ) \right) = \frac{P \left( A \cap B \right)}{P(B)} = \frac{P \left( B/_A \right)P(A)}{P(B)} \) pero ojo!!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org99d5966" class="outline-3">
+<h3 id="org99d5966">Proposición</h3>
+<div class="outline-text-3" id="text-org99d5966">
+\begin{equation*}
+\forall t \in \operatorname{Im}(T)
+P_p
+\left( X_1=x_1, \dots, X_n =x_n /_{T(\overline{x})} \right) =
+ \begin{cases}
+  0 & \left( x_{1}, \dots, x_{n} \right) \in T^{-1}(t) \\
+  \frac{P_p (X_1 = x_1, \dots, X_n=x_n)}{P_p \left( T \left(\overline{x}) \right) = t \right) = t} & \text{si no}
+\end{cases}
+\end{equation*}
+</div>
+</div>
+
+<div id="outline-container-org80745be" class="outline-3">
+<h3 id="org80745be">Proposición</h3>
+<div class="outline-text-3" id="text-org80745be">
+<p>
+\( \forall t \in \operatorname{Im}(T) | T^{-1}(t) = \left\{ (x_{1}, \dots, x_{n}) \right\} \)
+\(P_p \left( X_1=x_1, \dots, X_n =x_n /_{T(\overline{x})} \right) = 1\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0551527" class="outline-3">
+<h3 id="org0551527">Proposición</h3>
+<div class="outline-text-3" id="text-org0551527">
+<p>
+\( T: \mathcal{X}^{n} \to \mathbb{R} \text{ es inyectivo} \implies P_p \left( X_1=x_1, \dots, X_n=x_n /_{T(\overline{x})=t} \right) \) no depende de p
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgfac5379" class="outline-2">
+<h2 id="orgfac5379">Estadístico Suficiente</h2>
+<div class="outline-text-2" id="text-orgfac5379">
+<p>
+Sea \( X_{1}, \dots, X_{n} \)  m.a.s. (n) \( \left\{ X_{n} | n \ge 1 \right\} \) v.a.i.i.d.
+</p>
+
+\begin{equation*}
+T : \mathcal{X}^{n} \to \mathbb{R} \text{ es un estadístico suficiente }\iff \forall t \in \mathbb{R}^k \forall \left( x_1,...,x_n \right) \in \mathcal{X}^{n} \quad P_p \left( X_1=x_1, \dots, X_n = x_n /_{T(\vec{x}) = t} \right)
+\text{ no depende de p }
+\end{equation*}
+
+<p>
+Notese que dos \(\forall\) no es algo precisamente computable, así que esto realmente sólo nos valdrá (generalmente) para negar.
+</p>
+</div>
+
+<div id="outline-container-org807a30f" class="outline-3">
+<h3 id="org807a30f">Ejemplo (Posible Cuestión Teorica de 1 pt)</h3>
+<div class="outline-text-3" id="text-org807a30f">
+<p>
+Sea \( X \sim \text{Be}(p) \quad \left( X_1, X_2,X_3 \right) \in \mathcal{X}^3 \), ¿\( T(X_1,X_2,X_3) = X_1 + 2X_2 + X_3 \) es suficiente?
+</p>
+
+<p>
+No! Con \( t = 2 \) tenemos \( X_{1} = 1, X_2 = 0, X_3=1 \) con el cuál nos dá que \(P_p(\dots/\dots) = p\) que depende de p!!
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org590c7bd" class="outline-2">
+<h2 id="org590c7bd">Teorema de Factorización</h2>
+<div class="outline-text-2" id="text-org590c7bd">
+<p>
+Sea \( X \) v.a. con \( f_{\theta}(x) \text{ ó } P_{\theta}(X = x)\).
+</p>
+
+<p>
+Sea \( \left( X_{1}, \dots, X_{n} \right) \)  un m.a.s. de \( \left\{ X_{n} | n \ge 1\right\} \) v.a.i.i.d
+</p>
+
+<p>
+Si se puede escribir
+\( f_{\theta} \left( x_{1}, \dots, x_{n} \right) = h \left( x_{1}, \dots, x_{n} \right) g_{\theta} \left( T \left( x_{1}, \dots, x_{n} \right) \right)\)
+ó
+\(P_{\theta} \left( X_{1}=x_{1}, \dots, X_{n}=x_{n} \right) =  h \left( x_{1}, \dots, x_{n} \right) g_{\theta} \left( T \left( x_{1}, \dots, x_{n} \right) \right) \) entonces \( T \left( x_{1}, \dots, x_n \right) \) es suficiente para \( \theta \)
+</p>
+</div>
+<div id="outline-container-org513e5e5" class="outline-3">
+<h3 id="org513e5e5">Pegas del teorema!</h3>
+<div class="outline-text-3" id="text-org513e5e5">
+<p>
+¿Si me preguntan si T' es un estadístico suficiente pero T' no aparece en lo de arriba que hago?
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3652c62" class="outline-3">
+<h3 id="org3652c62">Proposición</h3>
+<div class="outline-text-3" id="text-org3652c62">
+<p>
+Sea \( T \) suficiente y \( \varphi \) medible \(\implies\) \( \varphi(T) \) suficiente.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org7749908" class="outline-3">
+<h3 id="org7749908">Ejemplo</h3>
+<div class="outline-text-3" id="text-org7749908">
+<p>
+Sea \( X \sim \text{P}(\lambda) \) tendremos que \( P_{\lambda} \left( X = x \right) = \frac{e^{-\lambda}\lambda^x}{x!} \) con \( \lambda > 0 \) y \( x \in \mathbb{N}\cup \{0\} \)
+</p>
+
+\begin{align*}
+ P_{\lambda} (X_1=x_1, \dots, X_n=x_n) & \stackrel{\text{v.a.i.}}{=}
+ \Pi_{i = 1}^n P_{\lambda}(X_i=x_{i}) \\
+& \stackrel{\text{i.d.}}{ = } \left[ P_{\lambda} \left( X_i = x_i \right) \right]^n \\
+& = \frac{e^{-\lambda}\lambda^{x_1}}{x_1!}\frac{e^{-\lambda}\lambda^{x_2}}{x_2!}\dots\frac{e^{-\lambda}\lambda^{x_n}}{x_n!} \\
+&= \frac{e^{n\lambda} \lambda^{\sum x_i}}{\Pi x_{i}!}
+\end{align*}
+
+<p>
+Aquí podemos identificar \( g_{\theta} \left( T \left( \vec{x} \right) \right) = e^{-n\lambda} \lambda^{\sum x_i} \) y \( h \left( \vec{x} \right) = \frac{1}{\Pi x_i!} \) nótese que T no depende del parámetro.
+</p>
+</div>
+<div id="outline-container-org045d17c" class="outline-4">
+<h4 id="org045d17c">Ejemplo</h4>
+<div class="outline-text-4" id="text-org045d17c">
+<p>
+\( X \sim \gamma(a,p) \quad p > 0, a > 0\) sabemos que \( f_{a,p} (x) = \frac{a^p}{\Gamma(p)}e^{-ax}x^{p - 1} I_{(0,\infty)}(x)\) entonces para una muestra de tamaño n.
+</p>
+
+<p>
+\( f_{a,p} (\vec{x}) = \frac{a^pn}{\Gamma(p)^{n}}e^{(-a\sum x_i)}\Pi x^{p - 1} I_{(0,\infty)}(\min x_i) \) 
+</p>
+</div>
+
+<ul class="org-ul">
+<li><a id="org1341e41"></a>a parámetro, p conocido<br />
+<div class="outline-text-5" id="text-org1341e41">
+<p>
+\( h(\vec{x}) = \frac{1}{\Gamma(p)^{n}} \Pi x_i^{p - 1} I_{(0, \infty)} \left( \min x_i \right) \)
+\( g_{a} \left( T(\vec{x}) \right) = a^{pn} e^{-a \sum x_i} \stackrel{\implies}{\text{t.fact.}}\) \(\sum x_i\) suficiente para a  
+</p>
+</div>
+</li>
+
+<li><a id="org805aa8d"></a>a conocido, p parámetro<br /></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org4b7c53d" class="outline-2">
+<h2 id="org4b7c53d">Añadidos a posteriori</h2>
+<div class="outline-text-2" id="text-org4b7c53d">
+\begin{equation*}
+\forall t \in \operatorname{Im}(T) \quad
+P_p \left( T(x_1, \dots, x_n) = t /_{X_1=x_1, \dots, X_n=x_n} \right) =
+\begin{cases}
+0 & (x_{1}, \dots, x_{n}) \not\in T^{-1}(t) \\
+1 & (x_{1}, \dots, x_{n}) \in T^{-1}(t) \\
+\end{cases}
+\end{equation*}
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Pablo C. Alcalde</p>
+<p class="date">Created: 2023-02-21 mar 17:59</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
