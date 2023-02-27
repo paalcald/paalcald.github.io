@@ -6,7 +6,7 @@
 <!-- 2023-02-27 lun 17:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>Estimadores</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,23 +193,129 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
+<h1 class="title">Estimadores</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>Table of Contents</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#org2ff9dee">1. Estimadores</a></li>
+<li><a href="#orgef4ab7e">2. Estadístico</a>
+<ul>
+<li><a href="#orgaa50f44">2.1. Ejemplo</a></li>
+<li><a href="#orgf25cdfd">2.2. Objetivo (d(&theta;))</a></li>
 </ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org2ff9dee" class="outline-2">
+<h2 id="org2ff9dee"><span class="section-number-2">1.</span> Estimadores</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Anteriormente con los estadísticos de la muestra nuestra intención era sacar un número real de las muestras.
+</p>
+</div>
+</div>
+<div id="outline-container-orgef4ab7e" class="outline-2">
+<h2 id="orgef4ab7e"><span class="section-number-2">2.</span> Estadístico</h2>
+<div class="outline-text-2" id="text-2">
+<p>
+Un estadístico \( T : \mathcal{X}^{n} \to \mathbb{R}^{k} \) pasa a ser un estimador por punto cuando \( T : \mathcal{X}^n \to \Theta \), es decir cuando su imagen es el espacio paramétrico.
+</p>
+</div>
+<div id="outline-container-orgaa50f44" class="outline-3">
+<h3 id="orgaa50f44"><span class="section-number-3">2.1.</span> Ejemplo</h3>
+<div class="outline-text-3" id="text-2-1">
+<p>
+\( X \sim Be(p) \)
+</p>
+
+<p>
+\( T : \mathcal{X}^{n} \to \mathbb{R} \) estadístico
+</p>
+
+<p>
+\( \overline{x} \to \sum x_{i} \)
+</p>
+
+<p>
+\( T : \mathcal{X}^{n} \to \mathbb{R} \) estimador
+</p>
+
+<p>
+\( \overline{x} \to \frac{\sum x_{i}}{n} \)
+</p>
+
+<ul class="org-ul">
+<li>\( T_{1} = \sum x_i\)
+\( E \left[ T_1 \right] = np  \)</li>
+<li>\( T_{2} = \min x_i\)
+\( E \left[ T_2 \right] = \frac{n - 1}{n + 1}p \)</li>
+<li>\( T_{3} = \max x_i\)
+\( E \left[ T_3 \right] = \frac{n + 1}{n - 1}p \)</li>
+<li>\( T_{4} = X_1\)
+\( E \left[ T_4 \right] = p \)</li>
+<li>\( T_{5} = \overline{X}\)
+\( E \left[ T_5 \right] = p \)</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf25cdfd" class="outline-3">
+<h3 id="orgf25cdfd"><span class="section-number-3">2.2.</span> Objetivo (d(&theta;))</h3>
+<div class="outline-text-3" id="text-2-2">
+<p>
+Tenemos diferentes candidatos:
+</p>
+<ul class="org-ul">
+<li>T<sub>1</sub> (una función que no tiene que ver con d(&theta;), i.e. d(&theta;)= &theta; y T<sub>1</sub> = &theta;<sup>2</sup></li>
+<li>T<sub>2</sub> (una función que no es d(&theta;) pero tiende en infinito a d(&theta;))</li>
+<li>T<sub>3</sub> (una función que no es d(&theta;) pero tiende en infinito a d(&theta;))</li>
+<li>T<sub>4</sub> (matemáticamente son d(&theta;))</li>
+<li>T<sub>5</sub> (matemáticamente son d(&theta;))</li>
+</ul>
+<p>
+¿Como escogemos entre los dos?
+Consideramos si es <a href="centrado-o-insesgado.html">centrado o insesgado</a> pero no necesaríamente por ello debe ser el correcto por que también hay que tener en cuenta el <a href="error-cuadratico-medio.html">error cuadrático medio</a>, sin embargo por un ejemplo visto en clase vemos que esa tampoco es una condición suficiente.
+El problema real es encontrar el <a href="ecumv.html">ECUMV</a>.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>

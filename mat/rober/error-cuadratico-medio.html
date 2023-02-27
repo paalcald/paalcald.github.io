@@ -6,7 +6,7 @@
 <!-- 2023-02-27 lun 17:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>&lrm;</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,23 +193,76 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
+<div id="outline-container-org320c0b3" class="outline-2">
+<h2 id="org320c0b3">Error Cuadrático Medio (ECM)</h2>
+<div class="outline-text-2" id="text-org320c0b3">
+<p>
+El error cuadrático medio es \( ECM(T) = E_{\theta} \left[ \left| T - d(\theta) \right| ^2 \right] = V_{\theta} \left[ T \right] + \operatorname{sesgo}^2(T) \)
+</p>
+
+<p>
+El ECM no resuelve el problema de que candidato es mejor para estadístico.
+</p>
+</div>
+<div id="outline-container-org7ad5a99" class="outline-3">
+<h3 id="org7ad5a99">Ejemplo</h3>
+<div class="outline-text-3" id="text-org7ad5a99">
+<p>
+\( X \sim N \left( \mu, \sigma^2 \right) \) \( d(\theta) = \theta^{2} \)
+\( T_{k} = k \cdot S^2_{n}\)
+¿Cuál es el menor ECM?
+</p>
 <ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
+<li>Calculo la Esperanza de los T<sub>k</sub>
+\( E \left[ k \cdot S^2_{n} \right] = k \cdot E_{\theta} \left[ \frac{\sigma^2}{n} \cdot \frac{n S^2_n}{\sigma^2} \right] = \frac{k \cdot \sigma^2}{n} \cdot E_{\theta} \left[ \chi^2_n \right] = \frac{k \cdot \sigma^2}{n} \cdot n = k \sigma^2\)</li>
+<li>Calculo el sesgo de los T<sub>k</sub>
+\( \operatorname{sesgo}(T_k) = \left| k \theta^2 - \theta^2 \right| = \left( k - 1 \right) \theta^2 \)
+\( V_{\theta} \left[ k \cdot S^2_n \right] = k^2 V_{\theta} \left[  \frac{\theta}{n} \cdot \frac{n \cdot S^2_n}{\theta^2} \right] = \frac{k^2\theta^2}{n^2} \cdot V_{\theta}  \left[ \chi^2_n \right] = \frac{k^2\theta^4\cdot2n}{n^2} = \frac{2k^2\theta^4}{n}\)</li>
 </ul>
+
+
+<p>
+!!Sin acabar de copiar!!
+Moraleja, no podemos encontrar el mejor sólo calculando el ECM de las cosas, sólo lo puedes calcular para una familia
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>

@@ -6,7 +6,7 @@
 <!-- 2023-02-27 lun 17:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>&lrm;</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,23 +193,59 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
-</ul>
+<div id="outline-container-orgd652b2f" class="outline-2">
+<h2 id="orgd652b2f">Estimador Centrado o Insesgado</h2>
+<div class="outline-text-2" id="text-orgd652b2f">
+<p>
+Un estimador se dice centrado o insesgado para \( d(\theta) \iff E_{\theta} \left[ T \right] = d(\theta) \)
+\( \operatorname{sesgo}(T) = \left| d(\theta) - E_{\theta} \left[ T \right] \right| \)
+</p>
+</div>
+</div>
+<div id="outline-container-org362e229" class="outline-2">
+<h2 id="org362e229">Estimador Asintóticamente Insesgado</h2>
+<div class="outline-text-2" id="text-org362e229">
+<p>
+Un estimador se dice asintóticamente centrado o asintóticamente insesgado para \( d(\theta) \iff \lim E_{\theta} \left[ T \right] = d(\theta) \) 
+\( \operatorname{sesgo}(T) = \left| d(\theta) - E_{\theta} \left[ T \right] \right| \)
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>

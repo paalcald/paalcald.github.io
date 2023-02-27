@@ -6,7 +6,7 @@
 <!-- 2023-02-27 lun 17:39 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>&lrm;</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,23 +193,136 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
-</ul>
+<div id="outline-container-orgc0d030d" class="outline-2">
+<h2 id="orgc0d030d">Estimador Centrado Uniformemente de Mínima Varianza</h2>
+<div class="outline-text-2" id="text-orgc0d030d">
+</div>
+<div id="outline-container-org5c461da" class="outline-3">
+<h3 id="org5c461da">Definición</h3>
+<div class="outline-text-3" id="text-org5c461da">
+<ol class="org-ol">
+<li>T es centrado para \( d(\theta) \)</li>
+<li>\(\forall T' \text{ centrado para } d(\theta) \quad V_{\theta} \left[ T' \right] \ge V_{\theta} \left[ T \right]\)</li>
+</ol>
+<p>
+Por los teoremas de <a href="lehmann-shefle.html">Lehmann-Schefle</a> y <a href="rao-blackwell.html">Rao-Blackwell</a> podemos sacar una definición alternativa
+</p>
+</div>
+</div>
+<div id="outline-container-org6716caa" class="outline-3">
+<h3 id="org6716caa">Definición Constructiva</h3>
+<div class="outline-text-3" id="text-org6716caa">
+<p>
+\( T \) es ECUMV para \( d(\theta) \) cuando
+</p>
+<ol class="org-ol">
+<li>\( T \) es suficiente y completo.</li>
+<li>\( E_{\theta} \left[ T \right] = d(\theta) \), es decir, insesgado.</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orge2e190f" class="outline-2">
+<h2 id="orge2e190f">Ejemplo</h2>
+<div class="outline-text-2" id="text-orge2e190f">
+<p>
+Sea \(X  \sim Be(\theta) \), encontrar un ECUMV para \( d(\theta) = \theta \)
+\( P(X=x) = \theta^x \left( 1 - \theta \right)^{1-x} \) para \( \theta \in \left( 0, 1 \right) \) y \( X= \left\{ 0, 1 \right\} \)
+</p>
+
+<p>
+\( P_{\theta} \left( X_{1} = x_1, \dots, X_{n}=x_n \right) = \theta^{\sum x_i} \left( 1 - \theta \right)^{n - \sum x_i} = \left( \frac{\theta}{1-\theta} \right) ^{\sum x_i} \left( 1 - \theta \right)^n = e ^{\color{red} \sum x_i \color{blue} \operatorname{ln} \left( \frac{\theta}{1-\theta} \right)} \cdot \color{orange} \left( 1 - \theta \right)^n \cdot \color{yellow} 1\)
+</p>
+
+<p>
+\( T \left( \vec{x} \right) = \sum x_i \) es <span class="underline">suficiente</span> (por ser <a href="feg.html">F.E.G.</a>)
+</p>
+
+<p>
+\( \operatorname{Im} \left\{ ln \left( \frac{\theta}{1-\theta} \right) \text{ tal que } \theta \in \left( 0,1 \right) \right\} = \mathbb{R} \implies\) es completo (por ser &#x211D abierto &ne; &phi;)
+</p>
+
+<p>
+Calculamos la esperanza ahora para comprobar que sea insesgado y &#x2026;
+\( E \left[ \sum x_i\right] = n\theta \) vemos que ni calcula la misma función!!, peeeeero, podemos cuadrarlo.
+</p>
+
+<p>
+\( E \left[ \frac{\sum x_i}{n} \right] = E \left[ \overline{x} \right] = \theta \)
+</p>
+
+<p>
+Hemos realizado una transformación \( \varphi : \mathbb{R} \to \mathbb{R}\) definida por \( \sum x_{i} \mapsto \overline{x} \), que por ser medible mantiene que es suficiente y completo! <b>Añadir LINK</b>
+</p>
+
+<p>
+Concluimos que \( \overline{x} \) es el <a href="#orgc0d030d">ECUMV</a>.
+</p>
+</div>
+</div>
+<div id="outline-container-org574b5bc" class="outline-2">
+<h2 id="org574b5bc">Truco</h2>
+<div class="outline-text-2" id="text-org574b5bc">
+<p>
+\( V_{\theta} \left[ T \right] = E_{\theta} \left[ T^2 \right] - E_{\theta} \left[ T \right]^2\)
+</p>
+
+<p>
+\( E_{\theta}  \left[ \overline{x} \right] = \theta \implies E_{\theta}  \left[ \overline{x} \right]^{2} = \theta^2 \)
+</p>
+
+<p>
+\( V_{\theta} \left[ \overline{x} \right] = \frac{V_{\theta} \left[ x \right]}{n} = \frac{\theta \left( 1 - \theta \right)}{ n}\)
+</p>
+
+<p>
+\( E \left[ \overline{x}^2 \right] = \frac{\theta - \theta^2}{n} = \theta^2 = \frac{ \theta}{n} + \theta^2 \left( \frac{n - 1}{n} \right) \)
+</p>
+
+<p>
+\( E \left[ \overline{x}^2 - \frac{\overline{x}}{n}\right] = E \left[ \overline{x}^2 \right] - E \left[ \frac{\overline{x}}{n} \right] = \frac{ \theta}{n} + \theta^2 \left( \frac{n - 1}{n} \right) - \frac{\theta}{n} \)
+</p>
+
+<p>
+\( E \left[ \left( \frac{n - 1}{n} \right) \left( \overline{x}^2 - \frac{\overline{x}}{n} \right)\right] = \theta^2 \) ergo, insesgado por ser esta una transformación medible!
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
