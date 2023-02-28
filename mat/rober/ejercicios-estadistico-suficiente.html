@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-01 mié 00:39 -->
+<!-- 2023-03-01 mié 00:51 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ejercicios de Estadísticos Suficientes</title>
@@ -244,9 +244,9 @@ Por ser común a todos los casos, en primer lugar dado que la función de densid
   f_{\alpha,\beta} \left( \vec{x} \right)
   &= \prod_{i = 1}^n\left( \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right) \Gamma \left( \beta \right)}x_{i}^{\alpha-1} \cdot \left( 1 - x_{i} \right)^{\beta-1} \right) \\
   &= \left( \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right) \Gamma \left( \beta \right)} \right)^n
-    \prod_{i = 1}^n\left( x_{i}^{\alpha-1} \cdot \left( 1 - x_{i} \right)^{\beta-1} \right) \\
+    \prod_{i = 1}^n\left( x_{i}^{\alpha-1} \cdot {\left( 1 - x_{i} \right)}^{\beta-1} \right) \\
   &= \left( \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right) \Gamma \left( \beta \right)} \right)^n
-    \left( \prod_{i = 1}^n x_i \right)^{\alpha - 1} \left( \prod_{i = 1}^n (1 - x_i) \right)^{\beta - 1}
+    {\left( \prod_{i = 1}^n x_i \right)}^{\alpha - 1} {\left( \prod_{i = 1}^n (1 - x_i) \right)}^{\beta - 1} \\
 \end{align*}
 </div>
 <div id="outline-container-orgee823cd" class="outline-4">
@@ -256,8 +256,8 @@ Por ser común a todos los casos, en primer lugar dado que la función de densid
 Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
 </p>
 \begin{gather*}
-  h \left( \vec{x} \right) = \frac{1}{\Gamma \left( \beta \right)^n} \left( \prod_{i = 1}^n (1 - x_i) \right)^{\beta - 1} \\
-  \left( g_{\alpha} \circ T \right) \left( \vec{x} \right)= \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right)^{n}} \right)^n
+  h \left( \vec{x} \right) = \frac{1}{\Gamma(\beta)^n} \left( \prod_{i = 1}^n (1 - x_i) \right)^{\beta - 1} \\
+  \left( g_{\alpha} \circ T \right) \left( \vec{x} \right) = \frac{\Gamma(\alpha + \beta)^{n}}{\Gamma(\alpha)^{n}}
 \left( \prod_{i = 1}^n x_i \right)^{\alpha - 1}
 \end{gather*}
 <p>
@@ -274,7 +274,7 @@ Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Facto
 \begin{gather*}
   h \left( \vec{x} \right) = \frac{1}{\Gamma \left( \alpha \right)^n}
 \left( \prod_{i = 1}^n x_i \right)^{\alpha - 1} \\
-  \left( g_{\beta} \circ T \right) \left( \vec{x} \right) = \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \beta \right)^{n}} \right)^n
+  \left( g_{\beta} \circ T \right) \left( \vec{x} \right) = \frac{\Gamma \left( \alpha + \beta \right)^{n}}{ \Gamma \left( \beta \right)^{n}}
 \left( \prod_{i = 1}^n (1 - x_i) \right)^{\beta - 1}
 \end{gather*}
 <p>
@@ -312,7 +312,7 @@ Observación, nótese que explícitamente la función sería  \( g_{\alpha,\beta
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-01 mié 00:39</p>
+<p class="date">Created: 2023-03-01 mié 00:51</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
