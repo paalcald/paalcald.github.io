@@ -6,7 +6,7 @@
 <!-- 2023-03-01 mié 00:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>Ejercicios de Estadísticos Suficientes</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,25 +193,122 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="ejercicios-estadistico-suficiente.html">Ejercicios de Estadísticos Suficientes</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
-<li><a href="teorema-factorizacion-fisher-neyman.html">teorema-factorizacion-fisher-neyman</a></li>
-</ul>
+<h1 class="title">Ejercicios de Estadísticos Suficientes</h1>
+<div id="outline-container-orgad4c032" class="outline-2">
+<h2 id="orgad4c032">Encuentresé un estadístico suficiente para una m.a.s. de tamaño <i>n</i> de cada una de las siguientes poblaciones</h2>
+<div class="outline-text-2" id="text-orgad4c032">
+</div>
+<div id="outline-container-orgf79f1ff" class="outline-3">
+<h3 id="orgf79f1ff">\( X \sim Beta(\alpha, \beta) \quad \alpha > 0, \quad \beta > 0 \)</h3>
+<div class="outline-text-3" id="text-orgf79f1ff">
+<p>
+Por ser común a todos los casos, en primer lugar dado que la función de densidad de probabilidad asociada es \( f_{\alpha,\beta} \left( x \right) = \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right) \Gamma \left( \beta \right)}x^{\alpha-1} \cdot \left( 1 - x \right)^{\beta-1} \) calculamos la de <i>n</i> sucesos independientes como su producto.
+</p>
+
+\begin{align*}
+  f_{\alpha,\beta} \left( \vec{x} \right)
+  &= \prod_{i = 1}^n\left( \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right) \Gamma \left( \beta \right)}x^{\alpha-1} \cdot \left( 1 - x \right)^{\beta-1} \right) \\
+  &= \left( \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right) \Gamma \left( \beta \right)} \right)^n
+    \prod_{i = 1}^n\left( x^{\alpha-1} \cdot \left( 1 - x \right)^{\beta-1} \right) \\
+  &= \left( \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right) \Gamma \left( \beta \right)} \right)^n
+    \left( \prod_{i = 1}^n x_i \right)^{\alpha - 1} \left( \prod_{i = 1}^n (1 - x_i) \right)^{\beta - 1}
+\end{align*}
+</div>
+<div id="outline-container-orgee823cd" class="outline-4">
+<h4 id="orgee823cd">&alpha; desconocido y &beta; conocido</h4>
+<div class="outline-text-4" id="text-orgee823cd">
+<p>
+Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
+</p>
+\begin{gather*}
+  h \left( \vec{x} \right) = \frac{1}{\Gamma \left( \beta \right)^n} \left( \prod_{i = 1}^n (1 - x_i) \right)^{\beta - 1} \\
+  \left( g_{\alpha} \circ T \right) \left( \vec{x} \right) \right) = \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right)} \right)^n
+\left( \prod_{i = 1}^n x_i \right)^{\alpha - 1}
+\end{gather*}
+<p>
+De donde podemos concluir que \( T(\vec{x}) = \prod_{i = 1}^n x_i \) es suficiente para &alpha;.
+</p>
+</div>
+</div>
+<div id="outline-container-orgaf99fd4" class="outline-4">
+<h4 id="orgaf99fd4">&alpha; conocido y &beta; desconocido</h4>
+<div class="outline-text-4" id="text-orgaf99fd4">
+<p>
+Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
+</p>
+\begin{gather*}
+  h \left( \vec{x} \right) = \frac{1}{\Gamma \left( \alpha \right)^n}
+\left( \prod_{i = 1}^n x_i \right)^{\alpha - 1} \\
+  \left( g_{\beta} \circ T \right) \left( \vec{x} \right) \right) = \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \beta \right)} \right)^n
+\left( \prod_{i = 1}^n (1 - x_i) \right)^{\beta - 1}
+\end{gather*}
+<p>
+De donde podemos concluir que \( T(\vec{x}) = \prod_{i = 1}^n (1 - x_i) \) es suficiente para &beta;.
+</p>
+</div>
+</div>
+<div id="outline-container-orgb5500cb" class="outline-4">
+<h4 id="orgb5500cb">&alpha; desconocido y &beta; desconocido</h4>
+<div class="outline-text-4" id="text-orgb5500cb">
+<p>
+Recordemos que un estadístico puede ser de la forma \( T:\mathbb{R}^n \to \mathbb{R}^m \), en este caso tomaremos \( T:\mathbb{R}^n \to \mathbb{R}^2 \) ya que necesitaremos estimar dos parámetros.
+</p>
+
+\begin{gather*}
+  h \left( \vec{x} \right) = 1 \\
+  \left( g_{\alpha,\beta} \circ T \right) \left( \vec{x} \right) \right) =
+\left( \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right) \Gamma \left( \beta \right)} \right)^n
+    \left( \prod_{i = 1}^n x_i \right)^{\alpha - 1} \left( \prod_{i = 1}^n (1 - x_i) \right)^{\beta - 1}
+\end{gather*}
+
+<p>
+De donde podemos concluir que \( T(\vec{x}) = \left( T_1 \left( \vec{x} \right), T_2 \left( \vec{x} \right) \right) =  \left( \prod_{i = 1}^n x_i, \prod_{i = 1}^n (1 - x_i) \right) \) es suficiente para &alpha;, &beta;.
+</p>
+
+<p>
+Observación, nótese que explícitamente la función sería  \( g_{\alpha,\beta} \left( t_1, t_2 \right) =
+\left( \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right) \Gamma \left( \beta \right)} \right)^n
+    \left( t_1 \right)^{\alpha - 1} \left( t_2 \right)^{\beta - 1} \)
+</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>

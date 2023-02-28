@@ -6,7 +6,7 @@
 <!-- 2023-03-01 mié 00:31 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>&lrm;</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,25 +193,92 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="ejercicios-estadistico-suficiente.html">Ejercicios de Estadísticos Suficientes</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
-<li><a href="teorema-factorizacion-fisher-neyman.html">teorema-factorizacion-fisher-neyman</a></li>
-</ul>
+<div id="outline-container-org58e9b15" class="outline-2">
+<h2 id="org58e9b15">Teorema de Factorización de Fisher-Neyman</h2>
+<div class="outline-text-2" id="text-org58e9b15">
+</div>
+<div id="outline-container-org53fb851" class="outline-3">
+<h3 id="org53fb851">Intuición</h3>
+<div class="outline-text-3" id="text-org53fb851">
+<p>
+Podré obtener suficiente información sobre el parámetro de interés siempre y cuando siempre que se haga referencia a este parámetro en mi distribución se haga por medio de mi estadistico.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org8152238" class="outline-3">
+<h3 id="org8152238">Enunciado</h3>
+<div class="outline-text-3" id="text-org8152238">
+<p>
+Sea \( X \) v.a. con \( f_{\theta}(x) \text{ ó } P_{\theta}(X = x)\).
+</p>
+
+<p>
+Sea \( \left( X_{1}, \dots, X_{n} \right) \)  un m.a.s. de \( \left\{ X_{n} | n \ge 1\right\} \) v.a.i.i.d
+</p>
+
+<p>
+Si se puede escribir
+\( f_{\theta} \left( x_{1}, \dots, x_{n} \right) = h \left( x_{1}, \dots, x_{n} \right) g_{\theta} \left( T \left( x_{1}, \dots, x_{n} \right) \right)\)
+ó
+\(P_{\theta} \left( X_{1}=x_{1}, \dots, X_{n}=x_{n} \right) =  h \left( x_{1}, \dots, x_{n} \right) g_{\theta} \left( T \left( x_{1}, \dots, x_{n} \right) \right) \) entonces \( T \left( x_{1}, \dots, x_n \right) \) es suficiente para \( \theta \)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org2a13b41" class="outline-3">
+<h3 id="org2a13b41">Usos</h3>
+<div class="outline-text-3" id="text-org2a13b41">
+<p>
+Nos proporciona un método para encontrar un estadístico suficiente dada una función de densidad de probabilidad.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga4eab4e" class="outline-3">
+<h3 id="orga4eab4e">Limitaciones</h3>
+<div class="outline-text-3" id="text-orga4eab4e">
+<p>
+No caracteriza si un estadístico es o no es suficiente, ni nos permite encontrar más de lo que nuestro ingenio nos permita.
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
