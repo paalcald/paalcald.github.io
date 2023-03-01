@@ -1,0 +1,511 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+<!-- 2023-03-01 mié 13:25 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>GCom: Practica 2</title>
+<meta name="author" content="Pablo C. Alcalde" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">GCom: Practica 2</h1>
+<div id="outline-container-org30be0a0" class="outline-2">
+<h2 id="org30be0a0"><span class="section-number-2">1.</span> Introducción</h2>
+<div class="outline-text-2" id="text-1">
+<p>
+Se quiere agrupar los datos recibidos según estén mas o menos cerca dados los parámetros de la muestra, utilizaremos algoritmos de Clustering como KMeans ó DBSCAN con este fin.
+</p>
+</div>
+</div>
+<div id="outline-container-orgc036b48" class="outline-2">
+<h2 id="orgc036b48"><span class="section-number-2">2.</span> Material Usado</h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-orgd4fff17" class="outline-3">
+<h3 id="orgd4fff17">Librerias y Paquetes</h3>
+<div class="outline-text-3" id="text-orgd4fff17">
+<p>
+Para está practica se utilizarán a parte de las librerias que generalmente se utilizan en cualquier proyecto como <i>matplotlib</i>, <i>numpy</i> y <i>scipy</i> las siguientes librerias de python.
+</p>
+<ul class="org-ul">
+<li>Scikit-Learn
+Por su implementación de los diferentes algoritmos de clustering necesarios.</li>
+<li>Scipy
+Por su implementación de un método sencillo para dibujar diagramas de Voronoi.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgf0c2e74" class="outline-3">
+<h3 id="orgf0c2e74">Errores</h3>
+<div class="outline-text-3" id="text-orgf0c2e74">
+<p>
+Al tratar de realizar la comparación de los datos obtenidos con los <i>correctos</i>, nos dimos cuenta de que por la asignación arbitraría de etiquetas en las agrupaciones de la muestra, era necesarío algun algoritmo o criterío para identificar etiquetas de muestra con las etiquetas <i>correctas</i>.
+</p>
+
+<p>
+Para resolver ese problema se reasignaron etiquetas \( \left\{ n_{1}, n_2, n_3, n_4 \right\} \) a la muestra y \( \left\{ m_{1}, m_2, m_3, m_4 \right\} \) al control, tal que \( \forall i, j, k, l \quad i \ne k \land j \ne l \implies n_{i} + m_{j} \neq n_k + m_l \) de este modo añadiremos los valores de las etiquetas asignadas para diferenciar donde el etiquetado coincidió de donde agrupamos incorrectamente, respecto al control, sin vernos influenciados por los cambios de nombre de las etiquetas en sí.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org25b07d4" class="outline-2">
+<h2 id="org25b07d4"><span class="section-number-2">3.</span> Resultados</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-org8b2e711" class="outline-3">
+<h3 id="org8b2e711">Apartado 1</h3>
+<div class="outline-text-3" id="text-org8b2e711">
+
+<div id="orgc1fdd47" class="figure">
+<p><img src="silhouette_coefs.png" alt="silhouette_coefs.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orge247c66" class="outline-3">
+<h3 id="orge247c66">Apartado 2</h3>
+<div class="outline-text-3" id="text-orge247c66">
+
+<div id="org191ff80" class="figure">
+<p><img src="dbscan.png" alt="dbscan.png" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org8350eda" class="outline-3">
+<h3 id="org8350eda">Apartado 3</h3>
+<div class="outline-text-3" id="text-org8350eda">
+<ul class="org-ul">
+<li>\( (0,0) \) pertenece al grado 1</li>
+<li>\( (0, -1) \) pertenece al grado 0</li>
+</ul>
+</div>
+</div>
+</div>
+<div id="outline-container-org4918756" class="outline-2">
+<h2 id="org4918756"><span class="section-number-2">4.</span> Conclusión</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+El número de clusters óptimo según el algoritmo ha resultado no corresponder al real suplementado en los datos, aún asi, un segundo resultado muy cercano a la optimalidad si coincide y sólo nos equivocamos en ese caso en menos del 7% de los sujetos.
+cosas
+</p>
+</div>
+</div>
+<div id="outline-container-orge3ee25f" class="outline-2">
+<h2 id="orge3ee25f">Apéndice de Código</h2>
+<div class="outline-text-2" id="text-orge3ee25f">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #79740e;">"""</span>
+<span style="color: #79740e;">Clustering analisis on a given sample with KMeans and DEPSCAN.</span>
+<span style="color: #79740e;">"""</span>
+<span style="color: #a89984;"># </span><span style="color: #a89984;">import sys</span>
+<span style="color: #9d0006;">from</span> collections <span style="color: #9d0006;">import</span> Counter
+<span style="color: #9d0006;">from</span> functools <span style="color: #9d0006;">import</span> <span style="color: #af3a03;">reduce</span>
+<span style="color: #9d0006;">from</span> sklearn.cluster <span style="color: #9d0006;">import</span> KMeans, DBSCAN
+<span style="color: #9d0006;">from</span> sklearn.metrics <span style="color: #9d0006;">import</span> silhouette_samples  <span style="color: #a89984;"># </span><span style="color: #a89984;">type: ignore</span>
+<span style="color: #9d0006;">from</span> scipy.spatial <span style="color: #9d0006;">import</span> Voronoi, voronoi_plot_2d
+<span style="color: #9d0006;">import</span> numpy <span style="color: #9d0006;">as</span> np  <span style="color: #a89984;"># </span><span style="color: #a89984;">type: ignore</span>
+<span style="color: #9d0006;">import</span> matplotlib.pyplot <span style="color: #9d0006;">as</span> plt  <span style="color: #a89984;"># </span><span style="color: #a89984;">type: ignore</span>
+
+UNCLUSTERED_SAMPLE = <span style="color: #79740e;">"./samples/Personas_en_la_facultad_matematicas.txt"</span>
+<span style="color: #076678;">CLUSTERED_SAMPLE</span> = <span style="color: #79740e;">"./samples/Grados_en_la_facultad_matematicas.txt"</span>
+
+<span style="color: #076678;">data</span> = np.loadtxt(UNCLUSTERED_SAMPLE, encoding=<span style="color: #79740e;">"latin-1"</span>)
+control = np.loadtxt(CLUSTERED_SAMPLE, encoding=<span style="color: #79740e;">"latin-1"</span>)
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">We find the optimum number of clusters</span>
+
+n_iters: <span style="color: #af3a03;">int</span> = 10
+delta: <span style="color: #af3a03;">float</span> = 0.001
+N_CLUSTERS_MIN: <span style="color: #af3a03;">int</span> = 2
+N_CLUSTERS_MAX: <span style="color: #af3a03;">int</span> = 15
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">the dict data structure fits better for an indexed access</span>
+kmeans: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">int</span>, KMeans] = <span style="color: #af3a03;">dict</span>((n_clusters, KMeans(n_clusters,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>init=<span style="color: #79740e;">"random"</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>n_init=<span style="color: #79740e;">'auto'</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>tol=delta).fit(data))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span><span style="color: #9d0006;">for</span> n_clusters
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span><span style="color: #9d0006;">in</span> <span style="color: #af3a03;">range</span>(N_CLUSTERS_MIN, N_CLUSTERS_MAX + 1))
+
+dbscan_euclid: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">int</span>, DBSCAN] = <span style="color: #af3a03;">dict</span>((umbral,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>DBSCAN(eps=umbral,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   metric=<span style="color: #79740e;">"euclidean"</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   min_samples=10).fit(data))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> umbral
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">in</span> np.linspace(0.1, 0.4, num=10))
+
+dbscan_manhat: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">int</span>, DBSCAN] = <span style="color: #af3a03;">dict</span>((umbral,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>DBSCAN(eps=umbral,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   metric=<span style="color: #79740e;">"manhattan"</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   min_samples=10).fit(data))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> umbral
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">in</span> np.linspace(0.1, 0.4, num=10))
+
+s_samples: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">int</span>, np.array] = <span style="color: #af3a03;">dict</span>(
+<span style="background-color: #ebdbb2;"> </span>   (i, silhouette_samples(data,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  sample.labels_))
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> i, sample
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">in</span> kmeans.items())
+
+s_bar: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">int</span>, <span style="color: #af3a03;">float</span>] = <span style="color: #af3a03;">dict</span>((i, np.mean(sample))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #9d0006;">for</span> i, sample <span style="color: #9d0006;">in</span> s_samples.items())
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">Error de s_bar</span>
+s_bar_e: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">int</span>, <span style="color: #af3a03;">float</span>] = <span style="color: #af3a03;">dict</span>((i, np.std(sample)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> / <span style="color: #af3a03;">len</span>(sample))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span><span style="color: #9d0006;">for</span> i, sample <span style="color: #9d0006;">in</span> s_samples.items())
+
+dbs_s_s: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">int</span>, np.array] = <span style="color: #af3a03;">dict</span>(
+<span style="background-color: #ebdbb2;"> </span>   (i, silhouette_samples(data,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  sample.labels_))
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> i, sample
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">in</span> dbscan_euclid.items())
+
+dbs_s_b: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">int</span>, <span style="color: #af3a03;">float</span>] = <span style="color: #af3a03;">dict</span>((i, np.mean(sample))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span><span style="color: #9d0006;">for</span> i, sample <span style="color: #9d0006;">in</span> dbs_s_s.items())
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">Error de dbs_s_b</span>
+dbs_s_b_e: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">int</span>, <span style="color: #af3a03;">float</span>] = <span style="color: #af3a03;">dict</span>((i, np.std(sample)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   / <span style="color: #af3a03;">len</span>(sample))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #9d0006;">for</span> i, sample <span style="color: #9d0006;">in</span> dbs_s_s.items())
+
+dbs_m_s_s: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">int</span>, np.array] = <span style="color: #af3a03;">dict</span>(
+<span style="background-color: #ebdbb2;"> </span>   (i, silhouette_samples(data,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  sample.labels_))
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> i, sample
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">in</span> dbscan_manhat.items())
+
+dbs_m_s_b: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">int</span>, <span style="color: #af3a03;">float</span>] = <span style="color: #af3a03;">dict</span>((i, np.mean(sample))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span><span style="color: #9d0006;">for</span> i, sample <span style="color: #9d0006;">in</span> dbs_m_s_s.items())
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">Error de dbs_m_s_b</span>
+dbs_m_s_b_e: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">int</span>, <span style="color: #af3a03;">float</span>] = <span style="color: #af3a03;">dict</span>((i, np.std(sample)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   / <span style="color: #af3a03;">len</span>(sample))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #9d0006;">for</span> i, sample <span style="color: #9d0006;">in</span> dbs_m_s_s.items())
+
+optimum = <span style="color: #af3a03;">reduce</span>(<span style="color: #9d0006;">lambda</span> a, b: a <span style="color: #9d0006;">if</span> a[1] &gt; b[1] <span style="color: #9d0006;">else</span> b,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>s_bar.items(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>(0, -1.0))[0]
+
+vor = {3: Voronoi(kmeans[3].cluster_centers_),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  4: Voronoi(kmeans[4].cluster_centers_)}
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">We now plot our findings</span>
+kmeans_fig = plt.figure(layout=<span style="color: #79740e;">"constrained"</span>, figsize=(6.7, 5.9))
+kmeans_fig.suptitle(<span style="color: #79740e;">"KMeans"</span>)
+silhouette_fig, clusters_fig = kmeans_fig.subfigures(2, 1)
+silhouette_axis = silhouette_fig.add_subplot()
+silhouette_axis.set_ylabel(<span style="color: #79740e;">"Silhouette Coefficient"</span>)
+silhouette_axis.set_xlabel(<span style="color: #79740e;">"Number of Clusters"</span>)
+silhouette_axis.set_xlim(1.5, 15.5)
+silhouette_axis.errorbar(s_bar.keys(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>s_bar.values(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>xerr=0.5,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>yerr=np.array(<span style="color: #af3a03;">list</span>(s_bar_e.values())),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>fmt=<span style="color: #79740e;">'.r'</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>capsize=4,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>ecolor=<span style="color: #79740e;">'b'</span>)
+clusters_axis = clusters_fig.subplots(1, 2, sharey=<span style="color: #8f3f71;">True</span>)
+voronoi_plot_2d(vor[3], ax=clusters_axis[0], show_points=<span style="color: #8f3f71;">False</span>)
+clusters_axis[0].set_xlabel(<span style="color: #79740e;">"Rock"</span>)
+clusters_axis[0].set_ylabel(<span style="color: #79740e;">"Stress"</span>)
+clusters_axis[0].set_xlim(-2.2, 2.2)
+clusters_axis[0].set_ylim(-2.1, 1.6)
+clusters_axis[0].set_title((<span style="color: #79740e;">"3 clusters "</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   f<span style="color: #79740e;">"($\\overline{{s}}$ = </span>{<span style="color: #af3a03;">round</span>(s_bar[3],4)}<span style="color: #79740e;">)"</span>))
+clusters_axis[0].scatter(data[:, 0], data[:, 1], s=2, c=kmeans[3].labels_)
+voronoi_plot_2d(vor[4], ax=clusters_axis[1], show_points=<span style="color: #8f3f71;">False</span>)
+clusters_axis[1].set_xlabel(<span style="color: #79740e;">"Rock"</span>)
+clusters_axis[1].set_xlim(-2.2, 2.2)
+clusters_axis[1].set_ylim(-2.1, 1.6)
+clusters_axis[1].set_title((<span style="color: #79740e;">"4 clusters "</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   f<span style="color: #79740e;">"($\\overline{{s}}$ = </span>{<span style="color: #af3a03;">round</span>(s_bar[4],4)}<span style="color: #79740e;">)"</span>))
+clusters_axis[1].scatter(data[:, 0], data[:, 1], s=2, c=kmeans[4].labels_)
+kmeans_fig.savefig(<span style="color: #79740e;">"kmeans.png"</span>)
+
+dbscan_fig = plt.figure(layout=<span style="color: #79740e;">"constrained"</span>, figsize=(6.7, 3))
+dbscan_fig.suptitle(<span style="color: #79740e;">"Method Comparison"</span>)
+silhouette_dbs_axis = dbscan_fig.subplots(1, 2, sharey = <span style="color: #8f3f71;">True</span>)
+silhouette_dbs_axis[0].set_title(<span style="color: #79740e;">"DBSCAN"</span>)
+silhouette_dbs_axis[0].set_ylabel(<span style="color: #79740e;">"Silhouette Coefficient"</span>)
+silhouette_dbs_axis[0].set_xlabel(<span style="color: #79740e;">"Umbral"</span>)
+silhouette_dbs_axis[0].errorbar(dbs_s_b.keys(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   dbs_s_b.values(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   yerr=np.array(<span style="color: #af3a03;">list</span>(dbs_s_b_e.values())),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   fmt=<span style="color: #79740e;">'.g'</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   capsize=4,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   ecolor=<span style="color: #79740e;">'b'</span>)
+silhouette_dbs_axis[0].errorbar(dbs_m_s_b.keys(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   dbs_m_s_b.values(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   yerr=np.array(<span style="color: #af3a03;">list</span>(dbs_m_s_b_e.values())),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   fmt=<span style="color: #79740e;">'.m'</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   capsize=4,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   ecolor=<span style="color: #79740e;">'b'</span>)
+silhouette_dbs_axis[0].legend([<span style="color: #79740e;">"Euclidean"</span>, <span style="color: #79740e;">"Manhattan"</span>])
+silhouette_dbs_axis[0].set_title(<span style="color: #79740e;">"KMeans"</span>)
+silhouette_dbs_axis[1].set_xlabel(<span style="color: #79740e;">"Number of Clusters"</span>)
+silhouette_dbs_axis[1].set_xlim(1.5, 15.5)
+silhouette_dbs_axis[1].errorbar(s_bar.keys(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   s_bar.values(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   yerr=np.array(<span style="color: #af3a03;">list</span>(s_bar_e.values())),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   fmt=<span style="color: #79740e;">'.r'</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   capsize=4,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   ecolor=<span style="color: #79740e;">'b'</span>)
+dbscan_fig.savefig(<span style="color: #79740e;">"dbscan.png"</span>)
+plt.close()
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">para ver los que no pertenecen al mismo cluster primero busco labels que</span>
+<span style="color: #a89984;"># </span><span style="color: #a89984;">sumen diferente, y entonces hago la suma y miro los outliers y los sumo</span>
+<span style="color: #a89984;"># </span><span style="color: #a89984;">este procedimiento quiz&#225;s no es el m&#225;s optimo pero al menos es linear</span>
+
+sample_relabeling = {0: 0, 1: 1, 2: 4, 3: 10}
+
+sample_relabeler = np.vectorize(<span style="color: #9d0006;">lambda</span> x: sample_relabeling[x])
+
+control_relabeling = {0: 0, 1: 2, 2: 7, 3: 13}
+
+control_relabeler = np.vectorize(<span style="color: #9d0006;">lambda</span> x: control_relabeling[x])
+
+contrastes = (sample_relabeler(kmeans[4].labels_)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> + control_relabeler(control[:, 0]))
+
+frequences = Counter(contrastes)
+
+df = <span style="color: #af3a03;">sum</span>(i <span style="color: #9d0006;">for</span> (_, i) <span style="color: #9d0006;">in</span> frequences.most_common()[4:])
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">the first most common are the ones correctly clustered</span>
+
+<span style="color: #af3a03;">print</span>(df / frequences.total())
+</pre>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Autor: Pablo C. Alcalde</p>
+<p class="date">Created: 2023-03-01 mié 13:25</p>
+<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+</div>
+</body>
+</html>
