@@ -6,7 +6,7 @@
 <!-- 2023-03-06 lun 17:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>&lrm;</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,31 +193,89 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="ejercicios-estadistico-suficiente.html">Ejercicios de Estadísticos Suficientes</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="cota-frechet-cramer.html">cota-frechet-cramer</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="ejercicio-examen-1.html">ejercicio-examen-1</a></li>
-<li><a href="ejercicio-examen-2.html">ejercicio-examen-2</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="funcion-gamma.html">funcion-gamma</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
-<li><a href="teorema-de-behrens-fisher.html">teorema-de-behrens-fisher</a></li>
-<li><a href="teorema-factorizacion-fisher-neyman.html">teorema-factorizacion-fisher-neyman</a></li>
-<li><a href="verosimilitud.html">verosimilitud</a></li>
-</ul>
+<div id="outline-container-org7fea123" class="outline-2">
+<h2 id="org7fea123">Cota Frechet-Crammer-Rao</h2>
+<div class="outline-text-2" id="text-org7fea123">
+<p>
+Para \( d \left( \theta \right)\)  la cota de Frechet-Crammer-Rao se define como
+\[
+cota = \frac{d'(\theta)^2}{I^{\star}(\theta)}
+\]
+donde \( I^{\star}}(\theta) = n I(\theta) \) e \( I(\theta) = E_{\theta} \left[ \left( \frac{ \partial ln L(\theta; x)}{\partial \theta} \right)^2 \right]\)
+</p>
+
+<p>
+alternativamente \( I^{\star}(\theta) = E_{\theta} \left[ \frac{ \partial^2 ln L(\theta; \vec{x})}{\partial \theta^2} \right] \)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgfa09a13" class="outline-2">
+<h2 id="orgfa09a13">Eficiencia</h2>
+<div class="outline-text-2" id="text-orgfa09a13">
+<p>
+T es eficiente &xhArr; \(cota = V_{\theta} [T]\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0647793" class="outline-2">
+<h2 id="org0647793">Proposicion</h2>
+<div class="outline-text-2" id="text-org0647793">
+<p>
+T es eficiente &xrArr; T es <a href="ecumv.html">ECUMV</a>.
+</p>
+
+<p>
+Notese que si el indicador depende de &theta; no puedo hacer esto!!
+</p>
+</div>
+
+<div id="outline-container-orgcd64796" class="outline-3">
+<h3 id="orgcd64796">Ejemplo</h3>
+<div class="outline-text-3" id="text-orgcd64796">
+\begin{align*}
+f_{\theta}(x) &= e^{-(x-\theta)} \text{con} \quad x > 0 ,\, \theta > 0 \\
+&= e^{-(x-\theta)} \cdot I_{(\theta,\infty)}(x)
+\end{align*}
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>

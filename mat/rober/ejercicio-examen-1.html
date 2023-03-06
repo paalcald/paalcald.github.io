@@ -6,7 +6,7 @@
 <!-- 2023-03-06 lun 17:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>&lrm;</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,31 +193,188 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="ejercicios-estadistico-suficiente.html">Ejercicios de Estadísticos Suficientes</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="cota-frechet-cramer.html">cota-frechet-cramer</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="ejercicio-examen-1.html">ejercicio-examen-1</a></li>
-<li><a href="ejercicio-examen-2.html">ejercicio-examen-2</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="funcion-gamma.html">funcion-gamma</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
-<li><a href="teorema-de-behrens-fisher.html">teorema-de-behrens-fisher</a></li>
-<li><a href="teorema-factorizacion-fisher-neyman.html">teorema-factorizacion-fisher-neyman</a></li>
-<li><a href="verosimilitud.html">verosimilitud</a></li>
-</ul>
+<div id="outline-container-org0521c5b" class="outline-2">
+<h2 id="org0521c5b">Sea \( X \sim exp(1/\theta) \)</h2>
+<div class="outline-text-2" id="text-org0521c5b">
+<p>
+\( f_{\theta}(x) = \frac{1}{\theta}\cdot e^{-\frac{1}{\theta} x} \) con \( x > 0  \) y \(  \theta > 0 \)
+</p>
+\begin{align*}
+f_{\theta}(\vec{x}) &= \frac{1}{\theta^{n}}\cdot e^{-\frac{1}{\theta}\sum_{i=1}^n x_{i}} \cdot I_{(0, \infty)} (\min x_i)
+\end{align*}
+</div>
+<div id="outline-container-orgf4e3175" class="outline-3">
+<h3 id="orgf4e3175">Suficiente, Minimal y Completo</h3>
+<div class="outline-text-3" id="text-orgf4e3175">
+<p>
+Por medio de la siguiente factorización
+</p>
+\begin{gather*}
+h(x) = f_{\theta}(\vec{x}) = \frac{1}{\theta^{n}}\cdot I_{(0, \infty)} (\min x_i) \\
+\left( g \circ T \right) (\vec{x}) =  e^{-\frac{1}{\theta}\sum_{i=1}^n x_{i}}
+\end{gather*}
+<p>
+De donde obtenemos que \( \sum_{i=1}^n x_i \) es <span class="underline">suficiente</span> para \( \theta \).
+</p>
+
+<p>
+<b>Observamos que es <a href="feg.html">FEG</a></b>
+</p>
+
+<p>
+\( Im \left\{ - \frac{1}{\theta} | \theta > 0 \right\} = \left( - \infty, 0 \right) \) de donde concluimos que \( \sum_{i=1}^n x_i \) es <span class="underline">completo</span>.
+</p>
+
+<p>
+Por ser <b>suficiente</b> y <b>completo</b> entonces sabemos que es minimal al comprobar que no es 0.
+</p>
+</div>
+</div>
+<div id="outline-container-org8aea7f0" class="outline-3">
+<h3 id="org8aea7f0">ECUMV para \( d(\theta) = \theta \)</h3>
+<div class="outline-text-3" id="text-org8aea7f0">
+<p>
+Calculamos su esperanza.
+\( E \left[ \sum x_{i}} \right] = \sum E_{\theta} \left[ x \right] = n \cdot \frac{1}{\frac{1}{\theta}} = n\theta\)
+</p>
+
+<p>
+Donde nos damos cuenta de que no es exáctamente el valor que buscabamos, pero, es un factor del que buscabamos, <b>FUNCION MEDIBLE</b>
+</p>
+
+<p>
+\( E \left[\frac{\sum x_{i}}{n} \right] = \sum E_{\theta} \left[ \overline{x} \right] = \theta\)
+</p>
+
+<p>
+De donde obtenemos que \( \overline{x} \) es <a href="centrado-o-insesgado.html">insesgado</a> para \( d(\theta) \).
+</p>
+</div>
+</div>
+<div id="outline-container-orgb35a05e" class="outline-3">
+<h3 id="orgb35a05e">¿Es eficicente el ECUMV?</h3>
+<div class="outline-text-3" id="text-orgb35a05e">
+<p>
+En primer lugar calculamos su varianza \( V_{\theta} = \frac{V_{\theta}[x]}{n} = \frac{\theta^2}{n}\)
+</p>
+
+<p>
+Por el otro lado para calcular la <a href="cota-frechet-cramer.html">cota</a> de 
+\(f_{\theta}(\vec{x}) &= \frac{1}{\theta^{n}}\cdot e^{-\frac{1}{\theta}\sum_{i=1}^n x_{i}} \cdot I_{(0, \infty)} (\min x_i)\) tomamos logaritmos
+</p>
+
+<p>
+\( \ln L  = - n \ln \theta - \frac{1}{\theta} \sum x_i + \ln I_{(0, \infty)}(\min x_i) \)
+</p>
+
+<p>
+y tomo su derivada
+</p>
+
+<p>
+\( \frac{\partial \ln L}{\partial \theta} = - \frac{n}{\theta} + \frac{\sum x_i}{\theta^2} \)
+</p>
+
+<p>
+y su segunda derivada
+</p>
+
+<p>
+\( \frac{\partial^2 \ln L}{\partial \theta^2} = - \frac{n}{\theta^2} + \frac{\sum x_i}{\theta^3} \)
+</p>
+
+<p>
+y de ahi la <a href="cota-frechet-cramer.html">cota</a>
+</p>
+
+\begin{align*}
+I^{\star} (\theta)
+&= - E_{\theta}
+\left[
+\frac{\partial^2 \ln L(\theta;\vec{x})}
+     {\partial \theta^2}
+\right]
+\\
+&= E_{\theta}
+\left[
+ - \frac{n}
+        {\theta^2}
++ \frac{\sum x_i}
+       {\theta^3}
+\right] \\
+&= - \frac{n}{\theta^2} + \frac{2}{\theta^3}E_{\theta}\left\[ \sum x_i \right\] \\
+&= - \frac{n}{\theta^2} + \frac{2}{\theta^3} \cdot n\theta = \frac{n}{\theta^2}
+\end{align*}
+
+<p>
+Por la teoria vista en clase \( T(\vec{x}) = \overline{x} \) es ECUMV para \(d(\theta) = \theta\)
+</p>
+
+<p>
+\( E_{\theta} \left[ \overline{x} \right] = \theta\)
+</p>
+
+<p>
+\( V_{\theta} \left[ \overline{x} \right] = E_{\theta} [\overline{x}^2] - E_{\theta} [\overline{x}]^2\)
+</p>
+
+<p>
+\( \frac{\theta^2}{n} = E_{\theta} \left[ \overline{x}^2 \right] - \theta^2 \)
+</p>
+
+<p>
+\( \frac{n + 1}{n} \theta^2 = E_{\theta} [\overline{x}^2] \)
+</p>
+
+<p>
+\( \theta^2 = E_{\theta} \left[ \frac{n + 1}{n}\left( \overline{x} \right)^2 \right] \)
+</p>
+
+<p>
+Por lo que \( T'(\vec{x}) =  \frac{n + 1}{n}\left( \overline{x} \right)^2 \) es insesgado para \( d(\theta) = \theta^{2} \)
+</p>
+
+<p>
+Pero a la hora de calcular la cota no podemos encontrar la varianza!!
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>

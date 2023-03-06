@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-01 mié 00:51 -->
+<!-- 2023-03-06 lun 17:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ejercicios de Estadísticos Suficientes</title>
@@ -229,15 +229,41 @@
 <body>
 <div id="content" class="content">
 <h1 class="title">Ejercicios de Estadísticos Suficientes</h1>
-<div id="outline-container-orgad4c032" class="outline-2">
-<h2 id="orgad4c032">Encuentresé un estadístico suficiente para una m.a.s. de tamaño <i>n</i> de cada una de las siguientes poblaciones</h2>
-<div class="outline-text-2" id="text-orgad4c032">
+<div id="outline-container-orgd0de8aa" class="outline-2">
+<h2 id="orgd0de8aa">Distribuciones Discretas</h2>
+<div class="outline-text-2" id="text-orgd0de8aa">
 </div>
-<div id="outline-container-orgf79f1ff" class="outline-3">
-<h3 id="orgf79f1ff">\( X \sim Beta(\alpha, \beta) \quad \alpha > 0, \quad \beta > 0 \)</h3>
-<div class="outline-text-3" id="text-orgf79f1ff">
+<div id="outline-container-org9e3ab1d" class="outline-3">
+<h3 id="org9e3ab1d">Poisson</h3>
+<div class="outline-text-3" id="text-org9e3ab1d">
 <p>
-Por ser común a todos los casos, en primer lugar dado que la función de densidad de probabilidad asociada es \( f_{\alpha,\beta} \left( x \right) = \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right) \Gamma \left( \beta \right)}x^{\alpha-1} \cdot \left( 1 - x \right)^{\beta-1} \) calculamos la de <i>n</i> sucesos independientes como su producto.
+Sea \( X \sim \text{P}(\lambda) \) tendremos que \( P_{\lambda} \left( X = x \right) = \frac{e^{-\lambda}\lambda^x}{x!} \) con \( \lambda > 0 \) y \( x \in \mathbb{N}\cup \{0\} \)
+</p>
+
+\begin{align*}
+ P_{\lambda} (X_1=x_1, \dots, X_n=x_n) & \stackrel{\text{v.a.i.}}{=}
+ \Pi_{i = 1}^n P_{\lambda}(X_i=x_{i}) \\
+& \stackrel{\text{i.d.}}{ = } \left[ P_{\lambda} \left( X_i = x_i \right) \right]^n \\
+& = \frac{e^{-\lambda}\lambda^{x_1}}{x_1!}\frac{e^{-\lambda}\lambda^{x_2}}{x_2!}\dots\frac{e^{-\lambda}\lambda^{x_n}}{x_n!} \\
+&= \frac{e^{n\lambda} \lambda^{\sum x_i}}{\Pi x_{i}!}
+\end{align*}
+
+<p>
+Aquí podemos identificar \( g_{\theta} \left( T \left( \vec{x} \right) \right) = e^{-n\lambda} \lambda^{\sum x_i} \) y \( h \left( \vec{x} \right) = \frac{1}{\Pi x_i!} \) nótese que T no depende del parámetro.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org0e49376" class="outline-2">
+<h2 id="org0e49376">Distribuciones Continuas</h2>
+<div class="outline-text-2" id="text-org0e49376">
+</div>
+<div id="outline-container-orga1f26f8" class="outline-3">
+<h3 id="orga1f26f8">Beta</h3>
+<div class="outline-text-3" id="text-orga1f26f8">
+<p>
+\( X \sim Beta(\alpha, \beta) \quad \alpha > 0, \quad \beta > 0 \)
+Por ser común a todos los casos, en primer lugar dado que la función de densidad de probabilidad asociada es \( f_{\alpha,\beta} \left( x \right) = \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right) \Gamma \left( \beta \right)}x^{\alpha-1} \cdot \left( 1 - x \right)^{\beta-1} \) calculamos la de <i>n</i> sucesos independientes como su producto, y aplicamos que son sucesos independientes.
 </p>
 
 \begin{align*}
@@ -308,11 +334,221 @@ Observación, nótese que explícitamente la función sería  \( g_{\alpha,\beta
 </div>
 </div>
 </div>
+<div id="outline-container-orga38f603" class="outline-3">
+<h3 id="orga38f603">Gamma</h3>
+<div class="outline-text-3" id="text-orga38f603">
+<p>
+\( X \sim Gamma \left( \alpha, \beta \right) \)
+</p>
+
+<p>
+Por ser común a todos los casos, en primer lugar tomaremos la funcion de densidad de probabilidad asociada \( f_{\alpha,\beta} (x) = \frac{x^{\alpha - 1} e^{-\beta x} \beta^{\alpha}}{ \Gamma(\alpha)} \) para \( x > 0 \) y \(  \alpha, \beta > 0 \) donde \( \Gamma(\alpha) \) es la <a href="funcion-gamma.html">functión gamma</a> y calculamos la de <i>n</i> sucesos independientes como su producto aplicando que son sucesos independientes.
+</p>
+
+\begin{align*}
+  f_{\alpha,\beta} \left( \vec{x} \right)
+  &= \prod_{i = 1}^n\left( \frac{x_i^{\alpha - 1} e^{-\beta x_i} \beta^{\alpha}}{ \Gamma(\alpha)} \right) \\
+  &= \frac{\left( \prod_{i = 1}^n x_i^{\alpha-1} \right) \cdot \left( \prod_{i = 1}^n e^{-\beta x_i} \right) \cdot \left( \beta^{n\alpha} \right)}{\Gamma(a)^n} \\
+  &= \frac{\left( \prod_{i = 1}^n x_i \right)^{\alpha-1} \cdot e^{-\beta \left( \sum_{i = 1}^n x_i \right)} \cdot \beta^{n\alpha}}{\Gamma(\alpha)^n}
+\end{align*} 
+</div>
+
+<div id="outline-container-org94140a0" class="outline-4">
+<h4 id="org94140a0">&alpha; desconocido y &beta; conocido</h4>
+<div class="outline-text-4" id="text-org94140a0">
+<p>
+Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
+</p>
+\begin{gather*}
+  h \left( \vec{x} \right) = e ^{-\beta \left( \sum_{i = 1}^n x_i \right)} \\
+  \left( g_{\alpha} \circ T \right) \left(  \vec{x} \right) = \frac{\beta^{n\alpha}}{\Gamma(\alpha)}\left( \prod_{i = 1}^n x_i \right) ^{\alpha - 1}
+\end{gather*}
+<p>
+De donde podemos concluir que \( T \left( \vec{x} \right) =\prod_{i = 1}^n x_i \) es suficiente para &alpha;.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org382379f" class="outline-4">
+<h4 id="org382379f">&alpha; conocido y &beta; desconocido</h4>
+<div class="outline-text-4" id="text-org382379f">
+<p>
+Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
+</p>
+\begin{gather*}
+  h \left( \vec{x} \right) = \frac{ \left( \prod_{i = 1}^n x_i \right) ^{\alpha-1}}{\Gamma \left( \alpha \right)^n} \\
+  \left( g_{\beta} \circ T \right) \left(  \vec{x} \right) = \beta^{n\alpha} e^{-\beta \left( \sum_{i = 1}^n x_i \right)}
+\end{gather*}
+<p>
+De donde podemos concluir que \( T \left( \vec{x} \right) = \sum_{i = 1}^n x_i \) es suficiente para &beta;.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3dccb20" class="outline-4">
+<h4 id="org3dccb20">&alpha; y &beta; desconocidos</h4>
+<div class="outline-text-4" id="text-org3dccb20">
+<p>
+Recordemos que un estadístico puede ser de la forma \( T:\mathbb{R}^n \to \mathbb{R}^m \), en este caso tomaremos \( T:\mathbb{R}^n \to \mathbb{R}^2 \) ya que necesitaremos estimar dos parámetros.
+</p>
+\begin{gather*}
+h \left( \vec{x} \right) = 1 \\
+  \left( g_{\alpha,\beta} \circ T \right) \left( \vec{x} \right) =
+ \frac{\left( \prod_{i = 1}^n x_i \right)^{\alpha-1} \cdot e^{-\beta \left( \sum_{i = 1}^n x_i \right)} \cdot \beta^{n\alpha}}{\Gamma(\alpha)^n}
+\end{gather*}
+
+<p>
+De donde podemos concluir que \( T(\vec{x}) = \left( T_1 \left( \vec{x} \right), T_2 \left( \vec{x} \right) \right) =  \left( \prod_{i = 1}^n x_i, \sum_{i = 1}^n x_i \right) \) es suficiente para &alpha;, &beta;.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orge158747" class="outline-3">
+<h3 id="orge158747">Normal</h3>
+<div class="outline-text-3" id="text-orge158747">
+<p>
+\( X \sim N(\mu, \sigma^{2}) \)
+Por ser común a todos los casos, en primer lugar dado que la función de densidad de probabilidad asociada es \(  f_{\mu, \sigma} \left( x \right) = \frac{1}{\sqrt{2 \pi \sigma^2}} e^{ - \left( \frac{x - \mu}{2\sigma} \right)^2} \) calculamos la de <i>n</i> sucesos independientes como su producto aplicando que son sucesos independientes.
+</p>
+
+<p>
+Vamos a realizar un par de trucos que parecen poco intuitivos, pero hacen que obtengamos resultados más familiares/elegantes.
+</p>
+
+\begin{align*}
+ f_{\mu, \sigma} \left( \vec{x} \right)
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n} e^{ - \sum_{i=1}^{n}\left( \frac{x_i - \mu}{2\sigma} \right)^2} \\
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n} e^{ - \sum_{i=1}^{n} \left( \frac{x_i - \overline{x} + \overline{x}- \mu}{2\sigma} \right)^2} \\
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n} e^{ - \sum_{i=1}^{n} \left( \frac{\left( x_i - \overline{x} \right) + \left( \overline{x}- \mu \right)}{2\sigma} \right)^2} \\
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n} e^{ - \sum_{i=1}^{n} \left( \frac{\left( x_i - \overline{x} \right)^2 + \left( \overline{x}- \mu \right)^2 + \left( x_i - \overline{x} \right) \left( \overline{x}- \mu \right)}{2\sigma} \right)} \\
+&= \frac{1}
+  {\left( \sqrt{2 \pi \sigma^2} \right)^n}
+  e^{ -
+\left(
+  \sum_{i=1}^{n} \frac{\left( x_i - \overline{x} \right)^2}{2\sigma^2}
++ \sum_{i=1}^n \frac{ \left( \overline{x}- \mu \right)^2}{2\sigma^2}
++ \sum_{i=1}^n \frac{\left( x_i - \overline{x} \right) \left( \overline{x}- \mu \right)}{2\sigma^2}
+\right)} \\
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n}
+  e^{ -
+  \left(
+  \sum_{i=1}^{n} \frac{\left( x_i - \overline{x} \right)^2}{2\sigma^2}
++ \frac{ n \left( \overline{x}- \mu \right)^2}{2\sigma^2}
++ \frac{\overline{x}- \mu}{2\sigma^2} \sum_{i=1}^n \left( x_i - \overline{x} \right)
+\right)} \\
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n} e^{ -
+\left(
+   \frac{\sum_{i=1}^{n}\left( x_i - \overline{x} \right)^2}{2\sigma^2}
++ \frac{ n \left( \overline{x}- \mu \right)^2}{2\sigma^2}
+\right)} \\
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n}
+e^{ -
+\left(
+   \frac{n^2\sum_{i=1}^{n}\left( x_i - \overline{x} \right)^2}{n^2 2\sigma^2}
+\right)}
+\cdot
+e^{ -
+\frac{ n \left( \overline{x}- \mu \right)^2}{2\sigma^2}
+} \\
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n}
+e^{ -
+\left(
+   \frac{n^2 S_n}{2\sigma^2}
+\right)}
+\cdot
+e^{ -
+\frac{ n \left( \overline{x}- \mu \right)^2}{2\sigma^2}
+} \\
+\end{align*}
+</div>
+
+<div id="outline-container-orgd3df755" class="outline-4">
+<h4 id="orgd3df755">&mu; desconocido &sigma; conocido.</h4>
+<div class="outline-text-4" id="text-orgd3df755">
+<p>
+De la última igualdad con la siguiente factorización
+</p>
+\begin{gather*}
+h(x) = \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n}
+e^{ -
+\left(
+   \frac{n^2 S_n}{2\sigma^2}
+\right)}
+\\
+\left( g_{\sigma} \circ T \right) (\vec{x}) =
+e^{ -
+\frac{ n \left( \overline{x}- \mu \right)^2}{2\sigma^2}} \\
+\end{gather*}
+
+<p>
+Donde podemos concluir que \( \overline{x} \) es un estadístico suficiente para &mu;.
+</p>
+
+<p>
+Notese, que de no haber hecho el análisis anterior, podríamos haber operado dentro del cuadrado.
+</p>
+\begin{align*}
+ f_{\mu, \sigma} \left( \vec{x} \right)
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n}
+e^{ - \sum_{i=1}^{n}\left( \frac{x_i - \mu}{2\sigma} \right)^2} \\
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n}
+e^{ -
+\sum_{i=1}^{n}\left( \frac{x_i^2 - 2x_i \mu + \mu^2}{2\sigma^2} \right)} \\
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n}
+e^{ -
+\frac{\sum_{i=1}^n
+x_i^2}{2\sigma^2}
+}
+e^{ -
+\frac{n\mu^2}
+  {2\sigma^2}
+}
+e^{ -
+\frac{\mu}
+  {\sigma^2}
+\sum_{i=1}^n
+x_i
+} \\
+\end{align*}
+
+<p>
+y con la siguiente factorización
+</p>
+\begin{gather*}
+h \left( \vec{x} \right)= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n}
+e^{ -
+\frac{\sum_{i=1}^n
+  x_i^2}{2\sigma^2}
+}\\
+\left( g_{\sigma} \circ T \right) (\vec{x}) =
+e^{ -
+\frac{n\mu^2}
+  {2\sigma^2}
+}
+e^{ -
+\frac{\mu}
+  {\sigma^2}
+\sum_{i=1}^n
+x_i
+}
+\end{gather*}
+
+<p>
+Donde concluiriamos que \( \sum_{i=1}^{n} x_i \) es suficiente para &mu;.
+</p>
+
+<p>
+Ambos resultados son equivalentes por ser uno simplemente factor del otro.
+</p>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-01 mié 00:51</p>
+<p class="date">Created: 2023-03-06 lun 17:49</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

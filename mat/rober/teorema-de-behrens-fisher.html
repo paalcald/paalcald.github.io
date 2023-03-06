@@ -6,7 +6,7 @@
 <!-- 2023-03-06 lun 17:49 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>&lrm;</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,31 +193,95 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="ejercicios-estadistico-suficiente.html">Ejercicios de Estadísticos Suficientes</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="cota-frechet-cramer.html">cota-frechet-cramer</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="ejercicio-examen-1.html">ejercicio-examen-1</a></li>
-<li><a href="ejercicio-examen-2.html">ejercicio-examen-2</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="funcion-gamma.html">funcion-gamma</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
-<li><a href="teorema-de-behrens-fisher.html">teorema-de-behrens-fisher</a></li>
-<li><a href="teorema-factorizacion-fisher-neyman.html">teorema-factorizacion-fisher-neyman</a></li>
-<li><a href="verosimilitud.html">verosimilitud</a></li>
-</ul>
+<div id="outline-container-org1cd798d" class="outline-2">
+<h2 id="org1cd798d">Teorema de Behrens-Fisher</h2>
+<div class="outline-text-2" id="text-org1cd798d">
+<p>
+Bajo condiciones de regularidad (Wolfowitz)
+</p>
+<ol class="org-ol">
+<li>d(&theta;) &isin; C<sup>1</sup></li>
+<li>E<sub>&theta;</sub>[T] acotado superiormente</li>
+<li>Indicador no depende de &theta;</li>
+</ol>
+
+<p>
+Tenemos que \( T \left( \vec{x} \right) \) es eficiente para \( d(\theta) \iff \exists k(\theta)\) tal que \( T(\vec{x}) - d(\theta) = k(\theta) \frac{\partial \ln L (\theta;\vec{x})}{\partial\theta}\)
+</p>
+</div>
+</div>
+<div id="outline-container-orga999e4b" class="outline-2">
+<h2 id="orga999e4b">Corolario</h2>
+<div class="outline-text-2" id="text-orga999e4b">
+<p>
+\( X \) es <a href="feg.html">FEG</a> entonces \( T(\vec{x}) \) es eficiente para \( d(\theta) \iff d(\theta) \) 
+</p>
+</div>
+<div id="outline-container-orged23d76" class="outline-3">
+<h3 id="orged23d76">Demostración</h3>
+<div class="outline-text-3" id="text-orged23d76">
+<p>
+\( f_{\theta} (\vec{x}) = c(\theta)\cdot h(\vec{x}) \cdot e ^{q(\theta) T(\vec{x})}\)
+\( \ln L(\theta;\vec{x}) = \ln \left( c(\theta) \right) + \ln \left( h \left( \vec{x} \right) \right) + q (\theta) T \left( \vec{x} \right)  \)
+</p>
+
+<p>
+\( \frac{\partial\ln L}{\partial\theta}(\theta;\vec{x}) = \frac{c'(\theta)}{c(\theta)} + q'(\theta)T(\vec{x}) \)
+</p>
+
+<p>
+\( T(\vec{x}) \) es eficiente para \( d(\theta) \) &xhArr; \( T(\vec{x}) - d(\theta) = k(\theta) \left( \frac{c'(\theta)}{c(\theta)} + q'(\theta)T(\vec{x}) \right) \)
+donde puedo tomar \( k(\theta) = \frac{1}{q'(\theta)} \) y la eficiencia se reduce a que
+\[
+d(\theta) = - \frac{c'(\theta)}{c(\theta)q'(\theta)}
+\]
+</p>
+</div>
+</div>
+<div id="outline-container-orgbfbb80f" class="outline-3">
+<h3 id="orgbfbb80f">Notas para su aplicación</h3>
+<div class="outline-text-3" id="text-orgbfbb80f">
+<p>
+Si hay una constante por medio, la metemos en \( c(\theta) \) por que se cancelará en \( \frac{c'(\theta)}{c(\theta)} \)
+</p>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
