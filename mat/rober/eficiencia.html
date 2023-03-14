@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-14 mar 14:47 -->
+<!-- 2023-03-14 mar 14:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>Estimadores Eficientes</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,42 +193,86 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="ejercicios-estadistico-suficiente.html">Ejercicios de Estadísticos Suficientes</a></li>
-<li><a href="emv.html">Estimador de Máxima Verosimilitud</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="eficiencia.html">Estimadores Eficientes</a></li>
-<li><a href="calcular-esperanzas.html">calcular-esperanzas</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="cota-frechet-cramer.html">cota-frechet-cramer</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="ejercicio-examen-1.html">ejercicio-examen-1</a></li>
-<li><a href="ejercicio-examen-2.html">ejercicio-examen-2</a></li>
-<li><a href="ejercicio-template.html">ejercicio-template</a></li>
-<li><a href="ejercicio-template-2.html">ejercicio-template-2</a></li>
-<li><a href="ejercicio-template-3.html">ejercicio-template-3</a></li>
-<li><a href="ejercicios-2.html">ejercicios-2</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="funcion-gamma.html">funcion-gamma</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
-<li><a href="teorema-de-behrens-fisher.html">teorema-de-behrens-fisher</a></li>
-<li><a href="teorema-factorizacion-fisher-neyman.html">teorema-factorizacion-fisher-neyman</a></li>
-<li><a href="verosimilitud.html">verosimilitud</a></li>
-</ul>
+<h1 class="title">Estimadores Eficientes</h1>
+<div id="outline-container-org9dd41c0" class="outline-2">
+<h2 id="org9dd41c0">Eficiencia</h2>
+<div class="outline-text-2" id="text-org9dd41c0">
+<p>
+T es eficiente &xhArr; \(cota = V_{\theta} [T]\)
+</p>
+</div>
+
+<div id="outline-container-orga5c9783" class="outline-3">
+<h3 id="orga5c9783">Proposicion</h3>
+<div class="outline-text-3" id="text-orga5c9783">
+<p>
+T es eficiente &xrArr; T es <a href="ecumv.html">ECUMV</a>.
+</p>
+
+<p>
+Notese que si el indicador depende de &theta; no puedo hacer esto!!
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgc5292ec" class="outline-3">
+<h3 id="orgc5292ec">Carácterizaciónes</h3>
+<div class="outline-text-3" id="text-orgc5292ec">
+<p>
+Podemos encontrar una condición necesaría para la eficiencia por medio del <a href="teorema-de-behrens-fisher.html">Teorema de Berehns-Fisher</a>
+</p>
+</div>
+</div>
+
+<div id="outline-container-org56a6233" class="outline-3">
+<h3 id="org56a6233">Ejemplo</h3>
+<div class="outline-text-3" id="text-org56a6233">
+\begin{align*}
+f_{\theta}(x) &= e^{-(x-\theta)} \text{con} \quad x > 0 ,\, \theta > 0 \\
+&= e^{-(x-\theta)} \cdot I_{(\theta,\infty)}(x)
+\end{align*}
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-14 mar 14:47</p>
+<p class="date">Created: 2023-03-14 mar 14:46</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

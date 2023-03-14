@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-14 mar 14:47 -->
+<!-- 2023-03-14 mar 14:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>&lrm;</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,42 +193,113 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="ejercicios-estadistico-suficiente.html">Ejercicios de Estadísticos Suficientes</a></li>
-<li><a href="emv.html">Estimador de Máxima Verosimilitud</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="eficiencia.html">Estimadores Eficientes</a></li>
-<li><a href="calcular-esperanzas.html">calcular-esperanzas</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="cota-frechet-cramer.html">cota-frechet-cramer</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="ejercicio-examen-1.html">ejercicio-examen-1</a></li>
-<li><a href="ejercicio-examen-2.html">ejercicio-examen-2</a></li>
-<li><a href="ejercicio-template.html">ejercicio-template</a></li>
-<li><a href="ejercicio-template-2.html">ejercicio-template-2</a></li>
-<li><a href="ejercicio-template-3.html">ejercicio-template-3</a></li>
-<li><a href="ejercicios-2.html">ejercicios-2</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="funcion-gamma.html">funcion-gamma</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
-<li><a href="teorema-de-behrens-fisher.html">teorema-de-behrens-fisher</a></li>
-<li><a href="teorema-factorizacion-fisher-neyman.html">teorema-factorizacion-fisher-neyman</a></li>
-<li><a href="verosimilitud.html">verosimilitud</a></li>
-</ul>
+<p>
+\( P_{\theta} (X = x) = 1 - \theta)^2 \cdot \theta ^{ x- 1} \) x &isin; ℕ, &theta; &isin; (0, 1)
+</p>
+<ol class="org-ol">
+<li>EMV para d(&theta;) = &theta;</li>
+<li>¿es eficiente?</li>
+</ol>
+<div id="outline-container-orgfe694f9" class="outline-2">
+<h2 id="orgfe694f9">Apartado 1</h2>
+<div class="outline-text-2" id="text-orgfe694f9">
+<p>
+\( \)
+</p>
+\begin{align*}
+  P_{\theta} (X_{1}=x_1, \dots, X_{n}= x_n) &= (1 -2 \theta)^{2n} \cdot \theta^{\sum x_i - n} \cdot \prod x_i \\
+                                       &= \left( \frac{1 + \theta^2 - 2\theta}{\theta} \right)^n \cdot e^{\sum x_i \ln \theta} \cdot \prod x_i \\
+  &= L(\theta; \vec{x})
+\end{align*}
+\begin{gather*}
+  c(\theta) = \left( \frac{\theta^2 - 2\theta + 1}{\theta} \right)^n \\
+  q(\theta) = n \ln \theta \\
+  T(\vec{x}) = \overline{x} \\
+  h(\vec{x}) = \prod x_i 
+\end{gather*}
+
+\begin{gather*}
+  \ln L (\theta; \vec{x}) = 2n \ln \left( 1 - \theta \right) - n \ln + \overline{x}\cdot \ln \theta \cdot n + \sum \ln x_i \\
+  \frac{\partial\ln L}{\partial\theta} = \frac{ -2n}{1 -\theta} - \frac{n}{\theta} + \frac{\overline{x}n}{\theta} = \frac{-2n\theta - n(1-\theta) + n \overline{x} (1 - \theta)}{\theta(1-\theta)} = 0 
+\end{gather*}
+
+\begin{gather*}
+  \iff -2n\theta - n + n \theta + n \overline{x} - n \overline{x} \theta = 0 \\
+  \theta(-n - n\overline{x}) = n - n \overline{x} \\
+  \theta = \frac{1 - \overline{x}}{1 - \overline{x}} = -1 + \frac{2}{1 + \overline{x}}
+\end{gather*}
+
+<p>
+EMV para \( d()\theta) = \theta \) es \( T(\vec{x}) = \frac{2}{1 + \overline{x}} - 1 \)
+</p>
+
+<p>
+será eficiente para \( d()\theta) = \theta \) &xhArr;
+</p>
+
+\begin{align*}
+k(\theta; \vec{x}) &= \frac{\frac{-1 + \overline{x} + 2 - \theta(1 + \overline{x})}{1 - \overline{x}}}{\frac{-2n\theta - n(1-\theta) + n \overline{x} (1 - \theta)}{\theta(1-\theta)}} \\
+&= \cdots \implies \text{ no es eficiente}
+\end{align*}
+
+\begin{align*}
+\overline{x} \text{ es eficiente para } d(\theta) &= - \frac{n \left( \frac{\theta^2 - 2\theta + 1}{\theta} \right)^{n - 1} \cdot \frac{2(\theta - 1)\theta - (\theta - 1)^2}{\theta^2}}{\left( \frac{\theta^2 - 2\theta + 1}{\theta} \right)^n \cdot \frac{n}{\theta}} \\
+&= -n \frac{(\theta^2 - 1) \theta}{ \theta^2 \cdot n \frac{(\theta - 1)^2}{\theta}} \\
+&= - \frac{\theta + 1}{\theta - 1}
+\end{align*}
+
+<p>
+\( \overline{x} \) es eficiente para \(d(\theta) = -1 - \frac{2}{\theta- 1}\)
+</p>
+
+<p>
+por lo que \( \overline{x} + 1 = \frac{2}{\theta + 1}\) de donde \( -\theta + 1 = \frac{2}{x + 1} \) y finalmente \( -1 + \frac{2}{x + 1} = \theta \)
+</p>
+
+<p>
+Y hemos encontrado el EMV para \( d(\theta) = \theta \)
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-14 mar 14:47</p>
+<p class="date">Created: 2023-03-14 mar 14:46</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

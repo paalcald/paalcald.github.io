@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-14 mar 14:47 -->
+<!-- 2023-03-14 mar 14:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>&lrm;</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,42 +193,108 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="ejercicios-estadistico-suficiente.html">Ejercicios de Estadísticos Suficientes</a></li>
-<li><a href="emv.html">Estimador de Máxima Verosimilitud</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="eficiencia.html">Estimadores Eficientes</a></li>
-<li><a href="calcular-esperanzas.html">calcular-esperanzas</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="cota-frechet-cramer.html">cota-frechet-cramer</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="ejercicio-examen-1.html">ejercicio-examen-1</a></li>
-<li><a href="ejercicio-examen-2.html">ejercicio-examen-2</a></li>
-<li><a href="ejercicio-template.html">ejercicio-template</a></li>
-<li><a href="ejercicio-template-2.html">ejercicio-template-2</a></li>
-<li><a href="ejercicio-template-3.html">ejercicio-template-3</a></li>
-<li><a href="ejercicios-2.html">ejercicios-2</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="funcion-gamma.html">funcion-gamma</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
-<li><a href="teorema-de-behrens-fisher.html">teorema-de-behrens-fisher</a></li>
-<li><a href="teorema-factorizacion-fisher-neyman.html">teorema-factorizacion-fisher-neyman</a></li>
-<li><a href="verosimilitud.html">verosimilitud</a></li>
-</ul>
+<p>
+\( f_{\theta}(x) = \frac{2x}{\theta^2} \cdot I_{(0, \infty)} (x) \)
+</p>
+<ol class="org-ol">
+<li>EMV para \( d(\theta) = \theta \)</li>
+<li>ECUMV para \(d(\theta) = \theta\) y ¿Eficiente?</li>
+</ol>
+<div id="outline-container-org8bacec4" class="outline-2">
+<h2 id="org8bacec4">Apartado 1</h2>
+</div>
+<div id="outline-container-orge41e267" class="outline-2">
+<h2 id="orge41e267">Apartado 2</h2>
+<div class="outline-text-2" id="text-orge41e267">
+<p>
+No hay cota por que el indicador depende de &theta;.
+</p>
+
+<p>
+\( x \in  \left[ a, b \right]\)
+</p>
+
+<p>
+\( y = \frac{x - a}{b - a} \) \( y \in \left[ 0, 1 \right] \)
+</p>
+
+<p>
+\( y = \frac{x}{\theta} \implies f_Y(y) = 2y \cdot I_{(0, 1)}(y) \)
+</p>
+
+<p>
+\( f_{Y}(\vec{y}) = 2^n \prod y_i \cdot I_{(0,1)}(\min x_i) \cdot I_{(0,1)} (\max x_i) \)
+</p>
+
+<p>
+\( \min y_{i} = \frac{\min x_i}{\theta}\) \( \max y_{i} = \frac{\min x_i}{\theta} \)
+</p>
+
+<p>
+\( L(\theta, \vec{x}) = \frac{2^n \prod x_i}{\theta^{2n}} \cdot I_{\min x_i} \cdot I_{\max x_i} \)
+</p>
+
+<p>
+\( \ln L = n \ln 2 + \sum \ln x_i - 2 n \ln \theta + \ln I_m + \ln I_M \)
+</p>
+
+<p>
+\( \frac{\partial\ln L}{\partial\theta} = - \frac{2n}{\theta} < 0 \)
+</p>
+
+<p>
+<b>Proposición</b>
+EMV pasa a ser ECUMV para \(d(\theta) = \mathbb{E}_{\theta} [\![ \cdots ]\!]  \)
+</p>
+
+<p>
+\( \mathbb{E}_{\theta} [\![ \min x_{i} ]\!] = \cdots = \theta \)
+</p>
+
+<p>
+min x<sub>i</sub> es ECUMV para \( d(\theta) = \theta  \implies \)  suficiente y completo &xrArr; minimal
+</p>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-14 mar 14:47</p>
+<p class="date">Created: 2023-03-14 mar 14:46</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

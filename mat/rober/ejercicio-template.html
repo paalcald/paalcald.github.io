@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-14 mar 14:47 -->
+<!-- 2023-03-14 mar 14:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>&lrm;</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,42 +193,216 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
+<p>
+\( f_{\theta}(x) = \theta e^{- \theta x} \) para \( x > 0 \) y \( \theta >0 \)
+</p>
+<ol class="org-ol">
+<li>Suficiente, Minimal y Completo</li>
+<li>Eficiente</li>
+<li>ECUMV para d(&theta;) = 1/ &theta;</li>
+<li>EMV para d(&theta;) = 1/ &theta;</li>
+</ol>
+
+<p>
+\( f_{\theta}(\vec{x}) = \theta^n \cdot e^{-n\theta \frac{\sum x_i}{n}} \cdot I_{(0,\infty)} (min x_i) \)
+</p>
+
+\begin{gather*}
+ c(\theta) = \theta^n \\
+h(\vec{x}) = I_{(0, \infty)} (min x_i) \\
+q(\theta) = -n\theta \\
+T(\vec{x}) = \overline{x}
+\end{gather*}
+
+<p>
+\( \overline{x} \) es eficiente para \(d(\theta) = - \frac{c'(\theta)}{c(\theta)q'(\theta)} = \frac{1}{\theta} \)
+</p>
+
+<p>
+De donde concluimos que \( \overline{x} \) es ECUMV para d(&theta;) = 1/ &theta;
+</p>
+
+<p>
+Y por lo tanto es tambien suficiente y completo
+</p>
+
+<p>
+X &isin; <a href="feg.html">FEG</a>
+</p>
+
+<p>
+\(f_\theta (\vec{x}) = c(\theta)\cdot h(\vec{x}) \cdot e^{q(\theta)T(\vec{x})} = L(\theta;\vec{x}) \)
+</p>
+
+<p>
+\( \ln L(\theta; \vec{x}) = \ln (c (\theta)) + \ln h(\vec{x}) + q(\theta)T(\vec{x}) \)
+</p>
+
+<p>
+\( \partial\frac{\ln L(\theta; \vec{x})}{\partial\theta} = \frac{c' (\theta)}{c (\theta)} +  q'(\theta)T(\vec{x}) = 0 \iff T(\vec{x}) = - \frac{c'(\theta)}{c(\theta)q'(\theta)} \)
+</p>
+
+<p>
+<b>Observacion</b>
+EMV permite siempre hacer transformaciones, i.e. \( \overline{x} \) es EMV para \( \frac{1}{\theta} \implies \ln \left( \frac{1}{\overline{x}} \right)\) es EMV para \( \ln(\theta) \)
+</p>
+
+<p>
+Adicionalmente, si estoy en FEG mantienen el ECUMV, pero no la eficiencia
+</p>
+
+
+<p>
+<b>Proposicion</b>
+\( X \sim exp(\theta) \)
+</p>
+
+<p>
+\( \overline{x} \) es ECUMV eficiente y EMV para \( d(\theta) = \frac{1}{\theta} \)
+</p>
+
+<p>
+\( \frac{1}{\overline{x}} \) es ECUMV y EMV para \( d(\theta) = \theta \)
+</p>
+
+<div id="outline-container-org7939cde" class="outline-2">
+<h2 id="org7939cde">Apartado 1</h2>
+<div class="outline-text-2" id="text-org7939cde">
+<p>
+X &isin; FEG y por ello:
+</p>
 <ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="ejercicios-estadistico-suficiente.html">Ejercicios de Estadísticos Suficientes</a></li>
-<li><a href="emv.html">Estimador de Máxima Verosimilitud</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="eficiencia.html">Estimadores Eficientes</a></li>
-<li><a href="calcular-esperanzas.html">calcular-esperanzas</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="cota-frechet-cramer.html">cota-frechet-cramer</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="ejercicio-examen-1.html">ejercicio-examen-1</a></li>
-<li><a href="ejercicio-examen-2.html">ejercicio-examen-2</a></li>
-<li><a href="ejercicio-template.html">ejercicio-template</a></li>
-<li><a href="ejercicio-template-2.html">ejercicio-template-2</a></li>
-<li><a href="ejercicio-template-3.html">ejercicio-template-3</a></li>
-<li><a href="ejercicios-2.html">ejercicios-2</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="funcion-gamma.html">funcion-gamma</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
-<li><a href="teorema-de-behrens-fisher.html">teorema-de-behrens-fisher</a></li>
-<li><a href="teorema-factorizacion-fisher-neyman.html">teorema-factorizacion-fisher-neyman</a></li>
-<li><a href="verosimilitud.html">verosimilitud</a></li>
+<li>\( T(\vec{x}) = \overline{x} \) suficiente</li>
+<li>\( Im \left\{ -n \theta \text{ tal que } \theta > 0\right\} = (-\infty,0) \implies \overline{x} \) es completo.</li>
+<li>\( q(\theta) = -n\theta \neq 0 \implies \overline{x} \) es minimal.</li>
 </ul>
+</div>
+</div>
+
+<div id="outline-container-org2cfbe8f" class="outline-2">
+<h2 id="org2cfbe8f">Apartado 2</h2>
+<div class="outline-text-2" id="text-org2cfbe8f">
+<p>
+\( \mathbb{E}_{\theta} [\![ \overline{x} ]\!] = \mathbb{E}_{\theta} [\![ x ]\!] = \frac{1}{\theta} \implies \overline{x} \) es insesgado para \( d(\theta) = \frac{1}{\theta} \implies \overline{x}\) es ECUMV
+</p>
+
+<p>
+\( \mathbb{E}_{\theta} [\![ \frac{1}{\overline{x}} ]\!] = n \mathbb{E}_{\theta} [\![ \frac{1}{\sum x_i} ]\!]   \)
+</p>
+
+<p>
+\( X \sim exp(\theta) = \gamma(a = \theta, p = 1) \implies \sum x_i = \gamma(a = \theta, p = n)\)
+</p>
+
+<p>
+\( Y = \sum x_{i} = \gamma( a = \theta, p = n)\)
+</p>
+
+<p>
+\( f_Y (y) = \frac{\theta^n}{\Gamma(n)} \cdot e^{-\theta y} \cdot y ^{n-1} \cdot I_{(0, \infty)}(y) \)
+</p>
+
+<p>
+\( Z = \frac{1}{Y} \)
+</p>
+
+<p>
+\( F_{z}(z) = P(Z \le z) = P \left( \frac{1}{Y} \le z \right) = 1 - P \left( \frac{1}{Z} < Y \right) = 1 - F_Y(1/_{Z}) \)
+</p>
+
+<p>
+\( f_{Z} (z) = - f\left( \frac{1}{z} \right) \cdot \left(- \frac{1}{z^2} \right) = \frac{1}{z^2 } \cdot \frac{\theta^n}{\gamma(n)} \cdot e^{- \theta 1/_z} \cdot \left( \frac{1}{z} \right)^{n-1}\cdot I_{(0,\infty)}(z) \)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgb90b8fb" class="outline-2">
+<h2 id="orgb90b8fb">Apartado 3</h2>
+<div class="outline-text-2" id="text-orgb90b8fb">
+<p>
+X &isin; FEG
+</p>
+
+
+\begin{gather*}
+\frac{\partial\ln L}{\partial\theta} = \frac{c'(\theta)}{c(\theta)} + q'(\theta) T(\vec{x}) \\
+\frac{\partial^2\ln L}{\partial^2\theta} = \frac{c''(\theta)c(\theta) - c'(\theta)}{c^2(\theta)} + q''(\theta) T(\vec{x}) \\
+I^{\star}(\theta) = - \mathbb{E}_{\theta} [\![ \frac{\partial^2\ln L}{\partial^2\theta} ]\!] = - \frac{c''(\theta)}{c(\theta)} + \left( \frac{c'(\theta)}{c(\theta)} \right)^2 - q''(\theta) \cdot \mathbb{E}_{\theta} [\![ T(\vec{x}) ]\!] = - \frac{c''(\theta)}{c(\theta)} + \left( \frac{c'(\theta)}{c(\theta)} \right)^2 - q''(\theta) \cdot d(\theta) \\
+\text{cota} = \frac{d'(\theta)^2}{I^{\star}(\theta)} = \frac{\left( \frac{-1}{\theta^2} \right)^2}{\frac{-n(n-1)\theta^{n-2}}{\theta^n} + \left( \frac{n\theta^{n-1}}{\theta^n} \right)^2 - 0} = \frac{1}{\theta^2n} \\
+\mathbb{V}_{\theta} [\![ T(\vec{x}) ]\!] = \text{cota} \\
+\mathbb{V}_{\theta} [\![ \overline{x} ]\!] = \frac{ \mathbb{V}_{\theta} [\![ \vec{x} ]\!] }{n} = \frac{1}{n} \cdot \frac{1}{\theta^2} = \frac{1}{\theta^2n}
+\end{gather*}
+
+<p>
+Pero como calculamos esto si no sé hacer la varianza??
+</p>
+
+<p>
+<b>Prop</b>
+\( T(\vec{x}) \) es eficiente para \( d(\theta) \iff  \exists k(\theta) \text{ tal que } \tilde{T} (\vec{x}) - d(\theta) = k(\theta) \cdot \frac{\partial\ln L}{\partial\theta} \)
+</p>
+
+\begin{align*}
+  k(\theta) &= \frac{\tilde{T}(\vec{x}) - d(\theta)}{\frac{\partial\ln L}{\partial\theta}} \\
+       &= \frac{\frac{1}{\overline{x}} - \theta}{\frac{n}{\theta} - n \overline{x}} \\
+       &= \frac{\frac{1 - \theta\overline{x}}{\overline{x}}}{\frac{n - n\theta \overline{x}}{\theta}} \\
+  &= \frac{\theta(1 - \theta \overline{x})}{(n - n \theta \overline{x}) \overline{x}} = k(\theta; \vec{x})
+\end{align*}
+<p>
+lo que implica que \( \frac{1}{\overline{x}} \) no es eficiente para \( d(\theta) = \theta \)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4d125c5" class="outline-2">
+<h2 id="org4d125c5">Apartado 4</h2>
+<div class="outline-text-2" id="text-org4d125c5">
+\begin{gather*}
+\frac{\partial\ln L}{\partial\theta} = \frac{c'(\theta)}{c(\theta)} + q'(\theta) T(\vec{x}) = \frac{n}{\theta} - n\overline{x} = 0\\
+\frac{n}{\theta} - n\overline{x} = 0 \iff \frac{1}{\theta} = \overline{x} \implies \overline{x} \text{ es EMV para } \frac{1}{\theta} \\
+\theta = \frac{1}{\overline{x}} \implies \frac{1}{\overline{x}} \text{ es EMV para } \theta
+\end{gather*}
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-14 mar 14:47</p>
+<p class="date">Created: 2023-03-14 mar 14:46</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

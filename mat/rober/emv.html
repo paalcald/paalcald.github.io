@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-14 mar 14:47 -->
+<!-- 2023-03-14 mar 14:46 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Sitemap</title>
+<title>Estimador de Máxima Verosimilitud</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,42 +193,251 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">Sitemap</h1>
-<ul class="org-ul">
-<li><a href="rober-5.html">Clase 5 de Estadística</a></li>
-<li><a href="ejercicios-estadistico-suficiente.html">Ejercicios de Estadísticos Suficientes</a></li>
-<li><a href="emv.html">Estimador de Máxima Verosimilitud</a></li>
-<li><a href="estimadores.html">Estimadores</a></li>
-<li><a href="eficiencia.html">Estimadores Eficientes</a></li>
-<li><a href="calcular-esperanzas.html">calcular-esperanzas</a></li>
-<li><a href="centrado-o-insesgado.html">centrado-o-insesgado</a></li>
-<li><a href="cota-frechet-cramer.html">cota-frechet-cramer</a></li>
-<li><a href="ecumv.html">ecumv</a></li>
-<li><a href="ej-examen-1.html">ej-examen-1</a></li>
-<li><a href="ejercicio-examen-1.html">ejercicio-examen-1</a></li>
-<li><a href="ejercicio-examen-2.html">ejercicio-examen-2</a></li>
-<li><a href="ejercicio-template.html">ejercicio-template</a></li>
-<li><a href="ejercicio-template-2.html">ejercicio-template-2</a></li>
-<li><a href="ejercicio-template-3.html">ejercicio-template-3</a></li>
-<li><a href="ejercicios-2.html">ejercicios-2</a></li>
-<li><a href="error-cuadratico-medio.html">error-cuadratico-medio</a></li>
-<li><a href="feg.html">feg</a></li>
-<li><a href="funcion-gamma.html">funcion-gamma</a></li>
-<li><a href="lehmann-shefle.html">lehmann-shefle</a></li>
-<li><a href="rao-blackwell.html">rao-blackwell</a></li>
-<li><a href="rober-2.html">rober-2</a></li>
-<li><a href="rober-3.html">rober-3</a></li>
-<li><a href="teorema-de-behrens-fisher.html">teorema-de-behrens-fisher</a></li>
-<li><a href="teorema-factorizacion-fisher-neyman.html">teorema-factorizacion-fisher-neyman</a></li>
-<li><a href="verosimilitud.html">verosimilitud</a></li>
-</ul>
+<h1 class="title">Estimador de Máxima Verosimilitud</h1>
+<div id="outline-container-org1cf9c4a" class="outline-2">
+<h2 id="org1cf9c4a">Estimador de Máxima Verosimilitud</h2>
+<div class="outline-text-2" id="text-org1cf9c4a">
+<p>
+El objetivo es encontrar los máximos de la función de verosimilitud fijando la muestra.
+</p>
+</div>
+<div id="outline-container-orgb1c7c2a" class="outline-3">
+<h3 id="orgb1c7c2a">Definición</h3>
+<div class="outline-text-3" id="text-orgb1c7c2a">
+<p>
+El valor de &theta; tal que \( L(\theta,\vec{x}) \) alcanza el máximo, pero al ser esto una función de una sola veriable, podemos derivar!
+</p>
+
+<p>
+\( \frac{\partial L(\theta;\vec{x})}{\partial\theta} = 0 \) saco candidato \( \hat{\theta} \)
+</p>
+
+<p>
+\( \frac{\partial^2 L(\theta;\vec{x})}{\partial\theta^2} \) evaluado en  \( \hat{\theta} \) es &lt; 0, entonces es un máximo y EMV
+</p>
+</div>
+</div>
+<div id="outline-container-org9a19352" class="outline-3">
+<h3 id="org9a19352">Observaciones</h3>
+<div class="outline-text-3" id="text-org9a19352">
+<p>
+El logaritmo es una función monótona, por lo tanto \( ln f(x) \) conserva los máximos y mínimos de \( f(x) \).
+</p>
+</div>
+</div>
+<div id="outline-container-org6f4172d" class="outline-3">
+<h3 id="org6f4172d">Ejemplo</h3>
+<div class="outline-text-3" id="text-org6f4172d">
+<p>
+Sea \( X \sim Be(\theta) \)
+</p>
+
+<p>
+Tenemos \( P_{\theta} (X_1 = x_1, \cdots, X_n=x_n) = \theta^{\sum x_i} (1 - \theta) ^{ n - \sum x_i}\) de donde sacamos que
+</p>
+
+<p>
+\( \ln L(\theta; \vec{x}) = \sum x_i \cdot \ln \left( \frac{\theta}{1-\theta} \right) + n \ln \left( 1-\theta \right) \)
+</p>
+
+<p>
+\( \frac{\partial \ln L(\theta; \vec{x})}{\partial \theta} = \frac{\sum x_i - n \theta}{\theta ( 1 - \theta)} = \frac{ \sum x_i}{\theta} + \frac{\sum x_i}{1 - \theta} - \frac{n}{1-\theta}\)
+\( \frac{\partial^2 \ln L(\theta; \vec{x})}{\partial^2 \theta} =  - \frac{ \sum x_i}{\theta^2} + \frac{\sum x_i}{(1 - \theta)^2} - \frac{n}{(1-\theta)^2}\) &lt; 0
+</p>
+</div>
+</div>
+<div id="outline-container-org22095d6" class="outline-3">
+<h3 id="org22095d6">Proposicion</h3>
+<div class="outline-text-3" id="text-org22095d6">
+<p>
+El EMV \( \hat{\theta} \) pasa a ser tambien <a href="ecumv.html">ECUMV</a> para \( \mathbb{E}_{\theta} [\![\hat{\theta} ]\!]  \) &xhArr; \( \hat{\theta} \) es función medible de un estadístico suficiente.
+</p>
+</div>
+</div>
+<div id="outline-container-org62572f7" class="outline-3">
+<h3 id="org62572f7">Transformaciones Medibles</h3>
+<div class="outline-text-3" id="text-org62572f7">
+<p>
+El EMV se mantiene via transformaciones medibles.
+</p>
+</div>
+</div>
+<div id="outline-container-org52b6260" class="outline-3">
+<h3 id="org52b6260">¿Que pasa si el</h3>
+</div>
+<div id="outline-container-orgd8674d6" class="outline-3">
+<h3 id="orgd8674d6">Ejemplo 2</h3>
+<div class="outline-text-3" id="text-orgd8674d6">
+<p>
+\( X \sim  \)
+</p>
+
+<p>
+\( f_{\theta} \left( \vec{x} \right) = e^{ - \left( x + \theta \right)}  \quad x > -\theta,\, \theta > 0 \)
+</p>
+
+<p>
+*aquí no podemos derivar!
+</p>
+
+<p>
+\( f_{\theta} \left( \vec{x} \right) = e^{ - \sum x_i} e^{ - n \theta} \cdot I_{(-\theta, \infty)} \min x_i \)
+</p>
+
+<p>
+\( \ln L \left(\theta; \vec{x} \right) = - \sum x_i  - n \theta + \ln I_{(-\theta, \infty)} \min x_i \)
+</p>
+
+<p>
+\( \frac{\partial\ln L \left(\theta; \vec{x} \right)}{\partial \theta} = - \sum x_i  - n \theta + \ln I_{(-\theta, \infty)} \min x_i \)
+</p>
+
+<p>
+El EMV es el \(\min x_i\)
+</p>
+</div>
+</div>
+<div id="outline-container-org3c75085" class="outline-3">
+<h3 id="org3c75085">Ejemplo 3</h3>
+<div class="outline-text-3" id="text-org3c75085">
+<p>
+Observemos ahora que ocurre cuando \(f_\theta(x) = \frac{1}{x \cdot \ln \theta}\)  para \(1 < x < \theta\), para entender bien este ejemplo lo escribiremos de la siguiente manera:
+</p>
+
+<p>
+\[f_{\theta} (x) = \begin{cases}
+\frac{1}{x \cdot \ln \theta} & \text{si } x \in (1, \theta) \\
+0 & \text{si no}
+\end{cases}
+ \]
+</p>
+
+<p>
+Así que al calcular el m.a.s. nos quedá la siguiente función:
+</p>
+
+
+<p>
+\[L(\theta;\vec{x}) = \begin{cases}
+\frac{1}{\prod x_{i} \cdot \left( \ln \theta \right)^n} & \text{si } \forall i \quad 1 < x_i < \theta \\
+0 & \text{si no}
+\end{cases}
+ \]
+</p>
+
+<p>
+Por ser el logaritmo una función monótona, sabemos que conserva los máximos/mínimos, así que para facilitarnos encontrar su localización tomamos logaritmos.
+</p>
+
+<p>
+\[\ln L (\theta;\vec{x}) = \begin{cases} - \prod x_i - n \ln \theta  & \text{si } \forall i \quad 1 < x_i < \theta \\
+0 & \text{si no}
+\end{cases}
+\]
+</p>
+
+<p>
+Pero exáctamente ¿cuándo es esta función cero?
+</p>
+
+<p>
+Tendremos que encontrar cuando no se cumple la siguiente condición \(\forall i \quad 1 < x_i < \theta\).
+</p>
+
+<p>
+\[\neg( \forall i ( 1 < x_i \land x_i < \theta )) \iff \exists i ( x_i < 1 ) \lor \exists i ( \theta < x_i)\]
+</p>
+
+<p>
+es decir, siempre y cuando nos situemos en esas condiciones, la función será continua y diferenciable, y en el resto será simplemente cero.
+</p>
+
+<p>
+\[ \frac {\partial \ln L(\theta, \vec{x})}{\partial\theta} = - \frac{n}{\theta} \]
+</p>
+
+<p>
+De modo que podemos concluir que el máximo de esta función se encuentra en su extremo inferior de definición, ¿cuál es el menor valor que &theta; puede tomar?
+</p>
+
+<p>
+&theta; no puede ser más pequeño que el mayor de los x<sub>i</sub>, ya que de ser menor que alguno de los x<sub>i</sub> entonces \(f_\theta \equiv 0\)
+</p>
+</div>
+
+<div id="outline-container-org16a13c1" class="outline-4">
+<h4 id="org16a13c1">EMV, ¿minimal?</h4>
+<div class="outline-text-4" id="text-org16a13c1">
+<p>
+\( \hat{\theta} = \min x_i\) es el EMV para d(&theta;) = &theta;
+</p>
+
+<p>
+Bajo hipótesis del <a href="teorema-factorizacion-fisher-neyman.html">Thm Factorización</a> (suficiente)
+</p>
+
+<p>
+\( \frac{f_{\theta} (\vec{x})}{f_{\theta} (\vec{y})} = \frac{\frac{1}{\prod x_i \cdot (\ln \theta)^n}}{\frac{1}{\prod y_i \cdot (\ln \theta)^n}} = \frac{\prod y_i}{\prod x_i}  \) sii ambos pertenecen a los intervalos de validez,
+</p>
+
+<p>
+\(t = \ln x\)
+</p>
+
+<p>
+\(x = 1 \implies t = 0\)
+</p>
+
+<p>
+\(x = 0 \implies t = \ln \theta\)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5fb93df" class="outline-4">
+<h4 id="org5fb93df">ECUMV para</h4>
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-14 mar 14:47</p>
+<p class="date">Created: 2023-03-14 mar 14:46</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
