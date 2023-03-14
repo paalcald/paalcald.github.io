@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-14 mar 14:46 -->
+<!-- 2023-03-14 mar 16:57 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Estimador de Máxima Verosimilitud</title>
@@ -229,16 +229,16 @@
 <body>
 <div id="content" class="content">
 <h1 class="title">Estimador de Máxima Verosimilitud</h1>
-<div id="outline-container-org1cf9c4a" class="outline-2">
-<h2 id="org1cf9c4a">Estimador de Máxima Verosimilitud</h2>
-<div class="outline-text-2" id="text-org1cf9c4a">
+<div id="outline-container-orgff6ef47" class="outline-2">
+<h2 id="orgff6ef47">Estimador de Máxima Verosimilitud</h2>
+<div class="outline-text-2" id="text-orgff6ef47">
 <p>
 El objetivo es encontrar los máximos de la función de verosimilitud fijando la muestra.
 </p>
 </div>
-<div id="outline-container-orgb1c7c2a" class="outline-3">
-<h3 id="orgb1c7c2a">Definición</h3>
-<div class="outline-text-3" id="text-orgb1c7c2a">
+<div id="outline-container-orgef27ce5" class="outline-3">
+<h3 id="orgef27ce5">Definición</h3>
+<div class="outline-text-3" id="text-orgef27ce5">
 <p>
 El valor de &theta; tal que \( L(\theta,\vec{x}) \) alcanza el máximo, pero al ser esto una función de una sola veriable, podemos derivar!
 </p>
@@ -252,17 +252,17 @@ El valor de &theta; tal que \( L(\theta,\vec{x}) \) alcanza el máximo, pero al 
 </p>
 </div>
 </div>
-<div id="outline-container-org9a19352" class="outline-3">
-<h3 id="org9a19352">Observaciones</h3>
-<div class="outline-text-3" id="text-org9a19352">
+<div id="outline-container-org4fd2545" class="outline-3">
+<h3 id="org4fd2545">Observaciones</h3>
+<div class="outline-text-3" id="text-org4fd2545">
 <p>
 El logaritmo es una función monótona, por lo tanto \( ln f(x) \) conserva los máximos y mínimos de \( f(x) \).
 </p>
 </div>
 </div>
-<div id="outline-container-org6f4172d" class="outline-3">
-<h3 id="org6f4172d">Ejemplo</h3>
-<div class="outline-text-3" id="text-org6f4172d">
+<div id="outline-container-org2b17ad9" class="outline-3">
+<h3 id="org2b17ad9">Ejemplo</h3>
+<div class="outline-text-3" id="text-org2b17ad9">
 <p>
 Sea \( X \sim Be(\theta) \)
 </p>
@@ -281,28 +281,28 @@ Tenemos \( P_{\theta} (X_1 = x_1, \cdots, X_n=x_n) = \theta^{\sum x_i} (1 - \the
 </p>
 </div>
 </div>
-<div id="outline-container-org22095d6" class="outline-3">
-<h3 id="org22095d6">Proposicion</h3>
-<div class="outline-text-3" id="text-org22095d6">
+<div id="outline-container-org7d9d087" class="outline-3">
+<h3 id="org7d9d087">Proposicion</h3>
+<div class="outline-text-3" id="text-org7d9d087">
 <p>
 El EMV \( \hat{\theta} \) pasa a ser tambien <a href="ecumv.html">ECUMV</a> para \( \mathbb{E}_{\theta} [\![\hat{\theta} ]\!]  \) &xhArr; \( \hat{\theta} \) es función medible de un estadístico suficiente.
 </p>
 </div>
 </div>
-<div id="outline-container-org62572f7" class="outline-3">
-<h3 id="org62572f7">Transformaciones Medibles</h3>
-<div class="outline-text-3" id="text-org62572f7">
+<div id="outline-container-org616d687" class="outline-3">
+<h3 id="org616d687">Transformaciones Medibles</h3>
+<div class="outline-text-3" id="text-org616d687">
 <p>
 El EMV se mantiene via transformaciones medibles.
 </p>
 </div>
 </div>
-<div id="outline-container-org52b6260" class="outline-3">
-<h3 id="org52b6260">¿Que pasa si el</h3>
+<div id="outline-container-orgcc34ad3" class="outline-3">
+<h3 id="orgcc34ad3">¿Que pasa si el</h3>
 </div>
-<div id="outline-container-orgd8674d6" class="outline-3">
-<h3 id="orgd8674d6">Ejemplo 2</h3>
-<div class="outline-text-3" id="text-orgd8674d6">
+<div id="outline-container-orgc0508c8" class="outline-3">
+<h3 id="orgc0508c8">Ejemplo 2</h3>
+<div class="outline-text-3" id="text-orgc0508c8">
 <p>
 \( X \sim  \)
 </p>
@@ -332,9 +332,9 @@ El EMV es el \(\min x_i\)
 </p>
 </div>
 </div>
-<div id="outline-container-org3c75085" class="outline-3">
-<h3 id="org3c75085">Ejemplo 3</h3>
-<div class="outline-text-3" id="text-org3c75085">
+<div id="outline-container-org2b7829d" class="outline-3">
+<h3 id="org2b7829d">Ejemplo 3</h3>
+<div class="outline-text-3" id="text-org2b7829d">
 <p>
 Observemos ahora que ocurre cuando \(f_\theta(x) = \frac{1}{x \cdot \ln \theta}\)  para \(1 < x < \theta\), para entender bien este ejemplo lo escribiremos de la siguiente manera:
 </p>
@@ -400,9 +400,9 @@ De modo que podemos concluir que el máximo de esta función se encuentra en su 
 </p>
 </div>
 
-<div id="outline-container-org16a13c1" class="outline-4">
-<h4 id="org16a13c1">EMV, ¿minimal?</h4>
-<div class="outline-text-4" id="text-org16a13c1">
+<div id="outline-container-org74dfe36" class="outline-4">
+<h4 id="org74dfe36">EMV, ¿minimal?</h4>
+<div class="outline-text-4" id="text-org74dfe36">
 <p>
 \( \hat{\theta} = \min x_i\) es el EMV para d(&theta;) = &theta;
 </p>
@@ -429,15 +429,15 @@ Bajo hipótesis del <a href="teorema-factorizacion-fisher-neyman.html">Thm Facto
 </div>
 </div>
 
-<div id="outline-container-org5fb93df" class="outline-4">
-<h4 id="org5fb93df">ECUMV para</h4>
+<div id="outline-container-org08f845f" class="outline-4">
+<h4 id="org08f845f">ECUMV para</h4>
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-14 mar 14:46</p>
+<p class="date">Created: 2023-03-14 mar 16:57</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

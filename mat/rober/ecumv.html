@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-14 mar 14:46 -->
+<!-- 2023-03-14 mar 16:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Estimador Centrado Uniformemente de Mínima Varianza</title>
@@ -229,13 +229,13 @@
 <body>
 <div id="content" class="content">
 <h1 class="title">Estimador Centrado Uniformemente de Mínima Varianza</h1>
-<div id="outline-container-orgc0d030d" class="outline-2">
-<h2 id="orgc0d030d">Estimador Centrado Uniformemente de Mínima Varianza</h2>
-<div class="outline-text-2" id="text-orgc0d030d">
+<div id="outline-container-orgc3dcb8b" class="outline-2">
+<h2 id="orgc3dcb8b">Estimador Centrado Uniformemente de Mínima Varianza</h2>
+<div class="outline-text-2" id="text-orgc3dcb8b">
 </div>
-<div id="outline-container-org5c461da" class="outline-3">
-<h3 id="org5c461da">Definición</h3>
-<div class="outline-text-3" id="text-org5c461da">
+<div id="outline-container-orge3e4835" class="outline-3">
+<h3 id="orge3e4835">Definición</h3>
+<div class="outline-text-3" id="text-orge3e4835">
 <ol class="org-ol">
 <li>T es centrado para \( d(\theta) \)</li>
 <li>\(\forall T' \text{ centrado para } d(\theta) \quad V_{\theta} \left[ T' \right] \ge V_{\theta} \left[ T \right]\)</li>
@@ -245,9 +245,9 @@ Por los teoremas de <a href="lehmann-shefle.html">Lehmann-Schefle</a> y <a href=
 </p>
 </div>
 </div>
-<div id="outline-container-org6716caa" class="outline-3">
-<h3 id="org6716caa">Definición Constructiva</h3>
-<div class="outline-text-3" id="text-org6716caa">
+<div id="outline-container-org96f85da" class="outline-3">
+<h3 id="org96f85da">Definición Constructiva</h3>
+<div class="outline-text-3" id="text-org96f85da">
 <p>
 \( T \) es ECUMV para \( d(\theta) \) cuando
 </p>
@@ -257,18 +257,18 @@ Por los teoremas de <a href="lehmann-shefle.html">Lehmann-Schefle</a> y <a href=
 </ol>
 </div>
 </div>
-<div id="outline-container-orga6d1082" class="outline-3">
-<h3 id="orga6d1082">Transformaciones Medibles</h3>
-<div class="outline-text-3" id="text-orga6d1082">
+<div id="outline-container-org856ee2a" class="outline-3">
+<h3 id="org856ee2a">Transformaciones Medibles</h3>
+<div class="outline-text-3" id="text-org856ee2a">
 <p>
 El ECUMV se mantiene via transformaciones medibles sólo si estoy en <a href="feg.html">FEG</a>.
 </p>
 </div>
 </div>
 </div>
-<div id="outline-container-orge2e190f" class="outline-2">
-<h2 id="orge2e190f">Ejemplo</h2>
-<div class="outline-text-2" id="text-orge2e190f">
+<div id="outline-container-orge02af78" class="outline-2">
+<h2 id="orge02af78">Ejemplo</h2>
+<div class="outline-text-2" id="text-orge02af78">
 <p>
 Sea \(X  \sim Be(\theta) \), encontrar un ECUMV para \( d(\theta) = \theta \)
 \( P(X=x) = \theta^x \left( 1 - \theta \right)^{1-x} \) para \( \theta \in \left( 0, 1 \right) \) y \( X= \left\{ 0, 1 \right\} \)
@@ -300,13 +300,13 @@ Hemos realizado una transformación \( \varphi : \mathbb{R} \to \mathbb{R}\) def
 </p>
 
 <p>
-Concluimos que \( \overline{x} \) es el <a href="#orgc0d030d">ECUMV</a>.
+Concluimos que \( \overline{x} \) es el <a href="#orgc3dcb8b">ECUMV</a>.
 </p>
 </div>
 </div>
-<div id="outline-container-org574b5bc" class="outline-2">
-<h2 id="org574b5bc">Truco</h2>
-<div class="outline-text-2" id="text-org574b5bc">
+<div id="outline-container-orgf7ab7a2" class="outline-2">
+<h2 id="orgf7ab7a2">Truco</h2>
+<div class="outline-text-2" id="text-orgf7ab7a2">
 <p>
 \( V_{\theta} \left[ T \right] = E_{\theta} \left[ T^2 \right] - E_{\theta} \left[ T \right]^2\)
 </p>
@@ -332,9 +332,9 @@ Concluimos que \( \overline{x} \) es el <a href="#orgc0d030d">ECUMV</a>.
 </p>
 </div>
 </div>
-<div id="outline-container-org2b939fa" class="outline-2">
-<h2 id="org2b939fa">Proposicion</h2>
-<div class="outline-text-2" id="text-org2b939fa">
+<div id="outline-container-org1d39ac8" class="outline-2">
+<h2 id="org1d39ac8">Proposicion</h2>
+<div class="outline-text-2" id="text-org1d39ac8">
 <p>
 Si existe el ECUMV es único casi seguro.
 </p>
@@ -343,7 +343,7 @@ Si existe el ECUMV es único casi seguro.
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-14 mar 14:46</p>
+<p class="date">Created: 2023-03-14 mar 16:58</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>

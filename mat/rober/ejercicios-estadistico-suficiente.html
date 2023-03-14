@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-14 mar 14:46 -->
+<!-- 2023-03-14 mar 16:58 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ejercicios de Estadísticos Suficientes</title>
@@ -229,13 +229,13 @@
 <body>
 <div id="content" class="content">
 <h1 class="title">Ejercicios de Estadísticos Suficientes</h1>
-<div id="outline-container-orgd0de8aa" class="outline-2">
-<h2 id="orgd0de8aa">Distribuciones Discretas</h2>
-<div class="outline-text-2" id="text-orgd0de8aa">
+<div id="outline-container-org5c18bf7" class="outline-2">
+<h2 id="org5c18bf7">Distribuciones Discretas</h2>
+<div class="outline-text-2" id="text-org5c18bf7">
 </div>
-<div id="outline-container-org9e3ab1d" class="outline-3">
-<h3 id="org9e3ab1d">Poisson</h3>
-<div class="outline-text-3" id="text-org9e3ab1d">
+<div id="outline-container-org45bac8d" class="outline-3">
+<h3 id="org45bac8d">Poisson</h3>
+<div class="outline-text-3" id="text-org45bac8d">
 <p>
 Sea \( X \sim \text{P}(\lambda) \) tendremos que \( P_{\lambda} \left( X = x \right) = \frac{e^{-\lambda}\lambda^x}{x!} \) con \( \lambda > 0 \) y \( x \in \mathbb{N}\cup \{0\} \)
 </p>
@@ -254,13 +254,13 @@ Aquí podemos identificar \( g_{\theta} \left( T \left( \vec{x} \right) \right) 
 </div>
 </div>
 </div>
-<div id="outline-container-org0e49376" class="outline-2">
-<h2 id="org0e49376">Distribuciones Continuas</h2>
-<div class="outline-text-2" id="text-org0e49376">
+<div id="outline-container-org0cabf3e" class="outline-2">
+<h2 id="org0cabf3e">Distribuciones Continuas</h2>
+<div class="outline-text-2" id="text-org0cabf3e">
 </div>
-<div id="outline-container-orga1f26f8" class="outline-3">
-<h3 id="orga1f26f8">Beta</h3>
-<div class="outline-text-3" id="text-orga1f26f8">
+<div id="outline-container-org30f0e5d" class="outline-3">
+<h3 id="org30f0e5d">Beta</h3>
+<div class="outline-text-3" id="text-org30f0e5d">
 <p>
 \( X \sim Beta(\alpha, \beta) \quad \alpha > 0, \quad \beta > 0 \)
 Por ser común a todos los casos, en primer lugar dado que la función de densidad de probabilidad asociada es \( f_{\alpha,\beta} \left( x \right) = \frac{\Gamma \left( \alpha + \beta \right)}{ \Gamma \left( \alpha \right) \Gamma \left( \beta \right)}x^{\alpha-1} \cdot \left( 1 - x \right)^{\beta-1} \) calculamos la de <i>n</i> sucesos independientes como su producto, y aplicamos que son sucesos independientes.
@@ -275,9 +275,9 @@ Por ser común a todos los casos, en primer lugar dado que la función de densid
     {\left( \prod_{i = 1}^n x_i \right)}^{\alpha - 1} {\left( \prod_{i = 1}^n (1 - x_i) \right)}^{\beta - 1} \\
 \end{align*}
 </div>
-<div id="outline-container-org94140a0" class="outline-4">
-<h4 id="org94140a0">&alpha; desconocido y &beta; conocido</h4>
-<div class="outline-text-4" id="text-org94140a0">
+<div id="outline-container-orgf3691fb" class="outline-4">
+<h4 id="orgf3691fb">&alpha; desconocido y &beta; conocido</h4>
+<div class="outline-text-4" id="text-orgf3691fb">
 <p>
 Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
 </p>
@@ -291,9 +291,9 @@ De donde podemos concluir que \( T(\vec{x}) = \prod_{i = 1}^n x_i \) es suficien
 </p>
 </div>
 </div>
-<div id="outline-container-org382379f" class="outline-4">
-<h4 id="org382379f">&alpha; conocido y &beta; desconocido</h4>
-<div class="outline-text-4" id="text-org382379f">
+<div id="outline-container-org6177ed7" class="outline-4">
+<h4 id="org6177ed7">&alpha; conocido y &beta; desconocido</h4>
+<div class="outline-text-4" id="text-org6177ed7">
 <p>
 Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
 </p>
@@ -308,9 +308,9 @@ De donde podemos concluir que \( T(\vec{x}) = \prod_{i = 1}^n (1 - x_i) \) es su
 </p>
 </div>
 </div>
-<div id="outline-container-orgb5500cb" class="outline-4">
-<h4 id="orgb5500cb">&alpha; desconocido y &beta; desconocido</h4>
-<div class="outline-text-4" id="text-orgb5500cb">
+<div id="outline-container-orge8d1a60" class="outline-4">
+<h4 id="orge8d1a60">&alpha; desconocido y &beta; desconocido</h4>
+<div class="outline-text-4" id="text-orge8d1a60">
 <p>
 Recordemos que un estadístico puede ser de la forma \( T:\mathbb{R}^n \to \mathbb{R}^m \), en este caso tomaremos \( T:\mathbb{R}^n \to \mathbb{R}^2 \) ya que necesitaremos estimar dos parámetros.
 </p>
@@ -334,9 +334,9 @@ Observación, nótese que explícitamente la función sería  \( g_{\alpha,\beta
 </div>
 </div>
 </div>
-<div id="outline-container-orga38f603" class="outline-3">
-<h3 id="orga38f603">Gamma</h3>
-<div class="outline-text-3" id="text-orga38f603">
+<div id="outline-container-orgd13d1bf" class="outline-3">
+<h3 id="orgd13d1bf">Gamma</h3>
+<div class="outline-text-3" id="text-orgd13d1bf">
 <p>
 \( X \sim Gamma \left( \alpha, \beta \right) \)
 </p>
@@ -353,9 +353,9 @@ Por ser común a todos los casos, en primer lugar tomaremos la funcion de densid
 \end{align*} 
 </div>
 
-<div id="outline-container-org692f4e0" class="outline-4">
-<h4 id="org692f4e0">&alpha; desconocido y &beta; conocido</h4>
-<div class="outline-text-4" id="text-org692f4e0">
+<div id="outline-container-orgcebd9a0" class="outline-4">
+<h4 id="orgcebd9a0">&alpha; desconocido y &beta; conocido</h4>
+<div class="outline-text-4" id="text-orgcebd9a0">
 <p>
 Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
 </p>
@@ -369,9 +369,9 @@ De donde podemos concluir que \( T \left( \vec{x} \right) =\prod_{i = 1}^n x_i \
 </div>
 </div>
 
-<div id="outline-container-org6e5effd" class="outline-4">
-<h4 id="org6e5effd">&alpha; conocido y &beta; desconocido</h4>
-<div class="outline-text-4" id="text-org6e5effd">
+<div id="outline-container-org7924161" class="outline-4">
+<h4 id="org7924161">&alpha; conocido y &beta; desconocido</h4>
+<div class="outline-text-4" id="text-org7924161">
 <p>
 Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
 </p>
@@ -385,9 +385,9 @@ De donde podemos concluir que \( T \left( \vec{x} \right) = \sum_{i = 1}^n x_i \
 </div>
 </div>
 
-<div id="outline-container-org3dccb20" class="outline-4">
-<h4 id="org3dccb20">&alpha; y &beta; desconocidos</h4>
-<div class="outline-text-4" id="text-org3dccb20">
+<div id="outline-container-org577ab17" class="outline-4">
+<h4 id="org577ab17">&alpha; y &beta; desconocidos</h4>
+<div class="outline-text-4" id="text-org577ab17">
 <p>
 Recordemos que un estadístico puede ser de la forma \( T:\mathbb{R}^n \to \mathbb{R}^m \), en este caso tomaremos \( T:\mathbb{R}^n \to \mathbb{R}^2 \) ya que necesitaremos estimar dos parámetros.
 </p>
@@ -404,9 +404,9 @@ De donde podemos concluir que \( T(\vec{x}) = \left( T_1 \left( \vec{x} \right),
 </div>
 </div>
 
-<div id="outline-container-orge158747" class="outline-3">
-<h3 id="orge158747">Normal</h3>
-<div class="outline-text-3" id="text-orge158747">
+<div id="outline-container-org8a390bc" class="outline-3">
+<h3 id="org8a390bc">Normal</h3>
+<div class="outline-text-3" id="text-org8a390bc">
 <p>
 \( X \sim N(\mu, \sigma^{2}) \)
 Por ser común a todos los casos, en primer lugar dado que la función de densidad de probabilidad asociada es \(  f_{\mu, \sigma} \left( x \right) = \frac{1}{\sqrt{2 \pi \sigma^2}} e^{ - \left( \frac{x - \mu}{2\sigma} \right)^2} \) calculamos la de <i>n</i> sucesos independientes como su producto aplicando que son sucesos independientes.
@@ -463,9 +463,9 @@ e^{ -
 \end{align*}
 </div>
 
-<div id="outline-container-orgd3df755" class="outline-4">
-<h4 id="orgd3df755">&mu; desconocido &sigma; conocido.</h4>
-<div class="outline-text-4" id="text-orgd3df755">
+<div id="outline-container-orgca2670d" class="outline-4">
+<h4 id="orgca2670d">&mu; desconocido &sigma; conocido.</h4>
+<div class="outline-text-4" id="text-orgca2670d">
 <p>
 De la última igualdad con la siguiente factorización
 </p>
@@ -495,7 +495,7 @@ Observa
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-14 mar 14:46</p>
+<p class="date">Created: 2023-03-14 mar 16:58</p>
 <p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
 </div>
 </body>
