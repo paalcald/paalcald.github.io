@@ -1,0 +1,713 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+<!-- 2023-03-25 sáb 14:39 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Discretización de Sistemas Dinámicos Continuos y Teorema de Liouville</title>
+<meta name="author" content="Pablo C. Alcalde" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Discretización de Sistemas Dinámicos Continuos y Teorema de Liouville</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>&Iacute;ndice</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgec8483c">Introducción</a></li>
+<li><a href="#orgbc7da1c">Material Usado</a>
+<ul>
+<li><a href="#org980ba29">Discretización de Sistemas</a></li>
+<li><a href="#org832376e">Gnuplot</a></li>
+<li><a href="#org9bbe741">Módulos de Python</a></li>
+</ul>
+</li>
+<li><a href="#orgd4b3144">Resultados</a>
+<ul>
+<li><a href="#org7047212">Espacio Fásico</a></li>
+<li><a href="#orgd905d8d">Evolución Temporal</a></li>
+</ul>
+</li>
+<li><a href="#orgd72a298">Conclusiones</a>
+<ul>
+<li><a href="#org4686f37">Error en las Areas</a></li>
+<li><a href="#org0643317">Teorema de Liouville</a></li>
+</ul>
+</li>
+<li><a href="#org5818366">Apéndice de Código</a>
+<ul>
+<li><a href="#orgd2d8fac">Apartado 1</a>
+<ul>
+<li><a href="#org90b8485">Cálculos</a></li>
+<li><a href="#org96f42d3">Plot</a></li>
+</ul>
+</li>
+<li><a href="#orgc12a2d3">Apartado 2</a></li>
+<li><a href="#orgb442bae">Apartado 3</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgec8483c" class="outline-2">
+<h2 id="orgec8483c">Introducción</h2>
+<div class="outline-text-2" id="text-orgec8483c">
+<p>
+Dado el Hamiltoniano de un oscilador no lineal de ecuación
+</p>
+\begin{equation}
+\label{eq:1}
+\left( q, p \right) \mapsto p^2 + \frac{1}{a} \left( q^2 - b \right)^2
+\end{equation}
+<p>
+nos disponemos a obtener de manera computacional su espacio de fases y las soluciones al problema de valor inicial correspondiente.
+</p>
+</div>
+</div>
+<div id="outline-container-orgbc7da1c" class="outline-2">
+<h2 id="orgbc7da1c">Material Usado</h2>
+<div class="outline-text-2" id="text-orgbc7da1c">
+</div>
+<div id="outline-container-org980ba29" class="outline-3">
+<h3 id="org980ba29">Discretización de Sistemas</h3>
+<div class="outline-text-3" id="text-org980ba29">
+<p>
+Realizaremos la discretización del sistema \ref{eq:1} para cerciorarnos de que se comporta bien y tener una aproximación del valor del problema de valor inicial.
+</p>
+
+\begin{gather*}
+\ref{eq:1}
+\implies
+\begin{cases}
+  \dot{q} &= 2 p \\
+  \dot{p} &= \frac{\ddot{2}}{2} = - \frac{4}{a}q \left( q^2 - b \right)
+\end{cases}
+\implies
+\begin{cases}
+  \frac{q_{n+1} - q_n}{\Delta t} &\approx 2p_n \\
+  \frac{p_{n+1} - p_n}{\Delta t} &\approx - \frac{1}{4}q_n \left( q_n^2 - b \right)
+\end{cases}
+\implies
+\end{gather*}
+\begin{equation}
+\label{eq:2}
+\begin{cases}
+q_{n+1} &\approx 2 p_n \Delta t + q_n \\
+p_{n+1} &\approx - \frac{4 \Delta t}{a} q_n \left( q_n^2 - b \right) + p_n
+\end{cases}
+\end{equation}
+</div>
+</div>
+<div id="outline-container-org832376e" class="outline-3">
+<h3 id="org832376e">Gnuplot</h3>
+<div class="outline-text-3" id="text-org832376e">
+<p>
+Utilizaremos el programa gnuplot en el apartado uno para generar una gráfica del espacio de fases, la elección de plotters se debe únicamente a preferencia del implementador, se podría usar intercambiablemente el módulo de python matplotlib.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9bbe741" class="outline-3">
+<h3 id="org9bbe741">Módulos de Python</h3>
+<div class="outline-text-3" id="text-org9bbe741">
+<ul class="org-ul">
+<li><code>Scipy</code>
+<ul class="org-ul">
+<li><code>solve_ipv</code>:
+Utilizaremos esta función para resolver el problema de valor inicial, en lugar de la discretización usando el método de euler, por estar mas optimizada que una implementación propia.</li>
+</ul></li>
+<li><code>Shapely</code>
+<ul class="org-ul">
+<li><code>Polygon</code>:
+Usaremos esta función para construir un polígono dado un conjunto de puntos ordenados que definan su perímetro para calcular en el apartado dos.</li>
+</ul></li>
+<li><code>Matplotlib</code>
+<ul class="org-ul">
+<li><code>scatter</code>:
+Por su simple uso para visualizar rápidamente nubes de puntos.</li>
+<li><code>animation</code>
+Para proporcionar una animación del espacio de fases según el método requerido por el cliente.</li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd4b3144" class="outline-2">
+<h2 id="orgd4b3144">Resultados</h2>
+<div class="outline-text-2" id="text-orgd4b3144">
+</div>
+<div id="outline-container-org7047212" class="outline-3">
+<h3 id="org7047212">Espacio Fásico</h3>
+<div class="outline-text-3" id="text-org7047212">
+
+<div id="org45a9f87" class="figure">
+<p><img src="apartado1.svg" alt="apartado1.svg" class="org-svg" />
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orgd905d8d" class="outline-3">
+<h3 id="orgd905d8d">Evolución Temporal</h3>
+<div class="outline-text-3" id="text-orgd905d8d">
+<p>
+Observamos la evolución temporal de la región \( D_0 := \left[ 0, 1 \right] \times \left[ 0, 1] \right] \) con una granularidad del parametro temporal \( t = n\delta \) con \( \delta \in \left[ 10^{-4}, 10^{-3} \right]\) y \( n \in \mathbb{N} \) en el fichero <code>.gif</code> adjunto.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd72a298" class="outline-2">
+<h2 id="orgd72a298">Conclusiones</h2>
+<div class="outline-text-2" id="text-orgd72a298">
+</div>
+<div id="outline-container-org4686f37" class="outline-3">
+<h3 id="org4686f37">Error en las Areas</h3>
+<div class="outline-text-3" id="text-org4686f37">
+<p>
+Tras comprobar la variación en el area modificando el parámetro de granularidad temporal y el de granularidad espacial entre 20 y 120, podemos concluir que el error inducido en el area por la granularidad temporal es menor que el inducido por la granularidad espacial de los valores iniciales y en ambos casos nos da un error de menor magnitud que la tolerancia del método de integración, que es 1e-6, por lo que se cumple el Teorema de Liouville.
+</p>
+</div>
+</div>
+
+<div id="outline-container-org0643317" class="outline-3">
+<h3 id="org0643317">Teorema de Liouville</h3>
+<div class="outline-text-3" id="text-org0643317">
+<p>
+Los calculos computacionales con \( t = 1/4 \) indican que el Teorema de Liouville se cumple entre \( D_0 \) y \( D_t \) para \( t \) finito, sin embargo no se cumple entre \( D_0\) y \(D_{(0,\infty)} \) ya que, por definición \(D_{(0,\infty)} \) es \( \cup_{t \in (0, \infty)} D_t \) y esto sólo se cumpliría si nuestro sistema consituyese un automorfismo al considerar su imagen en \(D_0\), que no es el caso.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5818366" class="outline-2">
+<h2 id="org5818366">Apéndice de Código</h2>
+<div class="outline-text-2" id="text-org5818366">
+</div>
+<div id="outline-container-orgd2d8fac" class="outline-3">
+<h3 id="orgd2d8fac">Apartado 1</h3>
+<div class="outline-text-3" id="text-orgd2d8fac">
+</div>
+<div id="outline-container-org90b8485" class="outline-4">
+<h4 id="org90b8485">Cálculos</h4>
+<div class="outline-text-4" id="text-org90b8485">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #9d0006;">import</span> os
+<span style="color: #9d0006;">import</span> numpy <span style="color: #9d0006;">as</span> np
+<span style="color: #9d0006;">import</span> math
+<span style="color: #9d0006;">import</span> matplotlib <span style="color: #9d0006;">as</span> plt
+<span style="color: #9d0006;">from</span> shapely.geometry <span style="color: #9d0006;">import</span> Polygon
+<span style="color: #9d0006;">from</span> functools <span style="color: #9d0006;">import</span> partial
+<span style="color: #9d0006;">from</span> itertools <span style="color: #9d0006;">import</span> accumulate, repeat
+<span style="color: #9d0006;">from</span> typing <span style="color: #9d0006;">import</span> Callable
+<span style="color: #9d0006;">from</span> scipy.integrate <span style="color: #9d0006;">import</span> solve_ivp
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">get_vector_field</span>(func: Callable,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>t0: <span style="color: #af3a03;">float</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>min_x: <span style="color: #af3a03;">float</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>max_x: <span style="color: #af3a03;">float</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>min_y: <span style="color: #af3a03;">float</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>max_y: <span style="color: #af3a03;">float</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>granularity: <span style="color: #af3a03;">int</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>separation: <span style="color: #af3a03;">float</span> = 0.8):
+<span style="background-color: #ebdbb2;"> </span>   
+<span style="background-color: #ebdbb2;"> </span>   vector_field_grid_x = np.linspace(min_x,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> max_x,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> granularity)
+
+<span style="background-color: #ebdbb2;"> </span>   vector_field_grid_y = np.linspace(min_y,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> max_y,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> granularity)
+
+<span style="background-color: #ebdbb2;"> </span>   vector_lenght_x = separation * (max_x - min_x) / granularity
+
+<span style="background-color: #ebdbb2;"> </span>   vector_lenght_y = separation * (max_y - min_y) / granularity
+
+<span style="background-color: #ebdbb2;"> </span>   vector_field = np.array([(p, q,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> (vector_lenght_x * fpq[0]
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  / math.sqrt( fpq[0] ** 2 + fpq[1] ** 2)),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> (vector_lenght_y * fpq[1]
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  / math.sqrt( fpq[0] ** 2 + fpq[1] ** 2)))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span><span style="color: #9d0006;">for</span> p, q, fpq <span style="color: #9d0006;">in</span> [(xi, yi, func(t0, (xi, yi)))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #9d0006;">for</span> xi <span style="color: #9d0006;">in</span> vector_field_grid_x
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #9d0006;">for</span> yi <span style="color: #9d0006;">in</span> vector_field_grid_y]])
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> vector_field
+
+INITIAL_PARAMETER_MIN_X = -1.5
+INITIAL_PARAMETER_MAX_X = 1.5
+INITIAL_PARAMETER_MIN_Y = -1
+INITIAL_PARAMETER_MAX_Y = 1
+VECTOR_GRID_GRANULARITY = 51
+
+INITIAL_VALUES = ([[p0, 0.1]
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #9d0006;">for</span> p0 <span style="color: #9d0006;">in</span> np.linspace(-1,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>1,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>19)]
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> +
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> [[0.1, q0]
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #9d0006;">for</span> q0 <span style="color: #9d0006;">in</span> np.linspace(-1,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>1,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>19)])
+
+A_ORBIT_PARAMETER = 3
+B_ORBIT_PARAMETER = .5
+
+INITIAL_TIME = 0
+FINAL_TIME = 10
+TIME_INCREMENT = 1e-3
+time_values = np.arange(INITIAL_TIME, FINAL_TIME, TIME_INCREMENT)
+
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">general_orbit</span>(t, z, a, b):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">q</span>, <span style="color: #076678;">p</span> = z
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> [2* p, - (4 * q / a) * (q * q - b)]
+
+orbit = partial(general_orbit,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   a = A_ORBIT_PARAMETER,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   b = B_ORBIT_PARAMETER)
+
+vector_field = get_vector_field(orbit,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   0,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   INITIAL_PARAMETER_MIN_X,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   INITIAL_PARAMETER_MAX_X,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   INITIAL_PARAMETER_MIN_Y,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   INITIAL_PARAMETER_MAX_Y,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   VECTOR_GRID_GRANULARITY)
+sol = np.column_stack([solve_ivp(orbit, [INITIAL_TIME, FINAL_TIME], p0q0,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>t_eval=time_values,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>).y.T
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #9d0006;">for</span> p0q0 <span style="color: #9d0006;">in</span> INITIAL_VALUES])
+
+orbits_data = np.column_stack((time_values, sol))
+
+np.savetxt(<span style="color: #79740e;">"vector_field.dat"</span>, vector_field,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  header= <span style="color: #79740e;">"# grid_x grix_y dx/dt dy/dt"</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  fmt=[<span style="color: #79740e;">'%.5f'</span>, <span style="color: #79740e;">'%.5f'</span>, <span style="color: #79740e;">'%.5f'</span>, <span style="color: #79740e;">'%.5f'</span>])
+
+np.savetxt(<span style="color: #79740e;">"orbits.dat"</span>, orbits_data, fmt=<span style="color: #79740e;">"%.5f"</span>)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org96f42d3" class="outline-4">
+<h4 id="org96f42d3">Plot</h4>
+<div class="outline-text-4" id="text-org96f42d3">
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgc12a2d3" class="outline-3">
+<h3 id="orgc12a2d3">Apartado 2</h3>
+<div class="outline-text-3" id="text-orgc12a2d3">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #9d0006;">import</span> os
+<span style="color: #9d0006;">import</span> numpy <span style="color: #9d0006;">as</span> np
+<span style="color: #9d0006;">import</span> math
+<span style="color: #9d0006;">import</span> matplotlib.pyplot <span style="color: #9d0006;">as</span> plt
+<span style="color: #9d0006;">import</span> matplotlib.animation <span style="color: #9d0006;">as</span> ani
+<span style="color: #9d0006;">from</span> shapely <span style="color: #9d0006;">import</span> Polygon
+<span style="color: #9d0006;">from</span> functools <span style="color: #9d0006;">import</span> partial
+<span style="color: #9d0006;">from</span> scipy.integrate <span style="color: #9d0006;">import</span> solve_ivp
+<span style="color: #9d0006;">from</span> numpy.typing <span style="color: #9d0006;">import</span> ArrayLike
+<span style="color: #9d0006;">from</span> typing <span style="color: #9d0006;">import</span> Callable
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">The function to integrate</span>
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">general_orbit</span>(t: <span style="color: #af3a03;">float</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> z: (<span style="color: #af3a03;">float</span>,<span style="color: #af3a03;">float</span>),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> a: <span style="color: #af3a03;">float</span>, b: <span style="color: #af3a03;">float</span>) -&gt; (<span style="color: #af3a03;">float</span>, <span style="color: #af3a03;">float</span>):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">q</span>, <span style="color: #076678;">p</span> = z
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> [2* p, - (4 * q / a) * (q * q - b)]
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">a = 3, b = 1/2</span>
+<span style="color: #076678;">A_ORBIT_PARAMETER</span> = 3
+<span style="color: #076678;">B_ORBIT_PARAMETER</span> = .5
+
+<span style="color: #076678;">orbit</span> = partial(general_orbit,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   a = A_ORBIT_PARAMETER,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   b = B_ORBIT_PARAMETER)
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">t &#1013; (0, 1/4)</span>
+INITIAL_TIME = 0
+FINAL_TIME = 1/4
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">We define D_0 = [0, 1] x [0, 1]</span>
+MIN_Q_VALUE = 0
+MAX_Q_VALUE = 1
+MIN_P_VALUE = 0
+MAX_P_VALUE = 1
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">get_area_at</span>(orbit_data: ArrayLike, i: <span style="color: #af3a03;">int</span>) -&gt; <span style="color: #af3a03;">float</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Calculates the area of the region described by 'orbit_data' at the</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   time corresponding to the i-th component.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   It requires the data to be monotonously increasing for each given time.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   right_side = np.stack((orbit_data[<span style="color: #79740e;">'q'</span>][i, 0, :],
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  orbit_data[<span style="color: #79740e;">'p'</span>][i, 0, :]),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> axis=1)
+<span style="background-color: #ebdbb2;"> </span>   top_side = np.stack((orbit_data[<span style="color: #79740e;">'q'</span>][i, :, -1],
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>orbit_data[<span style="color: #79740e;">'p'</span>][i, :, -1]),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   axis=1)
+<span style="background-color: #ebdbb2;"> </span>   left_side = np.flip(np.stack((orbit_data[<span style="color: #79740e;">'q'</span>][i, -1, :],
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> orbit_data[<span style="color: #79740e;">'p'</span>][i, -1, :]),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>axis=1), axis=0)
+<span style="background-color: #ebdbb2;"> </span>   bottom_side = np.flip(np.stack((orbit_data[<span style="color: #79740e;">'q'</span>][i, :, 0],
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   orbit_data[<span style="color: #79740e;">'p'</span>][i, :, 0]),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  axis=1), axis=0)
+<span style="background-color: #ebdbb2;"> </span>   area = Polygon(np.concatenate((right_side,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  top_side,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  left_side,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  bottom_side))).area
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> area
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">get_area_variation</span>(orbit_data: ArrayLike,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  i: <span style="color: #af3a03;">int</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  j: <span style="color: #af3a03;">int</span>) -&gt; <span style="color: #af3a03;">float</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Calculates the absolute value of the variation of the area of the region</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   described by 'orbit_data' at the time corresponding to the i-th component</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   respective to the j-th component.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   It requires the data to be monotonously increasing for each given time.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   initial_area = get_area_at(orbit_data, i)
+<span style="background-color: #ebdbb2;"> </span>   final_area = get_area_at(orbit_data, j)
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #af3a03;">abs</span>(initial_area - final_area)
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">get_temporal_evolution</span>(func: Callable,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  spatial_granularity: <span style="color: #af3a03;">int</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  time_granularity: <span style="color: #af3a03;">float</span>) -&gt; ArrayLike:
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Calculates the temporal evolution of the given function given</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   D_0 = [0, 1] x [0, 1] as the initial region and (0, 1/4) as the time</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   parameter</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   time_values = np.arange(INITIAL_TIME, FINAL_TIME, time_granularity)
+<span style="background-color: #ebdbb2;"> </span>   initial_q_values = np.linspace(MIN_Q_VALUE, MAX_Q_VALUE, spatial_granularity)
+<span style="background-color: #ebdbb2;"> </span>   initial_p_values = np.linspace(MIN_P_VALUE, MAX_P_VALUE, spatial_granularity)
+
+<span style="background-color: #ebdbb2;"> </span>   orbit_data = np.zeros((<span style="color: #af3a03;">len</span>(time_values),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #af3a03;">len</span>(initial_q_values),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #af3a03;">len</span>(initial_p_values)),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> dtype=[(<span style="color: #79740e;">'q'</span>, <span style="color: #79740e;">'f'</span>), (<span style="color: #79740e;">'p'</span>, <span style="color: #79740e;">'f'</span>)])
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> i, q0 <span style="color: #9d0006;">in</span> <span style="color: #af3a03;">enumerate</span>(initial_q_values):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> j, p0 <span style="color: #9d0006;">in</span> <span style="color: #af3a03;">enumerate</span>(initial_p_values):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   orbit_data[<span style="color: #79740e;">'q'</span>][:, i, j], orbit_data[<span style="color: #79740e;">'p'</span>][:, <span style="color: #076678;">i</span>, <span style="color: #076678;">j</span>] = \
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   solve_ivp(func,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> [INITIAL_TIME, FINAL_TIME],
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> (q0, p0),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> t_eval = time_values).y
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> orbit_data
+
+time_granularities = np.linspace(1e-4, 1e-3, 10)
+spatial_granularities = np.linspace(20, 120, 20, dtype=<span style="color: #79740e;">'int'</span>)
+area_variation = np.zeros((<span style="color: #af3a03;">len</span>(time_granularities),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #af3a03;">len</span>(spatial_granularities)),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> dtype=<span style="color: #79740e;">'f'</span>)
+
+<span style="color: #9d0006;">for</span> i, time_granularity <span style="color: #9d0006;">in</span> <span style="color: #af3a03;">enumerate</span>(time_granularities):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> j, spatial_granularity <span style="color: #9d0006;">in</span> <span style="color: #af3a03;">enumerate</span>(spatial_granularities):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   area_variation[<span style="color: #076678;">i</span>, <span style="color: #076678;">j</span>] = \
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   get_area_variation(get_temporal_evolution(orbit,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> spatial_granularity,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> time_granularity),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  0, <span style="color: #af3a03;">int</span>(1 / (4 * time_granularity)) - 1)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgb442bae" class="outline-3">
+<h3 id="orgb442bae">Apartado 3</h3>
+<div class="outline-text-3" id="text-orgb442bae">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #9d0006;">import</span> os
+<span style="color: #9d0006;">import</span> numpy <span style="color: #9d0006;">as</span> np
+<span style="color: #9d0006;">import</span> math
+<span style="color: #9d0006;">import</span> matplotlib.pyplot <span style="color: #9d0006;">as</span> plt
+<span style="color: #9d0006;">import</span> matplotlib.animation <span style="color: #9d0006;">as</span> ani
+<span style="color: #9d0006;">from</span> shapely <span style="color: #9d0006;">import</span> Polygon
+<span style="color: #9d0006;">from</span> functools <span style="color: #9d0006;">import</span> partial
+<span style="color: #9d0006;">from</span> IPython <span style="color: #9d0006;">import</span> display
+<span style="color: #9d0006;">from</span> itertools <span style="color: #9d0006;">import</span> accumulate, repeat
+<span style="color: #9d0006;">from</span> typing <span style="color: #9d0006;">import</span> Callable
+<span style="color: #9d0006;">from</span> scipy.integrate <span style="color: #9d0006;">import</span> solve_ivp
+
+<span style="color: #076678;">INITIAL_TIME</span> = 0
+<span style="color: #076678;">FINAL_TIME</span> = 5
+<span style="color: #076678;">TIME_INCREMENT</span> = 1e-4
+
+<span style="color: #076678;">time_values</span> = np.arange(INITIAL_TIME, FINAL_TIME, TIME_INCREMENT)
+
+<span style="color: #076678;">GRID_Q_GRANULARITY</span> = 60
+<span style="color: #076678;">GRID_P_GRANULARITY</span> = 60
+<span style="color: #076678;">MIN_Q_VALUE</span> = 0
+<span style="color: #076678;">MAX_Q_VALUE</span> = 1
+<span style="color: #076678;">MIN_P_VALUE</span> = 0
+<span style="color: #076678;">MAX_P_VALUE</span> = 1
+
+<span style="color: #076678;">initial_q_values</span> = np.linspace(MIN_Q_VALUE, MAX_Q_VALUE, GRID_Q_GRANULARITY)
+<span style="color: #076678;">initial_p_values</span> = np.linspace(MIN_P_VALUE, MAX_P_VALUE, GRID_P_GRANULARITY)
+
+<span style="color: #076678;">A_ORBIT_PARAMETER</span> = 3
+<span style="color: #076678;">B_ORBIT_PARAMETER</span> = .5
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">general_orbit</span>(t, z, a, b):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">q</span>, <span style="color: #076678;">p</span> = z
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> [2* p, - (4 * q / a) * (q * q - b)]
+
+<span style="color: #076678;">orbit</span> = partial(general_orbit,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   a = A_ORBIT_PARAMETER,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   b = B_ORBIT_PARAMETER)
+
+orbit_data = np.zeros((<span style="color: #af3a03;">len</span>(time_values), <span style="color: #af3a03;">len</span>(initial_q_values), <span style="color: #af3a03;">len</span>(initial_p_values)),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> dtype=[(<span style="color: #79740e;">'q'</span>, <span style="color: #79740e;">'f'</span>), (<span style="color: #79740e;">'p'</span>, <span style="color: #79740e;">'f'</span>)])
+<span style="color: #9d0006;">for</span> i, q0 <span style="color: #9d0006;">in</span> <span style="color: #af3a03;">enumerate</span>(initial_q_values):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> j, p0 <span style="color: #9d0006;">in</span> <span style="color: #af3a03;">enumerate</span>(initial_p_values):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   orbit_data[<span style="color: #79740e;">'q'</span>][:, i, j] , orbit_data[<span style="color: #79740e;">'p'</span>][:, <span style="color: #076678;">i</span>, <span style="color: #076678;">j</span>] = solve_ivp(orbit,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   [INITIAL_TIME, FINAL_TIME],
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   (q0, p0),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   t_eval = time_values).y
+
+fig = plt.figure()
+moving_square = plt.scatter([],[], s= 4)
+plt.xlim(-1.5, 1.5)
+plt.ylim(-1.5, 1.5)
+plt.xlabel(<span style="color: #79740e;">'q(t)'</span>)
+plt.ylabel(<span style="color: #79740e;">'p(t)'</span>)
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">AnimationFunction</span>(frame):
+<span style="background-color: #ebdbb2;"> </span>   moving_square.set_offsets(np.stack((orbit_data[<span style="color: #79740e;">'q'</span>][frame].flatten(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  orbit_data[<span style="color: #79740e;">'p'</span>][frame].flatten()),axis = 1))
+
+anim_created = ani.FuncAnimation(fig, AnimationFunction, frames=np.arange(0,<span style="color: #af3a03;">len</span>(time_values),100))
+anim_created.save(<span style="color: #79740e;">'anim.gif'</span>)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Autor: Pablo C. Alcalde</p>
+<p class="date">Created: 2023-03-25 sáb 14:39</p>
+</div>
+</body>
+</html>
