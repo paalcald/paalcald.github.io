@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-03-25 sáb 14:39 -->
+<!-- 2023-03-25 sáb 14:44 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Discretización de Sistemas Dinámicos Continuos y Teorema de Liouville</title>
@@ -360,7 +360,7 @@ Para proporcionar una animación del espacio de fases según el método requerid
 <h3 id="org7047212">Espacio Fásico</h3>
 <div class="outline-text-3" id="text-org7047212">
 
-<div id="org45a9f87" class="figure">
+<div id="org7ec1577" class="figure">
 <p><img src="apartado1.svg" alt="apartado1.svg" class="org-svg" />
 </p>
 </div>
@@ -511,10 +511,22 @@ np.savetxt(<span style="color: #79740e;">"orbits.dat"</span>, orbits_data, fmt=<
 <div id="outline-container-org96f42d3" class="outline-4">
 <h4 id="org96f42d3">Plot</h4>
 <div class="outline-text-4" id="text-org96f42d3">
+<div class="org-src-container">
+<pre class="src src-gnu">outfile = 'apartado1.svg'
+set terminal svg
+set key off
+set output outfile
+set xlabel 'q(t)'
+set ylabel 'p(t)'
+set xrange [-1.5:1.5]
+set yrange [-1:1]
+plot 'vector_field.dat' using 1:2:3:4 with vectors, \
+     for [i=1:38] 'orbits.dat' using (column(2*i)):(column(2*i+1)) with lines
+</pre>
 </div>
 </div>
 </div>
-
+</div>
 <div id="outline-container-orgc12a2d3" class="outline-3">
 <h3 id="orgc12a2d3">Apartado 2</h3>
 <div class="outline-text-3" id="text-orgc12a2d3">
@@ -707,7 +719,7 @@ anim_created.save(<span style="color: #79740e;">'anim.gif'</span>)
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-25 sáb 14:39</p>
+<p class="date">Created: 2023-03-25 sáb 14:44</p>
 </div>
 </body>
 </html>
