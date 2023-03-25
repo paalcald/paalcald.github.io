@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-03-25 sáb 14:44 -->
+<!-- 2023-03-25 sáb 16:18 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Discretización de Sistemas Dinámicos Continuos y Teorema de Liouville</title>
@@ -360,7 +360,7 @@ Para proporcionar una animación del espacio de fases según el método requerid
 <h3 id="org7047212">Espacio Fásico</h3>
 <div class="outline-text-3" id="text-org7047212">
 
-<div id="org7ec1577" class="figure">
+<div id="org5c288da" class="figure">
 <p><img src="apartado1.svg" alt="apartado1.svg" class="org-svg" />
 </p>
 </div>
@@ -372,9 +372,16 @@ Para proporcionar una animación del espacio de fases según el método requerid
 <p>
 Observamos la evolución temporal de la región \( D_0 := \left[ 0, 1 \right] \times \left[ 0, 1] \right] \) con una granularidad del parametro temporal \( t = n\delta \) con \( \delta \in \left[ 10^{-4}, 10^{-3} \right]\) y \( n \in \mathbb{N} \) en el fichero <code>.gif</code> adjunto.
 </p>
+
+
+<div id="org2286667" class="figure">
+<p><img src="anim.gif" alt="anim.gif" />
+</p>
 </div>
 </div>
 </div>
+</div>
+
 
 <div id="outline-container-orgd72a298" class="outline-2">
 <h2 id="orgd72a298">Conclusiones</h2>
@@ -511,8 +518,8 @@ np.savetxt(<span style="color: #79740e;">"orbits.dat"</span>, orbits_data, fmt=<
 <div id="outline-container-org96f42d3" class="outline-4">
 <h4 id="org96f42d3">Plot</h4>
 <div class="outline-text-4" id="text-org96f42d3">
-<div class="org-src-container">
-<pre class="src src-gnu">outfile = 'apartado1.svg'
+<pre class="example">
+outfile = 'apartado1.svg'
 set terminal svg
 set key off
 set output outfile
@@ -523,7 +530,6 @@ set yrange [-1:1]
 plot 'vector_field.dat' using 1:2:3:4 with vectors, \
      for [i=1:38] 'orbits.dat' using (column(2*i)):(column(2*i+1)) with lines
 </pre>
-</div>
 </div>
 </div>
 </div>
@@ -719,7 +725,7 @@ anim_created.save(<span style="color: #79740e;">'anim.gif'</span>)
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-25 sáb 14:44</p>
+<p class="date">Created: 2023-03-25 sáb 16:18</p>
 </div>
 </body>
 </html>
