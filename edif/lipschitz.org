@@ -1,0 +1,42 @@
+* Lipschianidad de una función
+Se dice que una funcion $F : \Omega \subset \mathbb{R}^n \to \mathbb{R}^n$ es Lipschitz si existe una constante $L$ tal que se cumple la siguiente condición
+
+\begin{equation} \| F(u) - F(v) \| \le L \|u - v\|\quad \forall u, v \in \mathbb{R}
+\end{equation}
+
+** Ejemplos
+
+1) $F(u) = \sin u$ con $u \in \mathbb{R}$
+2) $F(u) = u^2 u \in \mathbb{R}$ no es globalmente Lipschitz, pero si localmente Lipschitz.
+3) $F(u) = u^{q}$ con $u \ge 0$ y con $q \in (0,1)$
+   Sean dos sucesiones que se acerquen a cero tanto como sea necesario, por ejemplo $u_n = \frac{1}{2n}$ y $v_n = \frac{1}{n}$.
+   Tenemos que $\|F(u) - F(v)\| \le L \, |u - v| \quad \forall u,v \in (0, \varepsilon)$ lo que aplicando el Teorema del Valor Medio nos da $\|F(u) - F(v)\| = |q \xi^{q-1}_n|\,| u_n - v_n|$
+   ya que $\forall n \ge 1 \quad q |\xi^{q-1}| \le L$ ; $\frac{1}{\xi^{1-q}} \le \frac{L}{q}$ ; $\lim_{n \to \infty} \frac{1}{\xi^{1-q}_n} = \infty$
+   concluimos que $\|F(u) - F(v)\|\le L \, |u_n - v_n|$.
+** Ejemplo Paradigmatico
+Se tiene $A \in \textit{GL(x)}$ tal que \( A = \left\{(a_{ij})_{1 < i, j \le N} : a_{ij} \in \mathbb{R} \right\} = \begin{pmatrix}
+a_{11} & \cdots & a_{1 N} \\
+\vdots & \ddots & \vdots \\
+a_{N 1} & \cdots & a_{N N} \\
+\end{pmatrix} \in \mathbb{R}^{N^2} \)
+
+$$F(u) = Au + B = \begin{pmatrix} 
+a_{11} & \cdots & a_{1n} \\
+\vdots & \ddots & \vdots \\
+a_{n1} & \cdots & a_{nn} \\
+\end{pmatrix} \begin{pmatrix}
+u_1 \\
+\vdots \\
+u_n \\
+\end{pmatrix} + \begin{pmatrix}
+b_1 \\
+\vdots \\
+b_n \\
+\end{pmatrix} \quad \forall u \in \mathbb{R}^N = 
+$$ es globalmente Lipschitz.
+Tomamos $u, v \in \mathbb{R}^N$ y definamos \(\|A\|_{\mathbb{L}(\mathbb{R}^n)} \equiv \max_{\substack{|x| = 1 \\ x \in \mathbb{R}^N}} \|A \; x \|\) entonces 
+
+Y vamos a ver este bloque que no esta cerrado $\forall x \in \mathbb{R}
+
+
+
