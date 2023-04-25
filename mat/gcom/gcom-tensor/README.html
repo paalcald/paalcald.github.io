@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-04-25 mar 18:10 -->
+<!-- 2023-04-25 mar 18:22 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Transformación Isométrica Afín</title>
@@ -296,10 +296,10 @@ b_{2,0} && b_{2,1} && b_{2,2} && 0 \\
 \end{pmatrix}
 T_{w} =
 \begin{pmatrix}
-1 && 0 && 0 && 0 && w_0 \\
-0 && 1 && 0 && 0 && w_1 \\
-0 && 0 && 1 && 0 && w_2 \\
-0 && 0 && 0 && 0 && 1
+1 && 0 && 0  && w_0 \\
+0 && 1 && 0  && w_1 \\
+0 && 0 && 1  && w_2 \\
+0 && 0 && 0  && 1
 \end{pmatrix}
 \end{equation*}
 </div>
@@ -414,7 +414,7 @@ Un dato a tener en cuenta en ambas animaciones es que las imagenes tienen el cer
 <span style="color: #9d0006;">from</span> mpl_toolkits.mplot3d <span style="color: #9d0006;">import</span> axes3d
 <span style="color: #9d0006;">import</span> matplotlib.animation <span style="color: #9d0006;">as</span> ani
 <span style="color: #9d0006;">from</span> matplotlib <span style="color: #9d0006;">import</span> colormaps
-<span style="color: #9d0006;">from</span> skimage <span style="color: #9d0006;">import</span> io, data
+<span style="color: #9d0006;">from</span> skimage <span style="color: #9d0006;">import</span> io
 
 <span style="color: #9d0006;">def</span> <span style="color: #b57614;">apartado1</span>():
 <span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">nframes</span> = 100
@@ -435,9 +435,9 @@ Un dato a tener en cuenta en ambas animaciones es que las imagenes tienen el cer
 <span style="background-color: #ebdbb2;"> </span>   diameter = torch.<span style="color: #af3a03;">max</span>(torch.cdist(grid[:].permute(1,0),
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>grid[:].permute(1,0), p=2))
 <span style="background-color: #ebdbb2;"> </span>   translation_vector = torch.tensor([ 0, 0, diameter]).reshape(-1,1)
-<span style="background-color: #ebdbb2;"> </span>   ax.set_xlim(-40, 40)
-<span style="background-color: #ebdbb2;"> </span>   ax.set_ylim(-40, 40)
-<span style="background-color: #ebdbb2;"> </span>   ax.set_zlim(-100, 100)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_xlim(-60, 60)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_ylim(-60, 60)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_zlim(-60, 80)
 
 <span style="background-color: #ebdbb2;"> </span>   anim_created = ani.FuncAnimation(fig,
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>atf.AnimationFunction3D,
@@ -478,7 +478,7 @@ Un dato a tener en cuenta en ambas animaciones es que las imagenes tienen el cer
 
 
 <span style="color: #9d0006;">if</span> <span style="color: #af3a03;">__name__</span>==<span style="color: #79740e;">"__main__"</span>:
-<span style="background-color: #ebdbb2;"> </span>   apartado1()
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">apartado1()</span>
 <span style="background-color: #ebdbb2;"> </span>   apartado2(<span style="color: #79740e;">'arbol.png'</span>, <span style="color: #79740e;">'apartado2.gif'</span>, 100)
 </pre>
 </div>
@@ -634,8 +634,8 @@ Un dato a tener en cuenta en ambas animaciones es que las imagenes tienen el cer
 <span style="background-color: #ebdbb2;"> </span>   output_grid = (affine_rotation_given_center_3d(translation_vector, frame, axis)
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  @ input_grid)
 <span style="background-color: #ebdbb2;"> </span>   ax.clear()
-<span style="background-color: #ebdbb2;"> </span>   ax.set_xlim(-30, 30)
-<span style="background-color: #ebdbb2;"> </span>   ax.set_ylim(-30, 30)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_xlim(-60, 60)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_ylim(-60, 60)
 <span style="background-color: #ebdbb2;"> </span>   ax.set_zlim(-60, 80)
 <span style="background-color: #ebdbb2;"> </span>   ax.contour(output_grid[0].reshape(shape),
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  output_grid[1].reshape(shape),
@@ -651,7 +651,7 @@ Un dato a tener en cuenta en ambas animaciones es que las imagenes tienen el cer
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-04-25 mar 18:10</p>
+<p class="date">Created: 2023-04-25 mar 18:22</p>
 </div>
 </body>
 </html>
