@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
 <head>
-<!-- 2023-04-25 mar 18:22 -->
+<!-- 2023-04-25 mar 19:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Transformación Isométrica Afín</title>
@@ -426,15 +426,23 @@ Un dato a tener en cuenta en ambas animaciones es que las imagenes tienen el cer
 
 <span style="background-color: #ebdbb2;"> </span>   p = ax.contour(x, y, z, 16, cmap=cmap)
 
-<span style="background-color: #ebdbb2;"> </span>   grid = torch.row_stack((torch.tensor(x).flatten(),
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   torch.tensor(y).flatten(),
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   torch.tensor(z).flatten()))
+<span style="background-color: #ebdbb2;"> </span>   grid = torch.row_stack((torch.tensor(x, dtype=torch.<span style="color: #af3a03;">float</span>).flatten(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   torch.tensor(y, dtype=torch.<span style="color: #af3a03;">float</span>).flatten(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   torch.tensor(z, dtype=torch.<span style="color: #af3a03;">float</span>).flatten()))
 <span style="background-color: #ebdbb2;"> </span>   affine_grid = torch.row_stack((grid, torch.ones((1,<span style="color: #af3a03;">len</span>(grid[0])))))
 <span style="background-color: #ebdbb2;"> </span>   
-<span style="background-color: #ebdbb2;"> </span>   axis = 0
+<span style="background-color: #ebdbb2;"> </span>   axis = 2
+<span style="background-color: #ebdbb2;"> </span>   
+<span style="background-color: #ebdbb2;"> </span>   angle = 3 * math.pi
+<span style="background-color: #ebdbb2;"> </span>   
 <span style="background-color: #ebdbb2;"> </span>   diameter = torch.<span style="color: #af3a03;">max</span>(torch.cdist(grid[:].permute(1,0),
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>grid[:].permute(1,0), p=2))
-<span style="background-color: #ebdbb2;"> </span>   translation_vector = torch.tensor([ 0, 0, diameter]).reshape(-1,1)
+<span style="background-color: #ebdbb2;"> </span>   
+<span style="background-color: #ebdbb2;"> </span>   translation_vector = torch.tensor([ 0, 0, diameter], dtype=torch.<span style="color: #af3a03;">float</span>).reshape(-1,1)
+<span style="background-color: #ebdbb2;"> </span>   
+<span style="background-color: #ebdbb2;"> </span>   centroid = torch.tensor([torch.mean(grid[i,:], dtype=torch.<span style="color: #af3a03;">float</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span><span style="color: #9d0006;">for</span> i <span style="color: #9d0006;">in</span> (0,1,2)]).reshape(-1,1)
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">print</span>(centroid)
 <span style="background-color: #ebdbb2;"> </span>   ax.set_xlim(-60, 60)
 <span style="background-color: #ebdbb2;"> </span>   ax.set_ylim(-60, 60)
 <span style="background-color: #ebdbb2;"> </span>   ax.set_zlim(-60, 80)
@@ -442,17 +450,16 @@ Un dato a tener en cuenta en ambas animaciones es que las imagenes tienen el cer
 <span style="background-color: #ebdbb2;"> </span>   anim_created = ani.FuncAnimation(fig,
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>atf.AnimationFunction3D,
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>fargs=(ax, p, affine_grid, translation_vector,
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   axis, shape, cmap, diameter),
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>frames=(tqdm.tqdm(torch.linspace(0,
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> 3* math.pi,
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> nframes))))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   axis, shape, cmap, diameter, centroid,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   angle, nframes),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>frames=(tqdm.tqdm(<span style="color: #af3a03;">range</span>(nframes))))
 <span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">plt.savefig('apartado1.png')</span>
 <span style="background-color: #ebdbb2;"> </span>   anim_created.save(<span style="color: #79740e;">'apartado1.gif'</span>)
 
 <span style="color: #9d0006;">def</span> <span style="color: #b57614;">apartado2</span>(image_file, output_file, nframes):
 <span style="background-color: #ebdbb2;"> </span>   img = io.imread(image_file)
 
-<span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">grid</span>, <span style="color: #076678;">colors</span> = atf.generate_pixel_coordinate_tensor(img)
+<span style="background-color: #ebdbb2;"> </span>   grid, colors = atf.generate_pixel_coordinate_tensor(img)
 
 <span style="background-color: #ebdbb2;"> </span>   angle = 3 * math.pi
 <span style="background-color: #ebdbb2;"> </span>   centroid = torch.tensor([torch.mean(grid[i,:][colors[:,2] &lt; 240], dtype=torch.<span style="color: #af3a03;">float</span>)
@@ -465,20 +472,19 @@ Un dato a tener en cuenta en ambas animaciones es que las imagenes tienen el cer
 <span style="background-color: #ebdbb2;"> </span>   affine_grid = torch.row_stack((grid, torch.ones((1,<span style="color: #af3a03;">len</span>(grid[0])))))
 <span style="background-color: #ebdbb2;"> </span>   fig = plt.figure()
 <span style="background-color: #ebdbb2;"> </span>   figure = plt.scatter(grid[1], grid[0], c=colors/255.0)
-<span style="background-color: #ebdbb2;"> </span>   plt.xlim(0, 2.2*diameter)
-<span style="background-color: #ebdbb2;"> </span>   plt.ylim(0, 2.2*diameter)
+<span style="background-color: #ebdbb2;"> </span>   plt.xlim(-2*diameter, 2.2*diameter)
+<span style="background-color: #ebdbb2;"> </span>   plt.ylim(-2*diameter, 2.2*diameter)
 
 <span style="background-color: #ebdbb2;"> </span>   anim_created = ani.FuncAnimation(fig,
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>atf.AnimationFunction2D,
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>fargs=(figure, affine_grid, translation_vector),
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>frames=(tqdm.tqdm(torch.linspace(0,
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> 3* math.pi,
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> nframes))))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>fargs=(figure, affine_grid, translation_vector,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   centroid, angle, nframes),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>frames=(tqdm.tqdm(<span style="color: #af3a03;">range</span>(nframes))))
 <span style="background-color: #ebdbb2;"> </span>   anim_created.save(output_file)
 
 
 <span style="color: #9d0006;">if</span> <span style="color: #af3a03;">__name__</span>==<span style="color: #79740e;">"__main__"</span>:
-<span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">apartado1()</span>
+<span style="background-color: #ebdbb2;"> </span>   apartado1()
 <span style="background-color: #ebdbb2;"> </span>   apartado2(<span style="color: #79740e;">'arbol.png'</span>, <span style="color: #79740e;">'apartado2.gif'</span>, 100)
 </pre>
 </div>
@@ -594,7 +600,7 @@ Un dato a tener en cuenta en ambas animaciones es que las imagenes tienen el cer
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  vector[1]*(1-math.cos(angle))
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  - vector[0]*math.sin(angle)])   
 <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">elif</span> axis == 1:
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">Y Axisn</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">Y Axis</span>
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[1,1] = 1
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[0,0] = math.cos(angle)
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[0,2] = math.sin(angle)
@@ -626,17 +632,22 @@ Un dato a tener en cuenta en ambas animaciones es que las imagenes tienen el cer
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> torch.tensor([0, 0, 0, 1])))
 <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> output
 
-<span style="color: #9d0006;">def</span> <span style="color: #b57614;">AnimationFunction2D</span>(frame, figure, input_grid, translation_vector):
-<span style="background-color: #ebdbb2;"> </span>   output_grid = affine_rotation_given_center_2d(translation_vector, frame) @ input_grid
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">AnimationFunction2D</span>(frame, figure, input_grid, translation_vector, centroid, angle, nframes):
+<span style="background-color: #ebdbb2;"> </span>   coef = frame / nframes
+<span style="background-color: #ebdbb2;"> </span>   output_grid = (affine_rotation_given_center_2d(centroid, coef * angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  @ affine_translation_tensor_2d(translation_vector * coef)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  @ input_grid)
 <span style="background-color: #ebdbb2;"> </span>   figure.set_offsets(output_grid[:-1,:].permute(1,0))
 
-<span style="color: #9d0006;">def</span> <span style="color: #b57614;">AnimationFunction3D</span>(frame, ax, p, input_grid, translation_vector, axis, shape, cmap, diameter):
-<span style="background-color: #ebdbb2;"> </span>   output_grid = (affine_rotation_given_center_3d(translation_vector, frame, axis)
-<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  @ input_grid)
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">AnimationFunction3D</span>(frame, ax, p, input_grid, translation_vector, axis, shape, cmap, diameter, centroid, angle, nframes):
+<span style="background-color: #ebdbb2;"> </span>   coef = <span style="color: #af3a03;">float</span>(frame / nframes)
+<span style="background-color: #ebdbb2;"> </span>   t_tensor = (affine_rotation_given_center_3d(centroid, angle * coef, axis)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   @ affine_translation_tensor_3d(translation_vector * coef))
+<span style="background-color: #ebdbb2;"> </span>   output_grid = t_tensor @ input_grid
 <span style="background-color: #ebdbb2;"> </span>   ax.clear()
-<span style="background-color: #ebdbb2;"> </span>   ax.set_xlim(-60, 60)
-<span style="background-color: #ebdbb2;"> </span>   ax.set_ylim(-60, 60)
-<span style="background-color: #ebdbb2;"> </span>   ax.set_zlim(-60, 80)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_xlim(-40, 40)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_ylim(-40, 40)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_zlim(-60, 170)
 <span style="background-color: #ebdbb2;"> </span>   ax.contour(output_grid[0].reshape(shape),
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  output_grid[1].reshape(shape),
 <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  output_grid[2].reshape(shape),
@@ -651,7 +662,7 @@ Un dato a tener en cuenta en ambas animaciones es que las imagenes tienen el cer
 </div>
 <div id="postamble" class="status">
 <p class="author">Autor: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-04-25 mar 18:22</p>
+<p class="date">Created: 2023-04-25 mar 19:26</p>
 </div>
 </body>
 </html>
