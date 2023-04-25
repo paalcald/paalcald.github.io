@@ -1,0 +1,657 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+<!-- 2023-04-25 mar 18:04 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Discretización de Sistemas Dinámicos Continuos y Teorema de Liouville</title>
+<meta name="author" content="Pablo C. Alcalde" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Discretización de Sistemas Dinámicos Continuos y Teorema de Liouville</h1>
+
+<div id="outline-container-org333a17d" class="outline-2">
+<h2 id="org333a17d">Introduccion</h2>
+<div class="outline-text-2" id="text-org333a17d">
+<p>
+Se nos pide realizar transformaciones en 2d y 3d
+</p>
+
+<p>
+Ya sea
+</p>
+\begin{equation*}
+A =
+\begin{pmatrix}
+  a_{0,0} && a _{0,1} \\
+  a_{1,0} && a_{1,1}
+\end{pmatrix}
+v =
+\begin{pmatrix}
+v_0 \\
+v_1 \\
+\end{pmatrix}
+\end{equation*}
+<p>
+o
+</p>
+\begin{equation*}
+B =
+\begin{pmatrix}
+  b_{0,0} && b _{0,1} && b_{0,2}\\
+  b_{1,0} && b_{1,1} && b_{1,2} \\
+b_{2,0} && b_{2,1} && b_{2,2}
+\end{pmatrix}
+w =
+\begin{pmatrix}
+w_0 \\ w_1 \\ w_2
+\end{pmatrix}
+\end{equation*}
+<p>
+nuestras matrices que definan respectivamente la transformación y la translación en las dimensiones correspondientes usaremos el plano afín para unificar todas las operaciones como aplicación de matriz
+</p>
+
+\begin{equation*}
+T_{A} =
+\begin{pmatrix}
+  a_{0,0} && a _{0,1} && 0\\
+  a_{1,0} && a_{1,1} && 0 \\
+0 && 0 && 1
+\end{pmatrix}
+T_{v} =
+\begin{pmatrix}
+1 && 0 && v_0 \\
+0 && 1 && v_1 \\
+0 && 0 && 1 \\
+\end{pmatrix}
+\end{equation*}
+
+\begin{equation*}
+T_{B} =
+\begin{pmatrix}
+  b_{0,0} && b _{0,1} && b_{0,2} && 0\\
+  b_{1,0} && b_{1,1} && b_{1,2} && 0 \\
+b_{2,0} && b_{2,1} && b_{2,2} && 0 \\
+0 && 0 && 0 && 1 \\
+\end{pmatrix}
+T_{w} =
+\begin{pmatrix}
+1 && 0 && 0 && 0 && w_0 \\
+0 && 1 && 0 && 0 && w_1 \\
+0 && 0 && 1 && 0 && w_2 \\
+0 && 0 && 0 && 0 && 1
+\end{pmatrix}
+\end{equation*}
+</div>
+</div>
+
+
+<div id="outline-container-org8dc7922" class="outline-2">
+<h2 id="org8dc7922">Material Usado</h2>
+<div class="outline-text-2" id="text-org8dc7922">
+</div>
+<div id="outline-container-org4dc00d5" class="outline-3">
+<h3 id="org4dc00d5">PyTorch</h3>
+<div class="outline-text-3" id="text-org4dc00d5">
+<p>
+Para acelerar las transformaciones lineales hemos decidido usar la libreria PyTorch en lugar de Numpy
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgd5f0d77" class="outline-3">
+<h3 id="orgd5f0d77">Matplotlib</h3>
+<div class="outline-text-3" id="text-orgd5f0d77">
+<p>
+Se usa matplotlib por homogeneidad con respecto a otros trabajos, pero ralentiza considerablemente todo el proceso de extracción de datos, tanto que el tiempo de computo de nuestro programa es básicamente la espera al actualizar los plots.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgf0a2939" class="outline-3">
+<h3 id="orgf0a2939">TQDM</h3>
+<div class="outline-text-3" id="text-orgf0a2939">
+<p>
+Libreria que nos facilita una barra de progreso
+</p>
+</div>
+</div>
+
+<div id="outline-container-org9c57473" class="outline-3">
+<h3 id="org9c57473">Scikit-Image</h3>
+<div class="outline-text-3" id="text-org9c57473">
+<p>
+Para <i>abrir</i> la imagen en python como un array.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdf47ae6" class="outline-2">
+<h2 id="orgdf47ae6">Resultados</h2>
+<div class="outline-text-2" id="text-orgdf47ae6">
+</div>
+<div id="outline-container-org7aa8c9c" class="outline-3">
+<h3 id="org7aa8c9c">Apartado 1</h3>
+<div class="outline-text-3" id="text-org7aa8c9c">
+<p>
+Se generó la animación sin problemas y se facilita en el archivo adjunto.
+<img src="apartado1.gif" alt="apartado1.gif" />
+</p>
+</div>
+</div>
+
+<div id="outline-container-org4a81352" class="outline-3">
+<h3 id="org4a81352">Apartado 2</h3>
+<div class="outline-text-3" id="text-org4a81352">
+<p>
+El centroide se situa en el punto \((206, 175)\).
+La animación se facilita en el archivo adjunto.
+<img src="apartado2.gif" alt="apartado2.gif" />
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgdbdc533" class="outline-2">
+<h2 id="orgdbdc533">Conclusión</h2>
+<div class="outline-text-2" id="text-orgdbdc533">
+<p>
+La creación de animaciones utilizando el paquete matplotlib es cuanto menos críptica, no solo por que las funciones para actualizar los ejes son inconsistentes en cada uno de los plots posibles, si no que al mismo tiempo, los resultados de la práctica nos hacen pensar que su uso no es recomendable.
+</p>
+
+<p>
+Por alguna razón en el apartado 1 la animación en la que hemos borrado completamente los ejes y vuelto a crearlos se genera considerablemente más rapido que en la que únicamente los actualizamos.
+</p>
+
+<p>
+Un dato a tener en cuenta en ambas animaciones es que las imagenes tienen el cero de coordenadas en la esquina superior izquierda, mientras que en la representación habitual este se situa en la esquina inferior izquierda. Este dato hace que nuestras representaciones esten realmene invertidas respecto a como se verían las imagenes en su formato <i>.png</i>
+</p>
+</div>
+</div>
+
+
+
+<div id="outline-container-orgd8df5ac" class="outline-2">
+<h2 id="orgd8df5ac">Apéndice de Código</h2>
+<div class="outline-text-2" id="text-orgd8df5ac">
+</div>
+<div id="outline-container-org1644127" class="outline-3">
+<h3 id="org1644127">Python Script</h3>
+<div class="outline-text-3" id="text-org1644127">
+</div>
+<div id="outline-container-org5bac44e" class="outline-4">
+<h4 id="org5bac44e">Main</h4>
+<div class="outline-text-4" id="text-org5bac44e">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #9d0006;">import</span> math
+<span style="color: #9d0006;">import</span> sys
+<span style="color: #9d0006;">import</span> time
+<span style="color: #9d0006;">import</span> tqdm
+<span style="color: #9d0006;">import</span> torch
+<span style="color: #9d0006;">import</span> affinetransformations <span style="color: #9d0006;">as</span> atf
+<span style="color: #9d0006;">import</span> matplotlib.pyplot <span style="color: #9d0006;">as</span> plt
+<span style="color: #9d0006;">from</span> mpl_toolkits.mplot3d <span style="color: #9d0006;">import</span> axes3d
+<span style="color: #9d0006;">import</span> matplotlib.animation <span style="color: #9d0006;">as</span> ani
+<span style="color: #9d0006;">from</span> matplotlib <span style="color: #9d0006;">import</span> colormaps
+<span style="color: #9d0006;">from</span> skimage <span style="color: #9d0006;">import</span> io, data
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">apartado1</span>():
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">nframes</span> = 100
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">fig</span> = plt.figure()
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">ax</span> = plt.axes(projection=<span style="color: #79740e;">'3d'</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">x</span>, <span style="color: #076678;">y</span>, <span style="color: #076678;">z</span> = axes3d.get_test_data(0.05)
+<span style="background-color: #ebdbb2;"> </span>   shape = torch.tensor(x).shape
+<span style="background-color: #ebdbb2;"> </span>   cmap = colormaps.get_cmap(<span style="color: #79740e;">'viridis'</span>)
+
+<span style="background-color: #ebdbb2;"> </span>   p = ax.contour(x, y, z, 16, cmap=cmap)
+
+<span style="background-color: #ebdbb2;"> </span>   grid = torch.row_stack((torch.tensor(x).flatten(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   torch.tensor(y).flatten(),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   torch.tensor(z).flatten()))
+<span style="background-color: #ebdbb2;"> </span>   affine_grid = torch.row_stack((grid, torch.ones((1,<span style="color: #af3a03;">len</span>(grid[0])))))
+<span style="background-color: #ebdbb2;"> </span>   
+<span style="background-color: #ebdbb2;"> </span>   axis = 0
+<span style="background-color: #ebdbb2;"> </span>   diameter = torch.<span style="color: #af3a03;">max</span>(torch.cdist(grid[:].permute(1,0),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>grid[:].permute(1,0), p=2))
+<span style="background-color: #ebdbb2;"> </span>   translation_vector = torch.tensor([ 0, 0, diameter]).reshape(-1,1)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_xlim(-40, 40)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_ylim(-40, 40)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_zlim(-100, 100)
+
+<span style="background-color: #ebdbb2;"> </span>   anim_created = ani.FuncAnimation(fig,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>atf.AnimationFunction3D,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>fargs=(ax, p, affine_grid, translation_vector,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   axis, shape, cmap, diameter),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>frames=(tqdm.tqdm(torch.linspace(0,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> 3* math.pi,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> nframes))))
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">plt.savefig('apartado1.png')</span>
+<span style="background-color: #ebdbb2;"> </span>   anim_created.save(<span style="color: #79740e;">'apartado1.gif'</span>)
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">apartado2</span>(image_file, output_file, nframes):
+<span style="background-color: #ebdbb2;"> </span>   img = io.imread(image_file)
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">grid</span>, <span style="color: #076678;">colors</span> = atf.generate_pixel_coordinate_tensor(img)
+
+<span style="background-color: #ebdbb2;"> </span>   angle = 3 * math.pi
+<span style="background-color: #ebdbb2;"> </span>   centroid = torch.tensor([torch.mean(grid[i,:][colors[:,2] &lt; 240], dtype=torch.<span style="color: #af3a03;">float</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span><span style="color: #9d0006;">for</span> i <span style="color: #9d0006;">in</span> (0,1)]).reshape(-1,1)
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">print</span>(f<span style="color: #79740e;">"El centroide est&#225; en </span>{centroid}<span style="color: #79740e;">"</span>)
+<span style="background-color: #ebdbb2;"> </span>   diameter = torch.<span style="color: #af3a03;">max</span>(torch.cdist(grid[:, colors[:,2] &lt; 240].permute(1,0),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>grid[:, colors[:,2] &lt; 240].permute(1,0), p=2))
+<span style="background-color: #ebdbb2;"> </span>   translation_vector = torch.tensor([ diameter, diameter]).reshape(-1,1)
+
+<span style="background-color: #ebdbb2;"> </span>   affine_grid = torch.row_stack((grid, torch.ones((1,<span style="color: #af3a03;">len</span>(grid[0])))))
+<span style="background-color: #ebdbb2;"> </span>   fig = plt.figure()
+<span style="background-color: #ebdbb2;"> </span>   figure = plt.scatter(grid[1], grid[0], c=colors/255.0)
+<span style="background-color: #ebdbb2;"> </span>   plt.xlim(0, 2.2*diameter)
+<span style="background-color: #ebdbb2;"> </span>   plt.ylim(0, 2.2*diameter)
+
+<span style="background-color: #ebdbb2;"> </span>   anim_created = ani.FuncAnimation(fig,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>atf.AnimationFunction2D,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>fargs=(figure, affine_grid, translation_vector),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>frames=(tqdm.tqdm(torch.linspace(0,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> 3* math.pi,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> nframes))))
+<span style="background-color: #ebdbb2;"> </span>   anim_created.save(output_file)
+
+
+<span style="color: #9d0006;">if</span> <span style="color: #af3a03;">__name__</span>==<span style="color: #79740e;">"__main__"</span>:
+<span style="background-color: #ebdbb2;"> </span>   apartado1()
+<span style="background-color: #ebdbb2;"> </span>   apartado2(<span style="color: #79740e;">'arbol.png'</span>, <span style="color: #79740e;">'apartado2.gif'</span>, 100)
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-org6195440" class="outline-4">
+<h4 id="org6195440">Transformaciones</h4>
+<div class="outline-text-4" id="text-org6195440">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #9d0006;">import</span> math
+<span style="color: #9d0006;">import</span> torch
+<span style="color: #9d0006;">import</span> numpy <span style="color: #9d0006;">as</span> np
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">generate_pixel_coordinate_tensor</span>(image):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">since we try to mak this function general, but the return of io.imread can be very different</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">we have to adress all possible cases. The first one being that is a greyscale.</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">Here we have made the requisite for the image to be more than 4 pixels wide in its last dimension.</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> image.shape[-1] &gt; 4:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">dims</span> = image.shape
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #076678;">ncolors</span> = 1
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">elif</span> image.shape[-1] == 4:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   dims = image.shape[:-1]
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   ncolors = 4
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">elif</span> image.shape[-1] == 3:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   dims = image.shape[:-1]
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   ncolors = 3
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">else</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">raise</span> <span style="color: #8f3f71;">Exception</span>(<span style="color: #79740e;">'Wrong image format'</span>)
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> <span style="color: #af3a03;">len</span>(dims) == 2:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   output_grid = np.mgrid[0:dims[0],
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  0:dims[1]].reshape((2, -1))
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">else</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   output_grid = np.mgrid[0:dims[0],
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  0:dims[1],
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  0:dims[2]].reshape((3, -1))
+
+<span style="background-color: #ebdbb2;"> </span>   output_colors = np.reshape(image, (-1, ncolors))
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> torch.tensor(output_grid, dtype=torch.<span style="color: #af3a03;">float</span>), torch.tensor(output_colors)
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">affine_rotation_tensor_2d</span>(theta):
+<span style="background-color: #ebdbb2;"> </span>   rot_matrix = torch.zeros((2,2), dtype=torch.<span style="color: #af3a03;">float</span>)
+<span style="background-color: #ebdbb2;"> </span>   rot_matrix[0, 0] = math.cos(theta)
+<span style="background-color: #ebdbb2;"> </span>   rot_matrix[0, 1] = - math.sin(theta)
+<span style="background-color: #ebdbb2;"> </span>   rot_matrix[1, 0] = math.sin(theta)
+<span style="background-color: #ebdbb2;"> </span>   rot_matrix[1, 1] = math.cos(theta)
+<span style="background-color: #ebdbb2;"> </span>   output = torch.row_stack((torch.column_stack((rot_matrix, torch.tensor([0,0]))),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> torch.tensor([0,0,1])))
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> output
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">affine_rotation_given_center_2d</span>(vector, angle):
+<span style="background-color: #ebdbb2;"> </span>   rot_matrix = torch.zeros((2,2), dtype=torch.<span style="color: #af3a03;">float</span>)
+<span style="background-color: #ebdbb2;"> </span>   rot_matrix[0, 0] = math.cos(angle)
+<span style="background-color: #ebdbb2;"> </span>   rot_matrix[0, 1] = - math.sin(angle)
+<span style="background-color: #ebdbb2;"> </span>   rot_matrix[1, 0] = math.sin(angle)
+<span style="background-color: #ebdbb2;"> </span>   rot_matrix[1, 1] = math.cos(angle)
+<span style="background-color: #ebdbb2;"> </span>   
+<span style="background-color: #ebdbb2;"> </span>   affine_portion = torch.tensor([vector[0]*(1-math.cos(angle))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  + vector[1]*math.sin(angle),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  vector[1]*(1-math.cos(angle))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  - vector[0]*math.sin(angle)])
+<span style="background-color: #ebdbb2;"> </span>   output = torch.row_stack((torch.column_stack((rot_matrix, affine_portion)),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> torch.tensor([0,0,1])))
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> output
+
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">affine_translation_tensor_2d</span>(vector):
+<span style="background-color: #ebdbb2;"> </span>   output = torch.row_stack((torch.column_stack((torch.eye(2), vector)),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> torch.tensor([0,0,1])))
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> output
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">affine_rotation_tensor_3d</span>(theta, axis):
+<span style="background-color: #ebdbb2;"> </span>   rot_matrix = torch.zeros((3,3), dtype=torch.<span style="color: #af3a03;">float</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> axis == 0:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">X Axis</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[0,0] = 1
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[1,1] = math.cos(theta)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[1,2] = - math.sin(theta)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[2,1] = math.sin(theta)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[2,2] = math.cos(theta)
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">elif</span> axis == 1:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">Y Axisn</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[1,1] = 1
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[0,0] = math.cos(theta)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[0,2] = math.sin(theta)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[2,0] = - math.sin(theta)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[2,2] = math.cos(theta)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">else</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">Z Axis</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[2,2] = 1
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[0,0] = math.cos(theta)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[0,1] = -math.sin(theta)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[1,0] = math.sin(theta)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[1,1] = math.cos(theta)
+
+<span style="background-color: #ebdbb2;"> </span>   output = torch.row_stack((torch.column_stack((rot_matrix, torch.tensor([0, 0, 0]))),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> torch.tensor([0, 0, 0, 1])))
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> output
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">affine_rotation_given_center_3d</span>(vector, angle, axis):
+<span style="background-color: #ebdbb2;"> </span>   rot_matrix = torch.zeros((3,3), dtype=torch.<span style="color: #af3a03;">float</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> axis == 0:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">X Axis</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[0,0] = 1
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[1,1] = math.cos(angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[1,2] = - math.sin(angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[2,1] = math.sin(angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[2,2] = math.cos(angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   affine_portion = torch.tensor([0,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  vector[0]*(1-math.cos(angle))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  + vector[1]*math.sin(angle),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  vector[1]*(1-math.cos(angle))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  - vector[0]*math.sin(angle)])   
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">elif</span> axis == 1:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">Y Axisn</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[1,1] = 1
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[0,0] = math.cos(angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[0,2] = math.sin(angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[2,0] = - math.sin(angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[2,2] = math.cos(angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   affine_portion = torch.tensor([vector[0]*(1-math.cos(angle))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  + vector[1]*math.sin(angle),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  0,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  vector[1]*(1-math.cos(angle))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  - vector[0]*math.sin(angle)])      
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">else</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #a89984;">#</span><span style="color: #a89984;">Z Axis</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[2,2] = 1
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[0,0] = math.cos(angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[0,1] = -math.sin(angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[1,0] = math.sin(angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   rot_matrix[1,1] = math.cos(angle)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   affine_portion = torch.tensor([vector[0]*(1-math.cos(angle))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  + vector[1]*math.sin(angle),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  vector[1]*(1-math.cos(angle))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  - vector[0]*math.sin(angle),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  0])
+<span style="background-color: #ebdbb2;"> </span>   output = torch.row_stack((torch.column_stack((rot_matrix, affine_portion)),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> torch.tensor([0, 0, 0, 1])))
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> output
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">affine_translation_tensor_3d</span>(vector):
+<span style="background-color: #ebdbb2;"> </span>   output = torch.row_stack((torch.column_stack((torch.eye(3), vector)),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> torch.tensor([0, 0, 0, 1])))
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> output
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">AnimationFunction2D</span>(frame, figure, input_grid, translation_vector):
+<span style="background-color: #ebdbb2;"> </span>   output_grid = affine_rotation_given_center_2d(translation_vector, frame) @ input_grid
+<span style="background-color: #ebdbb2;"> </span>   figure.set_offsets(output_grid[:-1,:].permute(1,0))
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">AnimationFunction3D</span>(frame, ax, p, input_grid, translation_vector, axis, shape, cmap, diameter):
+<span style="background-color: #ebdbb2;"> </span>   output_grid = (affine_rotation_given_center_3d(translation_vector, frame, axis)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  @ input_grid)
+<span style="background-color: #ebdbb2;"> </span>   ax.clear()
+<span style="background-color: #ebdbb2;"> </span>   ax.set_xlim(-30, 30)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_ylim(-30, 30)
+<span style="background-color: #ebdbb2;"> </span>   ax.set_zlim(-60, 80)
+<span style="background-color: #ebdbb2;"> </span>   ax.contour(output_grid[0].reshape(shape),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  output_grid[1].reshape(shape),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  output_grid[2].reshape(shape),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  16, extend3d=<span style="color: #8f3f71;">True</span>,cmap=cmap)
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span>  p
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Autor: Pablo C. Alcalde</p>
+<p class="date">Created: 2023-04-25 mar 18:04</p>
+</div>
+</body>
+</html>
