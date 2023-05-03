@@ -1,0 +1,397 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-03 mié 14:51 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Poisson</title>
+<meta name="author" content="Pablo C. Alcalde" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Poisson</h1>
+<p>
+#+filetags :distribución:discreta:poisson:
+</p>
+<div id="outline-container-orgaf5dc90" class="outline-2">
+<h2 id="orgaf5dc90">Ejemplos</h2>
+<div class="outline-text-2" id="text-orgaf5dc90">
+<p>
+El número de clientes que aparecen en una tienda en un día en particular.
+</p>
+</div>
+</div>
+<div id="outline-container-orgf4d5774" class="outline-2">
+<h2 id="orgf4d5774">Significado</h2>
+<div class="outline-text-2" id="text-orgf4d5774">
+<p>
+Supón que un evento puede ocurrir mas de una vez en un intervalo fijo de tiempo, con la probabilidad de que ocurra una vez independiente de que vuelva a ocurrir.
+Tomamos la cantidad de eventos por unidad de tiempo como parametro.
+</p>
+</div>
+<div id="outline-container-org79307b6" class="outline-3">
+<h3 id="org79307b6">Función de Probabilidad&#xa0;&#xa0;&#xa0;<span class="tag"><span class="pmf">pmf</span>&#xa0;<span class="fp">fp</span></span></h3>
+<div class="outline-text-3" id="text-org79307b6">
+<p>
+\(P(X=k) = \frac{\lambda^ke^{-\lambda}}{k!}\) donde <i>k</i> es el número de ocurrencias y  <i>&lambda;</i> son las ocurrencias por unidad de tiempo.
+</p>
+</div>
+</div>
+<div id="outline-container-org46ced23" class="outline-3">
+<h3 id="org46ced23">Función Generadora de Momentos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mgf">mgf</span>&#xa0;<span class="fgm">fgm</span></span></h3>
+<div class="outline-text-3" id="text-org46ced23">
+<p>
+\(M_{X}(t) = e^{\lambda (e^t - 1)}\)
+</p>
+</div>
+<div id="outline-container-orged0c060" class="outline-4">
+<h4 id="orged0c060">Why?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span></span></h4>
+<div class="outline-text-4" id="text-orged0c060">
+\begin{align*}
+  M_{X}(t) &= \mathbb{E}(e^{tX}) \\
+           &= \sum_{x = 0}^{\infty} e^{tx}P(X=x) \\
+           &= \sum_{x = 0}^{\infty} \frac{e^{tx}e^{-\lambda}\lambda^x}{x!} \\
+           &=e^{-\lambda} \sum_{x=0}^{\infty} \frac{\left( \lambda e^t \right)^x}{x!} && \text{by series representation of exponential}\\
+           &= e^{-\lambda} e^{\lambda e^t} \\
+  &= e^{\lambda (e^t - 1)} 
+\end{align*}
+</div>
+</div>
+</div>
+<div id="outline-container-org064b68c" class="outline-3">
+<h3 id="org064b68c">Media&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mean">mean</span>&#xa0;<span class="media">media</span></span></h3>
+<div class="outline-text-3" id="text-org064b68c">
+<p>
+\( \mathbb{E}(X) = \lambda\)
+</p>
+</div>
+<div id="outline-container-org36fb0d1" class="outline-4">
+<h4 id="org36fb0d1">Why?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span></span></h4>
+<div class="outline-text-4" id="text-org36fb0d1">
+<p>
+\( \mathbb{E}(X) = M'_X(0) = \lambda e^t e^{\lambda ( e^t - 1)} [t \mapsto 0] = \lambda\)
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org3ee2f9c" class="outline-3">
+<h3 id="org3ee2f9c">Varianza&#xa0;&#xa0;&#xa0;<span class="tag"><span class="var">var</span></span></h3>
+<div class="outline-text-3" id="text-org3ee2f9c">
+<p>
+\(\mathbb{V}(x) = \lambda \)
+</p>
+</div>
+<div id="outline-container-orgdc11fd4" class="outline-4">
+<h4 id="orgdc11fd4">Why?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span></span></h4>
+<div class="outline-text-4" id="text-orgdc11fd4">
+<p>
+Since \(\mathbb{V}(X) =  \mathbb{E}(X^2) - \mathbb{E}(X)^2 \) and we already know that \( \mathbb{E}(X) = \lambda\) we are only left to calculate \(\mathbb{E}(X^2)\).
+</p>
+
+\begin{align*}
+  \mathbb{E}(X^2) &= M''_X(0)\\
+       &= \frac{d}{dt} \lambda e^t e^{\lambda ( e^t - 1)} [t \mapsto 0]\\
+       &= \lambda e^t e^{\lambda ( e^t - 1)} + \lambda^2 e^{2t}e^{\lambda ( e^t - 1)}[t \mapsto 0]\\
+  &=\lambda + \lambda^2
+\end{align*}
+
+<p>
+\(\mathbb{V}(x) = \mathbb{E}(X^2) - \mathbb{E}(X)^2 = \lambda + \lambda^{2} - \lambda^2 = \lambda\) 
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-orga878bed" class="outline-3">
+<h3 id="orga878bed">Información de Fisher&#xa0;&#xa0;&#xa0;<span class="tag"><span class="if">if</span>&#xa0;<span class="fi">fi</span></span></h3>
+<div class="outline-text-3" id="text-orga878bed">
+<p>
+\( I^{\star} = \frac{1}{\lambda} \)
+</p>
+</div>
+<div id="outline-container-orgc3a9499" class="outline-4">
+<h4 id="orgc3a9499">¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h4>
+<div class="outline-text-4" id="text-orgc3a9499">
+<p>
+Sencilla comprobación tomando la segunda parcial.
+</p>
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org68348b9" class="outline-2">
+<h2 id="org68348b9">Inferencia Estadística</h2>
+<div class="outline-text-2" id="text-org68348b9">
+</div>
+<div id="outline-container-org9c71882" class="outline-3">
+<h3 id="org9c71882">Estimador Método de Momentos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mm">mm</span>&#xa0;<span class="emm">emm</span></span></h3>
+<div class="outline-text-3" id="text-org9c71882">
+<p>
+\( \lambda_{\text{MM}} = \overline{x} \)
+</p>
+</div>
+<div id="outline-container-org2c1a502" class="outline-4">
+<h4 id="org2c1a502">¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h4>
+<div class="outline-text-4" id="text-org2c1a502">
+<p>
+Sabemos que el momento poblacional está dado por &lambda;, así que únicamente con igualar esto al momento muestral obtenemos el resultado.
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org1cc8837" class="outline-3">
+<h3 id="org1cc8837">Estimador de Máxima Verosimilitud</h3>
+<div class="outline-text-3" id="text-org1cc8837">
+<p>
+\( \lambda_{\text{EMV}} = \overline{x} \)
+</p>
+</div>
+<div id="outline-container-org9286a2e" class="outline-4">
+<h4 id="org9286a2e">¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h4>
+<div class="outline-text-4" id="text-org9286a2e">
+<p>
+\(P(X_1=x_1, \cdots , X_n= x_n) = \frac{\lambda^{\sum x_i}e^{-\lambda n}}{\prod x_i!}\)
+lo que implica que la verosimilitud se puede escribir como
+</p>
+\begin{equation*}
+L(\lambda; \vec{x}) = \frac{\lambda^{\sum x_i}e^{-\lambda n}}{\prod x_i!}\) \\
+\end{equation*}
+
+\begin{equation*}
+\ln L(\lambda; \vec{x}) = {\sum x_i} \ln \lambda - \lambda n - {\sum \ln x_i!}\) \\
+\end{equation*}
+
+\begin{align*}
+\frac{\partial \ln L(\lambda; \vec{x})}{\partial\lambda} &= \frac{\sum x_i}{\lambda} - n = 0 \\
+& \iff \frac{\sum x_i}{\lambda} = n \\
+& \iff \overline{x} = \lambda
+\end{align*}
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Pablo C. Alcalde</p>
+<p class="date">Created: 2023-05-03 mié 14:51</p>
+</div>
+</body>
+</html>
