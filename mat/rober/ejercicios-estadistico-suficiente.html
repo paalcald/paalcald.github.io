@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-03-14 mar 16:58 -->
+<!-- 2023-05-03 mié 14:33 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Ejercicios de Estadísticos Suficientes</title>
@@ -275,9 +275,9 @@ Por ser común a todos los casos, en primer lugar dado que la función de densid
     {\left( \prod_{i = 1}^n x_i \right)}^{\alpha - 1} {\left( \prod_{i = 1}^n (1 - x_i) \right)}^{\beta - 1} \\
 \end{align*}
 </div>
-<div id="outline-container-orgf3691fb" class="outline-4">
-<h4 id="orgf3691fb">&alpha; desconocido y &beta; conocido</h4>
-<div class="outline-text-4" id="text-orgf3691fb">
+<div id="outline-container-orgcebd9a0" class="outline-4">
+<h4 id="orgcebd9a0">&alpha; desconocido y &beta; conocido</h4>
+<div class="outline-text-4" id="text-orgcebd9a0">
 <p>
 Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
 </p>
@@ -291,9 +291,9 @@ De donde podemos concluir que \( T(\vec{x}) = \prod_{i = 1}^n x_i \) es suficien
 </p>
 </div>
 </div>
-<div id="outline-container-org6177ed7" class="outline-4">
-<h4 id="org6177ed7">&alpha; conocido y &beta; desconocido</h4>
-<div class="outline-text-4" id="text-org6177ed7">
+<div id="outline-container-org7924161" class="outline-4">
+<h4 id="org7924161">&alpha; conocido y &beta; desconocido</h4>
+<div class="outline-text-4" id="text-org7924161">
 <p>
 Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
 </p>
@@ -353,9 +353,9 @@ Por ser común a todos los casos, en primer lugar tomaremos la funcion de densid
 \end{align*} 
 </div>
 
-<div id="outline-container-orgcebd9a0" class="outline-4">
-<h4 id="orgcebd9a0">&alpha; desconocido y &beta; conocido</h4>
-<div class="outline-text-4" id="text-orgcebd9a0">
+<div id="outline-container-org060e416" class="outline-4">
+<h4 id="org060e416">&alpha; desconocido y &beta; conocido</h4>
+<div class="outline-text-4" id="text-org060e416">
 <p>
 Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
 </p>
@@ -369,9 +369,9 @@ De donde podemos concluir que \( T \left( \vec{x} \right) =\prod_{i = 1}^n x_i \
 </div>
 </div>
 
-<div id="outline-container-org7924161" class="outline-4">
-<h4 id="org7924161">&alpha; conocido y &beta; desconocido</h4>
-<div class="outline-text-4" id="text-org7924161">
+<div id="outline-container-orgd5c2632" class="outline-4">
+<h4 id="orgd5c2632">&alpha; conocido y &beta; desconocido</h4>
+<div class="outline-text-4" id="text-orgd5c2632">
 <p>
 Aplicando el <a href="teorema-factorizacion-fisher-neyman.html">Teorema de Factorización de Fisher-Neyman</a> podemos descomponer \(f_{\alpha,\beta} \left( \vec{x} \right) \) de la siguiente manera.
 </p>
@@ -488,6 +488,64 @@ Donde podemos concluir que \( \overline{x} \) es un estadístico suficiente para
 <p>
 Observa
 </p>
+
+
+<p>
+Notese, que de no haber hecho el análisis anterior, podríamos haber operado dentro del cuadrado.
+</p>
+\begin{align*}
+ f_{\mu, \sigma} \left( \vec{x} \right)
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n}
+e^{ - \sum_{i=1}^{n}\left( \frac{x_i - \mu}{2\sigma} \right)^2} \\
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n}
+e^{ -
+\sum_{i=1}^{n}\left( \frac{x_i^2 - 2x_i \mu + \mu^2}{2\sigma^2} \right)} \\
+&= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n}
+e^{ -
+\frac{\sum_{i=1}^n
+x_i^2}{2\sigma^2}
+}
+e^{ -
+\frac{n\mu^2}
+  {2\sigma^2}
+}
+e^{ -
+\frac{\mu}
+  {\sigma^2}
+\sum_{i=1}^n
+x_i
+} \\
+\end{align*}
+
+<p>
+y con la siguiente factorización
+</p>
+\begin{gather*}
+h \left( \vec{x} \right)= \frac{1}{\left( \sqrt{2 \pi \sigma^2} \right)^n}
+e^{ -
+\frac{\sum_{i=1}^n
+  x_i^2}{2\sigma^2}
+}\\
+\left( g_{\sigma} \circ T \right) (\vec{x}) =
+e^{ -
+\frac{n\mu^2}
+  {2\sigma^2}
+}
+e^{ -
+\frac{\mu}
+  {\sigma^2}
+\sum_{i=1}^n
+x_i
+}
+\end{gather*}
+
+<p>
+Donde concluiriamos que \( \sum_{i=1}^{n} x_i \) es suficiente para &mu;.
+</p>
+
+<p>
+Ambos resultados son equivalentes por ser uno simplemente factor del otro.
+</p>
 </div>
 </div>
 </div>
@@ -495,8 +553,7 @@ Observa
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-03-14 mar 16:58</p>
-<p class="validation"><a href="https://validator.w3.org/check?uri=referer">Validate</a></p>
+<p class="date">Created: 2023-05-03 mié 14:33</p>
 </div>
 </body>
 </html>
