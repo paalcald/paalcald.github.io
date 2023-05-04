@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-04 jue 11:28 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Cuestiones Teóricas</title>
+<meta name="author" content="Pablo C. Alcalde" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Cuestiones Teóricas</h1>
+<div id="outline-container-orgb90f9de" class="outline-2">
+<h2 id="orgb90f9de">2017-2018 Evaluación Ordinaria</h2>
+</div>
+<div id="outline-container-org55e43a0" class="outline-2">
+<h2 id="org55e43a0">Para una población normal defínase la distribución de la F de Snedecor con m y n grados de libertad.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2018o">2018o</span>&#xa0;<span class="2017e">2017e</span>&#xa0;<span class="2015e">2015e</span></span></h2>
+</div>
+<div id="outline-container-orgd1595a5" class="outline-2">
+<h2 id="orgd1595a5">Defínase el estadístico de la razón de verosimilitudes &lambda;(X) y escríbase su distribición asintótica. Utilícese esta última para determinar la región de rechazo de un contraste de la razón de verosimilitudes para m.a.s. de tamaño <i>n</i> y nivel de significacióñ <i>&alpha;</i>.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2018o">2018o</span></span></h2>
+</div>
+<div id="outline-container-orga7d9e11" class="outline-2">
+<h2 id="orga7d9e11">Enúnciese el teorema de factorización para la obtención de estadísticos suficientes y aplíquese la distribución de Poisson de parámetro &theta; para m.a.s. de tamaño <i>n</i>.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2018o">2018o</span>&#xa0;<span class="2015e">2015e</span></span></h2>
+</div>
+<div id="outline-container-org3830320" class="outline-2">
+<h2 id="org3830320">Dada una m.a.s. X<sub>1</sub>, &#x2026;, X<sub>n</sub> de una población X, defínase variable pivotal o pivote, y su utilidad para la construcción de intervalos de confianza.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2018o">2018o</span>&#xa0;<span class="2015e">2015e</span>&#xa0;<span class="2012e">2012e</span></span></h2>
+</div>
+<div id="outline-container-orgd704f15" class="outline-2">
+<h2 id="orgd704f15">Indíquese la forma de actuar en los tests bayesianos para contrastar una hipótesis nula simple frente a una alternativa simple. Se supone una m.a.s. de tamaño <i>n</i> y que la distribución inicial da la misma probabilidad a la hipótesis nula que a la alternativa.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2018o">2018o</span></span></h2>
+</div>
+<div id="outline-container-org9a796c9" class="outline-2">
+<h2 id="org9a796c9">Dadas dos poblaciones normales N(&mu;<sub>1,&sigma;</sub>) y N(&mu;<sub>2,&sigma;</sub>) con &sigma; desconocida, constrúyase un intervalo para la diferencia de medias de grado de confianza  <i>1 - &alpha;</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017e">2017e</span></span></h2>
+</div>
+<div id="outline-container-org2ea5dab" class="outline-2">
+<h2 id="org2ea5dab">¿Cómo se puede rebajar la varianza de un estimador centrado de la función \(h(\theta)\) cuando existe un estadístico \(S(X)\) suficiente? En qué caso se puede obtener el estimador centrado de mínima varianza?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017e">2017e</span></span></h2>
+</div>
+<div id="outline-container-orge5e9f1a" class="outline-2">
+<h2 id="orge5e9f1a">Enúnciese el Teorema de Neyman-Pearson para contrastar H<sub>0</sub> : &theta; = &theta;<sub>0</sub> vs H<sub>1</sub> : &theta; = &theta;<sub>1</sub>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017e">2017e</span>&#xa0;<span class="2016o">2016o</span>&#xa0;<span class="2018e">2018e</span></span></h2>
+</div>
+<div id="outline-container-orgf2d4e63" class="outline-2">
+<h2 id="orgf2d4e63">Enúnciese la Cota de Frechet-Cramér-Rao para estimadores centrados de &theta; y explíquese su significado.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017e">2017e</span>&#xa0;<span class="2013o">2013o</span>&#xa0;<span class="2012e">2012e</span></span></h2>
+</div>
+<div id="outline-container-orgab95866" class="outline-2">
+<h2 id="orgab95866">Para m.a.s. de tamaño <i>n</i> de una poblacióñ de <a href="20230407125050-bernoulli.html#ID-6009d6da-54e8-4174-9b62-4f13d29bcf7b">Bernoulli</a>(&theta;). Si se supone que la distribución inicial para &theta; es una <a href="20230503102906-beta.html#ID-832758f1-20f6-4c84-9722-65da32ef37e7">Beta</a>(p<sub>0</sub>, q<sub>0</sub>) obténgase la distribución final de &theta;.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017o">2017o</span></span></h2>
+</div>
+<div id="outline-container-org819da9f" class="outline-2">
+<h2 id="org819da9f">Para qué se puede usar la <a href="20230503190757-funcion_de_distribucion_empirica.html#ID-b5428481-c725-4626-b99b-94261ee930f0">Función de Distribución Empírica</a> o muestral F<sup>*</sup><sub>n</sub> (x).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017o">2017o</span></span></h2>
+</div>
+<div id="outline-container-org38d5286" class="outline-2">
+<h2 id="org38d5286">Definir la <a href="20230503190757-funcion_de_distribucion_empirica.html#ID-b5428481-c725-4626-b99b-94261ee930f0">Función de Distribución Empírica</a> \(F_n(x)\), calcular la distribución de \(nF_n(x)\) e indicar una variable aleatoria cuya función de distribución sea \(F_n(x)\).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017o">2017o</span></span></h2>
+</div>
+<div id="outline-container-org47a169d" class="outline-2">
+<h2 id="org47a169d">Dada una m.a.s. X<sub>1</sub>, &#x2026;, X<sub>n</sub> de una poblacióñ X, se consideranl a varianza y la cuasivarianza muestrales como estimadores de la varianza poblacional. ¿Cuál de las dos tiene menor error cuadrático medio?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017o">2017o</span></span></h2>
+</div>
+<div id="outline-container-org266a4d3" class="outline-2">
+<h2 id="org266a4d3">Para una población con parámetro de escala &sigma; e.d. \(f(x|\sigma) = (1/\sigma) \varphi(x/\sigma)\), véase que \( Q(\overline{X}; \sigma) = \overline{X}/\sigma \) es una variable pivotal ¿Puede poner un ejemplo?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017o">2017o</span></span></h2>
+</div>
+<div id="outline-container-org859dec5" class="outline-2">
+<h2 id="org859dec5">Sea (X<sub>1</sub>, &hellip;, X<sub>n</sub>)una muestra aleatoria simple de \( X \sim f_{\sigma}(x) = \frac{1}{\sigma}f\left( \frac{x}{\sigma} \right) \), donde \(f_\sigma(x)\) es la función de densidad de una familia de distribuciones con parámetro de escala <i>&sigma;</i>. Comprobar que \( Q(X_{1}, \dots, X_{n}) = \frac{\overline{X}}{\sigma} \) es una cantidad pivotal y dar algún ejemplo.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017o">2017o</span></span></h2>
+</div>
+<div id="outline-container-org1cb7e10" class="outline-2">
+<h2 id="org1cb7e10">Diferencia entre el p-valor (x<sub>1</sub>, &#x2026;, x<sub>n</sub>) y el tamaño &alpha; de un test de hipótesis, para contrastar H<sub>0</sub> &theta; &isin; &Theta;<sub>0</sub> frente a H<sub>1</sub> : &theta; &isin; &Theta;<sub>1</sub>.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017o">2017o</span></span></h2>
+</div>
+<div id="outline-container-org75a17a3" class="outline-2">
+<h2 id="org75a17a3">Sea (X<sub>1</sub>, &hellip;, X<sub>n</sub>) una muestra aleatoria simple de \( X \sim f_{\theta}(x)\), donde &theta; &isin; &Theta;. Supongamos que deseamos contrastar H<sub>0</sub> : &theta; &isin; &Theta;<sub>0</sub> &sub; &Theta;$ frente a H<sub>1</sub> : &theta; &not;&isin; &Theta;<sub>0</sub>. Explicar la diferencia entra nivel de significación y el tamaño del test de hipótesis.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017o">2017o</span></span></h2>
+</div>
+<div id="outline-container-org5b1ad76" class="outline-2">
+<h2 id="org5b1ad76">Defínase en el muestreo de poblaciones normales, la distribución de Student T<sub>&or;</sub> con &or; grados de libertad sin obtener su densidad.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2015o">2015o</span>&#xa0;<span class="2018e">2018e</span></span></h2>
+</div>
+<div id="outline-container-org01c6e25" class="outline-2">
+<h2 id="org01c6e25">Sea (X<sub>1</sub>, &#x2026;, X<sub>n</sub>) una m.a.s. procediente de una uniforme U(-&theta;, &theta;), con &theta; &gt; 0. ¿Es &theta; un parámetro de posición o de escala? ¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2015o">2015o</span>&#xa0;<span class="2016e">2016e</span></span></h2>
+</div>
+<div id="outline-container-orgf2b5f82" class="outline-2">
+<h2 id="orgf2b5f82">¿Qué se entiende por función de potencia de un contraste? Sea X<sub>1</sub>, &#x2026; X<sub>25</sub> una m.a.s. de una población N(&mu;,&sigma;), con ambos parámetros desconocidos y se desea contrastar las hipótesis nula H<sub>o</sub> : &mu; = 175 frente a la alternativa &mu; &ne; 175. Si \( \overline{x} = 172 \) y \( s = 4.5 \) escribe la función de potencia para el contraste de región crítica. \( RC = \left\{ \overline{x} : |\overline{x} - 175 | > 2 \right\} \)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2015o">2015o</span></span></h2>
+</div>
+<div id="outline-container-org7b07f04" class="outline-2">
+<h2 id="org7b07f04">Si \(T=T(X_1, ..., X_n)\) es un estadístico suficiente ¿qué confición debe cumplir cualquier estadístico "basado en T"? Enúnciese el Teorema de Rao-Blackwell y descríbase su importancia para encontrar "mejores estimadores" (no necesariamente insesgado)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2015o">2015o</span>&#xa0;<span class="2018e">2018e</span></span></h2>
+</div>
+<div id="outline-container-org03016f6" class="outline-2">
+<h2 id="org03016f6">Sea \((X_1, ... X_n)\) una m.a.s. particular de una población X con distribución <a href="20230501165035-exponencial.html#ID-294356dc-7167-4460-8a86-f5748ccab1ea">Exponencial</a>(&theta;) <b>se dá la función de distribución</b> y supóngase una distribucióñ a priori <b>espacio en blanco</b> obténgase la distribución a posteriori.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2015o">2015o</span></span></h2>
+</div>
+<div id="outline-container-orgf10552f" class="outline-2">
+<h2 id="orgf10552f">Enúnciese sin demostrarlo el <a href="20230503193947-teorema_de_fisher.html#ID-cbbf836d-df3a-4f5b-b6d6-f7aefbf0cd30">Teorema de Fisher</a>.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2016e">2016e</span>&#xa0;<span class="2015e">2015e</span>&#xa0;<span class="2011o">2011o</span>&#xa0;<span class="2021e">2021e</span></span></h2>
+</div>
+<div id="outline-container-org444dcf2" class="outline-2">
+<h2 id="org444dcf2">Sean X<sub>1</sub>, X<sub>2</sub>, X<sub>3</sub> v.a. independientes con distribuciones N(i, &sigma; = i) constrúyase una v.a. &chi;<sup>2</sup><sub>3</sub> a partir de ellas.</h2>
+</div>
+<div id="outline-container-org4dc7b82" class="outline-2">
+<h2 id="org4dc7b82">Dada la distribución inicial &pi;(&theta;) y el modelo f(x|&theta;), calcúlese a partir de ellas, la distribución final &pi;(&theta;| x<sub>1</sub>, &#x2026; x<sub>n</sub>), e indíquese como construir un intervalo creible de probabilidad <i>1 - &alpha;</i> para &theta;.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2016e">2016e</span></span></h2>
+</div>
+<div id="outline-container-org59be390" class="outline-2">
+<h2 id="org59be390">En estimación puntual paramétrica defínase, con pérdida cuadrática, <span class="underline">el mejor estimador de &theta;</span> y el estimador centrado de &theta; de mínima varianza. Si ambos existen ¿Cuál de éllos es preferible en todos los casos?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2016e">2016e</span></span></h2>
+</div>
+<div id="outline-container-org1ac42c3" class="outline-2">
+<h2 id="org1ac42c3">Para m.a.s. de tamaño <i>n</i> de una población N(0,1) obténgase analíticamente la distribución en el muestreo del momento muestral respecto al origen de orden 2. es decir de \( \frac{1}{n}\sum_{i=1}^n X^2_i \).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2016o">2016o</span></span></h2>
+</div>
+<div id="outline-container-org9f355af" class="outline-2">
+<h2 id="org9f355af">Sea x<sub>1</sub>, &#x2026;, x<sub>n</sub> una m.a.s. de una población con función de densidad \(f(x|\theta)\) donde si &theta; = 0 \( f(x|\theta) \) es una distribución U(0,1) y si &theta; = 1 \(f(x|\theta) = \frac{1}{2\sqrt{x}} I_{[0,1]}(x)\) determínese el estimador de máxima verosimilitud para &theta;.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2016o">2016o</span></span></h2>
+</div>
+<div id="outline-container-org3e5e949" class="outline-2">
+<h2 id="org3e5e949">Relacionesé el teorema de Rao-Blackwell con la obtención de estimadores insesgados.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2016o">2016o</span></span></h2>
+</div>
+<div id="outline-container-orga6b79a2" class="outline-2">
+<h2 id="orga6b79a2">Supóngase que &Theta; - ℝ, espacio paramétrico, es la recta real y que se quiere contrastar la hipótesis H<sub>0</sub> : &theta; &ge; 10 frente a H<sub>1</sub> : &theta; &lt; 10 y que la función de potencia del test es esctrictamente decreciente en ℝ ¿qué condiciones debe cumplir la función de potencia para que el test tenga, respectivamente "<i>tamaño 0.01</i>" y "<i>nivel 0.01</i>" ¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2015e">2015e</span></span></h2>
+</div>
+<div id="outline-container-org9528217" class="outline-2">
+<h2 id="org9528217">Mediante el método geométrico obténgase la función de densidad conjunta de los estadísticos ordenados f<sub>min(x), max(x)</sub> (y<sub>1</sub>, y<sub>2</sub>) en función de la distribución de población F y de la función de densidad <i>f</i>.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2014e">2014e</span></span></h2>
+</div>
+<div id="outline-container-org7270a66" class="outline-2">
+<h2 id="org7270a66">Defínase estadístico completo y pongase un ejemplo.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2014e">2014e</span>&#xa0;<span class="2011e">2011e</span></span></h2>
+</div>
+<div id="outline-container-org27331bf" class="outline-2">
+<h2 id="org27331bf">Pruébese que para m.a.s. de tamaño <i>n</i> la densidad final es compatible con el principio de verosimilitud.</h2>
+</div>
+<div id="outline-container-org2f23420" class="outline-2">
+<h2 id="org2f23420">Véase que en condiciones bastante generales \( T(X_1, ... X_n; \theta) = -2 \sum_{i=1}^n \ln F(X_i|\theta) \) puede ser una variable pivotal.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2014e">2014e</span></span></h2>
+</div>
+<div id="outline-container-orgcbc72c4" class="outline-2">
+<h2 id="orgcbc72c4">¿Cuál es el problema de Behrens-Fisher?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2014e">2014e</span></span></h2>
+</div>
+<div id="outline-container-org87628fb" class="outline-2">
+<h2 id="org87628fb">Enúnciese el teorema de Rao-Blackwell y el de Lehmann-Schefé y explíquese su importancia.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011o">2011o</span></span></h2>
+</div>
+<div id="outline-container-org9dfb258" class="outline-2">
+<h2 id="org9dfb258">Determínese un intervalo de grado de confianza <i>1 - &alpha;</i> para la varianza &sigma;<sup>2</sup> a partir de una m.a.s. de tamaño n de una población N(&mu;, &sigma;)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011o">2011o</span></span></h2>
+</div>
+<div id="outline-container-org0201b45" class="outline-2">
+<h2 id="org0201b45">Escríbase el estadístico de la razón de verosimilitudes &lambda;(X<sub>1</sub>, &#x2026;, X<sub>n</sub>) y su distribución asintótica. Utillícese esta última para determinar las regiones de rechazo de los constrastes de la razón de verosimilitudes de tamaño &alpha;.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011o">2011o</span></span></h2>
+</div>
+<div id="outline-container-orgbb15434" class="outline-2">
+<h2 id="orgbb15434">Dadas dos hipótesis estadísticas H<sub>0</sub> : &theta; = 2 ó &theta; = 5 frente a la alternativa H<sub>1</sub> : &theta; &ne; 2 y &theta; &ne; 5 ¿cuándo se dice que un constraste C<sub>1</sub> es más potenete que otro C<sub>2</sub> a nivel 0.05?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011o">2011o</span></span></h2>
+</div>
+<div id="outline-container-org416cd5f" class="outline-2">
+<h2 id="org416cd5f">Defínase p-valor y póngase un ejemplo.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011o">2011o</span>&#xa0;<span class="2012o">2012o</span>&#xa0;<span class="2019o">2019o</span></span></h2>
+</div>
+<div id="outline-container-org36118cf" class="outline-2">
+<h2 id="org36118cf">Sean X &sim; Normal(&mu;<sub>1,&sigma;</sub><sub>1</sub>) e Y &sim; N(&mu;<sub>2</sub>, &sigma;<sub>2</sub>) v.a. independientes. Se considera una m.a.s. de la primera de tamaño <i>n</i> y una m.a.s. de la segunda de tamaño <i>m</i> Obtengase razonadamente la distribución de \( \frac{S^2_{n-1}/\sigma^2_1}{S^2_{m-1}/\sigma^2_2} \) .&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2013o">2013o</span></span></h2>
+</div>
+<div id="outline-container-org4c896b3" class="outline-2">
+<h2 id="org4c896b3">Para m.a.s. de tamaño <i>n</i> de una población con distribución U(0,&theta;), con &theta; &gt; 0 encuéntrese un estadístico suficiente para &theta;.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2013o">2013o</span></span></h2>
+</div>
+<div id="outline-container-org8268d41" class="outline-2">
+<h2 id="org8268d41">Si \(\tilde{\theta}(X)\) es un estimador de un parámetro positivo &theta; con error cuadrático medio \(ECM_\theta(\hat{\theta}(X)) = \theta^2/\sqrt{n}\) purede asegurarse que \(\tilde{\theta}(X)\) es consistente? ¿por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2013o">2013o</span></span></h2>
+</div>
+<div id="outline-container-orge11c2c2" class="outline-2">
+<h2 id="orge11c2c2">Diferencia entre intervalo de grado de confianza <i>1 - &alpha;</i> e intervalo bayesiano (o creible) de probabilidad <i>1-&alpha;</i>.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2013o">2013o</span></span></h2>
+</div>
+<div id="outline-container-org1a32eb2" class="outline-2">
+<h2 id="org1a32eb2">Para un test de hipótesis definase la función de potencia, el error de Tipo I y el error de tipo II.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2013o">2013o</span></span></h2>
+</div>
+<div id="outline-container-orgf79d40e" class="outline-2">
+<h2 id="orgf79d40e">Para una población de <a href="20230407125050-bernoulli.html#ID-6009d6da-54e8-4174-9b62-4f13d29bcf7b">Bernoulli</a>(&theta;). Obténgase la distribución del estadístico \( b_2 = \frac{1}{n} \sum_{i=1}^n (X_i - \overline{X})^2 \)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2012e">2012e</span></span></h2>
+</div>
+<div id="outline-container-org456ab66" class="outline-2">
+<h2 id="org456ab66">Pruébese que si existe el estimador centrado de mínima varianza, es único casi seguro.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2012e">2012e</span></span></h2>
+</div>
+<div id="outline-container-org47c7c47" class="outline-2">
+<h2 id="org47c7c47">Sea X<sub>1,&#x2026;,X</sub><sub>n</sub> una m.a.s. de una N(&mu;,&sigma;). Calcúlese la esperanza y la varianza de \( S^2_{n-1} = \frac{1}{n-1} \sum_{i=1}^n(X_i - \overline{X})^2 \) ¿Son independientes las variables \( \overline{X} \) y S<sup>2</sup><sub>n-1</sub>? Justifíquese la respuesta.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011e">2011e</span></span></h2>
+</div>
+<div id="outline-container-org04a46e3" class="outline-2">
+<h2 id="org04a46e3">¿Qué se entiende por mejor estimador insesgado ( o estimador insesgado de mínima varianza)? ¿Qué procedimientos conoce para obtener mejores estimadores insesgados?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011e">2011e</span></span></h2>
+</div>
+<div id="outline-container-orgd349acc" class="outline-2">
+<h2 id="orgd349acc">Para contrastar con una m.a.s. de tamaño <i>n</i> una población N(&mu;, &sigma;) con &mu; conocida. Determínese el test de la razón de verosimilitud de tamano &alpha;, para constrastar H<sub>0</sub> : &sigma;<sup>2</sup> &le; &sigma;<sub>0</sub><sup>2</sup> frente a la alternativa H<sub>1</sub> : &sigma;<sup>2</sup> &gt; &sigma;<sub>0</sub><sup>2</sup>, con &sigma;<sub>0</sub> = 2.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011e">2011e</span></span></h2>
+</div>
+<div id="outline-container-orge444e1b" class="outline-2">
+<h2 id="orge444e1b">Enúnciese la parte de unicidad del lema de Neyman-Pearson para el constrste de hipótesis nula puntual frente alternativa puntual.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011e">2011e</span></span></h2>
+</div>
+<div id="outline-container-org09bf234" class="outline-2">
+<h2 id="org09bf234">Indíquese la forma de actuar en los constrastes bayesianos. Para las hipótesis simples H<sub>0</sub> : &theta; = 2 vs H<sub>1</sub> &theta; = 1, encuéntrese la región de rechazo del contraste bayesiano, suponiendo que la distribución inicial otorga masas iguales a los puntos 2 y 1, y que el modelo viene dado por la distribución de <a href="20230503143014-poisson.html#ID-7d62c4d8-ae65-4e48-87d5-cdf749d8b2f5">Poisson</a>(&theta;).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011e">2011e</span></span></h2>
+</div>
+<div id="outline-container-org8744efd" class="outline-2">
+<h2 id="org8744efd">Defínase el concepto de Función de distribución empírica de la muestra F^*<sub>n</sub> (x) &forall; x &isin; ℝ y calcúlese la esperanza y la varianza de la F^*<sub>n</sub>(x) a x fijo y variando la muestra&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2012o">2012o</span></span></h2>
+</div>
+<div id="outline-container-org9adaf6a" class="outline-2">
+<h2 id="org9adaf6a">Defínase el concepto de Estadístico Minimal Suficiente y enúnciese el Teorema de Caracterización de los estadísticos minimales suficientes. Dá un Ejemplo&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2012o">2012o</span></span></h2>
+</div>
+<div id="outline-container-orge9f2e20" class="outline-2">
+<h2 id="orge9f2e20">Indíquensé al menos dos inconvenientes que presentan los estimadores insesgados e ilústrese con algún ejemplo.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2012o">2012o</span></span></h2>
+</div>
+<div id="outline-container-orgf0a2bba" class="outline-2">
+<h2 id="orgf0a2bba">Determinesé un intervalo de confianza, con nivel de confianza <i>1 - &alpha;</i> para la media &mu; de una población N(&mu;,&sigma;) con &sigma; conocida a partir de una m.a.s. de tamaño <i>n</i>. Obtengase una región creible de probabilidad <i>1- &alpha;</i> para &mu; en la situación anterior y suponiendo que la distribución a priori sobre &mu; es una N(0, 1).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2012o">2012o</span></span></h2>
+</div>
+<div id="outline-container-org8f8bd8c" class="outline-2">
+<h2 id="org8f8bd8c">Sea una población definida por \( P(x = x | \theta) = \frac{1}{1 +\theta} \left( \frac{\theta}{1 + \theta} \right)^x \), con soporte x = 1, 2, &#x2026;, &theta; &gt; 0, de la que se extrae una m.a.s. de tamaño <i>n</i>. Obtenga el estimador de máxima verosimilitud.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2022o">2022o</span></span></h2>
+</div>
+<div id="outline-container-orgaf44416" class="outline-2">
+<h2 id="orgaf44416">Sea X una población que de distribuye según una uniforme en el intervalo (&theta; - 2, &theta; + 3). Encontrar un estadístico suficiente para el parámetro &theta;. Encontrar un estimador para &theta; por el método de los momentos.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2022o">2022o</span></span></h2>
+</div>
+<div id="outline-container-org097088b" class="outline-2">
+<h2 id="org097088b">Sea (X<sub>1</sub>, &hellip;, X<sub>n</sub>) una muestra aleatoria simple de X &sim; N(&mu;,&sigma;<sup>2</sup>), con ambos parámetros desconocidos. Construir desde el punto de vista frecuentista un intervalo de convianza para la varianza poblacional de nivel <i>1 - &alpha;</i>.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2022o">2022o</span></span></h2>
+</div>
+<div id="outline-container-org784adc3" class="outline-2">
+<h2 id="org784adc3">En el caso de una muestra aleatoria simple de tamaño <i>n</i> de una población que se distribuye según una <a href="20230407125050-bernoulli.html#ID-6009d6da-54e8-4174-9b62-4f13d29bcf7b">Bernoulli</a>(&theta;), comprobar si la media muestrar alcanza la <a href="20230501160449-cota_de_cramer_rao.html#ID-5ca65822-9ee7-45a2-b58e-a305e59688d6">Cota de Frechet-Cramer-Rao</a>.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2022o">2022o</span></span></h2>
+</div>
+<div id="outline-container-org2737c03" class="outline-2">
+<h2 id="org2737c03">Describir en qué consistel método de los momentos y decir qué diferencias existen entre los estimadores obtenidos por el método de los momentos y los obtenidos por máxima verosimilitud.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2021e">2021e</span></span></h2>
+</div>
+<div id="outline-container-org1e7eef1" class="outline-2">
+<h2 id="org1e7eef1">Definición y caracterización de Suficiencia. Existencia de estadísticos suficientes en un modelo estadístico paramétroco ¿Es la muestra ordenada un estadístico suficiente?</h2>
+</div>
+<div id="outline-container-orga598f5e" class="outline-2">
+<h2 id="orga598f5e">Razonar verdadero o falso.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2021e">2021e</span></span></h2>
+<div class="outline-text-2" id="text-orga598f5e">
+</div>
+<div id="outline-container-org35dbd88" class="outline-3">
+<h3 id="org35dbd88">Sea (X<sub>1</sub>, &hellip;, X<sub>n</sub>) una muestra de una distribución B(1,p), el estimador de <i>p</i> \( T(X_{1}, \dots, X_{n}) = \frac{\sum_{i=1}^n X_i + \sqrt{n/4}}{n + \sqrt{n}} \) tiene un error cuadrático medio que no depende de <i>p</i></h3>
+</div>
+<div id="outline-container-org248a3ed" class="outline-3">
+<h3 id="org248a3ed">En una población paramétrica con momentos de cualquier orden, los momentos muestrales respecto al origen son estimadores centrados y consistentes de los correspondientes momentos poblacionales.</h3>
+</div>
+</div>
+<div id="outline-container-org7f2dd65" class="outline-2">
+<h2 id="org7f2dd65">Dada una muestra aleatoria simple (X<sub>1</sub>, &hellip;, X<sub>n</sub>) de un modelo que pretenece a la familia exponencial demostrar que \( T(X_{1}, \dots, X_{n}) = \sum_{i=1}^nt(X_{i}) \) es eficiente para alguna función <i>d(&theta;)</i>&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2021e">2021e</span></span></h2>
+</div>
+<div id="outline-container-org7b9789e" class="outline-2">
+<h2 id="org7b9789e">Obténgase la función de densidad de una variable aleatoria Chi-cuadrado con n grados de libertad.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2019o">2019o</span></span></h2>
+</div>
+<div id="outline-container-orgf0895c2" class="outline-2">
+<h2 id="orgf0895c2">Sea X<sub>1</sub>, &hellip;, X<sub>n</sub> una m.a.s. obtenida de una población normal N(&theta;,&sigma;), con &theta; conocida. Determínese un intervalo de confianza para &sigma;<sup>2</sup> de nivel de confianza <i>1-&alpha;</i>.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2019o">2019o</span></span></h2>
+</div>
+<div id="outline-container-org456b2bf" class="outline-2">
+<h2 id="org456b2bf">Definasé función de potencia de un constraste.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2019o">2019o</span></span></h2>
+</div>
+<div id="outline-container-org474ac5d" class="outline-2">
+<h2 id="org474ac5d">Indíquese como se reduciría la varianza de un estimador centrado para <i>d(&theta;)</i> a partir de un estadístico suficiente para &theta;.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2019o">2019o</span></span></h2>
+</div>
+<div id="outline-container-org2548ab3" class="outline-2">
+<h2 id="org2548ab3">Defínase el concepto de familia exponencial <i>k</i>-paramétrica de distribuciones y encuéntrese el estadístico suficiente natural asociado ¿Cuándo es completo?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2018e">2018e</span></span></h2>
+</div>
+<div id="outline-container-org9d065ab" class="outline-2">
+<h2 id="org9d065ab">Dada la distribución inicial &pi;(&theta;) y el modelo \( f(x|\theta) \) ¿cuál es la distribución final para \( \pi(\theta|x_{1}, \dots, x_{n}) \)? Constrúyase un intervalo creible de probabilidad <i>1-&alpha;</i> para &theta;.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2018e">2018e</span></span></h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Pablo C. Alcalde</p>
+<p class="date">Created: 2023-05-04 jue 11:28</p>
+</div>
+</body>
+</html>

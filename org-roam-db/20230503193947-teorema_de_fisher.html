@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-04 jue 11:28 -->
+<!-- 2023-05-04 jue 11:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>org-roam-db</title>
+<title>Teorema de Fisher-Cochran</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,35 +193,100 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">org-roam-db</h1>
-<ul class="org-ul">
-<li><a href="20230407125050-bernoulli.html">Bernoulli</a></li>
-<li><a href="20230503102906-beta.html">Beta</a></li>
-<li><a href="20230407204656-binomial.html">Binomial</a></li>
-<li><a href="20230503115647-chi_cuadrado.html">Chi Cuadrado</a></li>
-<li><a href="20230501160449-cota_de_cramer_rao.html">Cota de Cramer-Rao</a></li>
-<li><a href="20230503145933-cuestiones_teoricas.html">Cuestiones Teóricas</a></li>
-<li><a href="20230410120411-known_probability_distributions.html">Distribuciones de Probabilidad Conocidas</a></li>
-<li><a href="20230501165035-exponencial.html">Exponencial</a></li>
-<li><a href="20230503190757-funcion_de_distribucion_empirica.html">Función de Distribución Empírica</a></li>
-<li><a href="20230501173930-gamma.html">Gamma</a></li>
-<li><a href="20230430112447-geometrica.html">Geométrica</a></li>
-<li><a href="theindex.html">Index</a></li>
-<li><a href="20230501160647-informacion_de_fisher.html">Información de Fisher</a></li>
-<li><a href="20230503105847-normal.html">Normal</a></li>
-<li><a href="20230503143014-poisson.html">Poisson</a></li>
-<li><a href="20230410122452-fisher_neyman_factorization_theorem.html">Teorema de Factorización de Fisher-Neyman</a></li>
-<li><a href="20230503193947-teorema_de_fisher.html">Teorema de Fisher-Cochran</a></li>
-<li><a href="20230503193541-teorema_de_glivenko_cantelli.html">Teorema de Glivenko-Cantelli</a></li>
-<li><a href="20230408125859-uniform.html">Uniforme</a></li>
-</ul>
+<h1 class="title">Teorema de Fisher-Cochran</h1>
+<div id="outline-container-orgbec4174" class="outline-2">
+<h2 id="orgbec4174">Enunciado</h2>
+<div class="outline-text-2" id="text-orgbec4174">
+<p>
+Sea X<sub>1</sub>, &hellip;, X<sub>n</sub> el resultado de un m.a.s con X &sim; N(&mu;,&sigma;) se tienen los siguientes resultados:
+</p>
+<ol class="org-ol">
+<li>\( \overline{X} \) y \( S^2_n \) son independientes, resp \( \overline{X} \) y \( S^2 \)</li>
+<li>\( \frac{n S_n^2}{\sigma^2} \sim \chi^2_{n-1} \) , respectivamente \( \frac{(n - 1) S^2}{\sigma^2} \sim \chi^2_{n-1} \) o inequívocamente \( \sum_{i=1}^n(X_{i}-\overline{X})^2 \sim \sigma^2\chi^2_{n-1} \)</li>
+</ol>
+
+<p>
+En resumen, la (cuasi)desviación típica y la media son independientes en una distribución normal, no sólo eso, siguen una &chi;<sup>2</sup> de <i>n - 1</i> grados de libertad.
+</p>
+</div>
+</div>
+<div id="outline-container-org1aa6fb5" class="outline-2">
+<h2 id="org1aa6fb5">Consecuencias</h2>
+<div class="outline-text-2" id="text-org1aa6fb5">
+</div>
+<div id="outline-container-org65c7660" class="outline-3">
+<h3 id="org65c7660">Sea X &sim; N(&mu;,&sigma;) con &sigma; desconocida</h3>
+<div class="outline-text-3" id="text-org65c7660">
+<p>
+\( \frac{\sqrt{n} \left( \overline{X} - \mu) \right)}{S} \sim \frac{N(0,1)}{\sqrt{\frac{\chi^2_{n-1}}{n - 1}}} \sim t_{n-1}\) 
+</p>
+</div>
+</div>
+<div id="outline-container-org01da7eb" class="outline-3">
+<h3 id="org01da7eb">Sean X &sim; N(&mu;<sub>1</sub>, &sigma;<sub>1</sub>) e Y &sim; N(&mu;<sub>2</sub>, &sigma;<sub>2</sub>) con realizaciones X<sub>1</sub>, &hellip;, X<sub>n</sub> e Y<sub>1</sub>, &hellip;, Y<sub>m</sub> de un m.a.s de tamaños <i>n</i> y <i>m</i> respectivamente.</h3>
+<div class="outline-text-3" id="text-org01da7eb">
+<p>
+Se tiene
+</p>
+\begin{gather*}
+\frac{\overline{X} - \overline{Y} - (\mu_1 - \mu_2)}{ \sqrt{\frac{\sigma^2_1}{n} + \frac{\sigma^2_2}{m}}} \sim N(0,1) \\
+\frac{(n-1) S^2_x}{\sigma^2_1} \sim \chi^2_{n-1} \\
+\frac{(m-1) S^2_y}{\sigma^2_2} \sim \chi^2_{m-1} \\
+\end{gather*}
+<p>
+De lo que a su vez se deriva
+</p>
+\begin{gather*}
+\frac{(n-1) S^2_x}{\sigma^2_1} + \frac{(n-1) S^2_y}{\sigma^2_2} \sim \chi^2_{n+ m - 2}
+\end{gather*}
+<p>
+y finalmente
+</p>
+\begin{equation*}
+\frac{\left( \frac{\overline{X} - \overline{Y} - (\mu_1 - \mu_2)}{ \sqrt{\frac{\sigma^2_1}{n} + \frac{\sigma^2_2}{m}}} \right)}{\sqrt{\frac{1}{n + m - 2}} \sqrt{\frac{(n-1) S^2_x}{\sigma^2_1} + \frac{(m-1) S^2_y}{\sigma^2_2}}} \sim \frac{N(0,1)}{\frac{\chi^2_{n+m-2}}{n+m -2}} \sim t_{n+m-2}
+\end{equation*}
+</div>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-05-04 jue 11:28</p>
+<p class="date">Created: 2023-05-04 jue 11:26</p>
 </div>
 </body>
 </html>

@@ -3,10 +3,10 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-04 jue 11:28 -->
+<!-- 2023-05-04 jue 11:26 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>org-roam-db</title>
+<title>Función de Distribución Empírica</title>
 <meta name="author" content="Pablo C. Alcalde" />
 <meta name="generator" content="Org Mode" />
 <style>
@@ -193,35 +193,71 @@
     { background-color: #ffff00; color: #000000; font-weight: bold; }
   .org-svg { }
 </style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
 </head>
 <body>
 <div id="content" class="content">
-<h1 class="title">org-roam-db</h1>
-<ul class="org-ul">
-<li><a href="20230407125050-bernoulli.html">Bernoulli</a></li>
-<li><a href="20230503102906-beta.html">Beta</a></li>
-<li><a href="20230407204656-binomial.html">Binomial</a></li>
-<li><a href="20230503115647-chi_cuadrado.html">Chi Cuadrado</a></li>
-<li><a href="20230501160449-cota_de_cramer_rao.html">Cota de Cramer-Rao</a></li>
-<li><a href="20230503145933-cuestiones_teoricas.html">Cuestiones Teóricas</a></li>
-<li><a href="20230410120411-known_probability_distributions.html">Distribuciones de Probabilidad Conocidas</a></li>
-<li><a href="20230501165035-exponencial.html">Exponencial</a></li>
-<li><a href="20230503190757-funcion_de_distribucion_empirica.html">Función de Distribución Empírica</a></li>
-<li><a href="20230501173930-gamma.html">Gamma</a></li>
-<li><a href="20230430112447-geometrica.html">Geométrica</a></li>
-<li><a href="theindex.html">Index</a></li>
-<li><a href="20230501160647-informacion_de_fisher.html">Información de Fisher</a></li>
-<li><a href="20230503105847-normal.html">Normal</a></li>
-<li><a href="20230503143014-poisson.html">Poisson</a></li>
-<li><a href="20230410122452-fisher_neyman_factorization_theorem.html">Teorema de Factorización de Fisher-Neyman</a></li>
-<li><a href="20230503193947-teorema_de_fisher.html">Teorema de Fisher-Cochran</a></li>
-<li><a href="20230503193541-teorema_de_glivenko_cantelli.html">Teorema de Glivenko-Cantelli</a></li>
-<li><a href="20230408125859-uniform.html">Uniforme</a></li>
-</ul>
+<h1 class="title">Función de Distribución Empírica</h1>
+<div id="outline-container-org7ca6241" class="outline-2">
+<h2 id="org7ca6241">Definición</h2>
+<div class="outline-text-2" id="text-org7ca6241">
+<p>
+Sea X<sub>1</sub>, &hellip;, X<sub>n</sub> la realización de un m.a.s. procedente de una población con función de distribución F<sub>0</sub>. Se denomina función de distribución muestral (o empírica) a la función.
+</p>
+\begin{equation*}
+F^{\star}_n (x) = \frac{\# \left\{ x_i \le x | i \in 1, .., n \right\}}{n}
+\end{equation*}
+<p>
+es decir, el número de elementos de  nuestra muestra que son menores o iguales que una x dada, normalizado para que esté entre 0 y 1.
+</p>
+</div>
+</div>
+<div id="outline-container-org2fae341" class="outline-2">
+<h2 id="org2fae341">Propiedades</h2>
+<div class="outline-text-2" id="text-org2fae341">
+<ol class="org-ol">
+<li>\(P\left( F^\star_n(x) = \frac{k}{n} \right) = \binom{n}{k} \left( F(x) \right)^k \cdot \left( 1 - F(x) \right)^{n - k}\)</li>
+<li>\( F_n^{\star}(x) \xrightarrow[n \to \infty]{\text{c.s.}} F(x) \)</li>
+<li>\(\frac{ \sqrt{n} \cdot \left( F_n^{\star} - F(x) \right)}{\sqrt{F(x) \cdot \left( 1 - F(x) \right)}} \xrightarrow[n \to \infty]{\text{dist}} N(0,1) \)</li>
+<li>\( P \left( \underset{n \to \infty}{\lim \sup} | F^{\star}_{n} (x) - F(x)| = 0 \right) = 1 \) (tambien conocido como <a href="20230503193541-teorema_de_glivenko_cantelli.html#ID-b6597263-c2d3-43ef-8323-c6841854bf0c">Teorema de Glivenko-Cantelli</a>)</li>
+</ol>
+</div>
+</div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-05-04 jue 11:28</p>
+<p class="date">Created: 2023-05-04 jue 11:26</p>
 </div>
 </body>
 </html>
