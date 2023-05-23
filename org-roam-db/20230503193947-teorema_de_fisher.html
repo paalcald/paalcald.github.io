@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-04 jue 11:26 -->
+<!-- 2023-05-05 vie 11:21 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Teorema de Fisher-Cochran</title>
@@ -230,8 +230,8 @@
 <div id="content" class="content">
 <h1 class="title">Teorema de Fisher-Cochran</h1>
 <div id="outline-container-orgbec4174" class="outline-2">
-<h2 id="orgbec4174">Enunciado</h2>
-<div class="outline-text-2" id="text-orgbec4174">
+<h2 id="orgbec4174"><span class="section-number-2">1.</span> Enunciado</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 Sea X<sub>1</sub>, &hellip;, X<sub>n</sub> el resultado de un m.a.s con X &sim; N(&mu;,&sigma;) se tienen los siguientes resultados:
 </p>
@@ -246,47 +246,22 @@ En resumen, la (cuasi)desviación típica y la media son independientes en una d
 </div>
 </div>
 <div id="outline-container-org1aa6fb5" class="outline-2">
-<h2 id="org1aa6fb5">Consecuencias</h2>
-<div class="outline-text-2" id="text-org1aa6fb5">
+<h2 id="org1aa6fb5"><span class="section-number-2">2.</span> Consecuencias</h2>
+<div class="outline-text-2" id="text-2">
 </div>
 <div id="outline-container-org65c7660" class="outline-3">
-<h3 id="org65c7660">Sea X &sim; N(&mu;,&sigma;) con &sigma; desconocida</h3>
-<div class="outline-text-3" id="text-org65c7660">
+<h3 id="org65c7660"><span class="section-number-3">2.1.</span> Sea X &sim; N(&mu;,&sigma;) con &sigma; desconocida</h3>
+<div class="outline-text-3" id="text-2-1">
 <p>
-\( \frac{\sqrt{n} \left( \overline{X} - \mu) \right)}{S} \sim \frac{N(0,1)}{\sqrt{\frac{\chi^2_{n-1}}{n - 1}}} \sim t_{n-1}\) 
+\( \frac{\sqrt{n} \left( \overline{X} - \mu \right)}{S} \sim \frac{N(0,1)}{\sqrt{\frac{\chi^2_{n-1}}{n - 1}}} \sim t_{n-1}\)
 </p>
-</div>
-</div>
-<div id="outline-container-org01da7eb" class="outline-3">
-<h3 id="org01da7eb">Sean X &sim; N(&mu;<sub>1</sub>, &sigma;<sub>1</sub>) e Y &sim; N(&mu;<sub>2</sub>, &sigma;<sub>2</sub>) con realizaciones X<sub>1</sub>, &hellip;, X<sub>n</sub> e Y<sub>1</sub>, &hellip;, Y<sub>m</sub> de un m.a.s de tamaños <i>n</i> y <i>m</i> respectivamente.</h3>
-<div class="outline-text-3" id="text-org01da7eb">
-<p>
-Se tiene
-</p>
-\begin{gather*}
-\frac{\overline{X} - \overline{Y} - (\mu_1 - \mu_2)}{ \sqrt{\frac{\sigma^2_1}{n} + \frac{\sigma^2_2}{m}}} \sim N(0,1) \\
-\frac{(n-1) S^2_x}{\sigma^2_1} \sim \chi^2_{n-1} \\
-\frac{(m-1) S^2_y}{\sigma^2_2} \sim \chi^2_{m-1} \\
-\end{gather*}
-<p>
-De lo que a su vez se deriva
-</p>
-\begin{gather*}
-\frac{(n-1) S^2_x}{\sigma^2_1} + \frac{(n-1) S^2_y}{\sigma^2_2} \sim \chi^2_{n+ m - 2}
-\end{gather*}
-<p>
-y finalmente
-</p>
-\begin{equation*}
-\frac{\left( \frac{\overline{X} - \overline{Y} - (\mu_1 - \mu_2)}{ \sqrt{\frac{\sigma^2_1}{n} + \frac{\sigma^2_2}{m}}} \right)}{\sqrt{\frac{1}{n + m - 2}} \sqrt{\frac{(n-1) S^2_x}{\sigma^2_1} + \frac{(m-1) S^2_y}{\sigma^2_2}}} \sim \frac{N(0,1)}{\frac{\chi^2_{n+m-2}}{n+m -2}} \sim t_{n+m-2}
-\end{equation*}
 </div>
 </div>
 </div>
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-05-04 jue 11:26</p>
+<p class="date">Created: 2023-05-05 vie 11:21</p>
 </div>
 </body>
 </html>

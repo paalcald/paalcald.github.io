@@ -1,0 +1,131 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:t title:t toc:t todo:t |:t
+#+title: Clase 5 de Estadística
+#+date: <2023-02-20 lun>
+#+author: Rober
+#+email: paalcald@ucm.es
+#+language: en
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 28.1 (Org mode 9.6)
+#+cite_export:
+* Teorema de Factorización
+* Familia Exponencial General
+** Definición
+\( X \) se dice que está en FEG \iff \( f_{\theta}(\vec{x}) = h(x) c(\theta) e^{q(\theta)T(\vec{x})} \)
+** Propiedades
++ \( T \left( \vec{x} \right) \) es suficiente
++ \(  \)\( T \left( \vec{x} \right) \) es minimal \iff \( g(\theta) \neq 0 \)
++ \( T \left( \vec{x} \right) \) es completo \iff \( Im (q(\theta))\) contiene un abierto \neq \varphi
+** Ejemplo
+Sea \( X \sim Be(\theta) \)
+
+Sabemos que \( P_{\theta} \left( X = x \right) = \theta^x \left( 1 - \theta \right)^{1-x} \) por lo que \( P_{\theta}(X_1= x_1, \dots, X_n=x_n) = \theta^{\Sigma x_i} \left( 1 - \theta \right)^{1 - \Sigma x_i} = \left( \frac{\theta}{1 -\theta} \right)^{ \Sigma x_i} \left( 1 - \theta \right)^n = e^{\Sigma x_i ln \left( \frac{\theta}{1-\theta} \right)} \left( 1 - \theta \right)^n \)
+
+donde podemos identificar \( T (\vec{x}) = \sum x_i \), \( g(\theta) = ln \left( \frac{\theta}{1 - \theta} \right) \), \( c(\theta) = \left( 1 - \theta \right)^n  \) y \( h(\vec{x}) = 1 \) concluyendo que está en FEG.
+
+Por ser  \( Im (g(\theta)) = \mathbb{R} \) sabemos que es completo!!
+** Ejemplo 2011 Sept
+\( f_{\theta} = \frac{x + 1}{\theta \left( \theta + 1 \right)} e^{- \frac{x}{\theta}}\) con \( x > 0, \theta > 0 \)
+*** SMC (Suficiente, Minimal, Completo)
+\( f_{\theta} \left( \vec{x} \right) = \frac{\color{brown}\Pi \left( x_i + 1 \right) I_{(0, \infty)} \left( \min x_i \right)}{\color{red}\theta^n \left( \theta + 1 \right)^n} e^{- \color{orange}\frac{1}{\theta} \color{blue}\Sigma x_i} \), vaya! pero esto es FEG!, ver por los colores.
+
+Por ser [[Familia Exponencial General][FEG]]:
+- \( \sum x_i \) es suficiente
+- \( - \frac{1}{\theta} \neq 0  \) \implies \( \sum x_i \) es minimal
+- \( Im \left( g(\theta) \right) = \left( - \infty, 0 \right)\) \implies \( \sum x_i \) es completo.
+* Estadistico de 2 Entradas
+\( X \sim U(2\theta, 6\theta)\)
+
+\( f_{\theta} (x) = \frac{1}{4\theta} \cdot I_{ \left( 2\theta, 6\theta \right)} (x) \)
+
+\( f_{\theta} (\vec{x}) = \frac{1}{\left( 4\theta \right)^n} \cdot I_{ \left( 2\theta, \infty \right)} (\max x_i) \cdot I_{ \left( -\infty, 6\theta \right)} (\min x_i) \)
+
+gracias al [[Teorema de Factorización][Teorema de Factorización]] obtenemos que \( T = \left( \min x_{i}, \max x_{i} \right) \) es suficiente por lo que ambos lo son.
+
+\( f_{x}(x) = \frac{1}{4\theta} \) y tengo \( F_{x}(x) = \frac{x - 2\theta}{4\theta} \)
+
+*** Calculo las esperanzas
+\begin{align*}
+    E \left[ \min x_{i} \right] &= 6\theta \left( \frac{6 \theta - 6\theta}{4\theta} \right)^n - 2\theta \left( \frac{6\theta - 2\theta}{4\theta} \right)^n + \int_{2\theta}^{6\theta} \left( \frac{6\theta - x}{4\theta} \right)^n dx \\
+                                &= -2\theta - \frac{4\theta}{n + 1} \left( \frac{6\theta - x}{4\theta}^{n+1} \right) | ^{6\theta}_{x = 2\theta} \\
+    &= -2\theta + \frac{4\theta}{n + 1} \\
+&= \left( \frac{2 - 2n}{n + 1} \right) \theta
+ \end{align*}
+*** Defino \( \varphi \left( x, y \right) \)
+\( \varphi \left( x, y \right) = \left( \frac{6n -2}{n + 1} \right) x - \left( \frac{2 -2n}{n+1} \right) y\)
+
+\begin{align*}
+  E \left[ \varphi(\min x_i, \max x_i) \right] &= E \left[ \frac{6n - 2}{n + 1} \cdot \min x_i - \left( \frac{2 - 2n}{n+1} \right) \cdot \max x_i \right] \\
+                                         &= \frac{6n -2}{n + 1} E \left[ \min x_i \right] - \left( \frac{2 - 2n}{n + 1} \right) E \left[ \max x_i \right] \\
+                                         &= \left( \frac{6n - 2}{ n+1} \right) \left( \frac{2 - 2n}{n + 1} \right) \theta - \left( \frac{2 - 2n}{n + 1} \right) \left( \frac{6n - 2}{ n+1} \right) \theta \\
+  &= 0
+\end{align*}
+Y por definición de completitud al haber encontrado este cero ... !!!COMPLETAR MARTES
+** Posible Cuestión Teórica
+Probar que \( \left( \min x_{i}, \max x_{i} \right) \) NO es completo pero \( \min x_{i} \) y \( \max x_{i} \) si lo son.
+
+Para probar esto hay que hacer dos cosas:
+1. calcular (cada uno por su lado)
+   + \( E \left[ \min x_{i} \right] \)
+   + \( E \left[ \max x_{i} \right] \)
+2. Definir \( \varphi \)
+* Recuerdo
+** Función de Distribución del Máximo
+\( F_{\max x_{i}} (x) = \left[ F_x(x) \right]^n \)
+\( f_{\max x_i} (x) = n \left[ F_x (x) \right]^{n-1} f_x(x) \)
+** Función de Distribución del Mínimo
+\( F_{\min x_{i}} (x) = 1 - \left[1 - F_x(x) \right]^n \)
+\( f_{\min x_i} (x) = n \left[1 - F_x (x) \right]^{n-1} f_x(x) \)
+** Calcular la Esperanza dada la Función de Distribución
+\( E[T(x)] = \int_{\mathbb{R}} \color{red}x \color{brown}f_{T(x)}(x) dx \color{black} = \color{red}x \color{brown} F_{T(x)}(x) \color{black}|^b_a - \int_a^b \color{brown} F_{T(x)} \color{red}dx \)
+** Definición Completo
+Probar que \( T(\vec{x}) \) es completo \iff
+
+\( \forall \varphi \) medible, se tiene que \( E \left[ \varphi(T(\vec{x})) \right] = \int _{\mathbb{R}} t \cdot f_{\varphi(T(\vec{x}))} (t) dt = \int_{\mathbb{R}} \varphi(x) f_{T(\vec{x})} (x) dx = 0  \implies \varphi(x) \cdot f_{T(\vec{x})}(x)\)
+
+Que ocurre en el caso del máximo sii
+
+\( \color{red}\varphi(x) \color{brown}n \color{blue}\left( \frac{x - 2 \theta}{4\theta} \right)^{n-1} \cdot \color{black}\frac{1}{4\theta} = 0 \implies \varphi \equiv 0 \)
+* Familia Completa
+** Definición
+\( X \) se dice completa \iff \( T(X_{1}, \dots, X_n) = X_1 \) es completo (el estadístico en el que te quedas con el primer dato.
+** Ejemplo
+!!!Quizas \( P_{\theta} \left( X = x \right) \) no sea función de probabilidad!!!
+Sea \( X \) v.a.  \(D_X = \left\{ 1, 2, 3 \right\}\)
+
+ \( P_{\theta} \left( X = 1 \right) = \theta + 3\)
+
+\( P_{\theta} \left( X = 2 \right) = 2\theta + 1\)
+
+\( P_{\theta} \left( X = 3 \right) = 3 - 3\theta \)
+
+Aplicamos
+\( X \)  completa \iff \( T(X_{1}, \dots, X_n) = X_1 \) es completo
+
+\( \forall \varphi \) medible, se tiene que \( E \left[ \varphi(T(\vec{x})) \right] = \int _{\mathbb{R}} t \cdot f_{\varphi(T(\vec{x}))} (t) dt = \int_{\mathbb{R}} \varphi(x) f_{T(\vec{x})} (x) dx = 0  \implies \varphi(x) \cdot f_{T(\vec{x})}(x)\)
+
+\begin{align*}
+  E \left[ \varphi(T) \right] &= \varphi(1) \cdot P_{\theta} \left( X = 1 \right) + \varphi(2) \cdot P_{\theta} \left( X = 2 \right) + \varphi(3) \cdot P_{\theta} \left( X = 3 \right) \\
+                        &= \varphi(1) \left[ \theta - 3 \right] + \varphi(2) \left[ 2\theta + 1 \right] + \varphi(3) \left[ 3 - 3\theta \right] \\
+  &= 0
+\end{align*}
+ya que
+\begin{gather*}
+\begin{pmatrix}
+  -3 & 1 & 3 \\
+  1 & 2 & -3
+\end{pmatrix}
+\begin{pmatrix}
+\varphi(1) \\
+\varphi(2) \\
+\varphi(3)
+\end{pmatrix} = \vec{0}
+\end{gather*}
+
+tiene solución distinta de la trivial! (ojo, con otros valores podría ser que la única solución fuese la trivial.
+
+Ojo! las variables discretas pueden tener soporte infinito

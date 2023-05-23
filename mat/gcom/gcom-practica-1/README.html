@@ -1,0 +1,1265 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="es" xml:lang="es">
+<head>
+<!-- 2023-05-15 lun 11:56 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Práctica 1: Códigos de Huffman</title>
+<meta name="author" content="Pablo C. Alcalde" />
+<meta name="description" content="Memoria de la Practica 2 de Geometría Computacional." />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Práctica 1: Códigos de Huffman</h1>
+<div id="table-of-contents" role="doc-toc">
+<h2>&Iacute;ndice</h2>
+<div id="text-table-of-contents" role="doc-toc">
+<ul>
+<li><a href="#orgefd673d">Introduccion</a></li>
+<li><a href="#orgec0a8d1">Método y Datos</a>
+<ul>
+<li><a href="#orgb29f1dc">Librerias Usadas</a></li>
+<li><a href="#orgef1554c">Clases Auxiliares</a>
+<ul>
+<li><a href="#org5da92ee">Árbol de Huffman</a></li>
+</ul>
+</li>
+<li><a href="#org14cc511">Errores</a></li>
+<li><a href="#org096058f">Apartado 1</a>
+<ul>
+<li><a href="#orgfdc8a3e">Español</a></li>
+<li><a href="#org0fc09a5">Inglés</a></li>
+</ul>
+</li>
+<li><a href="#orgaf8d651">Apartado 2</a></li>
+<li><a href="#orgcc677f2">Apartado 3</a></li>
+</ul>
+</li>
+<li><a href="#orga411e21">Conclusiones</a></li>
+<li><a href="#orgff275ad">Anexo de Tablas</a>
+<ul>
+<li><a href="#org6a72684">Español</a></li>
+<li><a href="#orgb4f8c4d">Inglés</a></li>
+</ul>
+</li>
+<li><a href="#org0f0cc5e">Anexo de Código</a>
+<ul>
+<li><a href="#orgb1af647">Estructuras de Datos Usadas</a></li>
+<li><a href="#orgbff7f1f">Main</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgefd673d" class="outline-2">
+<h2 id="orgefd673d">Introduccion</h2>
+<div class="outline-text-2" id="text-orgefd673d">
+<p>
+Un código de Huffman es un tipo particular de codigo usado comunmente para compresión sin pérdida de datos. Es un código en el que los símbolos más utilizados de les asocia un código más corto, de manera que los prefijos sean únicos.
+De tal modo, aún siendo códigos de longitud variable, se mantiene la posibilidad de marcar unequivocamente la terminación del código asociado a cada uno de los caracteres.
+De entre los códigos que codifican símbolos independientemente, este se considera óptimo.
+Seguir el siguiente <a href="https://es.wikipedia.org/wiki/Codificaci%C3%B3n_Huffman">link</a> para más información o el siguiente <a href="https://www.youtube.com/watch?v=0kNXhFIEd_w">vídeo(en inglés)</a> para ver una explicación e implementación del mismo.
+</p>
+</div>
+</div>
+
+<div id="outline-container-orgec0a8d1" class="outline-2">
+<h2 id="orgec0a8d1">Método y Datos</h2>
+<div class="outline-text-2" id="text-orgec0a8d1">
+<p>
+Se han programado scripts en Python 3.11 para la resolución de los distintos apartados, primando un estilo conciso y documentado de las funciones.
+</p>
+</div>
+<div id="outline-container-orgb29f1dc" class="outline-3">
+<h3 id="orgb29f1dc">Librerias Usadas</h3>
+<div class="outline-text-3" id="text-orgb29f1dc">
+<ul class="org-ul">
+<li>Para obtener la tabla de frecuencias del archivo utilizaremos <i>Counter</i> de la librería <i>collections</i>.</li>
+<li>Usamos la librería <i>functools</i> para facilitarnos la implementación de relaciones de orden en nuestras clases y <i>reduce</i> por su paradigma funcional.</li>
+<li>Para conseguir una construcción eficiente de nuestro <a href="#org5da92ee">árbol de Huffman</a> usaremos la <i>PriorityQueue</i> de la librería <i>queue</i> de python.</li>
+<li>Finalmente importaremos las funciones matemáticas necesarias de <i>math</i>.</li>
+</ul>
+</div>
+</div>
+<div id="outline-container-orgef1554c" class="outline-3">
+<h3 id="orgef1554c">Clases Auxiliares</h3>
+<div class="outline-text-3" id="text-orgef1554c">
+</div>
+<div id="outline-container-org5da92ee" class="outline-4">
+<h4 id="org5da92ee">Árbol de Huffman</h4>
+<div class="outline-text-4" id="text-org5da92ee">
+<p>
+Usaremos una implementación de los árboles de huffman que usa la herencia de clases de python para diferenciar entre nodos y hojas a partir de una base común e implementa un orden total para el uso de una cola de prioridad predefinida en el algoritmo de creación de códigos.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org14cc511" class="outline-3">
+<h3 id="org14cc511">Errores</h3>
+<div class="outline-text-3" id="text-org14cc511">
+<ul class="org-ul">
+<li>Longitud Media: Se calcula el error de la distribución como \( \sqrt{\frac{Var(L)}{n}} \)</li>
+<li>Probabilidad: Se calcula el error de la distribución como \( \sqrt{\frac{Var(P)}{n}} \)</li>
+<li>Entropia: Se propaga el error de la probabilidad.</li>
+</ul>
+\begin{align*}
+  H(S) &= - \sum_{i=1}^n p_i \cdot \log_2 p_i \\
+\Delta H(S) &=  \sum_{i = 1}^n \left| \frac{\partial H(S)}{\partial p_i} \Delta p_{i} \right| \\
+       &= \Delta p \sum_{i = 1}^n \left| \frac{\partial \left( \sum_{i = 1}^n p_i \cdot \log_2p_i \right)}{\partial p_i} \right| \\
+       &= \Delta p \sum_{i = 1}^n \left| \frac{\partial \left( p_i \cdot \log_2p_i \right)}{\partial p_i} \right|\\
+       &=  \Delta p \sum_{i = 1}^n \left| \left( \log_2p_i + \frac{1}{\log 2}\right) \right|
+\end{align*}
+</div>
+</div>
+
+<div id="outline-container-org096058f" class="outline-3">
+<h3 id="org096058f">Apartado 1</h3>
+<div class="outline-text-3" id="text-org096058f">
+<p>
+Utilizando las funciones anteriormente definidas de hallará el código de Huffman binario de \( S_{Eng} \)
+y \( S_{Esp} \) , junto con sus longitudes medias
+</p>
+</div>
+
+<div id="outline-container-orgfdc8a3e" class="outline-4">
+<h4 id="orgfdc8a3e">Español</h4>
+<div class="outline-text-4" id="text-orgfdc8a3e">
+<ul class="org-ul">
+<li>La longitud media L<sub>esp</sub> es \( 4.37 \pm 0.05 \)</li>
+
+<li>La entropia H<sub>esp</sub> es \( 4.34 \pm 0.27 \)</li>
+
+<li>Se cumple el primer teorema de Shannon</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-org0fc09a5" class="outline-4">
+<h4 id="org0fc09a5">Inglés</h4>
+<div class="outline-text-4" id="text-org0fc09a5">
+<ul class="org-ul">
+<li>La longitud media L<sub>en</sub> es \( 4.44 \pm 0.05 \)</li>
+
+<li>La entropia H<sub>eng</sub> es \( 4.41 \pm 0.26 \)</li>
+
+<li>Se cumple el primer teorema de Shannon</li>
+</ul>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaf8d651" class="outline-3">
+<h3 id="orgaf8d651">Apartado 2</h3>
+<div class="outline-text-3" id="text-orgaf8d651">
+<ul class="org-ul">
+<li>'dimension' compreso con \(S_{Esp}\) es '0011101100101000010000100011001111000' i.e. sin comprimir es 194% mas largo.</li>
+<li>'dimension' compreso con \(S_{Eng}\) es '1111001100011000010011010011010001001' i.e. sin comprimir es 194% mas largo.</li>
+</ul>
+</div>
+</div>
+
+<div id="outline-container-orgcc677f2" class="outline-3">
+<h3 id="orgcc677f2">Apartado 3</h3>
+<div class="outline-text-3" id="text-orgcc677f2">
+<p>
+0101010001100111001101111000101111110101010001110 es ``mevano mo`` ya que los arboles de Huffman no son únicos.
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orga411e21" class="outline-2">
+<h2 id="orga411e21">Conclusiones</h2>
+</div>
+
+
+<div id="outline-container-orgff275ad" class="outline-2">
+<h2 id="orgff275ad">Anexo de Tablas</h2>
+<div class="outline-text-2" id="text-orgff275ad">
+</div>
+<div id="outline-container-org6a72684" class="outline-3">
+<h3 id="org6a72684">Español</h3>
+<div class="outline-text-3" id="text-org6a72684">
+<div class="table" id="org8df8c4f">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-right">Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">e</td>
+<td class="org-right">000</td>
+</tr>
+
+<tr>
+<td class="org-left">l</td>
+<td class="org-right">0010</td>
+</tr>
+
+<tr>
+<td class="org-left">m</td>
+<td class="org-right">00110</td>
+</tr>
+
+<tr>
+<td class="org-left">ó</td>
+<td class="org-right">0011100</td>
+</tr>
+
+<tr>
+<td class="org-left">j</td>
+<td class="org-right">0011101</td>
+</tr>
+
+<tr>
+<td class="org-left">,</td>
+<td class="org-right">0011110</td>
+</tr>
+
+<tr>
+<td class="org-left">.</td>
+<td class="org-right">0011111</td>
+</tr>
+
+<tr>
+<td class="org-left">a</td>
+<td class="org-right">010</td>
+</tr>
+
+<tr>
+<td class="org-left">i</td>
+<td class="org-right">0110</td>
+</tr>
+
+<tr>
+<td class="org-left">t</td>
+<td class="org-right">01110</td>
+</tr>
+
+<tr>
+<td class="org-left">á</td>
+<td class="org-right">0111100</td>
+</tr>
+
+<tr>
+<td class="org-left">b</td>
+<td class="org-right">0111101</td>
+</tr>
+
+<tr>
+<td class="org-left">f</td>
+<td class="org-right">0111110</td>
+</tr>
+
+<tr>
+<td class="org-left">g</td>
+<td class="org-right">0111111</td>
+</tr>
+
+<tr>
+<td class="org-left">o</td>
+<td class="org-right">1000</td>
+</tr>
+
+<tr>
+<td class="org-left">n</td>
+<td class="org-right">1001</td>
+</tr>
+
+<tr>
+<td class="org-left">s</td>
+<td class="org-right">1010</td>
+</tr>
+
+<tr>
+<td class="org-left">\n</td>
+<td class="org-right">1011000000</td>
+</tr>
+
+<tr>
+<td class="org-left">x</td>
+<td class="org-right">1011000001</td>
+</tr>
+
+<tr>
+<td class="org-left">é</td>
+<td class="org-right">1011000010</td>
+</tr>
+
+<tr>
+<td class="org-left">V</td>
+<td class="org-right">1011000011</td>
+</tr>
+
+<tr>
+<td class="org-left">(</td>
+<td class="org-right">1011000100</td>
+</tr>
+
+<tr>
+<td class="org-left">)</td>
+<td class="org-right">1011000101</td>
+</tr>
+
+<tr>
+<td class="org-left">I</td>
+<td class="org-right">101100011</td>
+</tr>
+
+<tr>
+<td class="org-left">h</td>
+<td class="org-right">1011001</td>
+</tr>
+
+<tr>
+<td class="org-left">p</td>
+<td class="org-right">101101</td>
+</tr>
+
+<tr>
+<td class="org-left">u</td>
+<td class="org-right">10111</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">110</td>
+</tr>
+
+<tr>
+<td class="org-left">c</td>
+<td class="org-right">11100</td>
+</tr>
+
+<tr>
+<td class="org-left">"</td>
+<td class="org-right">111010000</td>
+</tr>
+
+<tr>
+<td class="org-left">C</td>
+<td class="org-right">1110100010</td>
+</tr>
+
+<tr>
+<td class="org-left">E</td>
+<td class="org-right">1110100011</td>
+</tr>
+
+<tr>
+<td class="org-left">L</td>
+<td class="org-right">111010010</td>
+</tr>
+
+<tr>
+<td class="org-left">D</td>
+<td class="org-right">111010011</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-right">11101010</td>
+</tr>
+
+<tr>
+<td class="org-left">q</td>
+<td class="org-right">11101011</td>
+</tr>
+
+<tr>
+<td class="org-left">y</td>
+<td class="org-right">11101100</td>
+</tr>
+
+<tr>
+<td class="org-left">M</td>
+<td class="org-right">111011010</td>
+</tr>
+
+<tr>
+<td class="org-left">í</td>
+<td class="org-right">111011011</td>
+</tr>
+
+<tr>
+<td class="org-left">B</td>
+<td class="org-right">111011100</td>
+</tr>
+
+<tr>
+<td class="org-left">v</td>
+<td class="org-right">111011101</td>
+</tr>
+
+<tr>
+<td class="org-left">S</td>
+<td class="org-right">111011110</td>
+</tr>
+
+<tr>
+<td class="org-left">z</td>
+<td class="org-right">111011111</td>
+</tr>
+
+<tr>
+<td class="org-left">d</td>
+<td class="org-right">11110</td>
+</tr>
+
+<tr>
+<td class="org-left">r</td>
+<td class="org-right">11111</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+<div id="outline-container-orgb4f8c4d" class="outline-3">
+<h3 id="orgb4f8c4d">Inglés</h3>
+<div class="outline-text-3" id="text-orgb4f8c4d">
+<div class="table" id="org8106784">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-right" />
+</colgroup>
+<thead>
+<tr>
+<th scope="col" class="org-left">Key</th>
+<th scope="col" class="org-right">Code</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="org-left">e</td>
+<td class="org-right">000</td>
+</tr>
+
+<tr>
+<td class="org-left">(</td>
+<td class="org-right">001000000</td>
+</tr>
+
+<tr>
+<td class="org-left">)</td>
+<td class="org-right">001000001</td>
+</tr>
+
+<tr>
+<td class="org-left">q</td>
+<td class="org-right">001000010</td>
+</tr>
+
+<tr>
+<td class="org-left">”</td>
+<td class="org-right">001000011</td>
+</tr>
+
+<tr>
+<td class="org-left">x</td>
+<td class="org-right">00100010</td>
+</tr>
+
+<tr>
+<td class="org-left">V</td>
+<td class="org-right">001000110</td>
+</tr>
+
+<tr>
+<td class="org-left">H</td>
+<td class="org-right">001000111</td>
+</tr>
+
+<tr>
+<td class="org-left">B</td>
+<td class="org-right">00100100</td>
+</tr>
+
+<tr>
+<td class="org-left">S</td>
+<td class="org-right">00100101</td>
+</tr>
+
+<tr>
+<td class="org-left">,</td>
+<td class="org-right">0010011</td>
+</tr>
+
+<tr>
+<td class="org-left">p</td>
+<td class="org-right">00101</td>
+</tr>
+
+<tr>
+<td class="org-left">u</td>
+<td class="org-right">00110</td>
+</tr>
+
+<tr>
+<td class="org-left">d</td>
+<td class="org-right">00111</td>
+</tr>
+
+<tr>
+<td class="org-left">s</td>
+<td class="org-right">0100</td>
+</tr>
+
+<tr>
+<td class="org-left">m</td>
+<td class="org-right">01010</td>
+</tr>
+
+<tr>
+<td class="org-left">w</td>
+<td class="org-right">010110</td>
+</tr>
+
+<tr>
+<td class="org-left">A</td>
+<td class="org-right">01011100</td>
+</tr>
+
+<tr>
+<td class="org-left">b</td>
+<td class="org-right">01011101</td>
+</tr>
+
+<tr>
+<td class="org-left">.</td>
+<td class="org-right">0101111</td>
+</tr>
+
+<tr>
+<td class="org-left">i</td>
+<td class="org-right">0110</td>
+</tr>
+
+<tr>
+<td class="org-left">o</td>
+<td class="org-right">0111</td>
+</tr>
+
+<tr>
+<td class="org-left">n</td>
+<td class="org-right">1000</td>
+</tr>
+
+<tr>
+<td class="org-left">c</td>
+<td class="org-right">10010</td>
+</tr>
+
+<tr>
+<td class="org-left">g</td>
+<td class="org-right">100110</td>
+</tr>
+
+<tr>
+<td class="org-left">v</td>
+<td class="org-right">10011100</td>
+</tr>
+
+<tr>
+<td class="org-left">k</td>
+<td class="org-right">10011101</td>
+</tr>
+
+<tr>
+<td class="org-left">M</td>
+<td class="org-right">100111100</td>
+</tr>
+
+<tr>
+<td class="org-left">I</td>
+<td class="org-right">100111101</td>
+</tr>
+
+<tr>
+<td class="org-left">T</td>
+<td class="org-right">10011111</td>
+</tr>
+
+<tr>
+<td class="org-left">t</td>
+<td class="org-right">1010</td>
+</tr>
+
+<tr>
+<td class="org-left">a</td>
+<td class="org-right">1011</td>
+</tr>
+
+<tr>
+<td class="org-left">&#xa0;</td>
+<td class="org-right">110</td>
+</tr>
+
+<tr>
+<td class="org-left">l</td>
+<td class="org-right">11100</td>
+</tr>
+
+<tr>
+<td class="org-left">y</td>
+<td class="org-right">1110100</td>
+</tr>
+
+<tr>
+<td class="org-left">D</td>
+<td class="org-right">111010100</td>
+</tr>
+
+<tr>
+<td class="org-left">z</td>
+<td class="org-right">111010101</td>
+</tr>
+
+<tr>
+<td class="org-left">C</td>
+<td class="org-right">1110101100</td>
+</tr>
+
+<tr>
+<td class="org-left">j</td>
+<td class="org-right">1110101101</td>
+</tr>
+
+<tr>
+<td class="org-left">\n</td>
+<td class="org-right">1110101110</td>
+</tr>
+
+<tr>
+<td class="org-left">“</td>
+<td class="org-right">1110101111</td>
+</tr>
+
+<tr>
+<td class="org-left">f</td>
+<td class="org-right">111011</td>
+</tr>
+
+<tr>
+<td class="org-left">r</td>
+<td class="org-right">11110</td>
+</tr>
+
+<tr>
+<td class="org-left">h</td>
+<td class="org-right">11111</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div>
+</div>
+<div id="outline-container-org0f0cc5e" class="outline-2">
+<h2 id="org0f0cc5e">Anexo de Código</h2>
+<div class="outline-text-2" id="text-org0f0cc5e">
+</div>
+<div id="outline-container-orgb1af647" class="outline-3">
+<h3 id="orgb1af647">Estructuras de Datos Usadas</h3>
+<div class="outline-text-3" id="text-orgb1af647">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #79740e;">"""</span>
+<span style="color: #79740e;">Huffman Trees</span>
+
+<span style="color: #79740e;">...</span>
+
+<span style="color: #79740e;">Description</span>
+<span style="color: #79740e;">-----------</span>
+
+<span style="color: #79740e;">Imports necesary classes and functions to operate with Huffman Trees for</span>
+<span style="color: #79740e;">compressing and decompressing python strings.</span>
+<span style="color: #79740e;">"""</span>
+
+<span style="color: #9d0006;">from</span> functools <span style="color: #9d0006;">import</span> total_ordering, <span style="color: #af3a03;">reduce</span>
+<span style="color: #9d0006;">from</span> typing <span style="color: #9d0006;">import</span> Self, Iterable
+<span style="color: #9d0006;">from</span> queue <span style="color: #9d0006;">import</span> PriorityQueue
+<span style="color: #9d0006;">from</span> collections <span style="color: #9d0006;">import</span> Counter
+
+
+<span style="color: #8f3f71;">@total_ordering</span>
+<span style="color: #9d0006;">class</span> <span style="color: #8f3f71;">HTbase</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Class used to represent common properties of Huffman nodes</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   and leaves.</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ...</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Attributes</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ----------</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - frequency: frequency of the associated node</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__init__</span>(<span style="color: #9d0006;">self</span>, frequency: <span style="color: #af3a03;">float</span>) -&gt; <span style="color: #8f3f71;">None</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   base init</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">self</span>.frequency = frequency
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__eq__</span>(<span style="color: #9d0006;">self</span>, other) -&gt; <span style="color: #af3a03;">bool</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Overloaded comparison to refer to the frequency attribute.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #9d0006;">self</span>.frequency == other.frequency
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__lt__</span>(<span style="color: #9d0006;">self</span>, other : Self) -&gt; <span style="color: #af3a03;">bool</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Overloaded comparison to refer to the frequency attribute.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #9d0006;">self</span>.frequency &lt; other.frequency
+
+
+<span style="color: #9d0006;">class</span> <span style="color: #8f3f71;">HTleaf</span>(HTbase):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Class used to represent a Huffman Tree Leaf</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ...</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Attributes</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ----------</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - character: Leaf's associated character.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - frequency: Frequency of the leaf's associated character.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   __match_args__ = (<span style="color: #79740e;">'character'</span>, <span style="color: #79740e;">'frequency'</span>)
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__init__</span>(<span style="color: #9d0006;">self</span>, char: <span style="color: #af3a03;">str</span>, freq: <span style="color: #af3a03;">int</span>) -&gt; <span style="color: #8f3f71;">None</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Parameters</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ----------</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - character: Leaf's associated character.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - frequency: Frequency of the leaf's associated character.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">super</span>().__init__(freq)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">self</span>.character = char
+
+
+<span style="color: #9d0006;">class</span> <span style="color: #8f3f71;">HuffmanTree</span>(HTbase):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Class used to represent a Huffman Tree</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ...</span>
+
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Attributes</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ----------</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - frequency = returns the value of a given leaf or the sum of</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   the values for its children for a node.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   - children= returns the node's childrens in a list.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   __match_args__ = (<span style="color: #79740e;">'leftchild'</span>, <span style="color: #79740e;">'rightchild'</span>)
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">__init__</span>(<span style="color: #9d0006;">self</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>lnode: HTleaf | Self,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>rnode: HTleaf | Self) -&gt; <span style="color: #8f3f71;">None</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Initializes a node whose frequency is the one of it's children</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   added up.</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ...</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Parameters</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ----------</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   lnode: Node's left children.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   rnode: NOde's right children.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">super</span>().__init__(lnode.frequency + rnode.frequency)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">self</span>.leftchild = lnode
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">self</span>.rightchild = rnode
+
+<span style="background-color: #ebdbb2;"> </span>   @<span style="color: #af3a03;">classmethod</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">from_counter</span>(cls, counter: Counter[<span style="color: #af3a03;">str</span>]) -&gt; Self:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Uses a priority queue to transform a dictionary of</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   {character: frequency} elements to a Huffman Tree.</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   example input: d = {'c': 12, 'd': 56}</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   example output: HT(HT('c', 12), HT('d', 56))</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   priority_q: PriorityQueue = PriorityQueue()
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> character, frequency <span style="color: #9d0006;">in</span> counter.items():
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   priority_q.put(HTleaf(character, frequency))
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">while</span> priority_q.qsize() &gt;= 2:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   elem1 = priority_q.get()
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   elem2 = priority_q.get()
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   priority_q.put(cls(elem1, elem2))
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> priority_q.get()
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">todict</span>(<span style="color: #9d0006;">self</span>) -&gt; <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">str</span>, <span style="color: #af3a03;">str</span>]:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Returns a dictionary whose keys are the Huffman Tree</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   leaves characters and whose values are the associated</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Huffman code for said character.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">recursive_helper</span>(node: HTleaf | HuffmanTree,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>code: <span style="color: #af3a03;">str</span>) -&gt; Iterable[<span style="color: #af3a03;">tuple</span>[<span style="color: #af3a03;">str</span>, <span style="color: #af3a03;">str</span>]]:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   match node:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   case HTleaf(char, _):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">yield</span> (char, code)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   case HuffmanTree(lnode, rnode):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">yield</span> <span style="color: #9d0006;">from</span> recursive_helper(lnode, code + <span style="color: #79740e;">'0'</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">yield</span> <span style="color: #9d0006;">from</span> recursive_helper(rnode, code + <span style="color: #79740e;">'1'</span>)
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #af3a03;">dict</span>(recursive_helper(<span style="color: #9d0006;">self</span>, <span style="color: #79740e;">''</span>))
+
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">def</span> <span style="color: #b57614;">decode</span>(<span style="color: #9d0006;">self</span>, bitstring: <span style="color: #af3a03;">str</span>) -&gt; <span style="color: #af3a03;">str</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Decode a binary string.</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ...</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Decodes a string compounded by 1's and 0's using a traversal</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   algoritm on the Huffman Tree, while its not on a leaf it</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   recursively traverses down the tree going left if given a '0'</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   or right if given a '1'. Once a leaf is reached it appends the</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   associated character to the output string and continues the</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   algoritm on the tree's root.</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Input</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   -----</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   bitstring : string</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   A string compounded by 1's and 0's</span>
+
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Output</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   ------</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   decoded_string : string</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   A string containing the characters associated to the</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   decodification of ``bitstring``.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   </span><span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   decoded_string = <span style="color: #79740e;">''</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   current_node: HTleaf | HuffmanTree = <span style="color: #9d0006;">self</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> bit <span style="color: #9d0006;">in</span> bitstring:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   match current_node:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   case HTleaf(char, _):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   decoded_string += char
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   current_node = <span style="color: #9d0006;">self</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   case HuffmanTree(lnode, rnode):
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> bit == <span style="color: #79740e;">'0'</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   current_node = lnode
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">else</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   current_node = rnode
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> decoded_string
+
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">encode</span>(string: <span style="color: #af3a03;">str</span>, code: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">str</span>, <span style="color: #af3a03;">str</span>]) -&gt; <span style="color: #af3a03;">str</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Encode the given string using code as the dictionary.</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> <span style="color: #af3a03;">reduce</span>(<span style="color: #9d0006;">lambda</span> x, y: x + code[y], string, <span style="color: #79740e;">''</span>)
+
+
+<span style="color: #9d0006;">def</span> <span style="color: #b57614;">satisfies_shannons_first_theorem</span>(h_s: <span style="color: #af3a03;">float</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>e_h: <span style="color: #af3a03;">float</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>l_s: <span style="color: #af3a03;">float</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>e_l) -&gt; <span style="color: #af3a03;">bool</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #79740e;">"""</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   Test for shannons_first_theorem</span>
+<span style="color: #79740e; background-color: #ebdbb2;"> </span><span style="color: #79740e;">   """</span>
+<span style="background-color: #ebdbb2;"> </span>   satisfied = (h_s + e_h - 1 &lt;= l_s - e_l <span style="color: #9d0006;">and</span> l_s + e_l &lt;= h_s - e_h + 1)
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">return</span> satisfied
+</pre>
+</div>
+</div>
+</div>
+<div id="outline-container-orgbff7f1f" class="outline-3">
+<h3 id="orgbff7f1f">Main</h3>
+<div class="outline-text-3" id="text-orgbff7f1f">
+<div class="org-src-container">
+<pre class="src src-python"><span style="color: #9d0006;">from</span> collections <span style="color: #9d0006;">import</span> Counter
+<span style="color: #9d0006;">from</span> math <span style="color: #9d0006;">import</span> log2, sqrt, log
+<span style="color: #9d0006;">from</span> functools <span style="color: #9d0006;">import</span> <span style="color: #af3a03;">reduce</span>
+<span style="color: #9d0006;">from</span> statistics <span style="color: #9d0006;">import</span> stdev
+<span style="color: #9d0006;">from</span> huffmantree <span style="color: #9d0006;">import</span> HuffmanTree, encode, satisfies_shannons_first_theorem
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">Generamos los datos para la muestra del idioma espa&#241;ol</span>
+<span style="color: #076678;">DATA_PATH</span> = <span style="color: #79740e;">'./samples/'</span>
+<span style="color: #076678;">FILENAME_ES</span> = <span style="color: #79740e;">'GCOM2023_pract1_auxiliar_esp.txt'</span>
+<span style="color: #076678;">SIG_FIGS</span> = 2
+
+<span style="color: #9d0006;">with</span> <span style="color: #af3a03;">open</span>(DATA_PATH + FILENAME_ES, <span style="color: #79740e;">'r'</span>, encoding=<span style="color: #79740e;">"utf8"</span>) <span style="color: #9d0006;">as</span> ifile:
+<span style="background-color: #ebdbb2;"> </span>   es = ifile.read()
+
+tab_es: Counter[<span style="color: #af3a03;">str</span>] = Counter(es)
+sample_size_es: <span style="color: #af3a03;">int</span> = tab_es.total()
+ht_es: HuffmanTree = HuffmanTree.from_counter(tab_es)
+d_es: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">str</span>, <span style="color: #af3a03;">str</span>] = ht_es.todict()
+
+KEYCODES_ES_FILE = DATA_PATH + FILENAME_ES.split(<span style="color: #79740e;">"."</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>maxsplit=1)[0] + <span style="color: #79740e;">".json"</span>
+
+<span style="color: #9d0006;">with</span> <span style="color: #af3a03;">open</span>(KEYCODES_ES_FILE,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> <span style="color: #79740e;">'w'</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> encoding=<span style="color: #79740e;">"utf8"</span>) <span style="color: #9d0006;">as</span> ofile:
+<span style="background-color: #ebdbb2;"> </span>   ofile.write(<span style="color: #79740e;">"|Key |Code|\n"</span>)
+<span style="background-color: #ebdbb2;"> </span>   ofile.write(<span style="color: #79740e;">"|-|-|\n"</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> key <span style="color: #9d0006;">in</span> d_es.keys():
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> key == <span style="color: #79740e;">'\n'</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   ofile.write(f<span style="color: #79740e;">"|\\n|</span>{d_es[key]}<span style="color: #79740e;">|\n"</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">else</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   ofile.write(f<span style="color: #79740e;">"|</span>{key}<span style="color: #79740e;"> |</span>{d_es[key]}<span style="color: #79740e;">|\n"</span>)
+
+l_es_i: <span style="color: #af3a03;">list</span>[<span style="color: #af3a03;">float</span>] = [<span style="color: #af3a03;">len</span>(code) * tab_es[letter]
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #9d0006;">for</span> letter, code <span style="color: #9d0006;">in</span> d_es.items()]
+l_es = <span style="color: #af3a03;">sum</span>(l_es_i) / sample_size_es
+
+var_l_es = (<span style="color: #af3a03;">sum</span>(tab_es[i]*(<span style="color: #af3a03;">len</span>(l_i) - l_es)**2 <span style="color: #9d0006;">for</span> (i, l_i) <span style="color: #9d0006;">in</span> d_es.items()) /
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   sample_size_es)
+
+error_l_es = sqrt(var_l_es / sample_size_es)
+
+p_i_es = <span style="color: #af3a03;">list</span>(<span style="color: #af3a03;">map</span>(<span style="color: #9d0006;">lambda</span> x: x / sample_size_es, tab_es.values()))
+
+error_p_es = stdev(p_i_es) / sqrt(sample_size_es)
+
+h_es: <span style="color: #af3a03;">float</span> = -1 * <span style="color: #af3a03;">sum</span>(p * log2(p)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #9d0006;">for</span> p <span style="color: #9d0006;">in</span> p_i_es)
+
+error_h_es = error_p_es * <span style="color: #af3a03;">sum</span>(<span style="color: #af3a03;">abs</span>(log2(p) + 1 / log(2))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> <span style="color: #9d0006;">for</span> p <span style="color: #9d0006;">in</span> p_i_es)
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">Generamos los datos para la muestra del idioma ingl&#233;s</span>
+FILENAME_EN = <span style="color: #79740e;">'GCOM2023_pract1_auxiliar_eng.txt'</span>
+<span style="color: #9d0006;">with</span> <span style="color: #af3a03;">open</span>(DATA_PATH + FILENAME_EN, <span style="color: #79740e;">'r'</span>, encoding=<span style="color: #79740e;">"utf8"</span>) <span style="color: #9d0006;">as</span> ifile:
+<span style="background-color: #ebdbb2;"> </span>   en = ifile.read()
+
+tab_en: Counter[<span style="color: #af3a03;">str</span>] = Counter(en)
+sample_size_en: <span style="color: #af3a03;">int</span> = tab_en.total()
+ht_en: HuffmanTree = HuffmanTree.from_counter(tab_en)
+d_en: <span style="color: #af3a03;">dict</span>[<span style="color: #af3a03;">str</span>, <span style="color: #af3a03;">str</span>] = ht_en.todict()
+
+KEYCODES_EN_FILE = DATA_PATH + FILENAME_EN.split(<span style="color: #79740e;">"."</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>maxsplit=1)[0] + <span style="color: #79740e;">".json"</span>
+
+<span style="color: #9d0006;">with</span> <span style="color: #af3a03;">open</span>(KEYCODES_EN_FILE,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> <span style="color: #79740e;">'w'</span>,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> encoding=<span style="color: #79740e;">"utf8"</span>) <span style="color: #9d0006;">as</span> ofile:
+<span style="background-color: #ebdbb2;"> </span>   ofile.write(<span style="color: #79740e;">"|Key |Code|\n"</span>)
+<span style="background-color: #ebdbb2;"> </span>   ofile.write(<span style="color: #79740e;">"|-|-|\n"</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">for</span> key <span style="color: #9d0006;">in</span> d_en.keys():
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">if</span> key == <span style="color: #79740e;">'\n'</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   ofile.write(f<span style="color: #79740e;">"|\\n|</span>{d_en[key]}<span style="color: #79740e;">|\n"</span>)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="color: #9d0006;">else</span>:
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   ofile.write(f<span style="color: #79740e;">"|</span>{key}<span style="color: #79740e;"> |</span>{d_en[key]}<span style="color: #79740e;">|\n"</span>)
+
+
+l_en_i: <span style="color: #af3a03;">list</span>[<span style="color: #af3a03;">float</span>] = [<span style="color: #af3a03;">len</span>(code) * tab_en[letter]
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #9d0006;">for</span> letter, code <span style="color: #9d0006;">in</span> d_en.items()]
+l_en = <span style="color: #af3a03;">sum</span>(l_en_i) / sample_size_en
+
+var_en = (<span style="color: #af3a03;">sum</span>(tab_en[i]*(<span style="color: #af3a03;">len</span>(l_i) - l_en)**2 <span style="color: #9d0006;">for</span> (i, l_i) <span style="color: #9d0006;">in</span> d_en.items()) /
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> sample_size_en)
+
+error_l_en = sqrt(var_en / sample_size_en)
+
+p_i_en = <span style="color: #af3a03;">list</span>(<span style="color: #af3a03;">map</span>(<span style="color: #9d0006;">lambda</span> x: x / sample_size_en, tab_en.values()))
+
+h_en: <span style="color: #af3a03;">float</span> = -1 * <span style="color: #af3a03;">sum</span>(p * log2(p)
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  <span style="color: #9d0006;">for</span> p <span style="color: #9d0006;">in</span> p_i_en)
+
+error_p_en = stdev(<span style="color: #af3a03;">list</span>(p_i_en)) / sqrt(sample_size_en)
+
+error_h_en = error_p_en * <span style="color: #af3a03;">sum</span>(<span style="color: #af3a03;">abs</span>(log2(p) + 1 / log(2))
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> <span style="color: #9d0006;">for</span> p <span style="color: #9d0006;">in</span> p_i_en)
+
+<span style="color: #a89984;"># </span><span style="color: #a89984;">Generamos el output deseado con formato latex y enumerado</span>
+
+<span style="color: #af3a03;">print</span>(<span style="color: #79740e;">"Espa&#241;ol"</span>)
+<span style="color: #af3a03;">print</span>((<span style="color: #79740e;">"- La longitud media L_esp es \\("</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  f<span style="color: #79740e;">"</span>{<span style="color: #af3a03;">round</span>(l_es, SIG_FIGS)}<span style="color: #79740e;"> \\pm "</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  f<span style="color: #79740e;">"</span>{<span style="color: #af3a03;">round</span>(error_l_es, SIG_FIGS)}<span style="color: #79740e;">\\)\n"</span>))
+<span style="color: #af3a03;">print</span>(f<span style="color: #79740e;">"- La entropia H_esp es \\(</span>{<span style="color: #af3a03;">round</span>(h_es, SIG_FIGS)}<span style="color: #79740e;"> "</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> f<span style="color: #79740e;">"\\pm </span>{<span style="color: #af3a03;">round</span>(error_h_es, SIG_FIGS)}<span style="color: #79740e;">\\)\n"</span>)
+
+<span style="color: #9d0006;">if</span> satisfies_shannons_first_theorem(h_es,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   error_h_es,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   l_es,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   error_l_es):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">print</span>(<span style="color: #79740e;">"- Cumple el primer teorema de Shannon\n"</span>)
+
+<span style="color: #af3a03;">print</span>(<span style="color: #79740e;">"Ingl&#233;s"</span>)
+<span style="color: #af3a03;">print</span>((<span style="color: #79740e;">"- La longitud media L_eng es \\("</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  f<span style="color: #79740e;">"</span>{<span style="color: #af3a03;">round</span>(l_en, SIG_FIGS)}<span style="color: #79740e;"> \\pm "</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>  f<span style="color: #79740e;">"</span>{<span style="color: #af3a03;">round</span>(error_l_en, SIG_FIGS)}<span style="color: #79740e;">\\)\n"</span>))
+<span style="color: #af3a03;">print</span>(f<span style="color: #79740e;">"- La entropia H_eng es </span>{<span style="color: #af3a03;">round</span>(h_en, SIG_FIGS)}<span style="color: #79740e;"> "</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> f<span style="color: #79740e;">"\\pm </span>{<span style="color: #af3a03;">round</span>(error_h_en, SIG_FIGS)}<span style="color: #79740e;">\\)\n"</span>)
+
+<span style="color: #9d0006;">if</span> satisfies_shannons_first_theorem(h_en,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   error_h_en,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   l_en,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   error_l_en):
+<span style="background-color: #ebdbb2;"> </span>   <span style="color: #af3a03;">print</span>(<span style="color: #79740e;">"- Cumple el primer teorema de Shannon\n"</span>)
+
+PALABRA = <span style="color: #79740e;">'dimension'</span>
+(<span style="color: #076678;">x_es</span>, <span style="color: #076678;">x_en</span>) = <span style="color: #af3a03;">reduce</span>(<span style="color: #9d0006;">lambda</span> x, y: (x[0] + d_es[y], x[1] + d_en[y]),
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> PALABRA,
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> (<span style="color: #79740e;">''</span>, <span style="color: #79740e;">''</span>))
+
+percent_es = <span style="color: #af3a03;">int</span>(<span style="color: #af3a03;">len</span>(PALABRA*8)/<span style="color: #af3a03;">len</span>(x_es)*100)
+<span style="color: #af3a03;">print</span>(f<span style="color: #79740e;">"\'</span>{PALABRA}<span style="color: #79740e;">\' compreso con S_Esp es \'</span>{x_es}<span style="color: #79740e;">\'"</span>)
+<span style="color: #af3a03;">print</span>(f<span style="color: #79740e;">"i.e. sin comprimir es </span>{percent_es}<span style="color: #79740e;">% mas largo.\n"</span>)
+
+percent_en = <span style="color: #af3a03;">int</span>(<span style="color: #af3a03;">len</span>(PALABRA*8)/<span style="color: #af3a03;">len</span>(x_en)*100)
+<span style="color: #af3a03;">print</span>(f<span style="color: #79740e;">"\'</span>{PALABRA}<span style="color: #79740e;">\' compreso con S_Eng es \'</span>{x_en}<span style="color: #79740e;">\'"</span>)
+<span style="color: #af3a03;">print</span>(f<span style="color: #79740e;">"i.e. sin comprimir es </span>{percent_en}<span style="color: #79740e;">% mas largo.\n"</span>)
+
+ENCODED = <span style="color: #79740e;">"0101010001100111001101111000101111110101010001110"</span>
+decoded = ht_en.decode(ENCODED)
+
+<span style="color: #af3a03;">print</span>(f<span style="color: #79740e;">"</span>{ENCODED}<span style="color: #79740e;"> es \n``</span>{decoded}<span style="color: #79740e;">``\n "</span>
+<span style="background-color: #ebdbb2;"> </span>   <span style="background-color: #ebdbb2;"> </span> f<span style="color: #79740e;">"\nLos arboles de Huffman NO son &#250;nicos."</span>)
+</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="date">Fecha: 2023-02-10 vie 00:00</p>
+<p class="author">Autor: Pablo C. Alcalde</p>
+<p class="date">Created: 2023-05-15 lun 11:56</p>
+</div>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Ignore the ltximgs created, since they are being handled by html
+**/ltximg
+
+# Ignore environments
+**/env

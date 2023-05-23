@@ -1,0 +1,101 @@
+* Definiciones Previas
+$\mathcal{X}^{n} = \{ \left(  x_{1}, \dots, x_{n} \right) | \left( x_{1}, \dots, x_{n} \right) \text{m.a.s.(n) de X}\}$ espacio muesrral
+$\Theta = \left\{\text{valores que puede tomar el parámetro }\theta \right\}$ expacio paramétrico
+\(\mathcal{F} = \left\{ F_{\theta} | \text{F es función de distribución} \right\}\)
+** Ejemplo
+Sea \( X \sim \text{Be}(\theta) \)
+
+\( x = 3 \)
+
+\( \mathcal{X}^{3} = \left\{ \left( x_{1}, x_2, x_{3} \right) | x_i \in \left\{ 0, 1 \right\} \right\} = \left\{ (0,0,0), \dots, (1,1,1) \right\} \)
+
+\( \Theta = \left( 0,1 \right) \)
+
+\( P_{\theta} \left( X = x \right) = \theta^x \left( 1 - \theta \right)^{1-x} \)
+* Estadístico
+** Definición
+Un estadístico \( T : \mathcal{X}^{n} \to \mathbb{R}^k (k = 1 \text{ ó } n = 2 )\) _medible_
+** Notación
+\( \min x_{i} = X_{(1)} = X_{1:n} \)
+
+\( \max x_{i} = X_{(n)} = X_{n:n} \)
+
+\( X_{(i)} = \text{ordenados los datos, el de la posición i-ésima} \)
+
+** Ejemplos de estadísticos
+- \( \sum x_{i} \)
+- \( \Pi x_{i} \)
+- \( \text{x} = \frac{\sum x_i}{n} \)
+- \( S_{n}^2 = \frac{\sum \left( x_i -\overline{x} \right)^2}{n} \)
+- \( S_{n-1}^2 = \frac{\sum \left( x_i -\overline{x} \right)^2}{n-1} \)
+
+*** Ejemplo
+Sea \( X \sim \text{Be}(p) \) y sea $X_1 \to$
+
+%(N_1) y $X_2 \to$ %(N_2)
+
+tomo \(T_{1} \left( x_1, x_2 \right) \)
+
+\( P_{p} \left( \frac{X_1 = x_1, X_2 = x_2}{T_1(x_1, x_2) = t} \right) \) no depende de p.
+
+\( P_{p} \left( X_1=1, X_2= 0 /_{X_1+X_2 = 1} \right) = \frac{P_p \left( X_1+X_2 /_{X_1=1, X_2= 0} \right) P_p \left( X_1=1, X_2=0 \right)}{P_p(X_1 + X_2 = 1} = \frac{p(1-p)}{p(1-p) + (1-p)p} = \frac{1}{2}\)
+
+Repetimos el problema con \(T_{2}(X_1,X_2) = 2X_1 + X_2\)
+\(T_{2} : \mathcal{X}^2 \to \mathbb{R}\)  donde \( \operatorname{Im}(T_{2)}= \left\{ 0, 1, 2, 3 \right\} \)
+
+Ahora supongamos que tenemos un alumno más a tener en cuenta \( X_{3} \to \) %(N_3)
+
+\( T_3\left( X_1, X_2, X_3 \right) = X_1 + X_2 + 2X_3\) con \( T_{3} : \mathcal{X}^{3} \to \mathbb{R} \) por lo que \( \operatorname{Im} (T_3) = \left\{ 0, 1, 2, 3, 4 \right\}\) donde ahora el dos puede venir de diferentes escenarios, (1,1,0) y (0,0,1)
+
+\( P_{p} \left( X_1 = 0, X_{2} = 0, X_3 = 1 /_{X_1 + X_2 + 2X_3 = 2} \right) = \frac{P_p \left( X_1 + X_2 + 2X_3 = 2 /_{X_1= 0, X_2=0, X_3=1} \right) P_p \left( X_1 = 0, X_2 = 0, X_3 = 1 \right)}{P_p \left( X_1 + X_2 + 2X_3 = 2 \right)} = \frac{(1-p)(1-p)p}{(1-p)(1-p)p + pp(1-p)} = 1 - p\)
+
+
+\( \left( P(A/_B ) \right) = \frac{P \left( A \cap B \right)}{P(B)} = \frac{P \left( B/_A \right)P(A)}{P(B)} \) pero ojo!!
+
+** Proposición
+\( \forall t \in \operatorname{Im}(T) P_p \left( X_1=x__1, \dots, X_n =x_n /_{T(\overline{x})} \right) = \begin{cases} 0 & \left( x_{1}, \dots, x_{n} \right) \in T^{-1}(t) \\ \frac{P_p (X_1 = x_1, \dots, X_n=x_{n })}{P_p \left( T \left(\text{x) \right) = t \right) = t} &\text{si no}\)
+
+** Proposición
+\( \forall t \in \operatorname{Im}(T) | T^{-1}(t) = \left\{ (x_{1}, \dots, x_{n}) \right\} \)
+\(P_p \left( X_1=x_1, \dots, X_n =x_n /_{T(\overline{x})} \right) = 1\)
+
+** Proposición
+\( T: \mathcal{X}^{n} \to \mathbb{R} \text{es inyectivo} \implies P_p \left( X_1=x_1, \dots, X_n=x_n /_{T(\overline{x})=t} \right) \) no depende de p
+
+* Estadístico Suficiente
+Sea \( X \) una v.a. de la que se extrae un m.a.s. (n) \( \left\{ X_{n} | n \ge 1 \right\} \) v.a.i.i.d.
+
+\( T : \mathcal{X}^{n} \to \mathbb{R}\) es un estadístico suficiente \iff \( \forall t \in \mathbb{R}^k \forall \left( x_1,...,x_n \right) \in \mathcal{X}^{n} \quad P_p \left( X_1=x_1, \dots, X_n = x_n /_{T(\vec{x}) = t} \right)\) no depende de p
+Notese que dos $\forall$ no es algo precisamente computable, así que esto realmente sólo nos valdrá (generalmente) para negar.
+
+** Ejemplo
+Sea \( X \sim \text{Be}(p) \quad \left( X_1, X_2,X_3 \right) \in \mathcal{X}^3 \), ¿\( T(X_1,X_2,X_3) = X_1 + 2X_2 + X_3 \) es suficiente?
+
+No! Con \( t = 2 \) tenemos \( X_{1} = 1, X_2 = 0, X_3=1 \) con el cuál nos dá que $P_p(\dots/\dots) = p$ que depende de p!!
+
+* Teorema de Factorización
+Sea \( X \) v.a. con \( f_{\theta}(x) \text{ ó } P_{\theta}(X = x)\).
+
+Sea \( \left( X_{1}, \dots, X_{n} \right) \)  un m.a.s. de \( \left\{ X_{n} | n \ge 1\right\} \) v.a.i.i.d
+
+Si se puede escribir \( f_{\theta} \left( x_{1}, \dots, x_{n} \right)  \text{ ó } P_{\theta} \left( X_{1}=x_{1}, \dots, X_{n}=x_{n} \right)\) como \( h \left( x_{1}, \dots, x_{n} \right) g_{\theta} \left( T \left( x_{1}, \dots, x_{n} \right) \right) \) entonces \( T \left( x_{1}, \dots, x_n \right) \) es suficiente para \( \theta \) 
+
+** Ejemplo
+Sea \( X \sim \text{P}(\lambda) \) tendremos que \( P_{\lambda} \left( X = x \right) = \frac{e^{-\lambda}\lambda^x}{x!} \)
+
+\( P_{\lambda} (X_1=x_1, \dots, X_n=x_n) \stackrel{\text{v.a.i.}}{=} \Pi_{i = 1}^n P_{\lambda}(X_i=x_{i}) \stackrel{\text{i.d.}}{ = } \left[ P_{\lambda} \left( X_i = x_i \right) \right]^n = \frac{e^{-\lambda}\lambda^{x_1}}{x_1!}\frac{e^{-\lambda}\lambda^{x_2}}{x_2!}\dots\frac{e^{-\lambda}\lambda^{x_n}}{x_n!} = \frac{e^{n\lambda} \lambda^{\sum x_i}}{\Pi x_{i}!}\)
+
+** Proposición
+Sea \( T \) suficiente y \( \varphi \) medible $\implies$ \( \varphi(T) \) suficiente.
+
+*** Ejemplo
+\( X \sim \gamma(a,p) \quad p > 0, a > 0\) sabemos que \( f_{a,p} (x) = \frac{a^p}{\Gamma(p)}e^{-ax}x^{p - 1} I_{(0,\infty)}(x)\) entonces para una muestra de tamaño n.
+
+\( f_{a,p} (\vec{x}) = \frac{a^pn}{\Gamma(p)^{n}}e^{(-a\sum x_i)}\Pi x^{p - 1} I_{(0,\infty)}(\min x_i) \) 
+
+**** a parámetro, p conocido
+\( h(\vec{x}) = \frac{1}{\Gamma(p)^{n}} \Pi x_i^{p - 1} I_{(0, \infty)} \left( \min x_i \right) \)
+\( g_{a} \left( T(\vec{x}) \right) = a^{pn} e^{-a \sum x_i} \stackrel{\implies}{\text{t.fact.}}\) $\sum x_i$ suficiente para a  
+
+**** a conocido, p parámetro
+

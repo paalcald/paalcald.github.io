@@ -3,7 +3,7 @@
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
 <head>
-<!-- 2023-05-03 mié 14:51 -->
+<!-- 2023-05-07 dom 22:25 -->
 <meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
 <title>Bernoulli</title>
@@ -230,8 +230,8 @@
 <div id="content" class="content">
 <h1 class="title">Bernoulli</h1>
 <div id="outline-container-org3fa3686" class="outline-2">
-<h2 id="org3fa3686">Significado</h2>
-<div class="outline-text-2" id="text-org3fa3686">
+<h2 id="org3fa3686"><span class="section-number-2">1.</span> Significado</h2>
+<div class="outline-text-2" id="text-1">
 <p>
 Supón que hay un evento que solo tiene dos posibles resoluciones, <i>acierto</i> y <i>fallo</i> respectivamente, que denominaremos <i>1</i> y <i>0</i> respectivamente.
 Usaremos como parámetro la probabilidad de <i>acierto</i>.
@@ -239,16 +239,45 @@ Usaremos como parámetro la probabilidad de <i>acierto</i>.
 </div>
 </div>
 <div id="outline-container-org8ecc0be" class="outline-2">
-<h2 id="org8ecc0be">Ejemplos</h2>
-<div class="outline-text-2" id="text-org8ecc0be">
+<h2 id="org8ecc0be"><span class="section-number-2">2.</span> Ejemplos</h2>
+<div class="outline-text-2" id="text-2">
 <ul class="org-ul">
 <li>Tirar una moneda que aterriza en caras el 40% de las veces es un suceso Bernoulli de parámetro <i>0.4</i>.</li>
 </ul>
 </div>
 </div>
+<div id="outline-container-orga824c99" class="outline-2">
+<h2 id="orga824c99"><span class="section-number-2">3.</span> Distribuciones Relacionadas</h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orge00e996" class="outline-3">
+<h3 id="orge00e996"><span class="section-number-3">3.1.</span> \(X_i \sim Ber(p) \implies \sum^n X_i \sim Binom(n,p) \)</h3>
+<div class="outline-text-3" id="text-3-1">
+<p>
+Si \( X_1,...,X_n \) son variables aleatorias independientes e idénticamente distribuicas, todas ellas Bernoulli de parámetro p, entonces su suma, se distribuye de acuerdo a una <a href="20230407204656-binomial.html#ID-d0c10309-9492-4d7f-8bdc-f41ba042b704">Binomial</a> de parámetros n y p.
+</p>
+</div>
+</div>
+<div id="outline-container-org655fc2e" class="outline-3">
+<h3 id="org655fc2e"><span class="section-number-3">3.2.</span> \( X \sim Ber(p) \sim Binom(1,p) \)</h3>
+<div class="outline-text-3" id="text-3-2">
+<p>
+Es un dato trivial
+</p>
+</div>
+</div>
+</div>
+<div id="outline-container-org031c357" class="outline-2">
+<h2 id="org031c357"><span class="section-number-2">4.</span> Conjugada a Priori</h2>
+<div class="outline-text-2" id="text-4">
+<p>
+La <a href="20230503102906-beta.html#ID-832758f1-20f6-4c84-9722-65da32ef37e7">Beta</a> es la conjugada a priori de la Bernouilli.
+</p>
+</div>
+</div>
 <div id="outline-container-org4ddc5a3" class="outline-2">
-<h2 id="org4ddc5a3">Función de Probabilidad&#xa0;&#xa0;&#xa0;<span class="tag"><span class="pmf">pmf</span>&#xa0;<span class="cf">cf</span></span></h2>
-<div class="outline-text-2" id="text-org4ddc5a3">
+<h2 id="org4ddc5a3"><span class="section-number-2">5.</span> Función de Probabilidad&#xa0;&#xa0;&#xa0;<span class="tag"><span class="pmf">pmf</span>&#xa0;<span class="cf">cf</span></span></h2>
+<div class="outline-text-2" id="text-5">
 \begin{equation*}
   P(X = x) =
   \begin{cases}
@@ -259,15 +288,15 @@ Usaremos como parámetro la probabilidad de <i>acierto</i>.
 </div>
 </div>
 <div id="outline-container-org58a04ff" class="outline-2">
-<h2 id="org58a04ff">Moment Generating Function&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mgf">mgf</span>&#xa0;<span class="fgm">fgm</span></span></h2>
-<div class="outline-text-2" id="text-org58a04ff">
+<h2 id="org58a04ff"><span class="section-number-2">6.</span> Moment Generating Function&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mgf">mgf</span>&#xa0;<span class="fgm">fgm</span></span></h2>
+<div class="outline-text-2" id="text-6">
 <p>
 \( M_{X}(t) = 1 - p + pe^t \)
 </p>
 </div>
-<div id="outline-container-orgd703a20" class="outline-3">
-<h3 id="orgd703a20">¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h3>
-<div class="outline-text-3" id="text-orgd703a20">
+<div id="outline-container-org26e8287" class="outline-3">
+<h3 id="org26e8287"><span class="section-number-3">6.1.</span> ¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h3>
+<div class="outline-text-3" id="text-6-1">
 \begin{equation*}
 M_{X}(t) &= \mathbb{E}(e^{tX}) = \sum_{k \in \{0, 1\} } P(X = k) = p e^{1t} + (1 - p)e^{0t} = 1 - p + pe^t 
 \end{equation*}
@@ -275,15 +304,15 @@ M_{X}(t) &= \mathbb{E}(e^{tX}) = \sum_{k \in \{0, 1\} } P(X = k) = p e^{1t} + (1
 </div>
 </div>
 <div id="outline-container-org9a71261" class="outline-2">
-<h2 id="org9a71261">Media&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mean">mean</span>&#xa0;<span class="media">media</span></span></h2>
-<div class="outline-text-2" id="text-org9a71261">
+<h2 id="org9a71261"><span class="section-number-2">7.</span> Media&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mean">mean</span>&#xa0;<span class="media">media</span></span></h2>
+<div class="outline-text-2" id="text-7">
 <p>
 \( \mathbb{E}(X) =  p \)
 </p>
 </div>
-<div id="outline-container-org74bc8d5" class="outline-3">
-<h3 id="org74bc8d5">¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h3>
-<div class="outline-text-3" id="text-org74bc8d5">
+<div id="outline-container-org1b953b2" class="outline-3">
+<h3 id="org1b953b2"><span class="section-number-3">7.1.</span> ¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h3>
+<div class="outline-text-3" id="text-7-1">
 \begin{equation*}
 \mathbb{E}(X) = M'_X(0) = p e^t [t \mapsto 0] = p
 \end{equation*}
@@ -291,15 +320,15 @@ M_{X}(t) &= \mathbb{E}(e^{tX}) = \sum_{k \in \{0, 1\} } P(X = k) = p e^{1t} + (1
 </div>
 </div>
 <div id="outline-container-org768e1c7" class="outline-2">
-<h2 id="org768e1c7">Varianza&#xa0;&#xa0;&#xa0;<span class="tag"><span class="var">var</span></span></h2>
-<div class="outline-text-2" id="text-org768e1c7">
+<h2 id="org768e1c7"><span class="section-number-2">8.</span> Varianza&#xa0;&#xa0;&#xa0;<span class="tag"><span class="var">var</span></span></h2>
+<div class="outline-text-2" id="text-8">
 <p>
 \(\mathbb{V}(X) = p (1 - p) \)
 </p>
 </div>
-<div id="outline-container-orgd1528cb" class="outline-3">
-<h3 id="orgd1528cb">¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h3>
-<div class="outline-text-3" id="text-orgd1528cb">
+<div id="outline-container-orgb0eaf7a" class="outline-3">
+<h3 id="orgb0eaf7a"><span class="section-number-3">8.1.</span> ¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h3>
+<div class="outline-text-3" id="text-8-1">
 \begin{equation*}
 \mathbb{E}(X^2) = M''_X(0) = p e^t [t \mapsto 0] = p \\
 \mathbb{V}(X) = \mathbb{E}(X^2) - \mathbb{E}(X)^2 = p - p^2 = p (1 - p) \\
@@ -309,15 +338,15 @@ M_{X}(t) &= \mathbb{E}(e^{tX}) = \sum_{k \in \{0, 1\} } P(X = k) = p e^{1t} + (1
 </div>
 
 <div id="outline-container-org9c44eb1" class="outline-2">
-<h2 id="org9c44eb1">Información de Fisher&#xa0;&#xa0;&#xa0;<span class="tag"><span class="if">if</span>&#xa0;<span class="fi">fi</span></span></h2>
-<div class="outline-text-2" id="text-org9c44eb1">
+<h2 id="org9c44eb1"><span class="section-number-2">9.</span> Información de Fisher&#xa0;&#xa0;&#xa0;<span class="tag"><span class="if">if</span>&#xa0;<span class="fi">fi</span></span></h2>
+<div class="outline-text-2" id="text-9">
 <p>
 \( I^{\star} = \frac{1}{p(1-p)} \)
 </p>
 </div>
-<div id="outline-container-org0d1bb7a" class="outline-3">
-<h3 id="org0d1bb7a">¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h3>
-<div class="outline-text-3" id="text-org0d1bb7a">
+<div id="outline-container-orge2576ff" class="outline-3">
+<h3 id="orge2576ff"><span class="section-number-3">9.1.</span> ¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h3>
+<div class="outline-text-3" id="text-9-1">
 \begin{equation*}
 f_p(x) = (1 - p) \left( \frac{p}{ 1- p} \right)^x
 \end{equation*}
@@ -329,12 +358,12 @@ De donde obtenemos su logaritmo como \( \ln f_p(x) = \ln (1 - p) + x \ln p - x \
 </div>
 </div>
 <div id="outline-container-orgdfd35d9" class="outline-2">
-<h2 id="orgdfd35d9">Inferencia Estadística</h2>
-<div class="outline-text-2" id="text-orgdfd35d9">
+<h2 id="orgdfd35d9"><span class="section-number-2">10.</span> Inferencia Estadística</h2>
+<div class="outline-text-2" id="text-10">
 </div>
 <div id="outline-container-orgcf248c6" class="outline-3">
-<h3 id="orgcf248c6">Estadistico Suficiente</h3>
-<div class="outline-text-3" id="text-orgcf248c6">
+<h3 id="orgcf248c6"><span class="section-number-3">10.1.</span> Estadistico Suficiente</h3>
+<div class="outline-text-3" id="text-10-1">
 \begin{align*}
   f_p(\vec{x}) &= (p^x(1 - p)^{1-x})^n \\
                &= p^{\sum x_i} (1 - p)^{n - \sum x_i} \\
@@ -347,19 +376,19 @@ donde podemos aplicar el <a href="20230410122452-fisher_neyman_factorization_the
 </div>
 </div>
 <div id="outline-container-org7bca0ac" class="outline-3">
-<h3 id="org7bca0ac">Minimal Sufficient</h3>
+<h3 id="org7bca0ac"><span class="section-number-3">10.2.</span> Minimal Sufficient</h3>
 </div>
 </div>
 <div id="outline-container-org9256cf9" class="outline-2">
-<h2 id="org9256cf9">Método de Momentos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mm">mm</span>&#xa0;<span class="emm">emm</span></span></h2>
-<div class="outline-text-2" id="text-org9256cf9">
+<h2 id="org9256cf9"><span class="section-number-2">11.</span> Método de Momentos&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mm">mm</span>&#xa0;<span class="emm">emm</span></span></h2>
+<div class="outline-text-2" id="text-11">
 <p>
 \( \hat{p}_{\text{MM}} = \overline{x} \)
 </p>
 </div>
-<div id="outline-container-org7117738" class="outline-3">
-<h3 id="org7117738">¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h3>
-<div class="outline-text-3" id="text-org7117738">
+<div id="outline-container-orgaec8473" class="outline-3">
+<h3 id="orgaec8473"><span class="section-number-3">11.1.</span> ¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h3>
+<div class="outline-text-3" id="text-11-1">
 <p>
 Igualamos los momentos muestrales y poblacionales, sabemos que la <a href="#org9a71261">media</a> poblacional es p, la igualamos al primer momento muestral i.e. la media muestral \( {\frac{\sum_{i=1}^n x_i}{n} \) y en este caso sencillo la solución de la ecuación ya se nos dá.
 </p>
@@ -367,15 +396,15 @@ Igualamos los momentos muestrales y poblacionales, sabemos que la <a href="#org9
 </div>
 </div>
 <div id="outline-container-org398dc1a" class="outline-2">
-<h2 id="org398dc1a">Máxima Verosimilitud&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mle">mle</span>&#xa0;<span class="emv">emv</span></span></h2>
-<div class="outline-text-2" id="text-org398dc1a">
+<h2 id="org398dc1a"><span class="section-number-2">12.</span> Máxima Verosimilitud&#xa0;&#xa0;&#xa0;<span class="tag"><span class="mle">mle</span>&#xa0;<span class="emv">emv</span></span></h2>
+<div class="outline-text-2" id="text-12">
 <p>
 \(\hat{p}_{\text{EMV}} = \overline{x}\)
 </p>
 </div>
-<div id="outline-container-org26e8287" class="outline-3">
-<h3 id="org26e8287">¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h3>
-<div class="outline-text-3" id="text-org26e8287">
+<div id="outline-container-orgac48ab2" class="outline-3">
+<h3 id="orgac48ab2"><span class="section-number-3">12.1.</span> ¿Por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="proof">proof</span>&#xa0;<span class="demostraci_n">demostración</span></span></h3>
+<div class="outline-text-3" id="text-12-1">
 \begin{align*}
 L(p; \vec{x}) &= \left( \frac{p}{1-p} \right)^{n \overline{x}} (1 - p)^n \\
 \ln L(p; \vec{x}) &= n \overline{x} \ln p - n \overline{x} \ln (1-p) + n \ln (1 - p) \\
@@ -396,7 +425,7 @@ De la cuál tomamos derivadas y
 </div>
 <div id="postamble" class="status">
 <p class="author">Author: Pablo C. Alcalde</p>
-<p class="date">Created: 2023-05-03 mié 14:51</p>
+<p class="date">Created: 2023-05-07 dom 22:25</p>
 </div>
 </body>
 </html>

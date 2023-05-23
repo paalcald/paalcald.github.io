@@ -1,0 +1,888 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-07 dom 22:25 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Problemas</title>
+<meta name="author" content="Pablo C. Alcalde" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Problemas</h1>
+<div id="outline-container-org04d2a5c" class="outline-2">
+<h2 id="org04d2a5c"><span class="section-number-2">1.</span> Sea \( X \) una variable aleatoria con función de densidad  \[ f(x|\theta) = \frac{2x}{\theta^2}, \quad \text{si} \quad 0 < x < \theta \] Basándose en una muestra aleatoria simple de tamaño \( n \) se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011o">2011o</span></span></h2>
+<div class="outline-text-2" id="text-1">
+</div>
+<div id="outline-container-org0755bdf" class="outline-3">
+<h3 id="org0755bdf"><span class="section-number-3">1.1.</span> Determínese el estimador, \( \hat{\theta} \), de máxima verosimilitud para \( \theta \).</h3>
+</div>
+<div id="outline-container-org8446c59" class="outline-3">
+<h3 id="org8446c59"><span class="section-number-3">1.2.</span> Pruébese que dicho estimador es suficiente y completo.</h3>
+</div>
+<div id="outline-container-orgf656ccf" class="outline-3">
+<h3 id="orgf656ccf"><span class="section-number-3">1.3.</span> Hállese un estimador centrado unifórmemente de mínima varianza para &theta;.</h3>
+</div>
+<div id="outline-container-org64067b2" class="outline-3">
+<h3 id="org64067b2"><span class="section-number-3">1.4.</span> Hállese un intervalo de confianza para \( \theta \) por el método de la cantidad pivotal.</h3>
+</div>
+<div id="outline-container-orgfd58898" class="outline-3">
+<h3 id="orgfd58898"><span class="section-number-3">1.5.</span> Constúyase el test UMP de tamaño \( \alpha \) para contrastar H<sub>0</sub>: &theta; &le; 2.9 frente a la alternativa H<sub>1</sub>: &theta; &gt; 2.9. ¿Qué hipótesis se aceptaría con la muestra de tamaño 5 siguiente?</h3>
+<div class="outline-text-3" id="text-1-5">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+
+<col  class="org-right" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-right">1.82</td>
+<td class="org-right">0.78</td>
+<td class="org-right">2.64</td>
+<td class="org-right">2.56</td>
+<td class="org-right">2.34</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org71c4c0f" class="outline-2">
+<h2 id="org71c4c0f"><span class="section-number-2">2.</span> Para una m.a.s  de tamaño 10 de una población <a href="20230407125050-bernoulli.html#ID-6009d6da-54e8-4174-9b62-4f13d29bcf7b">Bernoulli</a>(&theta;) y para contrastar la hipótesis nula H<sub>0</sub>: &theta; &le; 0.5 frente a la alternativa H<sub>1</sub>: &theta; &gt; 0.5.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011o">2011o</span></span></h2>
+<div class="outline-text-2" id="text-2">
+</div>
+<div id="outline-container-org6edf1e7" class="outline-3">
+<h3 id="org6edf1e7"><span class="section-number-3">2.1.</span> Calcúlese el estadístico de la razón de verosimilitudes y la región crítica del estadístico basado en él; justifíquese que la citada región crítica puede escribirse de la forma \( \left\{ x | \sum_{i = 1}^{10} x_{i \ge k} \right\} \); teniendo esto en cuenta, ¿cuál es el p-valor si se observan 7 éxitos? (puede necesitar que la función de distribución de la \(Binomial(n=10, \theta = 0.5)\) en el punto 6 es 0.8281).</h3>
+</div>
+<div id="outline-container-orga804028" class="outline-3">
+<h3 id="orga804028"><span class="section-number-3">2.2.</span> Determínese unn intervalo de confianza asintótico para \( \theta \) al 95%; particularícese para \( n=10 \) y \( \overline{x} = 0.7 \) (puede necesitar que la función de distribución de la <a href="20230503105847-normal.html#ID-b0f550d9-09f1-42bb-8c6a-1d9bd0b35e00">Normal</a>(0,1) en el punto 1.966 es 0.975)</h3>
+<div class="outline-text-3" id="text-2-2">
+</div>
+</div>
+</div>
+
+<div id="outline-container-org2ae0cbe" class="outline-2">
+<h2 id="org2ae0cbe"><span class="section-number-2">3.</span> Sea \( X \) una variable con función de densidad \[ f_{\theta}(x) = \frac{x + 1}{\theta \left( \theta + 1 \right)} \exp{\left( -\frac{x}{\theta} \right) } \quad x>0, \quad \theta > 0\] Para muestras aleatorias simples de tamaño <i>n</i>, determínese:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011e">2011e</span></span></h2>
+<div class="outline-text-2" id="text-3">
+</div>
+<div id="outline-container-orgb195a8d" class="outline-3">
+<h3 id="orgb195a8d"><span class="section-number-3">3.1.</span> Un estadístico suficiente para &theta; y estúdiese si es minimal suficiente y completo para &theta;.</h3>
+</div>
+<div id="outline-container-org4fa093e" class="outline-3">
+<h3 id="org4fa093e"><span class="section-number-3">3.2.</span> ¿Se puede afirmar a partir de la cota de F-C-R que la media muestral es un estimacor dentrasdo uniformemente de mínima varianza para \( h(\theta) = \frac{\theta \left( 2 \theta + 1 \right)}{\theta + 1} \)?</h3>
+<div class="outline-text-3" id="text-3-2">
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<tbody>
+<tr>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div id="outline-container-org4c0bd5e" class="outline-2">
+<h2 id="org4c0bd5e"><span class="section-number-2">4.</span> Para una muestra de tamaño 16 procedente de una \( N(0,1) \) con \( -\infty < \theta < \infty \) se utiliza como región de rechazo \[ \left\{ \vec{x} | \overline{x} \ge c \right\}\] para constrastar H<sub>0</sub> : &theta; &le; 0 vs H<sub>1</sub> &theta; &gt; 0, siendo \( c \) un número real previamente fijado. Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2011e">2011e</span></span></h2>
+<div class="outline-text-2" id="text-4">
+</div>
+<div id="outline-container-org6668ee3" class="outline-3">
+<h3 id="org6668ee3"><span class="section-number-3">4.1.</span> Calcúlese su función de potencia, \( \beta(\theta) \), en términos de la función de distribución de la <a href="20230503105847-normal.html#ID-b0f550d9-09f1-42bb-8c6a-1d9bd0b35e00">Normal</a> estandar.</h3>
+</div>
+<div id="outline-container-org7305695" class="outline-3">
+<h3 id="org7305695"><span class="section-number-3">4.2.</span> ¿Cuál es el valor de \( c \) para que el contraste tenga tamaño 0.01? Para este valor de \( c \), ¿cuál es el supremo de las probabilidades de error de tipo II?</h3>
+</div>
+<div id="outline-container-org9de3c87" class="outline-3">
+<h3 id="org9de3c87"><span class="section-number-3">4.3.</span> Si la distribución inicial del marámetro &theta; es una normal estándar, ¿cuál es la distribución final, cuando \( \overline{x} = 1.0625 \)? ¿existe algún valor de \( c \) para el cual la región de rechazo anterior sea la región de rechazo del contraste bayesiano?</h3>
+<div class="outline-text-3" id="text-4-3">
+</div>
+</div>
+</div>
+<div id="outline-container-org3c806fb" class="outline-2">
+<h2 id="org3c806fb"><span class="section-number-2">5.</span> Sea X una variable aleatoria con función de densidad \[ f_{\theta}(x) = \frac{1}{x \ln \theta}, \quad 1 < x < \theta}\] Se considera una m.a.s. de tamaño \( n \). Se pide&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2012o">2012o</span></span></h2>
+<div class="outline-text-2" id="text-5">
+</div>
+<div id="outline-container-orga10082d" class="outline-3">
+<h3 id="orga10082d"><span class="section-number-3">5.1.</span> Estímese \(\theta\) por el método de la máxima verosimilitud ¿Es minimal suficiente el estimador de máxima verosimilitud? :1.25pts:</h3>
+</div>
+<div id="outline-container-org48d5689" class="outline-3">
+<h3 id="org48d5689"><span class="section-number-3">5.2.</span> Determínese el estimador centrado de mínima varianza para \( h(\theta) = \ln \theta \)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1_25pts">1_25pts</span></span></h3>
+</div>
+</div>
+<div id="outline-container-org033f424" class="outline-2">
+<h2 id="org033f424"><span class="section-number-2">6.</span> Sea X una variable aleatoria con función de densidad \[ f_{\theta}(x) = \frac{1\theta^2}{x^3}, \quad 0 < \theta \le x\] Se considera una m.a.s. de tamaño \(n\).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2012o">2012o</span></span></h2>
+<div class="outline-text-2" id="text-6">
+</div>
+<div id="outline-container-org27513e8" class="outline-3">
+<h3 id="org27513e8"><span class="section-number-3">6.1.</span> Encuéntrese el test de tamaño &alpha; que da el teorema de Neyman-Pearson para contrastar H<sub>0</sub>: &theta; = &theta;<sub>0</sub> frente a H<sub>1</sub>: &theta; = &theta;<sub>1</sub> con \( \theta_0 \le \theta_1 \).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1_25pts">1_25pts</span></span></h3>
+</div>
+<div id="outline-container-org9cf65a0" class="outline-3">
+<h3 id="org9cf65a0"><span class="section-number-3">6.2.</span> Pruébese que \[T(X_1,\dots,X_n) = \frac{1}{\theta} X_{(1)}\] es una cantidad pivotal y hállese, en base a ella, un intervalo de grado de confianza \( 1 - \alpha \) para &theta;.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1_25pts">1_25pts</span></span></h3>
+<div class="outline-text-3" id="text-6-2">
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7e1b870" class="outline-2">
+<h2 id="org7e1b870"><span class="section-number-2">7.</span> Sea \( X \) una variable aleatoria con función de masa \[ p(x|\theta) = \left( 1 - \theta \right)^2 x \theta^{x-1} \quad x \in \{1, 2, ...\} \quad 0 < \theta < 1\] Se observa una m.a.s de tamaño \( n \). Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2012e">2012e</span></span></h2>
+<div class="outline-text-2" id="text-7">
+</div>
+<div id="outline-container-orgaf2f63e" class="outline-3">
+<h3 id="orgaf2f63e"><span class="section-number-3">7.1.</span> Estímese &theta; por el método de máxima verosimilitud.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+<div id="outline-container-org5d504d4" class="outline-3">
+<h3 id="org5d504d4"><span class="section-number-3">7.2.</span> Determínese un estadístico suficiente para &theta;. ¿Es minimal suficiente?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+<div id="outline-container-org7cfd812" class="outline-3">
+<h3 id="org7cfd812"><span class="section-number-3">7.3.</span> ¿Es el estimador calculado en el apartado anterior completo?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+</div>
+
+<div id="outline-container-org2bd8aba" class="outline-2">
+<h2 id="org2bd8aba"><span class="section-number-2">8.</span> Para m.a.s. de tamaño \( n \) de una población con función de densidad \( f(x|\theta) = N(x|\theta,1) \) con \( \theta \) un parámetro desconocido. Se observa una m.a.s. de tamaño \( n \). Se pide&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2012e">2012e</span></span></h2>
+<div class="outline-text-2" id="text-8">
+</div>
+<div id="outline-container-org3430600" class="outline-3">
+<h3 id="org3430600"><span class="section-number-3">8.1.</span> Encuéntrese el test de la razón de verosimilitud de tamaño \( \alpha \) para constrastar H<sub>0</sub>: &theta; = 0 frente a H<sub>1</sub>: &theta; = -1 .&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-orga150b91" class="outline-3">
+<h3 id="orga150b91"><span class="section-number-3">8.2.</span> ¿Cuál es la región creible para &theta; si para una muestra de tamaño 10 se observa \( \overline{x} = 0 \), y si la información inicial es N(&theta;|0,2)?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-orgd9f14a1" class="outline-3">
+<h3 id="orgd9f14a1"><span class="section-number-3">8.3.</span> ¿Cuál es el test bayesiano si la información inicial da la misma probabilidad a ambas hipótesis en el caso (a)?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+<div class="outline-text-3" id="text-8-3">
+</div>
+</div>
+</div>
+<div id="outline-container-orge6acec4" class="outline-2">
+<h2 id="orge6acec4"><span class="section-number-2">9.</span> Para m.a.s. de tamaño \(n\) de una población con función de densidad exponencial de parámetro \( \theta \) dada por \[ f(x|\theta) = \theta e^{-\theta x} I_{(0,\infty)}(x) \text{  con  } \theta > 0\] \[ \left( E[X] = 1 / \theta \quad V[X] = 1 / \theta^2 \right) \] Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2013o">2013o</span></span></h2>
+<div class="outline-text-2" id="text-9">
+</div>
+<div id="outline-container-orgbe6bcb5" class="outline-3">
+<h3 id="orgbe6bcb5"><span class="section-number-3">9.1.</span> Encuéntrese el estimador de máxima verosimilitud (EMV) para &theta;.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org5b8f11e" class="outline-3">
+<h3 id="org5b8f11e"><span class="section-number-3">9.2.</span> ¿Es dicho estimador suficiente para &theta;? ¿ es minimal suficiente?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org7ec077d" class="outline-3">
+<h3 id="org7ec077d"><span class="section-number-3">9.3.</span> Calcúlese la cota de Fréchet-Cramér-Rao para los estimadores centrados de \( h(\theta) = \theta \) ¿Se puede afirmar, a través de la cota obtenida, que el EMV es el estimador centrado uniformemente de mínima varianza (ECUMV) para &theta;?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+</div>
+
+<div id="outline-container-orge0c3588" class="outline-2">
+<h2 id="orge0c3588"><span class="section-number-2">10.</span> Para m.a.s. de tamaño 20 de una población con distribución de <a href="20230503143014-poisson.html#ID-7d62c4d8-ae65-4e48-87d5-cdf749d8b2f5">Poisson</a>(&theta;), dada por la función de masa \[ p(x|\theta) = \frac{e^{-\theta}\theta^x}{x!}, \text{  con  } x \in \mathbb{N} \text{ y } \theta > 0 \] se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2013o">2013o</span></span></h2>
+<div class="outline-text-2" id="text-10">
+</div>
+<div id="outline-container-orga4b25d5" class="outline-3">
+<h3 id="orga4b25d5"><span class="section-number-3">10.1.</span> La distribución asintótica del estimador de máxima verosimilitud de &theta;, mediante élla constrúyase un intervalo de grado de confianza \( 1 - \alpha \) para \( \theta \).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org605144d" class="outline-3">
+<h3 id="org605144d"><span class="section-number-3">10.2.</span> Obténgase el test de la razón de verosimilitudes, de tamaño \( \alpha \) para contrastar H<sub>0</sub>: &theta; = 2 frente a H<sub>1</sub> : &theta; = 3.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-orgcb3b5fe" class="outline-3">
+<h3 id="orgcb3b5fe"><span class="section-number-3">10.3.</span> Si se supone que la distribución inicial ( o prior) sobre &theta; es \( \pi(\theta) = e^{-\theta}I_{(0,\infty)}(\theta) \) determínese el estimador bayesiano, media de la distribución final de &theta;.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+<div class="outline-text-3" id="text-10-3">
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgd0e3502" class="outline-2">
+<h2 id="orgd0e3502"><span class="section-number-2">11.</span> Sea \( X = (X_1,\dots, X_{10} \) una muestra de tamaño 10 procedente de una población exponencial (transladada) con densidad \[ f_s(z/\theta) = e ^{-(z-\theta)} I_{[\theta, \infty)}(z)\] donde &theta; &isin; &Theta; = ℝ. Para constrastar mediante la razón de verosimilitudes la hipótesis H<sub>0</sub>: &theta; &le; 5 vs h<sub>1</sub>: &theta; &gt; 5:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2014o">2014o</span></span></h2>
+<div class="outline-text-2" id="text-11">
+</div>
+<div id="outline-container-orga8bf78c" class="outline-3">
+<h3 id="orga8bf78c"><span class="section-number-3">11.1.</span> Encuéntrese el estadístico de la razón de verosimilitudes.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-orgf702b0b" class="outline-3">
+<h3 id="orgf702b0b"><span class="section-number-3">11.2.</span> Determínese la forma de las regiones de rechazo de los contrastes de la razón de verosimilitudes y sus funciones de potencia exacta. ¿Son estas funciones de potencia monótonas?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org62d602c" class="outline-3">
+<h3 id="org62d602c"><span class="section-number-3">11.3.</span> Calcúlese los valores de \( c \) si se quiere que el contraste de la razón de verosimilitudes tenga un tamaño del 5% o un nivel del 5%.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+</div>
+
+<div id="outline-container-org8b0443d" class="outline-2">
+<h2 id="org8b0443d"><span class="section-number-2">12.</span> Sea \( X = (X_1,\dots, X_n  \) una muestra aleatoria procedente de una población U(&theta;,3&theta;) con &theta; &gt; 0. Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2014o">2014o</span></span></h2>
+<div class="outline-text-2" id="text-12">
+</div>
+<div id="outline-container-orgcbcc1da" class="outline-3">
+<h3 id="orgcbcc1da"><span class="section-number-3">12.1.</span> Calcúlese el estimador de máxima verosimilitud de &theta;, su distribución bajo &theta; y su sesgo.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-orgfea5750" class="outline-3">
+<h3 id="orgfea5750"><span class="section-number-3">12.2.</span> ¿Que tipo de parámetro es &theta;? ¿Por qué? Determínese un pivote basado en el EMV anterior y su distribución.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-orgbe04c88" class="outline-3">
+<h3 id="orgbe04c88"><span class="section-number-3">12.3.</span> Calcúlense con precisión un intervalo de confianza y una cota de confianza basados en el pivote anterior.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+<div class="outline-text-3" id="text-12-3">
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgcbaf2a0" class="outline-2">
+<h2 id="orgcbaf2a0"><span class="section-number-2">13.</span> Para m.a.s. de tamaño <i>n</i> de una población con función de densidad dada por \[ f(x|\theta) = \frac{\left( \ln \theta \right) \theta^x}{\theta - 1} I_{(0,1)}(x) \text{ con } \theta > 1\] Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2014e">2014e</span></span></h2>
+<div class="outline-text-2" id="text-13">
+</div>
+<div id="outline-container-org72f4d39" class="outline-3">
+<h3 id="org72f4d39"><span class="section-number-3">13.1.</span> Encuéntrese un estadístico minimal suficiente y completo para \( \theta \).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org7d5fedf" class="outline-3">
+<h3 id="org7d5fedf"><span class="section-number-3">13.2.</span> ¿Cuál es el estimador de máxima verosimilitud de &theta;?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org60908ec" class="outline-3">
+<h3 id="org60908ec"><span class="section-number-3">13.3.</span> ¿Existe estimador eficiente para &theta;?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+</div>
+
+<div id="outline-container-orga056ee0" class="outline-2">
+<h2 id="orga056ee0"><span class="section-number-2">14.</span> Para m.a.s de tamaño <i>n</i> de una población <a href="20230407125050-bernoulli.html#ID-6009d6da-54e8-4174-9b62-4f13d29bcf7b">Bernoulli</a>(&theta;) con función de masa \[ p(x | \theta) = \theta^x(1-\theta)^{(1-x)}I_{\left\{ 0,1 \right\}}(x) \quad \text{con} \quad 0<\theta<1\] \[ \text{Si } X \sim Beta(\theta| p, q) \quad E[X] = \frac{p}{p + q} \quad V[X] = \frac{pq}{(p+q)^2(p + q + 1)} \] se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2014e">2014e</span></span></h2>
+<div class="outline-text-2" id="text-14">
+</div>
+<div id="outline-container-org9c27033" class="outline-3">
+<h3 id="org9c27033"><span class="section-number-3">14.1.</span> Si la información inicial para \( \theta \) viene dada por la densidad &pi;(&theta;) = <a href="20230408125859-uniform.html#ID-1bfe49f5-2cd1-4f06-8f73-eb747aeaa66e">Uniforme</a>(0,1) ¿cuál es el estimador bayesiano para &theta;?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1_5pts">1_5pts</span></span></h3>
+</div>
+
+<div id="outline-container-org31bb4da" class="outline-3">
+<h3 id="org31bb4da"><span class="section-number-3">14.2.</span> Contrástese mediante un test bayesiano H<sub>0</sub> : &theta; &le; 0.5 frente a H<sub>1</sub>: &theta; &gt; 0.5 si para una muestra de tamaño 10 se observan 8 éxitos.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1_5pts">1_5pts</span></span></h3>
+<div class="outline-text-3" id="text-14-2">
+</div>
+</div>
+</div>
+<div id="outline-container-org6100955" class="outline-2">
+<h2 id="org6100955"><span class="section-number-2">15.</span> Para m.a.s. de tamaño <i>n</i> de una población con función de densidad <a href="20230503102906-beta.html#ID-832758f1-20f6-4c84-9722-65da32ef37e7">Beta</a>(&theta;,1) dada por \[ f(x|\theta) = \theta x^{\theta-1} I_{(0,1)}(x) \quad \text{con} \quad \theta > 0\]Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2015o">2015o</span></span></h2>
+<div class="outline-text-2" id="text-15">
+</div>
+<div id="outline-container-org67e15cf" class="outline-3">
+<h3 id="org67e15cf"><span class="section-number-3">15.1.</span> Encuéntrese un estadístico minimal suficiente y completo para &theta;.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org4c65e24" class="outline-3">
+<h3 id="org4c65e24"><span class="section-number-3">15.2.</span> ¿Cuál es el estimador de máxima verosimilitud de \( \frac{1}{\theta} \)?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-orgef5fda6" class="outline-3">
+<h3 id="orgef5fda6"><span class="section-number-3">15.3.</span> ¿Existe estimador eficiente para &theta;? ¿Cuál es la Cota de Fréchet-Cramér-Rao para los estimadores centrados de \( \frac{1}{\theta} \).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+</div>
+
+<div id="outline-container-orgabeab6b" class="outline-2">
+<h2 id="orgabeab6b"><span class="section-number-2">16.</span> Para m.a.s. de tamaño <i>n</i> de una poblacion <a href="20230501165035-exponencial.html#ID-294356dc-7167-4460-8a86-f5748ccab1ea">Exponencial</a>(transladada) con densidad \[f(x|\theta) = e^{-(x + 5\theta)} I_{(-5\theta,\infty)}(x) \quad \text{con} \quad 0 \in \Theta - \mathbb{R}\]Para contrastar mediante la razón de verosimilitudes las hipótesis H<sub>0</sub>: &theta; &ge; 10 frente a H<sub>1</sub>: &theta; &lt; 10. Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2015o">2015o</span></span></h2>
+<div class="outline-text-2" id="text-16">
+</div>
+<div id="outline-container-org595e3c5" class="outline-3">
+<h3 id="org595e3c5"><span class="section-number-3">16.1.</span> Búsquese el estadístico de la razón de verosimilitudes.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org72726ac" class="outline-3">
+<h3 id="org72726ac"><span class="section-number-3">16.2.</span> Calcúlense la forma de las regiones de rechazo de los test de la RV (para cada \( c \in (0,1) \)) y sus funciones de potencia exactas. Dígase si las funciones de potencia anteriores son monótonas.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org2d2aeb6" class="outline-3">
+<h3 id="org2d2aeb6"><span class="section-number-3">16.3.</span> Calcúlense los valores de c, si se quiere que el test de la razón de verosimilitudes tenga, respectivamente un tamaño de 5% y un nivel del 5%&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+<div class="outline-text-3" id="text-16-3">
+</div>
+</div>
+</div>
+
+
+
+<div id="outline-container-org139630d" class="outline-2">
+<h2 id="org139630d"><span class="section-number-2">17.</span> Para m.a.s. de tamaño <i>n</i> de una población con función de densidad <a href="20230501173930-gamma.html#ID-e8143cd8-6103-489d-a9a1-9003124edfc4">Gamma</a>(\(q = 1 / \theta\), p) dada por \[ f(x|\theta) = \frac{1}{\theta^p \Gamma(p)}e^{-x/\theta}x^p-1 I_{(0,\infty)} (x)\] con p &gt; 0 conocido y &theta; &gt; 0 desconocida. Se pide&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2015e">2015e</span></span></h2>
+<div class="outline-text-2" id="text-17">
+</div>
+<div id="outline-container-orgdbbc20d" class="outline-3">
+<h3 id="orgdbbc20d"><span class="section-number-3">17.1.</span> Demuéstrese que el estadístico \( T = \frac{n}{p(np+1)}\overline{X}^2 \) es el ECUMV para &theta;<sup>2</sup>.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-orgdeb1bfa" class="outline-3">
+<h3 id="orgdeb1bfa"><span class="section-number-3">17.2.</span> ¿Cuál es la cota de Frechet-Cramér-Rao para la función \( h(\theta) = \theta^2 \)?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-orgd8bc4a7" class="outline-3">
+<h3 id="orgd8bc4a7"><span class="section-number-3">17.3.</span> Véase que T no es un estimador eficiente. ¿Existe estimador eficiente para &theta;?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+</div>
+
+<div id="outline-container-orgd6702ed" class="outline-2">
+<h2 id="orgd6702ed"><span class="section-number-2">18.</span> Para determinar el grado de inteligencia <i>&theta;</i> de un individuo se le pasan tres pruebas que dan un valor medio de 115. Se supone que las tres pruebas son independientes y que el resultado de cada una se puede modelizar por \(X\) una v.a. con distribucion <a href="20230503105847-normal.html#ID-b0f550d9-09f1-42bb-8c6a-1d9bd0b35e00">Normal</a>(\(\theta,\sigma = 10\)). Si la información inicial sobre &theta; viene recogida, por información previa, por una distribucion <a href="20230503105847-normal.html#ID-b0f550d9-09f1-42bb-8c6a-1d9bd0b35e00">Normal</a>(100,15). Realícese el test bayesiano para ver si el coeficiente de inteligencia del individuo es menor que 100 frente a mayor.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2015e">2015e</span></span></h2>
+<div class="outline-text-2" id="text-18">
+</div>
+</div>
+<div id="outline-container-org1726cd8" class="outline-2">
+<h2 id="org1726cd8"><span class="section-number-2">19.</span> Sea una m.a.s. de tamaño <i>n</i> de unan población conn función de densidad \[f(x |\theta ) = \frac{\theta^2}{\theta + 1}(x + 1) e^{-\theta x} I_{[0,\infty)}(x), \quad \text{con} \quad \theta > 0\] Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2016o">2016o</span></span></h2>
+<div class="outline-text-2" id="text-19">
+</div>
+<div id="outline-container-orgae1f32c" class="outline-3">
+<h3 id="orgae1f32c"><span class="section-number-3">19.1.</span> ¿Para qué función \( h(\theta)  \) es \( \overline{X} \) un estimador centrado?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-orgb1e1244" class="outline-3">
+<h3 id="orgb1e1244"><span class="section-number-3">19.2.</span> Determínese la Cota de Fréchet-Cramér-Rao para la funcion \( h(\theta) \) de la pregunta anterior.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org01eccc4" class="outline-3">
+<h3 id="org01eccc4"><span class="section-number-3">19.3.</span> ¿Es \( \overline{X} \) un estimador eficiente?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+</div>
+
+<div id="outline-container-org960b55d" class="outline-2">
+<h2 id="org960b55d"><span class="section-number-2">20.</span> Se quiere saber si una moneda, cuya probabilidad de cara es &theta; es o no sesgada, para ello se arroja 16 veces y se observan 10 caras. Si la información inicial sobre &theta; viene dada mediante una <a href="20230503102906-beta.html#ID-832758f1-20f6-4c84-9722-65da32ef37e7">Beta</a>(&theta;|\( p = 2, q = 2 \)), se da la función de densidad y se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2016o">2016o</span></span></h2>
+<div class="outline-text-2" id="text-20">
+</div>
+<div id="outline-container-org91275c7" class="outline-3">
+<h3 id="org91275c7"><span class="section-number-3">20.1.</span> (1.5 puntos) Determínese para &theta; un intervalo creíble con colas iguales de probabilidad 0.95.</h3>
+</div>
+
+<div id="outline-container-orgb3bb839" class="outline-3">
+<h3 id="orgb3bb839"><span class="section-number-3">20.2.</span> (1.5 puntos) Contrástese H<sub>0</sub>:&theta; &le; 0.5 frente a H<sub>1</sub> &theta; &gt; 0.5</h3>
+<div class="outline-text-3" id="text-20-2">
+<p>
+Quizá necesite que para una distribución <a href="20230503102906-beta.html#ID-832758f1-20f6-4c84-9722-65da32ef37e7">Beta</a>(p=12,q=8) se  cumple que, siendo F su función de distribución:
+</p>
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">F(0.3447)=0.01</td>
+<td class="org-left">F(0.383) = 0.025</td>
+<td class="org-left">F(0.5) = 1.18</td>
+</tr>
+</tbody>
+</table>
+
+<table border="2" cellspacing="0" cellpadding="6" rules="groups" frame="hsides">
+
+
+<colgroup>
+<col  class="org-left" />
+
+<col  class="org-left" />
+
+<col  class="org-left" />
+</colgroup>
+<tbody>
+<tr>
+<td class="org-left">F(0.738) = 0.9</td>
+<td class="org-left">F(0.797) = 0.975</td>
+<td class="org-left">F(0.8267) = 0.99</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+
+
+<div id="outline-container-org0a759aa" class="outline-2">
+<h2 id="org0a759aa"><span class="section-number-2">21.</span> Sea la función de densidad \[ f_{\theta}(x) = \frac{5}{\theta^5}x^4 I_{[0,\theta]}(x) \quad \theta > 0\] y X<sub>1</sub>, &hellip;, X<sub>n</sub> una m.a.s. de tamaño <i>n</i>, se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2016e">2016e</span></span></h2>
+<div class="outline-text-2" id="text-21">
+</div>
+<div id="outline-container-orgf54cb4a" class="outline-3">
+<h3 id="orgf54cb4a"><span class="section-number-3">21.1.</span> ¿Es &theta; un parámetro de localización o de escala? ¿por qué?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org0fe20fc" class="outline-3">
+<h3 id="org0fe20fc"><span class="section-number-3">21.2.</span> Encuéntrese una <i>variable pivotal</i>.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org2ed2400" class="outline-3">
+<h3 id="org2ed2400"><span class="section-number-3">21.3.</span> Constrúyase un intervalo de <i>nivel de confianza</i> \( 1 - \theta \) exacto para &theta; con colas iguales.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+</div>
+
+
+<div id="outline-container-org1cebfd5" class="outline-2">
+<h2 id="org1cebfd5"><span class="section-number-2">22.</span> Dada una m.a.s X<sub>1</sub>, &hellip;, X<sub>n</sub> de tamaño <i>n</i> de una población con función de densidad \[ f_{\theta}(x) - e^{-(x-3\theta)} I_{[3\theta, \infty)}(x), \quad \text{con} \quad \theta \in \mathbb{R}\] Se quiere contrastar H<sub>0</sub>: &theta; &lt; 5 frente a H<sub>1</sub> : &theta; &gt; 5. Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2016e">2016e</span></span></h2>
+<div class="outline-text-2" id="text-22">
+</div>
+<div id="outline-container-org738631e" class="outline-3">
+<h3 id="org738631e"><span class="section-number-3">22.1.</span> ¿Cuál es el estadístico del contrase de la <i>Razón de verosimilitudes</i> (RV), &lambda;(X<sub>1</sub>, &hellip;, X<sub>n</sub>)?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org12faa5f" class="outline-3">
+<h3 id="org12faa5f"><span class="section-number-3">22.2.</span> Constrúyanse las Regiones Críticas de los contrastes de la RV para cada \( c \in (0,1) \) y sus funciones de potencia exactas. ¿Son funciones monótonas?&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+</div>
+
+<div id="outline-container-org6c43d6f" class="outline-3">
+<h3 id="org6c43d6f"><span class="section-number-3">22.3.</span> Calcúlense los valores de <i>c</i> para que el test tenga tamaño 0.05 y nivel 0.05 respectivamente.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="1pto">1pto</span></span></h3>
+<div class="outline-text-3" id="text-22-3">
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgce5788e" class="outline-2">
+<h2 id="orgce5788e"><span class="section-number-2">23.</span> (3 puntos)Sea (X<sub>1</sub>, &hellip;, X<sub>n</sub>) una muestra aleatoria simple de X &sim; <a href="20230501173930-gamma.html#ID-e8143cd8-6103-489d-a9a1-9003124edfc4">Gamma</a>(\( a = \frac{1}{\theta}, p = \lambda \)) y donde se supone &lambda; conocido (se adjunta la función de densidad pertinente)&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017o">2017o</span></span></h2>
+<div class="outline-text-2" id="text-23">
+</div>
+<div id="outline-container-org3c8151b" class="outline-3">
+<h3 id="org3c8151b"><span class="section-number-3">23.1.</span> Demostrar que el estimador \( T = \frac{n}{\lambda(n\lambda + 1)}\overline{X}^2 \) es un estimador centrado uniformemente de mínima varianza pra \( z(\theta) = \theta^2 \).</h3>
+</div>
+
+<div id="outline-container-org812f677" class="outline-3">
+<h3 id="org812f677"><span class="section-number-3">23.2.</span> Hallar la cota de Fréchet-Cramér-Rao para \( z(\theta) = \theta^2 \) y comprobar que T no es eficiente para \( z(\theta) = \theta^2 \).</h3>
+</div>
+</div>
+
+<div id="outline-container-orgab236af" class="outline-2">
+<h2 id="orgab236af"><span class="section-number-2">24.</span> (3 puntos) Sea (X<sub>1</sub>, &hellip;, X<sub>n</sub>) una muestra aleatoria de tamaño 5 de X &sim; N(0,1). supongamos que se han obtenido los siguientes datos \[ (x_{1}, \dots, x_{n}) = (11.7, 11.9, 12, 12.2, 12.4)\]Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017o">2017o</span></span></h2>
+<div class="outline-text-2" id="text-24">
+</div>
+<div id="outline-container-org15e4887" class="outline-3">
+<h3 id="org15e4887"><span class="section-number-3">24.1.</span> Calcular el intervalo de confianza de &theta; al nivel de confianza \(1 - \alpha = 0.95\).</h3>
+</div>
+
+<div id="outline-container-org7f5e1a3" class="outline-3">
+<h3 id="org7f5e1a3"><span class="section-number-3">24.2.</span> Calcular unn intervalo bayesiano de máxima densidad a posteriori para &theta;, tomando como distribución a priori \( \pi(\theta) \sim N(12,1) \) al nivel \(1 - \alpha = 0.95\).</h3>
+<div class="outline-text-3" id="text-24-2">
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgaffa463" class="outline-2">
+<h2 id="orgaffa463"><span class="section-number-2">25.</span> Se toma unna m.a.s. de tamaño <i>n</i> de una población con función de densidad \[f(x|\theta) = 2\theta x e^{-\theta x^2} I_{(0, \infty)}(x) \theta > 0\]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017e">2017e</span></span></h2>
+<div class="outline-text-2" id="text-25">
+</div>
+<div id="outline-container-orgbaadced" class="outline-3">
+<h3 id="orgbaadced"><span class="section-number-3">25.1.</span> (1.5 puntos) Determínese unn estadistico suficiente. ¿Es completo? ¿es centrado para &theta;?</h3>
+</div>
+
+<div id="outline-container-orgebb0938" class="outline-3">
+<h3 id="orgebb0938"><span class="section-number-3">25.2.</span> (1.5 puntos) Determínese el estimador centrado de mínima varianza para \( h(\theta) = \frac{1}{\theta} \). ¿Es eficiente?</h3>
+</div>
+</div>
+
+<div id="outline-container-org9b76c87" class="outline-2">
+<h2 id="org9b76c87"><span class="section-number-2">26.</span> (3 puntos) Se quiere saber el coeficiente intelectual de una persona &theta; para lo que se le pasa un test en el que obtiene puntuación \(x = 120\). Se supone que el resultado del test es \( X \sim N(\theta, 10) \). contrástese, mediante un test bayesiano, la hipótesis de que su coeficiente de inteligencia es menor o igual que 110 frente a su complementario.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2017e">2017e</span></span></h2>
+<div class="outline-text-2" id="text-26">
+</div>
+</div>
+
+<div id="outline-container-org5f938ec" class="outline-2">
+<h2 id="org5f938ec"><span class="section-number-2">27.</span> Sea (X<sub>1</sub>, &hellip;, X<sub>n</sub>) una m.a.s. de tamaño <i>n</i> de una población con función de densidad \[ f(x|\theta) = (\theta + 2) x^{\theta+1} I_{(0,1)}(x) \quad \text{con} \quad \theta > -2\]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2018o">2018o</span></span></h2>
+<div class="outline-text-2" id="text-27">
+</div>
+<div id="outline-container-orgd439e12" class="outline-3">
+<h3 id="orgd439e12"><span class="section-number-3">27.1.</span> (1.5 puntos) Calcúlese el ECUMV para &theta; (basado en el estimador de máxima verosimilitud).</h3>
+</div>
+
+<div id="outline-container-orgc74959f" class="outline-3">
+<h3 id="orgc74959f"><span class="section-number-3">27.2.</span> (1.5 puntos) Determínese si es eficiente el estimador anterior.</h3>
+</div>
+</div>
+
+<div id="outline-container-org4806322" class="outline-2">
+<h2 id="org4806322"><span class="section-number-2">28.</span> Sea (X<sub>1</sub>, &hellip;, X<sub>n</sub>) una m.a.s. de tamaño \( n + 16 \) de una población con funnción de densidad N(2&theta;,2) con &theta; valor arbitrario, se utiliza como región crítica \[ \left\{ \vec{x} | \overline{x} \ge c \right\}\] para constrastar H<sub>0</sub> : &theta; &le; 0 vs H<sub>1</sub> &theta; &gt; 0, siendo \( c \) un número real previamente fijado. Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2018o">2018o</span></span></h2>
+<div class="outline-text-2" id="text-28">
+</div>
+<div id="outline-container-org4861b8a" class="outline-3">
+<h3 id="org4861b8a"><span class="section-number-3">28.1.</span> Calcúlese su función de potencia, \( \beta(\theta) \), en términos de la función de distribución de la <a href="20230503105847-normal.html#ID-b0f550d9-09f1-42bb-8c6a-1d9bd0b35e00">Normal</a> estandar.</h3>
+</div>
+<div id="outline-container-orgb1b89d8" class="outline-3">
+<h3 id="orgb1b89d8"><span class="section-number-3">28.2.</span> ¿Cuál es el valor de \( c \) para que el contraste tenga tamaño 0.01? Para este valor de \( c \), ¿cuál es el supremo de las probabilidades de error de tipo II?</h3>
+<div class="outline-text-3" id="text-28-2">
+</div>
+</div>
+</div>
+<div id="outline-container-org2af3639" class="outline-2">
+<h2 id="org2af3639"><span class="section-number-2">29.</span> Para m.a.s. de tamaño <i>n</i> de una poblacion con función de densidad \[f(x|\theta) = \frac{2\theta}{3^{2\theta}}x^{2\theta - 1} \quad \text{con} \quad 0 < x < 3, \quad \theta > 0\] Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2018e">2018e</span></span></h2>
+<div class="outline-text-2" id="text-29">
+</div>
+<div id="outline-container-org057b7e0" class="outline-3">
+<h3 id="org057b7e0"><span class="section-number-3">29.1.</span> (1 punto) Encuéntrese unn estadistico suficiente y completo para &theta;.</h3>
+</div>
+<div id="outline-container-orga35395a" class="outline-3">
+<h3 id="orga35395a"><span class="section-number-3">29.2.</span> (1 punto) Obténgase una <i>variable pivotal</i> para &theta; basada en el estadístico suficiente y completo.</h3>
+</div>
+<div id="outline-container-orgf95a591" class="outline-3">
+<h3 id="orgf95a591"><span class="section-number-3">29.3.</span> (1 punto) Determínese el ECUMV para \( \frac{1}{\theta} \).</h3>
+</div>
+</div>
+<div id="outline-container-orgaafcf75" class="outline-2">
+<h2 id="orgaafcf75"><span class="section-number-2">30.</span> Una población consiste en todas las personas que pueden ejercer su voto en las próximas elecciones. Se pretende determinar la proporción &theta; de personas que van a votar. La distribución inicial se supone una <a href="20230503102906-beta.html#ID-832758f1-20f6-4c84-9722-65da32ef37e7">Beta</a>(&theta;|10,4). Se toma unna m.a.s. de tamaño 1000 y se observa que el número de personas que van a ir a votar es 875. Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2018e">2018e</span></span></h2>
+<div class="outline-text-2" id="text-30">
+</div>
+<div id="outline-container-org851242f" class="outline-3">
+<h3 id="org851242f"><span class="section-number-3">30.1.</span> (1.5 puntos) Determínese una Intervalo Creible de probabilidad final 0.95 para &theta;.</h3>
+</div>
+<div id="outline-container-org50d7212" class="outline-3">
+<h3 id="org50d7212"><span class="section-number-3">30.2.</span> (1.5 puntos) Contrastese desde la aproximación bayesiana la hipótesis de que &theta; &gt; 0.85 frente a su complementario.</h3>
+<div class="outline-text-3" id="text-30-2">
+</div>
+</div>
+</div>
+<div id="outline-container-org922225f" class="outline-2">
+<h2 id="org922225f"><span class="section-number-2">31.</span> (3.5 puntos)Sea X<sub>1</sub>, &hellip;, X<sub>n</sub> una m.a.s obtenida de una población con función de densidad \[ f_{\theta}(x) = \frac{x + 1 }{\theta (\theta + 1)} e^{-x/\theta} I _{(0,\infty)}(x) \quad \text{con} \quad \theta > 0\]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2019o">2019o</span></span></h2>
+<div class="outline-text-2" id="text-31">
+</div>
+<div id="outline-container-org8af24e8" class="outline-3">
+<h3 id="org8af24e8"><span class="section-number-3">31.1.</span> Calcúlese un estadístico suficiente y completo para &theta;.</h3>
+</div>
+
+<div id="outline-container-org708bab6" class="outline-3">
+<h3 id="org708bab6"><span class="section-number-3">31.2.</span> ¿Para qué función del parámetro &theta; es la media muestral un estimador centrado uniformemente de minima varianza? Justifíquese la respuesta.</h3>
+</div>
+
+<div id="outline-container-orgc2bee50" class="outline-3">
+<h3 id="orgc2bee50"><span class="section-number-3">31.3.</span> ¿Es la media muestral eficiente para \( d(\theta) = \frac{\theta(2\theta + 1)}{\theta +1}\)? Justifíquese la respuesta.</h3>
+</div>
+</div>
+
+<div id="outline-container-org46aef1e" class="outline-2">
+<h2 id="org46aef1e"><span class="section-number-2">32.</span> (2.5 puntos) Sea X<sub>1</sub>, &hellip;, X<sub>n</sub> una m.a.s. obtenida de una población normal N(&theta;,&sigma;) con &sigma; conocida y se desea contrastar H<sub>0</sub>: &theta; = &theta;<sub>0</sub> frente a H<sub>1</sub> : &theta; = &theta;<sub>1</sub> suponiendo una distribución a priori \( \pi(\theta_0) = p \) y \(\pi(\theta_1) = 1 - p \).&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2019o">2019o</span></span></h2>
+<div class="outline-text-2" id="text-32">
+</div>
+<div id="outline-container-orga7db206" class="outline-3">
+<h3 id="orga7db206"><span class="section-number-3">32.1.</span> Obténgase el test bayesiano.</h3>
+</div>
+
+<div id="outline-container-org2d226a1" class="outline-3">
+<h3 id="org2d226a1"><span class="section-number-3">32.2.</span> Basándose en la siguiente muestra de la población anterior con \( \sigma = 4 \) : 25, 28, 28, 20, 23, 23, 26, 29, 26, 26, 37, 31 y para \(  p = \frac{2}{3} \), ¿se rechazaría la hipótesis de que &theta; = 26 frente a que &theta; = 30? Justifíquese la respuesta.</h3>
+<div class="outline-text-3" id="text-32-2">
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgb5758ab" class="outline-2">
+<h2 id="orgb5758ab"><span class="section-number-2">33.</span> Sea (X<sub>1</sub>, &hellip;, X<sub>n</sub>) una muestra aleatoria simple de tamaño <i>n</i> de unna población con función de densidad \[ f_{\theta}(x) = \frac{\theta}{1-\theta}x^{\frac{2\theta - 1}{1 - \theta}}, \quad 0 < x < 1, \quad \theta \in \left( \frac{1}{2},1 \right)\]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2021e">2021e</span></span></h2>
+<div class="outline-text-2" id="text-33">
+</div>
+<div id="outline-container-orgba0d46e" class="outline-3">
+<h3 id="orgba0d46e"><span class="section-number-3">33.1.</span> Calcular un estadístico suficiente y completo. ¿Es minimal suficiente?</h3>
+</div>
+
+<div id="outline-container-orgab1e561" class="outline-3">
+<h3 id="orgab1e561"><span class="section-number-3">33.2.</span> Encontrar un estimador insesgado para \( \frac{1}{\theta} \) basado en el estimador anterior.</h3>
+</div>
+
+<div id="outline-container-org29a3c33" class="outline-3">
+<h3 id="org29a3c33"><span class="section-number-3">33.3.</span> Hallar el ECUMV para la función del parámetro \( d(\theta) = \frac{\theta - 1}{\theta}\). ¿Se alcanza la cota de Fréchet-Cramér-Rao?</h3>
+</div>
+</div>
+
+<div id="outline-container-org539c4c4" class="outline-2">
+<h2 id="org539c4c4"><span class="section-number-2">34.</span> Sea (X<sub>1</sub>, &hellip;, X<sub>n</sub>) una muestra aleatoria simple de tamaño <i>n</i> de una población con función de densidad \[ f_{\theta}(x) = \theta(1-x)^{\theta-1} \quad 0 < x < 1\] y parámetro &theta; positivo desconocido.&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2021e">2021e</span></span></h2>
+<div class="outline-text-2" id="text-34">
+</div>
+<div id="outline-container-org8f78839" class="outline-3">
+<h3 id="org8f78839"><span class="section-number-3">34.1.</span> (1 punto) Determinar el estimador de máxima verosimilitud de &theta;.</h3>
+</div>
+
+<div id="outline-container-org95a1640" class="outline-3">
+<h3 id="org95a1640"><span class="section-number-3">34.2.</span> (2 puntos) Determinar un contraste de máxima potencia de nivel &alpha; para contrastar H<sub>0</sub> : &theta; = &theta;<sub>0</sub> frente a H<sub>1</sub> : &theta; = &theta;<sub>1</sub> con &theta;<sub>1</sub> &gt; &theta;<sub>0</sub>.</h3>
+<div class="outline-text-3" id="text-34-2">
+</div>
+</div>
+</div>
+
+<div id="outline-container-org5f8f23c" class="outline-2">
+<h2 id="org5f8f23c"><span class="section-number-2">35.</span> (3 puntos)En una población N(&theta;,1) se desea contrastar la hipótesis nula &theta; &le; 0.8 frente a la alternativa &theta; &gt; 0.8. Para ello se toma una muestra aleatoria simple de tamaño \( n = 24 \) cuya media es 0.95.</h2>
+<div class="outline-text-2" id="text-35">
+</div>
+<div id="outline-container-orgb621685" class="outline-3">
+<h3 id="orgb621685"><span class="section-number-3">35.1.</span> Calcule la distribución a posteriori si se supone que la distribución a priori de &theta; es N(0,1) y determine el estimador bayesiano para &theta; bajo la pérdida cuadrática.</h3>
+</div>
+
+<div id="outline-container-org3705c8e" class="outline-3">
+<h3 id="org3705c8e"><span class="section-number-3">35.2.</span> Realice el correspondiente contraste bayesiano.</h3>
+</div>
+</div>
+
+<div id="outline-container-org7a7691f" class="outline-2">
+<h2 id="org7a7691f"><span class="section-number-2">36.</span> Sea \( X \) una población con función de densidad \[ f(x | \sigma ) = \frac{2}{\sigma \sqrt{2\pi}} \frac{1}{x} \exp\{ - \frac{(\ln x)^2}{2\sigma^2}\} \text{  con  } \sigma > 0  \text{ y } x \ge 1 \]Se pide:&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2022o">2022o</span></span></h2>
+<div class="outline-text-2" id="text-36">
+</div>
+<div id="outline-container-org42f51b2" class="outline-3">
+<h3 id="org42f51b2"><span class="section-number-3">36.1.</span> Encontrar un estadístico minimal suficiente, ¿es completo?.</h3>
+</div>
+
+<div id="outline-container-org3b85ea9" class="outline-3">
+<h3 id="org3b85ea9"><span class="section-number-3">36.2.</span> Calcule el test UMP de tamaño &alpha; para contrastar H<sub>0</sub> : &sigma; = 1 frente a &sigma; = 2.</h3>
+<div class="outline-text-3" id="text-36-2">
+</div>
+</div>
+</div>
+
+<div id="outline-container-org29d49a1" class="outline-2">
+<h2 id="org29d49a1"><span class="section-number-2">37.</span> (3 puntos) Sea una muestra aleatoria simple de tamaño <i>n</i> extraida de unn modelo estadistico con función de densidad \[ f(x | \theta) = \theta x e^{- \frac{\theta}{2}x^2} \quad \text{donde} \quad x > 0, \quad \theta > 0.\]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2022e">2022e</span></span></h2>
+<div class="outline-text-2" id="text-37">
+</div>
+<div id="outline-container-org2135bc1" class="outline-3">
+<h3 id="org2135bc1"><span class="section-number-3">37.1.</span> Encontrar un estimador del parámetro &theta; por el método de los momentos.</h3>
+</div>
+
+<div id="outline-container-orgaf994a7" class="outline-3">
+<h3 id="orgaf994a7"><span class="section-number-3">37.2.</span> Tomar un como distribución a priori un modelo perteneciente a la familia gamma y hallar el estimador bayesiano bajo pérdida cuadrática.</h3>
+</div>
+</div>
+
+<div id="outline-container-orgfec97df" class="outline-2">
+<h2 id="orgfec97df"><span class="section-number-2">38.</span> (3 puntos) Sea una muestra aleatoria simple de tamaño <i>n</i> extraída de una modelo estadístico con función de densidad \[f(x|\theta) = \theta x^{-2} I_{[\theta,\infty]}(x) \quad \text{donde} \quad \theta > 0\]&#xa0;&#xa0;&#xa0;<span class="tag"><span class="2022e">2022e</span></span></h2>
+<div class="outline-text-2" id="text-38">
+</div>
+<div id="outline-container-orgd6ccf93" class="outline-3">
+<h3 id="orgd6ccf93"><span class="section-number-3">38.1.</span> ¿Es el mínimo de la muestra un estadistico suficiente y completo para &theta;?</h3>
+</div>
+
+<div id="outline-container-orgdcc6f84" class="outline-3">
+<h3 id="orgdcc6f84"><span class="section-number-3">38.2.</span> Calcular su error cuadrático medio, ¿es consistente?</h3>
+</div>
+
+<div id="outline-container-org0786472" class="outline-3">
+<h3 id="org0786472"><span class="section-number-3">38.3.</span> ¿Existe el estimador centrado uniformemente de mínima varianza para &theta;?</h3>
+</div>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Pablo C. Alcalde</p>
+<p class="date">Created: 2023-05-07 dom 22:25</p>
+</div>
+</body>
+</html>

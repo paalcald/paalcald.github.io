@@ -1,0 +1,431 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+<head>
+<!-- 2023-05-03 mié 14:33 -->
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Intervalos de Confianza</title>
+<meta name="author" content="Pablo C. Alcalde" />
+<meta name="generator" content="Org Mode" />
+<style>
+  #content { max-width: 60em; margin: auto; }
+  .title  { text-align: center;
+             margin-bottom: .2em; }
+  .subtitle { text-align: center;
+              font-size: medium;
+              font-weight: bold;
+              margin-top:0; }
+  .todo   { font-family: monospace; color: red; }
+  .done   { font-family: monospace; color: green; }
+  .priority { font-family: monospace; color: orange; }
+  .tag    { background-color: #eee; font-family: monospace;
+            padding: 2px; font-size: 80%; font-weight: normal; }
+  .timestamp { color: #bebebe; }
+  .timestamp-kwd { color: #5f9ea0; }
+  .org-right  { margin-left: auto; margin-right: 0px;  text-align: right; }
+  .org-left   { margin-left: 0px;  margin-right: auto; text-align: left; }
+  .org-center { margin-left: auto; margin-right: auto; text-align: center; }
+  .underline { text-decoration: underline; }
+  #postamble p, #preamble p { font-size: 90%; margin: .2em; }
+  p.verse { margin-left: 3%; }
+  pre {
+    border: 1px solid #e6e6e6;
+    border-radius: 3px;
+    background-color: #f2f2f2;
+    padding: 8pt;
+    font-family: monospace;
+    overflow: auto;
+    margin: 1.2em;
+  }
+  pre.src {
+    position: relative;
+    overflow: auto;
+  }
+  pre.src:before {
+    display: none;
+    position: absolute;
+    top: -8px;
+    right: 12px;
+    padding: 3px;
+    color: #555;
+    background-color: #f2f2f299;
+  }
+  pre.src:hover:before { display: inline; margin-top: 14px;}
+  /* Languages per Org manual */
+  pre.src-asymptote:before { content: 'Asymptote'; }
+  pre.src-awk:before { content: 'Awk'; }
+  pre.src-authinfo::before { content: 'Authinfo'; }
+  pre.src-C:before { content: 'C'; }
+  /* pre.src-C++ doesn't work in CSS */
+  pre.src-clojure:before { content: 'Clojure'; }
+  pre.src-css:before { content: 'CSS'; }
+  pre.src-D:before { content: 'D'; }
+  pre.src-ditaa:before { content: 'ditaa'; }
+  pre.src-dot:before { content: 'Graphviz'; }
+  pre.src-calc:before { content: 'Emacs Calc'; }
+  pre.src-emacs-lisp:before { content: 'Emacs Lisp'; }
+  pre.src-fortran:before { content: 'Fortran'; }
+  pre.src-gnuplot:before { content: 'gnuplot'; }
+  pre.src-haskell:before { content: 'Haskell'; }
+  pre.src-hledger:before { content: 'hledger'; }
+  pre.src-java:before { content: 'Java'; }
+  pre.src-js:before { content: 'Javascript'; }
+  pre.src-latex:before { content: 'LaTeX'; }
+  pre.src-ledger:before { content: 'Ledger'; }
+  pre.src-lisp:before { content: 'Lisp'; }
+  pre.src-lilypond:before { content: 'Lilypond'; }
+  pre.src-lua:before { content: 'Lua'; }
+  pre.src-matlab:before { content: 'MATLAB'; }
+  pre.src-mscgen:before { content: 'Mscgen'; }
+  pre.src-ocaml:before { content: 'Objective Caml'; }
+  pre.src-octave:before { content: 'Octave'; }
+  pre.src-org:before { content: 'Org mode'; }
+  pre.src-oz:before { content: 'OZ'; }
+  pre.src-plantuml:before { content: 'Plantuml'; }
+  pre.src-processing:before { content: 'Processing.js'; }
+  pre.src-python:before { content: 'Python'; }
+  pre.src-R:before { content: 'R'; }
+  pre.src-ruby:before { content: 'Ruby'; }
+  pre.src-sass:before { content: 'Sass'; }
+  pre.src-scheme:before { content: 'Scheme'; }
+  pre.src-screen:before { content: 'Gnu Screen'; }
+  pre.src-sed:before { content: 'Sed'; }
+  pre.src-sh:before { content: 'shell'; }
+  pre.src-sql:before { content: 'SQL'; }
+  pre.src-sqlite:before { content: 'SQLite'; }
+  /* additional languages in org.el's org-babel-load-languages alist */
+  pre.src-forth:before { content: 'Forth'; }
+  pre.src-io:before { content: 'IO'; }
+  pre.src-J:before { content: 'J'; }
+  pre.src-makefile:before { content: 'Makefile'; }
+  pre.src-maxima:before { content: 'Maxima'; }
+  pre.src-perl:before { content: 'Perl'; }
+  pre.src-picolisp:before { content: 'Pico Lisp'; }
+  pre.src-scala:before { content: 'Scala'; }
+  pre.src-shell:before { content: 'Shell Script'; }
+  pre.src-ebnf2ps:before { content: 'ebfn2ps'; }
+  /* additional language identifiers per "defun org-babel-execute"
+       in ob-*.el */
+  pre.src-cpp:before  { content: 'C++'; }
+  pre.src-abc:before  { content: 'ABC'; }
+  pre.src-coq:before  { content: 'Coq'; }
+  pre.src-groovy:before  { content: 'Groovy'; }
+  /* additional language identifiers from org-babel-shell-names in
+     ob-shell.el: ob-shell is the only babel language using a lambda to put
+     the execution function name together. */
+  pre.src-bash:before  { content: 'bash'; }
+  pre.src-csh:before  { content: 'csh'; }
+  pre.src-ash:before  { content: 'ash'; }
+  pre.src-dash:before  { content: 'dash'; }
+  pre.src-ksh:before  { content: 'ksh'; }
+  pre.src-mksh:before  { content: 'mksh'; }
+  pre.src-posh:before  { content: 'posh'; }
+  /* Additional Emacs modes also supported by the LaTeX listings package */
+  pre.src-ada:before { content: 'Ada'; }
+  pre.src-asm:before { content: 'Assembler'; }
+  pre.src-caml:before { content: 'Caml'; }
+  pre.src-delphi:before { content: 'Delphi'; }
+  pre.src-html:before { content: 'HTML'; }
+  pre.src-idl:before { content: 'IDL'; }
+  pre.src-mercury:before { content: 'Mercury'; }
+  pre.src-metapost:before { content: 'MetaPost'; }
+  pre.src-modula-2:before { content: 'Modula-2'; }
+  pre.src-pascal:before { content: 'Pascal'; }
+  pre.src-ps:before { content: 'PostScript'; }
+  pre.src-prolog:before { content: 'Prolog'; }
+  pre.src-simula:before { content: 'Simula'; }
+  pre.src-tcl:before { content: 'tcl'; }
+  pre.src-tex:before { content: 'TeX'; }
+  pre.src-plain-tex:before { content: 'Plain TeX'; }
+  pre.src-verilog:before { content: 'Verilog'; }
+  pre.src-vhdl:before { content: 'VHDL'; }
+  pre.src-xml:before { content: 'XML'; }
+  pre.src-nxml:before { content: 'XML'; }
+  /* add a generic configuration mode; LaTeX export needs an additional
+     (add-to-list 'org-latex-listings-langs '(conf " ")) in .emacs */
+  pre.src-conf:before { content: 'Configuration File'; }
+
+  table { border-collapse:collapse; }
+  caption.t-above { caption-side: top; }
+  caption.t-bottom { caption-side: bottom; }
+  td, th { vertical-align:top;  }
+  th.org-right  { text-align: center;  }
+  th.org-left   { text-align: center;   }
+  th.org-center { text-align: center; }
+  td.org-right  { text-align: right;  }
+  td.org-left   { text-align: left;   }
+  td.org-center { text-align: center; }
+  dt { font-weight: bold; }
+  .footpara { display: inline; }
+  .footdef  { margin-bottom: 1em; }
+  .figure { padding: 1em; }
+  .figure p { text-align: center; }
+  .equation-container {
+    display: table;
+    text-align: center;
+    width: 100%;
+  }
+  .equation {
+    vertical-align: middle;
+  }
+  .equation-label {
+    display: table-cell;
+    text-align: right;
+    vertical-align: middle;
+  }
+  .inlinetask {
+    padding: 10px;
+    border: 2px solid gray;
+    margin: 10px;
+    background: #ffffcc;
+  }
+  #org-div-home-and-up
+   { text-align: right; font-size: 70%; white-space: nowrap; }
+  textarea { overflow-x: auto; }
+  .linenr { font-size: smaller }
+  .code-highlighted { background-color: #ffff00; }
+  .org-info-js_info-navigation { border-style: none; }
+  #org-info-js_console-label
+    { font-size: 10px; font-weight: bold; white-space: nowrap; }
+  .org-info-js_search-highlight
+    { background-color: #ffff00; color: #000000; font-weight: bold; }
+  .org-svg { }
+</style>
+<script>
+  window.MathJax = {
+    tex: {
+      ams: {
+        multlineWidth: '85%'
+      },
+      tags: 'ams',
+      tagSide: 'right',
+      tagIndent: '.8em'
+    },
+    chtml: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    svg: {
+      scale: 1.0,
+      displayAlign: 'center',
+      displayIndent: '0em'
+    },
+    output: {
+      font: 'mathjax-modern',
+      displayOverflow: 'overflow'
+    }
+  };
+</script>
+
+<script
+  id="MathJax-script"
+  async
+  src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js">
+</script>
+</head>
+<body>
+<div id="content" class="content">
+<h1 class="title">Intervalos de Confianza</h1>
+<div id="outline-container-org6eebd57" class="outline-2">
+<h2 id="org6eebd57">Intervalos de Confianza</h2>
+<div class="outline-text-2" id="text-org6eebd57">
+</div>
+<div id="outline-container-orgaad614f" class="outline-3">
+<h3 id="orgaad614f">Estimación puntual</h3>
+<div class="outline-text-3" id="text-orgaad614f">
+<p>
+\(\theta = \begin{pmatrix} \text{EMV} \\ \text{ECUMV} \\ \text{\vdots} \\ \text{Bayesiano} \end{pmatrix} \mapsto \theta = \text{número} = \frac{189}{221} = 0.86\)
+</p>
+</div>
+</div>
+<div id="outline-container-orgde91f01" class="outline-3">
+<h3 id="orgde91f01">Cantidad Pivotal</h3>
+</div>
+<div id="outline-container-org19d07a1" class="outline-3">
+<h3 id="org19d07a1">Definición</h3>
+<div class="outline-text-3" id="text-org19d07a1">
+<p>
+Sea \( X \) v.a. en función de un parámetro &theta; (\( f_{\theta}(x) \) ó \( P_{\theta}(X= x) \)).
+</p>
+
+<p>
+Un intervalo de confianza a nivel &alpha; para la función \( d(\theta) \) (I.C.) es un intervalo \( (a, b) \) tal que \( P ( a \le d(\theta) \le b ) = 1 - \alpha \) y el intervalo de confianza es aquel IC de longitud mínima.
+</p>
+</div>
+<div id="outline-container-org4ca4d50" class="outline-4">
+<h4 id="org4ca4d50">Observación (Lagrangiano)</h4>
+<div class="outline-text-4" id="text-org4ca4d50">
+<p>
+No vamos a usar el lagrangiano para calcular la longitud mínima en los IC cuando sean variables conocidas (Normal, Exponencial &ctdot;) pero <span class="underline">si</span> voy a calcular la longitud mínima si no tiene nombre pero <b>no</b> con lagrangiano.
+</p>
+</div>
+</div>
+<div id="outline-container-org33f7145" class="outline-4">
+<h4 id="org33f7145">Obervacion&#xa0;&#xa0;&#xa0;<span class="tag"><span class="EstructuraExamen">EstructuraExamen</span></span></h4>
+<div class="outline-text-4" id="text-org33f7145">
+<p>
+Puede caer como:
+</p>
+<ul class="org-ul">
+<li>Cuestión teórica.</li>
+<li>Apartado del <a href="ejercicio-tipo-1.html">ejercicio tipo 1</a></li>
+</ul>
+</div>
+</div>
+<div id="outline-container-org5e938f2" class="outline-4">
+<h4 id="org5e938f2">Algoritmo Constructivo para IC&#xa0;&#xa0;&#xa0;<span class="tag"><span class="NeymanPearson">NeymanPearson</span></span></h4>
+<div class="outline-text-4" id="text-org5e938f2">
+<ol class="org-ol">
+<li>Calcular la cantidad pivotal.
+<ul class="org-ul">
+<li>Como función depende de &theta;.</li>
+<li>Como distribución no depende de &theta;.</li>
+</ul></li>
+<li>Usando la cantidad pivotal (ya sea su gráfica, su \( f_{X}(x) \) o \( F_{X}(x) \)) obtengo el IC pero sus extremos a y b <b>no</b> pueden depender de &theta; .</li>
+</ol>
+</div>
+</div>
+</div>
+<div id="outline-container-orga8e4dcd" class="outline-3">
+<h3 id="orga8e4dcd">Ejemplo&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Normal">Normal</span>&#xa0;<span class="IntervaloConfianza">IntervaloConfianza</span></span></h3>
+<div class="outline-text-3" id="text-orga8e4dcd">
+<p>
+Sea \( X \sim N(\mu, \sigma^2) \) \( \sigma^2 \) conocida calcula el <a href="#org19d07a1">Intervalo de Confianza</a> para \( d(\mu) = \mu  \)
+</p>
+
+<p>
+\(T(\vec{x}) = \overline{x} \)
+</p>
+
+<p>
+\( \overline{X} \sim N(\mu, \frac{\sigma^2}{n}) \) <b>no</b> puede ser <a href="#orgde91f01">Cantidad Pivotal</a>, tiene &mu;.
+</p>
+
+<p>
+\( \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \sim N(0,1) \)
+</p>
+
+<p>
+\( \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \) es <a href="#orgde91f01">Cantidad Pivotal</a>.
+</p>
+</div>
+<div id="outline-container-org83cb26b" class="outline-4">
+<h4 id="org83cb26b">Pinto la Gráfica de la Cantidad Pivotal&#xa0;&#xa0;&#xa0;<span class="tag"><span class="CantidadPivotal">CantidadPivotal</span></span></h4>
+<div class="outline-text-4" id="text-org83cb26b">
+<p>
+\( P \left( a \le \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \le b \right) = 1 - \alpha \)
+</p>
+
+<p>
+Por ser normal \( a = -b \),  \( a = -z_{\alpha/_2} \)  y \( b = z_{a/_2} \), si no fuese así habría que calcular \( \int_{-\infty}^a f_{N(0,1)}(x)dx = \alpha_1 \) y \( \int_{b}^{\infty} f_{N(0,1)}(x)dx = \alpha - \alpha_1 \)
+</p>
+
+<p>
+Ahora tengo que despejar &mu; de \( -z_{\alpha/_2} \le \frac{\overline{X} - \mu}{\sigma/\sqrt{n}} \le z_{\alpha/_2} \)
+</p>
+
+<p>
+\( \text{IC} = \left[ \overline{x} - z_{\alpha/_2} \frac{\sigma}{\sqrt{n}}, \overline{x} + z_{\alpha/_2} \frac{\sigma}{\sqrt{n}} \right] \)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-orgba8af06" class="outline-3">
+<h3 id="orgba8af06">Ejemplo&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Normal">Normal</span>&#xa0;<span class="IntervaloConfianza">IntervaloConfianza</span></span></h3>
+<div class="outline-text-3" id="text-orgba8af06">
+<p>
+Sea \( X \sim N(\mu, \sigma^2) \) \( \sigma \) desconocida calcula el <a href="#org19d07a1">Intervalo de Confianza</a> para \( d(\mu) = \mu  \)
+</p>
+
+<p>
+Recordamos el <a href="teorema-de-behrens-fisher.html">teorema de fisher</a>
+</p>
+
+<p>
+\( T_{n-1} = \frac{N(0,1)}{\sqrt{\frac{\chi^2_{n-1}}{n-1}}} = \frac{\frac{\overline{X} - \mu}{\sigma/\sqrt{n}}}{\sqrt{\frac{(n-1)S_{n-1}}{\sigma^2/_{n-1}}}} = \frac{\overline{x} - \mu}{S_{n-1} /_{\sqrt{n}}} \)
+</p>
+
+<p>
+C.P. \( \frac{\overline{x} - \mu}{S_{n-1} /_{\sqrt{n}}} \sim T_{n-1} \)
+</p>
+
+<p>
+\( P \left( -t_{n-1,\alpha/_2} \le \frac{\overline{x} - \mu}{S_{n-1} /_{\sqrt{n}}} \le t_{n-1,\alpha/_2} \right) \)
+</p>
+
+<p>
+\( \text{IC} = \left[ \overline{x} - t_{n-1,\alpha/_2} \frac{S_{n-1}}{\sqrt{n}}, \overline{x} + t_{n-1,\alpha/_2} \frac{S_{n-1}}{\sqrt{n}} \right] \)
+</p>
+</div>
+</div>
+
+<div id="outline-container-orga6f028e" class="outline-3">
+<h3 id="orga6f028e">Ejemplo&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Normal">Normal</span>&#xa0;<span class="IntervaloConfianza">IntervaloConfianza</span></span></h3>
+<div class="outline-text-3" id="text-orga6f028e">
+<p>
+Sea \( X \sim N(\mu, \sigma^2) \) \( \sigma \) desconocida calcula el <a href="#org19d07a1">Intervalo de Confianza</a> para \( d(\sigma) = \sigma^2  \)
+</p>
+
+<p>
+\( \frac{(n-1) S^2_{n-1}}{\sigma^2} \sim \chi^2_{n-1}\) es cantidad pivotal
+</p>
+
+<p>
+\( T(\vec{x}) = S^2_{n-1} \) era el ECUMV eficiente para \( d(\sigma)= \sigma^2 \)
+</p>
+
+<p>
+Por ser \( c_1 = \chi^2_{n-1,\alpha/_2} \) y \( c_2 = \chi^2_{n-1,1 - \alpha/_2} \)
+</p>
+
+<p>
+\( c_1 \le \frac{(n-1) S^2_{n-1}}{\sigma^2} \le c_2 \)
+</p>
+
+<p>
+\( \text{IC} = \left[ \frac{(n-1)S^2_{n-1}}{c_1}, \frac{(n-1) S^2_{n-1}}{c_2} \right] \)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org5b516a9" class="outline-3">
+<h3 id="org5b516a9">TRUCO</h3>
+<div class="outline-text-3" id="text-org5b516a9">
+<p>
+\( x \sim exp(\theta) = \gamma(a = \theta, p = 1) \)
+</p>
+
+<p>
+\( \sum x_i \sim \gamma(a=\theta, p =n) \)
+</p>
+
+<p>
+\( 2\theta \sum x_i \sim \gamma(a = 1/2, p = n) = \chi^2_{2n} \)
+</p>
+</div>
+</div>
+
+<div id="outline-container-org3264b61" class="outline-3">
+<h3 id="org3264b61">Ejercicio&#xa0;&#xa0;&#xa0;<span class="tag"><span class="Examen">Examen</span></span></h3>
+<div class="outline-text-3" id="text-org3264b61">
+<p>
+X v.a. \( f_{\theta}(x) = 2\theta x e^{-\theta x^{2}} \)
+</p>
+</div>
+</div>
+</div>
+
+<div id="outline-container-org7649ce8" class="outline-2">
+<h2 id="org7649ce8">Como convertir cosas en &chi;<sup>2</sup></h2>
+</div>
+</div>
+<div id="postamble" class="status">
+<p class="author">Author: Pablo C. Alcalde</p>
+<p class="date">Created: 2023-05-03 mié 14:33</p>
+</div>
+</body>
+</html>
