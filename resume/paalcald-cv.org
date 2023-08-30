@@ -1,0 +1,84 @@
+#+options: ':nil *:t -:t ::t <:t H:3 \n:nil ^:t arch:headline
+#+options: author:t broken-links:nil c:nil creator:nil
+#+options: d:(not "LOGBOOK") date:t e:t email:nil f:t inline:t num:t
+#+options: p:nil pri:nil prop:nil stat:t tags:t tasks:t tex:t
+#+options: timestamp:nil title:t toc:nil todo:t |:t
+#+title: Pablo C. Alcalde
+#+date: <2023-08-31 Thu>
+#+author: Pablo C. Alcalde
+#+email: alcaldepablo.c@gmail.com
+#+language: es
+#+select_tags: export
+#+exclude_tags: noexport
+#+creator: Emacs 29.0.91 (Org mode 9.7-pre)
+#+cite_export:
+* Sobre mi
+Mi experiencia me ha enseñado que el trabajo en equipo es irreemplazable, y es por esto y por ser consciente de las limitaciones de mi formación universitaria, especialmente en ciberseguridad y sobre las prácticas y servicios establecidos, que quiero formar parte de un equipo de desarrollo capaz de desarrollar herramientas tecnológicas que puedan ayudar a empresas grandes y pequeñas a optimizar y gestionar mejor sus recursos.
+
+* Educación
+- Grado en Matemáticas
+  Universidad Complutense de Madrid (a finalizar en febrero de 2024)
+  
+* Idiomas
+- Inglés 🟊🟊🟊🟊⯪
+- Japonés 🟊🟊☆☆☆
+  
+* Competencias Técnicas
+- Programación funcional. 🟊🟊🟊⯪☆
+- Programación orientada a objetos.  🟊🟊🟊☆☆
+- Diseño de algoritmos. 🟊🟊🟊☆☆
+- UNIX  🟊🟊🟊☆☆
+- Git  🟊🟊⯪☆☆
+- Docker 🟊🟊☆☆☆
+  
+* Lenguajes de Programación
+- Python  🟊🟊🟊⯪☆
+- C 🟊🟊🟊☆☆
+- Haskell  🟊🟊🟊☆☆
+- C#   🟊🟊⯪☆☆
+- SQL  🟊🟊☆☆☆
+- Rust 🟊🟊☆☆☆
+
+* Mis fuertes
+- Polivalente
+- Perfeccionista.
+- Dotes sociales.
+- Gran compañero.
+- Esfuerzo y constancia.
+- Ganas de aprender.
+
+* Experiencia Profesional
+- Coctelero (2015-2016)
+  + Relacionarse con clientes.
+  + Trabajar bajo presión.
+  + Comunicación.
+- Coctelero de eventos por cuenta propia (2016-2018)
+  + Preparación eventos.
+  + Trato con proveedores
+  + Publicidad.
+  + Diseño web.
+  + Contabilidad fiscal.
+- Encargado de sala (2018-2022)
+  + Gestión pequeño negocio.
+  + Retención de cliente.
+  + Gestion de inventario.
+  + Responsabilidades y requisitos.
+- Ayudante técnico sonido, plató y postproducción. (2022-2023)
+  + Colaboración con equipos de otras disciplinas.
+  + Comunicación ascendente.
+- Ayudante externo academia universitaria (2022-Actualidad)
+  + Docencia
+  + Tutelaje proyectos.
+  + Desarrollo web
+  + Creación contenido docente.
+- Coordinacion y desarrollo de eventos. (2023-Actualidad)
+  + Direccion y coordinación equipos de trabajo.
+  + Gestión de recursos.
+  
+* Voluntariado
+- Administrador (2019)
+   Trabajamos como una asociación deportiva de barrio en conjunto con trabajadores sociales ofreciendo clases gratuitas de artes marciales a jóvenes en peligro de exclusión con el objetivo de aportar disciplina, un refugio y mentoria.
+
+- Hostelería (2020)
+   Durante el periodo de cuarentena causado por la COVID-19 profesionales de la hostelería proporcionamos varios productos, entre ellos café de especialidad y bocadillos, de forma gratuita a los profesionales asociados con el sector sanitario por medio de foodtrucks proporcionados por El Brillante de Atocha en emplazamientos como IFEMA, Hospital 12 de Octubre y el Hospital Infantil Universitario Niño Jesús.
+
